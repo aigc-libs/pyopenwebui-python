@@ -16,7 +16,7 @@ The REST API documentation can be found on [docs.pyopenwebui.com](https://docs.p
 
 ```sh
 # install from PyPI
-pip install --pre pyopenwebui
+pip install pyopenwebui
 ```
 
 ## Usage
