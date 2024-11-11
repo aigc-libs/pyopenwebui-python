@@ -112,7 +112,7 @@ class CommandsResource(SyncAPIResource):
             f"/prompts/command/{path_command}/update",
             body=maybe_transform(
                 {
-                    "command": body_command,
+                    "body_command": body_command,
                     "content": content,
                     "title": title,
                 },
@@ -243,7 +243,7 @@ class AsyncCommandsResource(AsyncAPIResource):
             f"/prompts/command/{path_command}/update",
             body=await async_maybe_transform(
                 {
-                    "command": body_command,
+                    "body_command": body_command,
                     "content": content,
                     "title": title,
                 },

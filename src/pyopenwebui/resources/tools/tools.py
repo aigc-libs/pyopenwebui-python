@@ -184,7 +184,7 @@ class ToolsResource(SyncAPIResource):
             f"/tools/id/{path_id}/update",
             body=maybe_transform(
                 {
-                    "id": body_id,
+                    "body_id": body_id,
                     "content": content,
                     "meta": meta,
                     "name": name,
@@ -406,7 +406,7 @@ class AsyncToolsResource(AsyncAPIResource):
             f"/tools/id/{path_id}/update",
             body=await async_maybe_transform(
                 {
-                    "id": body_id,
+                    "body_id": body_id,
                     "content": content,
                     "meta": meta,
                     "name": name,
