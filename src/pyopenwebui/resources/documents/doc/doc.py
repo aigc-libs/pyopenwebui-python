@@ -123,7 +123,7 @@ class DocResource(SyncAPIResource):
             "/documents/doc/update",
             body=maybe_transform(
                 {
-                    "name": body_name,
+                    "body_name": body_name,
                     "title": title,
                 },
                 doc_update_params.DocUpdateParams,
@@ -133,7 +133,7 @@ class DocResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform({"name": query_name}, doc_update_params.DocUpdateParams),
+                query=maybe_transform({"query_name": query_name}, doc_update_params.DocUpdateParams),
             ),
             cast_to=DocumentResponse,
         )
@@ -262,7 +262,7 @@ class AsyncDocResource(AsyncAPIResource):
             "/documents/doc/update",
             body=await async_maybe_transform(
                 {
-                    "name": body_name,
+                    "body_name": body_name,
                     "title": title,
                 },
                 doc_update_params.DocUpdateParams,
@@ -272,7 +272,7 @@ class AsyncDocResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform({"name": query_name}, doc_update_params.DocUpdateParams),
+                query=await async_maybe_transform({"query_name": query_name}, doc_update_params.DocUpdateParams),
             ),
             cast_to=DocumentResponse,
         )

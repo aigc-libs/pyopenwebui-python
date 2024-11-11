@@ -183,7 +183,7 @@ class FunctionsResource(SyncAPIResource):
             f"/functions/id/{path_id}/update",
             body=maybe_transform(
                 {
-                    "id": body_id,
+                    "body_id": body_id,
                     "content": content,
                     "meta": meta,
                     "name": name,
@@ -452,7 +452,7 @@ class AsyncFunctionsResource(AsyncAPIResource):
             f"/functions/id/{path_id}/update",
             body=await async_maybe_transform(
                 {
-                    "id": body_id,
+                    "body_id": body_id,
                     "content": content,
                     "meta": meta,
                     "name": name,
