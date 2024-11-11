@@ -79,7 +79,7 @@ class ModelsResource(SyncAPIResource):
             "/models/update",
             body=maybe_transform(
                 {
-                    "id": body_id,
+                    "body_id": body_id,
                     "meta": meta,
                     "name": name,
                     "params": params,
@@ -92,7 +92,7 @@ class ModelsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform({"id": query_id}, model_update_params.ModelUpdateParams),
+                query=maybe_transform({"query_id": query_id}, model_update_params.ModelUpdateParams),
             ),
             cast_to=ModelModel,
         )
@@ -265,7 +265,7 @@ class AsyncModelsResource(AsyncAPIResource):
             "/models/update",
             body=await async_maybe_transform(
                 {
-                    "id": body_id,
+                    "body_id": body_id,
                     "meta": meta,
                     "name": name,
                     "params": params,
@@ -278,7 +278,7 @@ class AsyncModelsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform({"id": query_id}, model_update_params.ModelUpdateParams),
+                query=await async_maybe_transform({"query_id": query_id}, model_update_params.ModelUpdateParams),
             ),
             cast_to=ModelModel,
         )
