@@ -19,7 +19,7 @@ class TestPdf:
     @parametrize
     def test_method_create(self, client: Pyopenwebui) -> None:
         pdf = client.utils.pdf.create(
-            messages=[{}, {}, {}],
+            messages=[{}],
             title="title",
         )
         assert_matches_type(object, pdf, path=["response"])
@@ -27,7 +27,7 @@ class TestPdf:
     @parametrize
     def test_raw_response_create(self, client: Pyopenwebui) -> None:
         response = client.utils.pdf.with_raw_response.create(
-            messages=[{}, {}, {}],
+            messages=[{}],
             title="title",
         )
 
@@ -39,7 +39,7 @@ class TestPdf:
     @parametrize
     def test_streaming_response_create(self, client: Pyopenwebui) -> None:
         with client.utils.pdf.with_streaming_response.create(
-            messages=[{}, {}, {}],
+            messages=[{}],
             title="title",
         ) as response:
             assert not response.is_closed
@@ -57,7 +57,7 @@ class TestAsyncPdf:
     @parametrize
     async def test_method_create(self, async_client: AsyncPyopenwebui) -> None:
         pdf = await async_client.utils.pdf.create(
-            messages=[{}, {}, {}],
+            messages=[{}],
             title="title",
         )
         assert_matches_type(object, pdf, path=["response"])
@@ -65,7 +65,7 @@ class TestAsyncPdf:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncPyopenwebui) -> None:
         response = await async_client.utils.pdf.with_raw_response.create(
-            messages=[{}, {}, {}],
+            messages=[{}],
             title="title",
         )
 
@@ -77,7 +77,7 @@ class TestAsyncPdf:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncPyopenwebui) -> None:
         async with async_client.utils.pdf.with_streaming_response.create(
-            messages=[{}, {}, {}],
+            messages=[{}],
             title="title",
         ) as response:
             assert not response.is_closed

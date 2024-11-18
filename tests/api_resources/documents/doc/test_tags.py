@@ -21,7 +21,7 @@ class TestTags:
     def test_method_create(self, client: Pyopenwebui) -> None:
         tag = client.documents.doc.tags.create(
             name="name",
-            tags=[{}, {}, {}],
+            tags=[{}],
         )
         assert_matches_type(Optional[DocumentResponse], tag, path=["response"])
 
@@ -29,7 +29,7 @@ class TestTags:
     def test_raw_response_create(self, client: Pyopenwebui) -> None:
         response = client.documents.doc.tags.with_raw_response.create(
             name="name",
-            tags=[{}, {}, {}],
+            tags=[{}],
         )
 
         assert response.is_closed is True
@@ -41,7 +41,7 @@ class TestTags:
     def test_streaming_response_create(self, client: Pyopenwebui) -> None:
         with client.documents.doc.tags.with_streaming_response.create(
             name="name",
-            tags=[{}, {}, {}],
+            tags=[{}],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -59,7 +59,7 @@ class TestAsyncTags:
     async def test_method_create(self, async_client: AsyncPyopenwebui) -> None:
         tag = await async_client.documents.doc.tags.create(
             name="name",
-            tags=[{}, {}, {}],
+            tags=[{}],
         )
         assert_matches_type(Optional[DocumentResponse], tag, path=["response"])
 
@@ -67,7 +67,7 @@ class TestAsyncTags:
     async def test_raw_response_create(self, async_client: AsyncPyopenwebui) -> None:
         response = await async_client.documents.doc.tags.with_raw_response.create(
             name="name",
-            tags=[{}, {}, {}],
+            tags=[{}],
         )
 
         assert response.is_closed is True
@@ -79,7 +79,7 @@ class TestAsyncTags:
     async def test_streaming_response_create(self, async_client: AsyncPyopenwebui) -> None:
         async with async_client.documents.doc.tags.with_streaming_response.create(
             name="name",
-            tags=[{}, {}, {}],
+            tags=[{}],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
