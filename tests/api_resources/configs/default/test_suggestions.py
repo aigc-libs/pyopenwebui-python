@@ -23,16 +23,8 @@ class TestSuggestions:
             suggestions=[
                 {
                     "content": "content",
-                    "title": ["string", "string", "string"],
-                },
-                {
-                    "content": "content",
-                    "title": ["string", "string", "string"],
-                },
-                {
-                    "content": "content",
-                    "title": ["string", "string", "string"],
-                },
+                    "title": ["string"],
+                }
             ],
         )
         assert_matches_type(SuggestionCreateResponse, suggestion, path=["response"])
@@ -43,16 +35,8 @@ class TestSuggestions:
             suggestions=[
                 {
                     "content": "content",
-                    "title": ["string", "string", "string"],
-                },
-                {
-                    "content": "content",
-                    "title": ["string", "string", "string"],
-                },
-                {
-                    "content": "content",
-                    "title": ["string", "string", "string"],
-                },
+                    "title": ["string"],
+                }
             ],
         )
 
@@ -67,16 +51,8 @@ class TestSuggestions:
             suggestions=[
                 {
                     "content": "content",
-                    "title": ["string", "string", "string"],
-                },
-                {
-                    "content": "content",
-                    "title": ["string", "string", "string"],
-                },
-                {
-                    "content": "content",
-                    "title": ["string", "string", "string"],
-                },
+                    "title": ["string"],
+                }
             ],
         ) as response:
             assert not response.is_closed
@@ -97,16 +73,8 @@ class TestAsyncSuggestions:
             suggestions=[
                 {
                     "content": "content",
-                    "title": ["string", "string", "string"],
-                },
-                {
-                    "content": "content",
-                    "title": ["string", "string", "string"],
-                },
-                {
-                    "content": "content",
-                    "title": ["string", "string", "string"],
-                },
+                    "title": ["string"],
+                }
             ],
         )
         assert_matches_type(SuggestionCreateResponse, suggestion, path=["response"])
@@ -117,16 +85,8 @@ class TestAsyncSuggestions:
             suggestions=[
                 {
                     "content": "content",
-                    "title": ["string", "string", "string"],
-                },
-                {
-                    "content": "content",
-                    "title": ["string", "string", "string"],
-                },
-                {
-                    "content": "content",
-                    "title": ["string", "string", "string"],
-                },
+                    "title": ["string"],
+                }
             ],
         )
 
@@ -141,16 +101,8 @@ class TestAsyncSuggestions:
             suggestions=[
                 {
                     "content": "content",
-                    "title": ["string", "string", "string"],
-                },
-                {
-                    "content": "content",
-                    "title": ["string", "string", "string"],
-                },
-                {
-                    "content": "content",
-                    "title": ["string", "string", "string"],
-                },
+                    "title": ["string"],
+                }
             ],
         ) as response:
             assert not response.is_closed
