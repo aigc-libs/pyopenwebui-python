@@ -27,21 +27,7 @@ class TestBanners:
                     "dismissible": True,
                     "timestamp": 0,
                     "type": "type",
-                },
-                {
-                    "id": "id",
-                    "content": "content",
-                    "dismissible": True,
-                    "timestamp": 0,
-                    "type": "type",
-                },
-                {
-                    "id": "id",
-                    "content": "content",
-                    "dismissible": True,
-                    "timestamp": 0,
-                    "type": "type",
-                },
+                }
             ],
         )
         assert_matches_type(BannerCreateResponse, banner, path=["response"])
@@ -56,21 +42,7 @@ class TestBanners:
                     "dismissible": True,
                     "timestamp": 0,
                     "type": "type",
-                },
-                {
-                    "id": "id",
-                    "content": "content",
-                    "dismissible": True,
-                    "timestamp": 0,
-                    "type": "type",
-                },
-                {
-                    "id": "id",
-                    "content": "content",
-                    "dismissible": True,
-                    "timestamp": 0,
-                    "type": "type",
-                },
+                }
             ],
         )
 
@@ -89,21 +61,7 @@ class TestBanners:
                     "dismissible": True,
                     "timestamp": 0,
                     "type": "type",
-                },
-                {
-                    "id": "id",
-                    "content": "content",
-                    "dismissible": True,
-                    "timestamp": 0,
-                    "type": "type",
-                },
-                {
-                    "id": "id",
-                    "content": "content",
-                    "dismissible": True,
-                    "timestamp": 0,
-                    "type": "type",
-                },
+                }
             ],
         ) as response:
             assert not response.is_closed
@@ -153,21 +111,7 @@ class TestAsyncBanners:
                     "dismissible": True,
                     "timestamp": 0,
                     "type": "type",
-                },
-                {
-                    "id": "id",
-                    "content": "content",
-                    "dismissible": True,
-                    "timestamp": 0,
-                    "type": "type",
-                },
-                {
-                    "id": "id",
-                    "content": "content",
-                    "dismissible": True,
-                    "timestamp": 0,
-                    "type": "type",
-                },
+                }
             ],
         )
         assert_matches_type(BannerCreateResponse, banner, path=["response"])
@@ -182,21 +126,7 @@ class TestAsyncBanners:
                     "dismissible": True,
                     "timestamp": 0,
                     "type": "type",
-                },
-                {
-                    "id": "id",
-                    "content": "content",
-                    "dismissible": True,
-                    "timestamp": 0,
-                    "type": "type",
-                },
-                {
-                    "id": "id",
-                    "content": "content",
-                    "dismissible": True,
-                    "timestamp": 0,
-                    "type": "type",
-                },
+                }
             ],
         )
 
@@ -215,21 +145,7 @@ class TestAsyncBanners:
                     "dismissible": True,
                     "timestamp": 0,
                     "type": "type",
-                },
-                {
-                    "id": "id",
-                    "content": "content",
-                    "dismissible": True,
-                    "timestamp": 0,
-                    "type": "type",
-                },
-                {
-                    "id": "id",
-                    "content": "content",
-                    "dismissible": True,
-                    "timestamp": 0,
-                    "type": "type",
-                },
+                }
             ],
         ) as response:
             assert not response.is_closed
