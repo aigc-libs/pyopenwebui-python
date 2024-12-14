@@ -4,14 +4,7 @@ from __future__ import annotations
 
 import httpx
 
-from ...types import user_list_params
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
-from ..._compat import cached_property
-from .user.user import (
+from .user import (
     UserResource,
     AsyncUserResource,
     UserResourceWithRawResponse,
@@ -19,14 +12,7 @@ from .user.user import (
     UserResourceWithStreamingResponse,
     AsyncUserResourceWithStreamingResponse,
 )
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._response import (
-    to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_raw_response_wrapper,
-    async_to_streamed_response_wrapper,
-)
-from .update.update import (
+from .update import (
     UpdateResource,
     AsyncUpdateResource,
     UpdateResourceWithRawResponse,
@@ -34,8 +20,22 @@ from .update.update import (
     UpdateResourceWithStreamingResponse,
     AsyncUpdateResourceWithStreamingResponse,
 )
-from ..._base_client import make_request_options
-from .permissions.permissions import (
+from ...types import user_list_params
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
+from ..._compat import cached_property
+from .user.user import UserResource, AsyncUserResource
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ..._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
+from .permissions import (
     PermissionsResource,
     AsyncPermissionsResource,
     PermissionsResourceWithRawResponse,
@@ -43,6 +43,9 @@ from .permissions.permissions import (
     PermissionsResourceWithStreamingResponse,
     AsyncPermissionsResourceWithStreamingResponse,
 )
+from .update.update import UpdateResource, AsyncUpdateResource
+from ..._base_client import make_request_options
+from .permissions.permissions import PermissionsResource, AsyncPermissionsResource
 from ...types.user_list_response import UserListResponse
 from ...types.shared.user_response import UserResponse
 from ...types.user_delete_response import UserDeleteResponse
