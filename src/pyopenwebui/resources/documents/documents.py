@@ -6,7 +6,8 @@ from typing import Optional
 
 import httpx
 
-from .doc import (
+from ...types import document_create_params
+from .doc.doc import (
     DocResource,
     AsyncDocResource,
     DocResourceWithRawResponse,
@@ -14,8 +15,6 @@ from .doc import (
     DocResourceWithStreamingResponse,
     AsyncDocResourceWithStreamingResponse,
 )
-from ...types import document_create_params
-from .doc.doc import DocResource, AsyncDocResource
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._utils import (
     maybe_transform,
