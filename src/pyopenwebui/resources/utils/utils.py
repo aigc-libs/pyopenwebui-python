@@ -26,14 +26,6 @@ from .code import (
     CodeResourceWithStreamingResponse,
     AsyncCodeResourceWithStreamingResponse,
 )
-from .litellm import (
-    LitellmResource,
-    AsyncLitellmResource,
-    LitellmResourceWithRawResponse,
-    AsyncLitellmResourceWithRawResponse,
-    LitellmResourceWithStreamingResponse,
-    AsyncLitellmResourceWithStreamingResponse,
-)
 from .gravatar import (
     GravatarResource,
     AsyncGravatarResource,
@@ -52,7 +44,14 @@ from .markdown import (
 )
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
-from .litellm.litellm import LitellmResource, AsyncLitellmResource
+from .litellm.litellm import (
+    LitellmResource,
+    AsyncLitellmResource,
+    LitellmResourceWithRawResponse,
+    AsyncLitellmResourceWithRawResponse,
+    LitellmResourceWithStreamingResponse,
+    AsyncLitellmResourceWithStreamingResponse,
+)
 
 __all__ = ["UtilsResource", "AsyncUtilsResource"]
 
