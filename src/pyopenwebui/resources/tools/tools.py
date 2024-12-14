@@ -14,14 +14,6 @@ from .valve import (
     ValveResourceWithStreamingResponse,
     AsyncValveResourceWithStreamingResponse,
 )
-from .valves import (
-    ValvesResource,
-    AsyncValvesResource,
-    ValvesResourceWithRawResponse,
-    AsyncValvesResourceWithRawResponse,
-    ValvesResourceWithStreamingResponse,
-    AsyncValvesResourceWithStreamingResponse,
-)
 from ...types import tool_create_params, tool_update_params
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._utils import (
@@ -36,7 +28,14 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from .valves.valves import ValvesResource, AsyncValvesResource
+from .valves.valves import (
+    ValvesResource,
+    AsyncValvesResource,
+    ValvesResourceWithRawResponse,
+    AsyncValvesResourceWithRawResponse,
+    ValvesResourceWithStreamingResponse,
+    AsyncValvesResourceWithStreamingResponse,
+)
 from ..._base_client import make_request_options
 from ...types.tool_model import ToolModel
 from ...types.tool_response import ToolResponse
