@@ -8,7 +8,7 @@ from typing_extensions import Self, override
 
 import httpx
 
-from . import resources, _exceptions
+from . import _exceptions
 from ._qs import Querystring
 from ._types import (
     NOT_GIVEN,
@@ -24,6 +24,7 @@ from ._utils import (
     get_async_library,
 )
 from ._version import __version__
+from .resources import root, models
 from ._streaming import Stream as Stream, AsyncStream as AsyncStream
 from ._exceptions import APIStatusError
 from ._base_client import (
@@ -31,13 +32,23 @@ from ._base_client import (
     SyncAPIClient,
     AsyncAPIClient,
 )
+from .resources.auths import auths
+from .resources.chats import chats
+from .resources.files import files
+from .resources.tools import tools
+from .resources.users import users
+from .resources.utils import utils
+from .resources.configs import configs
+from .resources.prompts import prompts
+from .resources.memories import memories
+from .resources.documents import documents
+from .resources.functions import functions
 
 __all__ = [
     "Timeout",
     "Transport",
     "ProxiesTypes",
     "RequestOptions",
-    "resources",
     "Pyopenwebui",
     "AsyncPyopenwebui",
     "Client",
@@ -46,19 +57,19 @@ __all__ = [
 
 
 class Pyopenwebui(SyncAPIClient):
-    configs: resources.ConfigsResource
-    auths: resources.AuthsResource
-    users: resources.UsersResource
-    chats: resources.ChatsResource
-    documents: resources.DocumentsResource
-    models: resources.ModelsResource
-    prompts: resources.PromptsResource
-    memories: resources.MemoriesResource
-    files: resources.FilesResource
-    tools: resources.ToolsResource
-    functions: resources.FunctionsResource
-    utils: resources.UtilsResource
-    root: resources.RootResource
+    configs: configs.ConfigsResource
+    auths: auths.AuthsResource
+    users: users.UsersResource
+    chats: chats.ChatsResource
+    documents: documents.DocumentsResource
+    models: models.ModelsResource
+    prompts: prompts.PromptsResource
+    memories: memories.MemoriesResource
+    files: files.FilesResource
+    tools: tools.ToolsResource
+    functions: functions.FunctionsResource
+    utils: utils.UtilsResource
+    root: root.RootResource
     with_raw_response: PyopenwebuiWithRawResponse
     with_streaming_response: PyopenwebuiWithStreamedResponse
 
@@ -103,19 +114,19 @@ class Pyopenwebui(SyncAPIClient):
             _strict_response_validation=_strict_response_validation,
         )
 
-        self.configs = resources.ConfigsResource(self)
-        self.auths = resources.AuthsResource(self)
-        self.users = resources.UsersResource(self)
-        self.chats = resources.ChatsResource(self)
-        self.documents = resources.DocumentsResource(self)
-        self.models = resources.ModelsResource(self)
-        self.prompts = resources.PromptsResource(self)
-        self.memories = resources.MemoriesResource(self)
-        self.files = resources.FilesResource(self)
-        self.tools = resources.ToolsResource(self)
-        self.functions = resources.FunctionsResource(self)
-        self.utils = resources.UtilsResource(self)
-        self.root = resources.RootResource(self)
+        self.configs = configs.ConfigsResource(self)
+        self.auths = auths.AuthsResource(self)
+        self.users = users.UsersResource(self)
+        self.chats = chats.ChatsResource(self)
+        self.documents = documents.DocumentsResource(self)
+        self.models = models.ModelsResource(self)
+        self.prompts = prompts.PromptsResource(self)
+        self.memories = memories.MemoriesResource(self)
+        self.files = files.FilesResource(self)
+        self.tools = tools.ToolsResource(self)
+        self.functions = functions.FunctionsResource(self)
+        self.utils = utils.UtilsResource(self)
+        self.root = root.RootResource(self)
         self.with_raw_response = PyopenwebuiWithRawResponse(self)
         self.with_streaming_response = PyopenwebuiWithStreamedResponse(self)
 
@@ -217,19 +228,19 @@ class Pyopenwebui(SyncAPIClient):
 
 
 class AsyncPyopenwebui(AsyncAPIClient):
-    configs: resources.AsyncConfigsResource
-    auths: resources.AsyncAuthsResource
-    users: resources.AsyncUsersResource
-    chats: resources.AsyncChatsResource
-    documents: resources.AsyncDocumentsResource
-    models: resources.AsyncModelsResource
-    prompts: resources.AsyncPromptsResource
-    memories: resources.AsyncMemoriesResource
-    files: resources.AsyncFilesResource
-    tools: resources.AsyncToolsResource
-    functions: resources.AsyncFunctionsResource
-    utils: resources.AsyncUtilsResource
-    root: resources.AsyncRootResource
+    configs: configs.AsyncConfigsResource
+    auths: auths.AsyncAuthsResource
+    users: users.AsyncUsersResource
+    chats: chats.AsyncChatsResource
+    documents: documents.AsyncDocumentsResource
+    models: models.AsyncModelsResource
+    prompts: prompts.AsyncPromptsResource
+    memories: memories.AsyncMemoriesResource
+    files: files.AsyncFilesResource
+    tools: tools.AsyncToolsResource
+    functions: functions.AsyncFunctionsResource
+    utils: utils.AsyncUtilsResource
+    root: root.AsyncRootResource
     with_raw_response: AsyncPyopenwebuiWithRawResponse
     with_streaming_response: AsyncPyopenwebuiWithStreamedResponse
 
@@ -274,19 +285,19 @@ class AsyncPyopenwebui(AsyncAPIClient):
             _strict_response_validation=_strict_response_validation,
         )
 
-        self.configs = resources.AsyncConfigsResource(self)
-        self.auths = resources.AsyncAuthsResource(self)
-        self.users = resources.AsyncUsersResource(self)
-        self.chats = resources.AsyncChatsResource(self)
-        self.documents = resources.AsyncDocumentsResource(self)
-        self.models = resources.AsyncModelsResource(self)
-        self.prompts = resources.AsyncPromptsResource(self)
-        self.memories = resources.AsyncMemoriesResource(self)
-        self.files = resources.AsyncFilesResource(self)
-        self.tools = resources.AsyncToolsResource(self)
-        self.functions = resources.AsyncFunctionsResource(self)
-        self.utils = resources.AsyncUtilsResource(self)
-        self.root = resources.AsyncRootResource(self)
+        self.configs = configs.AsyncConfigsResource(self)
+        self.auths = auths.AsyncAuthsResource(self)
+        self.users = users.AsyncUsersResource(self)
+        self.chats = chats.AsyncChatsResource(self)
+        self.documents = documents.AsyncDocumentsResource(self)
+        self.models = models.AsyncModelsResource(self)
+        self.prompts = prompts.AsyncPromptsResource(self)
+        self.memories = memories.AsyncMemoriesResource(self)
+        self.files = files.AsyncFilesResource(self)
+        self.tools = tools.AsyncToolsResource(self)
+        self.functions = functions.AsyncFunctionsResource(self)
+        self.utils = utils.AsyncUtilsResource(self)
+        self.root = root.AsyncRootResource(self)
         self.with_raw_response = AsyncPyopenwebuiWithRawResponse(self)
         self.with_streaming_response = AsyncPyopenwebuiWithStreamedResponse(self)
 
@@ -389,70 +400,70 @@ class AsyncPyopenwebui(AsyncAPIClient):
 
 class PyopenwebuiWithRawResponse:
     def __init__(self, client: Pyopenwebui) -> None:
-        self.configs = resources.ConfigsResourceWithRawResponse(client.configs)
-        self.auths = resources.AuthsResourceWithRawResponse(client.auths)
-        self.users = resources.UsersResourceWithRawResponse(client.users)
-        self.chats = resources.ChatsResourceWithRawResponse(client.chats)
-        self.documents = resources.DocumentsResourceWithRawResponse(client.documents)
-        self.models = resources.ModelsResourceWithRawResponse(client.models)
-        self.prompts = resources.PromptsResourceWithRawResponse(client.prompts)
-        self.memories = resources.MemoriesResourceWithRawResponse(client.memories)
-        self.files = resources.FilesResourceWithRawResponse(client.files)
-        self.tools = resources.ToolsResourceWithRawResponse(client.tools)
-        self.functions = resources.FunctionsResourceWithRawResponse(client.functions)
-        self.utils = resources.UtilsResourceWithRawResponse(client.utils)
-        self.root = resources.RootResourceWithRawResponse(client.root)
+        self.configs = configs.ConfigsResourceWithRawResponse(client.configs)
+        self.auths = auths.AuthsResourceWithRawResponse(client.auths)
+        self.users = users.UsersResourceWithRawResponse(client.users)
+        self.chats = chats.ChatsResourceWithRawResponse(client.chats)
+        self.documents = documents.DocumentsResourceWithRawResponse(client.documents)
+        self.models = models.ModelsResourceWithRawResponse(client.models)
+        self.prompts = prompts.PromptsResourceWithRawResponse(client.prompts)
+        self.memories = memories.MemoriesResourceWithRawResponse(client.memories)
+        self.files = files.FilesResourceWithRawResponse(client.files)
+        self.tools = tools.ToolsResourceWithRawResponse(client.tools)
+        self.functions = functions.FunctionsResourceWithRawResponse(client.functions)
+        self.utils = utils.UtilsResourceWithRawResponse(client.utils)
+        self.root = root.RootResourceWithRawResponse(client.root)
 
 
 class AsyncPyopenwebuiWithRawResponse:
     def __init__(self, client: AsyncPyopenwebui) -> None:
-        self.configs = resources.AsyncConfigsResourceWithRawResponse(client.configs)
-        self.auths = resources.AsyncAuthsResourceWithRawResponse(client.auths)
-        self.users = resources.AsyncUsersResourceWithRawResponse(client.users)
-        self.chats = resources.AsyncChatsResourceWithRawResponse(client.chats)
-        self.documents = resources.AsyncDocumentsResourceWithRawResponse(client.documents)
-        self.models = resources.AsyncModelsResourceWithRawResponse(client.models)
-        self.prompts = resources.AsyncPromptsResourceWithRawResponse(client.prompts)
-        self.memories = resources.AsyncMemoriesResourceWithRawResponse(client.memories)
-        self.files = resources.AsyncFilesResourceWithRawResponse(client.files)
-        self.tools = resources.AsyncToolsResourceWithRawResponse(client.tools)
-        self.functions = resources.AsyncFunctionsResourceWithRawResponse(client.functions)
-        self.utils = resources.AsyncUtilsResourceWithRawResponse(client.utils)
-        self.root = resources.AsyncRootResourceWithRawResponse(client.root)
+        self.configs = configs.AsyncConfigsResourceWithRawResponse(client.configs)
+        self.auths = auths.AsyncAuthsResourceWithRawResponse(client.auths)
+        self.users = users.AsyncUsersResourceWithRawResponse(client.users)
+        self.chats = chats.AsyncChatsResourceWithRawResponse(client.chats)
+        self.documents = documents.AsyncDocumentsResourceWithRawResponse(client.documents)
+        self.models = models.AsyncModelsResourceWithRawResponse(client.models)
+        self.prompts = prompts.AsyncPromptsResourceWithRawResponse(client.prompts)
+        self.memories = memories.AsyncMemoriesResourceWithRawResponse(client.memories)
+        self.files = files.AsyncFilesResourceWithRawResponse(client.files)
+        self.tools = tools.AsyncToolsResourceWithRawResponse(client.tools)
+        self.functions = functions.AsyncFunctionsResourceWithRawResponse(client.functions)
+        self.utils = utils.AsyncUtilsResourceWithRawResponse(client.utils)
+        self.root = root.AsyncRootResourceWithRawResponse(client.root)
 
 
 class PyopenwebuiWithStreamedResponse:
     def __init__(self, client: Pyopenwebui) -> None:
-        self.configs = resources.ConfigsResourceWithStreamingResponse(client.configs)
-        self.auths = resources.AuthsResourceWithStreamingResponse(client.auths)
-        self.users = resources.UsersResourceWithStreamingResponse(client.users)
-        self.chats = resources.ChatsResourceWithStreamingResponse(client.chats)
-        self.documents = resources.DocumentsResourceWithStreamingResponse(client.documents)
-        self.models = resources.ModelsResourceWithStreamingResponse(client.models)
-        self.prompts = resources.PromptsResourceWithStreamingResponse(client.prompts)
-        self.memories = resources.MemoriesResourceWithStreamingResponse(client.memories)
-        self.files = resources.FilesResourceWithStreamingResponse(client.files)
-        self.tools = resources.ToolsResourceWithStreamingResponse(client.tools)
-        self.functions = resources.FunctionsResourceWithStreamingResponse(client.functions)
-        self.utils = resources.UtilsResourceWithStreamingResponse(client.utils)
-        self.root = resources.RootResourceWithStreamingResponse(client.root)
+        self.configs = configs.ConfigsResourceWithStreamingResponse(client.configs)
+        self.auths = auths.AuthsResourceWithStreamingResponse(client.auths)
+        self.users = users.UsersResourceWithStreamingResponse(client.users)
+        self.chats = chats.ChatsResourceWithStreamingResponse(client.chats)
+        self.documents = documents.DocumentsResourceWithStreamingResponse(client.documents)
+        self.models = models.ModelsResourceWithStreamingResponse(client.models)
+        self.prompts = prompts.PromptsResourceWithStreamingResponse(client.prompts)
+        self.memories = memories.MemoriesResourceWithStreamingResponse(client.memories)
+        self.files = files.FilesResourceWithStreamingResponse(client.files)
+        self.tools = tools.ToolsResourceWithStreamingResponse(client.tools)
+        self.functions = functions.FunctionsResourceWithStreamingResponse(client.functions)
+        self.utils = utils.UtilsResourceWithStreamingResponse(client.utils)
+        self.root = root.RootResourceWithStreamingResponse(client.root)
 
 
 class AsyncPyopenwebuiWithStreamedResponse:
     def __init__(self, client: AsyncPyopenwebui) -> None:
-        self.configs = resources.AsyncConfigsResourceWithStreamingResponse(client.configs)
-        self.auths = resources.AsyncAuthsResourceWithStreamingResponse(client.auths)
-        self.users = resources.AsyncUsersResourceWithStreamingResponse(client.users)
-        self.chats = resources.AsyncChatsResourceWithStreamingResponse(client.chats)
-        self.documents = resources.AsyncDocumentsResourceWithStreamingResponse(client.documents)
-        self.models = resources.AsyncModelsResourceWithStreamingResponse(client.models)
-        self.prompts = resources.AsyncPromptsResourceWithStreamingResponse(client.prompts)
-        self.memories = resources.AsyncMemoriesResourceWithStreamingResponse(client.memories)
-        self.files = resources.AsyncFilesResourceWithStreamingResponse(client.files)
-        self.tools = resources.AsyncToolsResourceWithStreamingResponse(client.tools)
-        self.functions = resources.AsyncFunctionsResourceWithStreamingResponse(client.functions)
-        self.utils = resources.AsyncUtilsResourceWithStreamingResponse(client.utils)
-        self.root = resources.AsyncRootResourceWithStreamingResponse(client.root)
+        self.configs = configs.AsyncConfigsResourceWithStreamingResponse(client.configs)
+        self.auths = auths.AsyncAuthsResourceWithStreamingResponse(client.auths)
+        self.users = users.AsyncUsersResourceWithStreamingResponse(client.users)
+        self.chats = chats.AsyncChatsResourceWithStreamingResponse(client.chats)
+        self.documents = documents.AsyncDocumentsResourceWithStreamingResponse(client.documents)
+        self.models = models.AsyncModelsResourceWithStreamingResponse(client.models)
+        self.prompts = prompts.AsyncPromptsResourceWithStreamingResponse(client.prompts)
+        self.memories = memories.AsyncMemoriesResourceWithStreamingResponse(client.memories)
+        self.files = files.AsyncFilesResourceWithStreamingResponse(client.files)
+        self.tools = tools.AsyncToolsResourceWithStreamingResponse(client.tools)
+        self.functions = functions.AsyncFunctionsResourceWithStreamingResponse(client.functions)
+        self.utils = utils.AsyncUtilsResourceWithStreamingResponse(client.utils)
+        self.root = root.AsyncRootResourceWithStreamingResponse(client.root)
 
 
 Client = Pyopenwebui
