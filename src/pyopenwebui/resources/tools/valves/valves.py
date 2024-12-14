@@ -12,7 +12,12 @@ from .spec import (
     SpecResourceWithStreamingResponse,
     AsyncSpecResourceWithStreamingResponse,
 )
-from .user import (
+from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
+from .user.user import (
     UserResource,
     AsyncUserResource,
     UserResourceWithRawResponse,
@@ -20,12 +25,6 @@ from .user import (
     UserResourceWithStreamingResponse,
     AsyncUserResourceWithStreamingResponse,
 )
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
-from .user.user import UserResource, AsyncUserResource
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
