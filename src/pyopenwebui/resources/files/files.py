@@ -7,6 +7,14 @@ from typing import Mapping, Optional, cast
 import httpx
 
 from ...types import file_create_params
+from .content import (
+    ContentResource,
+    AsyncContentResource,
+    ContentResourceWithRawResponse,
+    AsyncContentResourceWithRawResponse,
+    ContentResourceWithStreamingResponse,
+    AsyncContentResourceWithStreamingResponse,
+)
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven, FileTypes
 from ..._utils import (
     extract_files,
@@ -23,14 +31,7 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._base_client import make_request_options
-from .content.content import (
-    ContentResource,
-    AsyncContentResource,
-    ContentResourceWithRawResponse,
-    AsyncContentResourceWithRawResponse,
-    ContentResourceWithStreamingResponse,
-    AsyncContentResourceWithStreamingResponse,
-)
+from .content.content import ContentResource, AsyncContentResource
 from ...types.shared.file_model import FileModel
 from ...types.file_list_response import FileListResponse
 

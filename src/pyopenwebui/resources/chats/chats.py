@@ -6,6 +6,14 @@ from typing import Optional
 
 import httpx
 
+from .all import (
+    AllResource,
+    AsyncAllResource,
+    AllResourceWithRawResponse,
+    AsyncAllResourceWithRawResponse,
+    AllResourceWithStreamingResponse,
+    AsyncAllResourceWithStreamingResponse,
+)
 from .tags import (
     TagsResource,
     AsyncTagsResource,
@@ -15,14 +23,7 @@ from .tags import (
     AsyncTagsResourceWithStreamingResponse,
 )
 from ...types import chat_list_params, chat_create_params, chat_list_user_params
-from .all.all import (
-    AllResource,
-    AsyncAllResource,
-    AllResourceWithRawResponse,
-    AsyncAllResourceWithRawResponse,
-    AllResourceWithStreamingResponse,
-    AsyncAllResourceWithStreamingResponse,
-)
+from .all.all import AllResource, AsyncAllResource
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._utils import (
     maybe_transform,

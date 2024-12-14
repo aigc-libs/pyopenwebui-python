@@ -13,6 +13,14 @@ from .banners import (
     BannersResourceWithStreamingResponse,
     AsyncBannersResourceWithStreamingResponse,
 )
+from .default import (
+    DefaultResource,
+    AsyncDefaultResource,
+    DefaultResourceWithRawResponse,
+    AsyncDefaultResourceWithRawResponse,
+    DefaultResourceWithStreamingResponse,
+    AsyncDefaultResourceWithStreamingResponse,
+)
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._utils import (
     maybe_transform,
@@ -27,14 +35,7 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._base_client import make_request_options
-from .default.default import (
-    DefaultResource,
-    AsyncDefaultResource,
-    DefaultResourceWithRawResponse,
-    AsyncDefaultResourceWithRawResponse,
-    DefaultResourceWithStreamingResponse,
-    AsyncDefaultResourceWithStreamingResponse,
-)
+from .default.default import DefaultResource, AsyncDefaultResource
 
 __all__ = ["ConfigsResource", "AsyncConfigsResource"]
 

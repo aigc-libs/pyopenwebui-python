@@ -14,6 +14,14 @@ from .export import (
     ExportResourceWithStreamingResponse,
     AsyncExportResourceWithStreamingResponse,
 )
+from .valves import (
+    ValvesResource,
+    AsyncValvesResource,
+    ValvesResourceWithRawResponse,
+    AsyncValvesResourceWithRawResponse,
+    ValvesResourceWithStreamingResponse,
+    AsyncValvesResourceWithStreamingResponse,
+)
 from ...types import function_create_params, function_update_params
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._utils import (
@@ -28,14 +36,7 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from .valves.valves import (
-    ValvesResource,
-    AsyncValvesResource,
-    ValvesResourceWithRawResponse,
-    AsyncValvesResourceWithRawResponse,
-    ValvesResourceWithStreamingResponse,
-    AsyncValvesResourceWithStreamingResponse,
-)
+from .valves.valves import ValvesResource, AsyncValvesResource
 from ..._base_client import make_request_options
 from ...types.function_model import FunctionModel
 from ...types.function_response import FunctionResponse
