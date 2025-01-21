@@ -151,9 +151,9 @@ class FunctionsResource(SyncAPIResource):
 
     def update(
         self,
+        id_1: str,
         *,
-        path_id: str,
-        body_id: str,
+        id_2: str,
         content: str,
         meta: function_update_params.Meta,
         name: str,
@@ -176,13 +176,13 @@ class FunctionsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not path_id:
-            raise ValueError(f"Expected a non-empty value for `path_id` but received {path_id!r}")
+        if not id_1:
+            raise ValueError(f"Expected a non-empty value for `id_1` but received {id_1!r}")
         return self._post(
-            f"/functions/id/{path_id}/update",
+            f"/functions/id/{id_1}/update",
             body=maybe_transform(
                 {
-                    "body_id": body_id,
+                    "id_2": id_2,
                     "content": content,
                     "meta": meta,
                     "name": name,
@@ -420,9 +420,9 @@ class AsyncFunctionsResource(AsyncAPIResource):
 
     async def update(
         self,
+        id_1: str,
         *,
-        path_id: str,
-        body_id: str,
+        id_2: str,
         content: str,
         meta: function_update_params.Meta,
         name: str,
@@ -445,13 +445,13 @@ class AsyncFunctionsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not path_id:
-            raise ValueError(f"Expected a non-empty value for `path_id` but received {path_id!r}")
+        if not id_1:
+            raise ValueError(f"Expected a non-empty value for `id_1` but received {id_1!r}")
         return await self._post(
-            f"/functions/id/{path_id}/update",
+            f"/functions/id/{id_1}/update",
             body=await async_maybe_transform(
                 {
-                    "body_id": body_id,
+                    "id_2": id_2,
                     "content": content,
                     "meta": meta,
                     "name": name,

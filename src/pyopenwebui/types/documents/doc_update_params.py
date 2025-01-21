@@ -10,8 +10,8 @@ __all__ = ["DocUpdateParams"]
 
 
 class DocUpdateParams(TypedDict, total=False):
-    query_name: Required[Annotated[str, PropertyInfo(alias="name")]]
+    name_1: Required[Annotated[str, PropertyInfo(alias="name")]]
 
-    body_name: Required[Annotated[str, PropertyInfo(alias="name")]]
+    name_2: Required[Annotated[str, PropertyInfo(alias="name")]]
 
     title: Required[str]

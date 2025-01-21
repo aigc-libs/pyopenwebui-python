@@ -52,8 +52,8 @@ class TestDoc:
     @parametrize
     def test_method_update(self, client: Pyopenwebui) -> None:
         doc = client.documents.doc.update(
-            query_name="name",
-            body_name="name",
+            name_1="name",
+            name_2="name",
             title="title",
         )
         assert_matches_type(Optional[DocumentResponse], doc, path=["response"])
@@ -61,8 +61,8 @@ class TestDoc:
     @parametrize
     def test_raw_response_update(self, client: Pyopenwebui) -> None:
         response = client.documents.doc.with_raw_response.update(
-            query_name="name",
-            body_name="name",
+            name_1="name",
+            name_2="name",
             title="title",
         )
 
@@ -74,8 +74,8 @@ class TestDoc:
     @parametrize
     def test_streaming_response_update(self, client: Pyopenwebui) -> None:
         with client.documents.doc.with_streaming_response.update(
-            query_name="name",
-            body_name="name",
+            name_1="name",
+            name_2="name",
             title="title",
         ) as response:
             assert not response.is_closed
@@ -155,8 +155,8 @@ class TestAsyncDoc:
     @parametrize
     async def test_method_update(self, async_client: AsyncPyopenwebui) -> None:
         doc = await async_client.documents.doc.update(
-            query_name="name",
-            body_name="name",
+            name_1="name",
+            name_2="name",
             title="title",
         )
         assert_matches_type(Optional[DocumentResponse], doc, path=["response"])
@@ -164,8 +164,8 @@ class TestAsyncDoc:
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncPyopenwebui) -> None:
         response = await async_client.documents.doc.with_raw_response.update(
-            query_name="name",
-            body_name="name",
+            name_1="name",
+            name_2="name",
             title="title",
         )
 
@@ -177,8 +177,8 @@ class TestAsyncDoc:
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncPyopenwebui) -> None:
         async with async_client.documents.doc.with_streaming_response.update(
-            query_name="name",
-            body_name="name",
+            name_1="name",
+            name_2="name",
             title="title",
         ) as response:
             assert not response.is_closed

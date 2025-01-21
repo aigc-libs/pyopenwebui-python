@@ -117,8 +117,8 @@ class TestTools:
     @parametrize
     def test_method_update(self, client: Pyopenwebui) -> None:
         tool = client.tools.update(
-            path_id="id",
-            body_id="id",
+            id_1="id",
+            id_2="id",
             content="content",
             meta={},
             name="name",
@@ -128,8 +128,8 @@ class TestTools:
     @parametrize
     def test_method_update_with_all_params(self, client: Pyopenwebui) -> None:
         tool = client.tools.update(
-            path_id="id",
-            body_id="id",
+            id_1="id",
+            id_2="id",
             content="content",
             meta={
                 "description": "description",
@@ -142,8 +142,8 @@ class TestTools:
     @parametrize
     def test_raw_response_update(self, client: Pyopenwebui) -> None:
         response = client.tools.with_raw_response.update(
-            path_id="id",
-            body_id="id",
+            id_1="id",
+            id_2="id",
             content="content",
             meta={},
             name="name",
@@ -157,8 +157,8 @@ class TestTools:
     @parametrize
     def test_streaming_response_update(self, client: Pyopenwebui) -> None:
         with client.tools.with_streaming_response.update(
-            path_id="id",
-            body_id="id",
+            id_1="id",
+            id_2="id",
             content="content",
             meta={},
             name="name",
@@ -173,10 +173,10 @@ class TestTools:
 
     @parametrize
     def test_path_params_update(self, client: Pyopenwebui) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id_1` but received ''"):
             client.tools.with_raw_response.update(
-                path_id="",
-                body_id="",
+                id_1="",
+                id_2="",
                 content="content",
                 meta={},
                 name="name",
@@ -368,8 +368,8 @@ class TestAsyncTools:
     @parametrize
     async def test_method_update(self, async_client: AsyncPyopenwebui) -> None:
         tool = await async_client.tools.update(
-            path_id="id",
-            body_id="id",
+            id_1="id",
+            id_2="id",
             content="content",
             meta={},
             name="name",
@@ -379,8 +379,8 @@ class TestAsyncTools:
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncPyopenwebui) -> None:
         tool = await async_client.tools.update(
-            path_id="id",
-            body_id="id",
+            id_1="id",
+            id_2="id",
             content="content",
             meta={
                 "description": "description",
@@ -393,8 +393,8 @@ class TestAsyncTools:
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncPyopenwebui) -> None:
         response = await async_client.tools.with_raw_response.update(
-            path_id="id",
-            body_id="id",
+            id_1="id",
+            id_2="id",
             content="content",
             meta={},
             name="name",
@@ -408,8 +408,8 @@ class TestAsyncTools:
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncPyopenwebui) -> None:
         async with async_client.tools.with_streaming_response.update(
-            path_id="id",
-            body_id="id",
+            id_1="id",
+            id_2="id",
             content="content",
             meta={},
             name="name",
@@ -424,10 +424,10 @@ class TestAsyncTools:
 
     @parametrize
     async def test_path_params_update(self, async_client: AsyncPyopenwebui) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id_1` but received ''"):
             await async_client.tools.with_raw_response.update(
-                path_id="",
-                body_id="",
+                id_1="",
+                id_2="",
                 content="content",
                 meta={},
                 name="name",

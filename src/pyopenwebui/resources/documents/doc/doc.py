@@ -97,8 +97,8 @@ class DocResource(SyncAPIResource):
     def update(
         self,
         *,
-        query_name: str,
-        body_name: str,
+        name_1: str,
+        name_2: str,
         title: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -123,7 +123,7 @@ class DocResource(SyncAPIResource):
             "/documents/doc/update",
             body=maybe_transform(
                 {
-                    "body_name": body_name,
+                    "name_2": name_2,
                     "title": title,
                 },
                 doc_update_params.DocUpdateParams,
@@ -133,7 +133,7 @@ class DocResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform({"query_name": query_name}, doc_update_params.DocUpdateParams),
+                query=maybe_transform({"name_1": name_1}, doc_update_params.DocUpdateParams),
             ),
             cast_to=DocumentResponse,
         )
@@ -236,8 +236,8 @@ class AsyncDocResource(AsyncAPIResource):
     async def update(
         self,
         *,
-        query_name: str,
-        body_name: str,
+        name_1: str,
+        name_2: str,
         title: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -262,7 +262,7 @@ class AsyncDocResource(AsyncAPIResource):
             "/documents/doc/update",
             body=await async_maybe_transform(
                 {
-                    "body_name": body_name,
+                    "name_2": name_2,
                     "title": title,
                 },
                 doc_update_params.DocUpdateParams,
@@ -272,7 +272,7 @@ class AsyncDocResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform({"query_name": query_name}, doc_update_params.DocUpdateParams),
+                query=await async_maybe_transform({"name_1": name_1}, doc_update_params.DocUpdateParams),
             ),
             cast_to=DocumentResponse,
         )
