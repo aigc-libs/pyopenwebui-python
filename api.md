@@ -348,7 +348,7 @@ from pyopenwebui.types.prompts import CommandDeleteResponse
 Methods:
 
 - <code title="get /prompts/command/{command}">client.prompts.commands.<a href="./src/pyopenwebui/resources/prompts/commands.py">retrieve</a>(command) -> <a href="./src/pyopenwebui/types/shared/prompt_model.py">Optional[PromptModel]</a></code>
-- <code title="post /prompts/command/{command}/update">client.prompts.commands.<a href="./src/pyopenwebui/resources/prompts/commands.py">update</a>(\*, path_command, \*\*<a href="src/pyopenwebui/types/prompts/command_update_params.py">params</a>) -> <a href="./src/pyopenwebui/types/shared/prompt_model.py">Optional[PromptModel]</a></code>
+- <code title="post /prompts/command/{command}/update">client.prompts.commands.<a href="./src/pyopenwebui/resources/prompts/commands.py">update</a>(command_1, \*\*<a href="src/pyopenwebui/types/prompts/command_update_params.py">params</a>) -> <a href="./src/pyopenwebui/types/shared/prompt_model.py">Optional[PromptModel]</a></code>
 - <code title="delete /prompts/command/{command}/delete">client.prompts.commands.<a href="./src/pyopenwebui/resources/prompts/commands.py">delete</a>(command) -> <a href="./src/pyopenwebui/types/prompts/command_delete_response.py">CommandDeleteResponse</a></code>
 
 # Memories
@@ -439,7 +439,7 @@ Methods:
 
 - <code title="post /tools/create">client.tools.<a href="./src/pyopenwebui/resources/tools/tools.py">create</a>(\*\*<a href="src/pyopenwebui/types/tool_create_params.py">params</a>) -> <a href="./src/pyopenwebui/types/tool_response.py">Optional[ToolResponse]</a></code>
 - <code title="get /tools/id/{id}">client.tools.<a href="./src/pyopenwebui/resources/tools/tools.py">retrieve</a>(id) -> <a href="./src/pyopenwebui/types/tool_model.py">Optional[ToolModel]</a></code>
-- <code title="post /tools/id/{id}/update">client.tools.<a href="./src/pyopenwebui/resources/tools/tools.py">update</a>(\*, path_id, \*\*<a href="src/pyopenwebui/types/tool_update_params.py">params</a>) -> <a href="./src/pyopenwebui/types/tool_model.py">Optional[ToolModel]</a></code>
+- <code title="post /tools/id/{id}/update">client.tools.<a href="./src/pyopenwebui/resources/tools/tools.py">update</a>(id_1, \*\*<a href="src/pyopenwebui/types/tool_update_params.py">params</a>) -> <a href="./src/pyopenwebui/types/tool_model.py">Optional[ToolModel]</a></code>
 - <code title="get /tools/">client.tools.<a href="./src/pyopenwebui/resources/tools/tools.py">list</a>() -> <a href="./src/pyopenwebui/types/tool_list_response.py">ToolListResponse</a></code>
 - <code title="delete /tools/id/{id}/delete">client.tools.<a href="./src/pyopenwebui/resources/tools/tools.py">delete</a>(id) -> <a href="./src/pyopenwebui/types/tool_delete_response.py">ToolDeleteResponse</a></code>
 - <code title="get /tools/export">client.tools.<a href="./src/pyopenwebui/resources/tools/tools.py">export</a>() -> <a href="./src/pyopenwebui/types/tool_export_response.py">ToolExportResponse</a></code>
@@ -523,7 +523,7 @@ Methods:
 
 - <code title="post /functions/create">client.functions.<a href="./src/pyopenwebui/resources/functions/functions.py">create</a>(\*\*<a href="src/pyopenwebui/types/function_create_params.py">params</a>) -> <a href="./src/pyopenwebui/types/function_response.py">Optional[FunctionResponse]</a></code>
 - <code title="get /functions/id/{id}">client.functions.<a href="./src/pyopenwebui/resources/functions/functions.py">retrieve</a>(id) -> <a href="./src/pyopenwebui/types/function_model.py">Optional[FunctionModel]</a></code>
-- <code title="post /functions/id/{id}/update">client.functions.<a href="./src/pyopenwebui/resources/functions/functions.py">update</a>(\*, path_id, \*\*<a href="src/pyopenwebui/types/function_update_params.py">params</a>) -> <a href="./src/pyopenwebui/types/function_model.py">Optional[FunctionModel]</a></code>
+- <code title="post /functions/id/{id}/update">client.functions.<a href="./src/pyopenwebui/resources/functions/functions.py">update</a>(id_1, \*\*<a href="src/pyopenwebui/types/function_update_params.py">params</a>) -> <a href="./src/pyopenwebui/types/function_model.py">Optional[FunctionModel]</a></code>
 - <code title="get /functions/">client.functions.<a href="./src/pyopenwebui/resources/functions/functions.py">list</a>() -> <a href="./src/pyopenwebui/types/function_list_response.py">FunctionListResponse</a></code>
 - <code title="delete /functions/id/{id}/delete">client.functions.<a href="./src/pyopenwebui/resources/functions/functions.py">delete</a>(id) -> <a href="./src/pyopenwebui/types/function_delete_response.py">FunctionDeleteResponse</a></code>
 - <code title="post /functions/id/{id}/toggle">client.functions.<a href="./src/pyopenwebui/resources/functions/functions.py">toggle</a>(id) -> <a href="./src/pyopenwebui/types/function_model.py">Optional[FunctionModel]</a></code>
