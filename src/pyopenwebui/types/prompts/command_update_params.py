@@ -10,9 +10,7 @@ __all__ = ["CommandUpdateParams"]
 
 
 class CommandUpdateParams(TypedDict, total=False):
-    path_command: Required[Annotated[str, PropertyInfo(alias="command")]]
-
-    body_command: Required[Annotated[str, PropertyInfo(alias="command")]]
+    command_2: Required[Annotated[str, PropertyInfo(alias="command")]]
 
     content: Required[str]
 

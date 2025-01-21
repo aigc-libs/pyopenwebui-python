@@ -59,8 +59,8 @@ class TestCommands:
     @parametrize
     def test_method_update(self, client: Pyopenwebui) -> None:
         command = client.prompts.commands.update(
-            path_command="command",
-            body_command="command",
+            command_1="command",
+            command_2="command",
             content="content",
             title="title",
         )
@@ -69,8 +69,8 @@ class TestCommands:
     @parametrize
     def test_raw_response_update(self, client: Pyopenwebui) -> None:
         response = client.prompts.commands.with_raw_response.update(
-            path_command="command",
-            body_command="command",
+            command_1="command",
+            command_2="command",
             content="content",
             title="title",
         )
@@ -83,8 +83,8 @@ class TestCommands:
     @parametrize
     def test_streaming_response_update(self, client: Pyopenwebui) -> None:
         with client.prompts.commands.with_streaming_response.update(
-            path_command="command",
-            body_command="command",
+            command_1="command",
+            command_2="command",
             content="content",
             title="title",
         ) as response:
@@ -98,10 +98,10 @@ class TestCommands:
 
     @parametrize
     def test_path_params_update(self, client: Pyopenwebui) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_command` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `command_1` but received ''"):
             client.prompts.commands.with_raw_response.update(
-                path_command="",
-                body_command="",
+                command_1="",
+                command_2="",
                 content="content",
                 title="title",
             )
@@ -189,8 +189,8 @@ class TestAsyncCommands:
     @parametrize
     async def test_method_update(self, async_client: AsyncPyopenwebui) -> None:
         command = await async_client.prompts.commands.update(
-            path_command="command",
-            body_command="command",
+            command_1="command",
+            command_2="command",
             content="content",
             title="title",
         )
@@ -199,8 +199,8 @@ class TestAsyncCommands:
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncPyopenwebui) -> None:
         response = await async_client.prompts.commands.with_raw_response.update(
-            path_command="command",
-            body_command="command",
+            command_1="command",
+            command_2="command",
             content="content",
             title="title",
         )
@@ -213,8 +213,8 @@ class TestAsyncCommands:
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncPyopenwebui) -> None:
         async with async_client.prompts.commands.with_streaming_response.update(
-            path_command="command",
-            body_command="command",
+            command_1="command",
+            command_2="command",
             content="content",
             title="title",
         ) as response:
@@ -228,10 +228,10 @@ class TestAsyncCommands:
 
     @parametrize
     async def test_path_params_update(self, async_client: AsyncPyopenwebui) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_command` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `command_1` but received ''"):
             await async_client.prompts.commands.with_raw_response.update(
-                path_command="",
-                body_command="",
+                command_1="",
+                command_2="",
                 content="content",
                 title="title",
             )

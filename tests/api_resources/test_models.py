@@ -23,8 +23,8 @@ class TestModels:
     @parametrize
     def test_method_update(self, client: Pyopenwebui) -> None:
         model = client.models.update(
-            query_id="id",
-            body_id="id",
+            id_1="id",
+            id_2="id",
             meta={},
             name="name",
             params={"foo": "bar"},
@@ -34,8 +34,8 @@ class TestModels:
     @parametrize
     def test_method_update_with_all_params(self, client: Pyopenwebui) -> None:
         model = client.models.update(
-            query_id="id",
-            body_id="id",
+            id_1="id",
+            id_2="id",
             meta={
                 "capabilities": {},
                 "description": "description",
@@ -50,8 +50,8 @@ class TestModels:
     @parametrize
     def test_raw_response_update(self, client: Pyopenwebui) -> None:
         response = client.models.with_raw_response.update(
-            query_id="id",
-            body_id="id",
+            id_1="id",
+            id_2="id",
             meta={},
             name="name",
             params={"foo": "bar"},
@@ -65,8 +65,8 @@ class TestModels:
     @parametrize
     def test_streaming_response_update(self, client: Pyopenwebui) -> None:
         with client.models.with_streaming_response.update(
-            query_id="id",
-            body_id="id",
+            id_1="id",
+            id_2="id",
             meta={},
             name="name",
             params={"foo": "bar"},
@@ -203,8 +203,8 @@ class TestAsyncModels:
     @parametrize
     async def test_method_update(self, async_client: AsyncPyopenwebui) -> None:
         model = await async_client.models.update(
-            query_id="id",
-            body_id="id",
+            id_1="id",
+            id_2="id",
             meta={},
             name="name",
             params={"foo": "bar"},
@@ -214,8 +214,8 @@ class TestAsyncModels:
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncPyopenwebui) -> None:
         model = await async_client.models.update(
-            query_id="id",
-            body_id="id",
+            id_1="id",
+            id_2="id",
             meta={
                 "capabilities": {},
                 "description": "description",
@@ -230,8 +230,8 @@ class TestAsyncModels:
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncPyopenwebui) -> None:
         response = await async_client.models.with_raw_response.update(
-            query_id="id",
-            body_id="id",
+            id_1="id",
+            id_2="id",
             meta={},
             name="name",
             params={"foo": "bar"},
@@ -245,8 +245,8 @@ class TestAsyncModels:
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncPyopenwebui) -> None:
         async with async_client.models.with_streaming_response.update(
-            query_id="id",
-            body_id="id",
+            id_1="id",
+            id_2="id",
             meta={},
             name="name",
             params={"foo": "bar"},
