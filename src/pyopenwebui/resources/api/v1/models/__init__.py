@@ -8,6 +8,14 @@ from .model import (
     ModelResourceWithStreamingResponse,
     AsyncModelResourceWithStreamingResponse,
 )
+from .delete import (
+    DeleteResource,
+    AsyncDeleteResource,
+    DeleteResourceWithRawResponse,
+    AsyncDeleteResourceWithRawResponse,
+    DeleteResourceWithStreamingResponse,
+    AsyncDeleteResourceWithStreamingResponse,
+)
 from .models import (
     ModelsResource,
     AsyncModelsResource,
@@ -24,6 +32,12 @@ __all__ = [
     "AsyncModelResourceWithRawResponse",
     "ModelResourceWithStreamingResponse",
     "AsyncModelResourceWithStreamingResponse",
+    "DeleteResource",
+    "AsyncDeleteResource",
+    "DeleteResourceWithRawResponse",
+    "AsyncDeleteResourceWithRawResponse",
+    "DeleteResourceWithStreamingResponse",
+    "AsyncDeleteResourceWithStreamingResponse",
     "ModelsResource",
     "AsyncModelsResource",
     "ModelsResourceWithRawResponse",

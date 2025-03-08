@@ -1,0 +1,135 @@
+# File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
+
+from __future__ import annotations
+
+import httpx
+
+from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ....._compat import cached_property
+from ....._resource import SyncAPIResource, AsyncAPIResource
+from ....._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
+from ....._base_client import make_request_options
+from .....types.api.v1.chats.archive_all_response import ArchiveAllResponse
+
+__all__ = ["ArchiveResource", "AsyncArchiveResource"]
+
+
+class ArchiveResource(SyncAPIResource):
+    @cached_property
+    def with_raw_response(self) -> ArchiveResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#accessing-raw-response-data-eg-headers
+        """
+        return ArchiveResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> ArchiveResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#with_streaming_response
+        """
+        return ArchiveResourceWithStreamingResponse(self)
+
+    def all(
+        self,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> ArchiveAllResponse:
+        """Archive All Chats"""
+        return self._post(
+            "/api/v1/chats/archive/all",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=ArchiveAllResponse,
+        )
+
+
+class AsyncArchiveResource(AsyncAPIResource):
+    @cached_property
+    def with_raw_response(self) -> AsyncArchiveResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#accessing-raw-response-data-eg-headers
+        """
+        return AsyncArchiveResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> AsyncArchiveResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#with_streaming_response
+        """
+        return AsyncArchiveResourceWithStreamingResponse(self)
+
+    async def all(
+        self,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> ArchiveAllResponse:
+        """Archive All Chats"""
+        return await self._post(
+            "/api/v1/chats/archive/all",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=ArchiveAllResponse,
+        )
+
+
+class ArchiveResourceWithRawResponse:
+    def __init__(self, archive: ArchiveResource) -> None:
+        self._archive = archive
+
+        self.all = to_raw_response_wrapper(
+            archive.all,
+        )
+
+
+class AsyncArchiveResourceWithRawResponse:
+    def __init__(self, archive: AsyncArchiveResource) -> None:
+        self._archive = archive
+
+        self.all = async_to_raw_response_wrapper(
+            archive.all,
+        )
+
+
+class ArchiveResourceWithStreamingResponse:
+    def __init__(self, archive: ArchiveResource) -> None:
+        self._archive = archive
+
+        self.all = to_streamed_response_wrapper(
+            archive.all,
+        )
+
+
+class AsyncArchiveResourceWithStreamingResponse:
+    def __init__(self, archive: AsyncArchiveResource) -> None:
+        self._archive = archive
+
+        self.all = async_to_streamed_response_wrapper(
+            archive.all,
+        )

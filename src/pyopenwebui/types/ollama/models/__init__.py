@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from .upload_create_params import UploadCreateParams as UploadCreateParams
-from .download_create_params import DownloadCreateParams as DownloadCreateParams
-from .upload_create_by_index_params import UploadCreateByIndexParams as UploadCreateByIndexParams
-from .download_retrieve_by_index_params import DownloadRetrieveByIndexParams as DownloadRetrieveByIndexParams
+from .upload_add_params import UploadAddParams as UploadAddParams
+from .download_fetch_params import DownloadFetchParams as DownloadFetchParams
+from .upload_add_by_index_params import UploadAddByIndexParams as UploadAddByIndexParams
+from .download_fetch_by_index_params import DownloadFetchByIndexParams as DownloadFetchByIndexParams

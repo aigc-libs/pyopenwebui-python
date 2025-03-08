@@ -10,13 +10,11 @@ import pytest
 from pyopenwebui import Pyopenwebui, AsyncPyopenwebui
 from tests.utils import assert_matches_type
 from pyopenwebui.types.api.v1 import (
+    KnowledgeResponse,
     KnowledgeGetResponse,
-    KnowledgeCreateResponse,
-    KnowledgeGetByIDResponse,
+    KnowledgeFilesResponse,
     KnowledgeGetListResponse,
-    KnowledgeResetByIDResponse,
     KnowledgeDeleteByIDResponse,
-    KnowledgeUpdateByIDResponse,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -31,7 +29,7 @@ class TestKnowledge:
             description="description",
             name="name",
         )
-        assert_matches_type(Optional[KnowledgeCreateResponse], knowledge, path=["response"])
+        assert_matches_type(Optional[KnowledgeResponse], knowledge, path=["response"])
 
     @parametrize
     def test_method_create_with_all_params(self, client: Pyopenwebui) -> None:
@@ -41,7 +39,7 @@ class TestKnowledge:
             access_control={},
             data={},
         )
-        assert_matches_type(Optional[KnowledgeCreateResponse], knowledge, path=["response"])
+        assert_matches_type(Optional[KnowledgeResponse], knowledge, path=["response"])
 
     @parametrize
     def test_raw_response_create(self, client: Pyopenwebui) -> None:
@@ -53,7 +51,7 @@ class TestKnowledge:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         knowledge = response.parse()
-        assert_matches_type(Optional[KnowledgeCreateResponse], knowledge, path=["response"])
+        assert_matches_type(Optional[KnowledgeResponse], knowledge, path=["response"])
 
     @parametrize
     def test_streaming_response_create(self, client: Pyopenwebui) -> None:
@@ -65,7 +63,7 @@ class TestKnowledge:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             knowledge = response.parse()
-            assert_matches_type(Optional[KnowledgeCreateResponse], knowledge, path=["response"])
+            assert_matches_type(Optional[KnowledgeResponse], knowledge, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -137,7 +135,7 @@ class TestKnowledge:
         knowledge = client.api.v1.knowledge.get_by_id(
             "id",
         )
-        assert_matches_type(Optional[KnowledgeGetByIDResponse], knowledge, path=["response"])
+        assert_matches_type(Optional[KnowledgeFilesResponse], knowledge, path=["response"])
 
     @parametrize
     def test_raw_response_get_by_id(self, client: Pyopenwebui) -> None:
@@ -148,7 +146,7 @@ class TestKnowledge:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         knowledge = response.parse()
-        assert_matches_type(Optional[KnowledgeGetByIDResponse], knowledge, path=["response"])
+        assert_matches_type(Optional[KnowledgeFilesResponse], knowledge, path=["response"])
 
     @parametrize
     def test_streaming_response_get_by_id(self, client: Pyopenwebui) -> None:
@@ -159,7 +157,7 @@ class TestKnowledge:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             knowledge = response.parse()
-            assert_matches_type(Optional[KnowledgeGetByIDResponse], knowledge, path=["response"])
+            assert_matches_type(Optional[KnowledgeFilesResponse], knowledge, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -200,7 +198,7 @@ class TestKnowledge:
         knowledge = client.api.v1.knowledge.reset_by_id(
             "id",
         )
-        assert_matches_type(Optional[KnowledgeResetByIDResponse], knowledge, path=["response"])
+        assert_matches_type(Optional[KnowledgeResponse], knowledge, path=["response"])
 
     @parametrize
     def test_raw_response_reset_by_id(self, client: Pyopenwebui) -> None:
@@ -211,7 +209,7 @@ class TestKnowledge:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         knowledge = response.parse()
-        assert_matches_type(Optional[KnowledgeResetByIDResponse], knowledge, path=["response"])
+        assert_matches_type(Optional[KnowledgeResponse], knowledge, path=["response"])
 
     @parametrize
     def test_streaming_response_reset_by_id(self, client: Pyopenwebui) -> None:
@@ -222,7 +220,7 @@ class TestKnowledge:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             knowledge = response.parse()
-            assert_matches_type(Optional[KnowledgeResetByIDResponse], knowledge, path=["response"])
+            assert_matches_type(Optional[KnowledgeResponse], knowledge, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -240,7 +238,7 @@ class TestKnowledge:
             description="description",
             name="name",
         )
-        assert_matches_type(Optional[KnowledgeUpdateByIDResponse], knowledge, path=["response"])
+        assert_matches_type(Optional[KnowledgeFilesResponse], knowledge, path=["response"])
 
     @parametrize
     def test_method_update_by_id_with_all_params(self, client: Pyopenwebui) -> None:
@@ -251,7 +249,7 @@ class TestKnowledge:
             access_control={},
             data={},
         )
-        assert_matches_type(Optional[KnowledgeUpdateByIDResponse], knowledge, path=["response"])
+        assert_matches_type(Optional[KnowledgeFilesResponse], knowledge, path=["response"])
 
     @parametrize
     def test_raw_response_update_by_id(self, client: Pyopenwebui) -> None:
@@ -264,7 +262,7 @@ class TestKnowledge:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         knowledge = response.parse()
-        assert_matches_type(Optional[KnowledgeUpdateByIDResponse], knowledge, path=["response"])
+        assert_matches_type(Optional[KnowledgeFilesResponse], knowledge, path=["response"])
 
     @parametrize
     def test_streaming_response_update_by_id(self, client: Pyopenwebui) -> None:
@@ -277,7 +275,7 @@ class TestKnowledge:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             knowledge = response.parse()
-            assert_matches_type(Optional[KnowledgeUpdateByIDResponse], knowledge, path=["response"])
+            assert_matches_type(Optional[KnowledgeFilesResponse], knowledge, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -300,7 +298,7 @@ class TestAsyncKnowledge:
             description="description",
             name="name",
         )
-        assert_matches_type(Optional[KnowledgeCreateResponse], knowledge, path=["response"])
+        assert_matches_type(Optional[KnowledgeResponse], knowledge, path=["response"])
 
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncPyopenwebui) -> None:
@@ -310,7 +308,7 @@ class TestAsyncKnowledge:
             access_control={},
             data={},
         )
-        assert_matches_type(Optional[KnowledgeCreateResponse], knowledge, path=["response"])
+        assert_matches_type(Optional[KnowledgeResponse], knowledge, path=["response"])
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncPyopenwebui) -> None:
@@ -322,7 +320,7 @@ class TestAsyncKnowledge:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         knowledge = await response.parse()
-        assert_matches_type(Optional[KnowledgeCreateResponse], knowledge, path=["response"])
+        assert_matches_type(Optional[KnowledgeResponse], knowledge, path=["response"])
 
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncPyopenwebui) -> None:
@@ -334,7 +332,7 @@ class TestAsyncKnowledge:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             knowledge = await response.parse()
-            assert_matches_type(Optional[KnowledgeCreateResponse], knowledge, path=["response"])
+            assert_matches_type(Optional[KnowledgeResponse], knowledge, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -406,7 +404,7 @@ class TestAsyncKnowledge:
         knowledge = await async_client.api.v1.knowledge.get_by_id(
             "id",
         )
-        assert_matches_type(Optional[KnowledgeGetByIDResponse], knowledge, path=["response"])
+        assert_matches_type(Optional[KnowledgeFilesResponse], knowledge, path=["response"])
 
     @parametrize
     async def test_raw_response_get_by_id(self, async_client: AsyncPyopenwebui) -> None:
@@ -417,7 +415,7 @@ class TestAsyncKnowledge:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         knowledge = await response.parse()
-        assert_matches_type(Optional[KnowledgeGetByIDResponse], knowledge, path=["response"])
+        assert_matches_type(Optional[KnowledgeFilesResponse], knowledge, path=["response"])
 
     @parametrize
     async def test_streaming_response_get_by_id(self, async_client: AsyncPyopenwebui) -> None:
@@ -428,7 +426,7 @@ class TestAsyncKnowledge:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             knowledge = await response.parse()
-            assert_matches_type(Optional[KnowledgeGetByIDResponse], knowledge, path=["response"])
+            assert_matches_type(Optional[KnowledgeFilesResponse], knowledge, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -469,7 +467,7 @@ class TestAsyncKnowledge:
         knowledge = await async_client.api.v1.knowledge.reset_by_id(
             "id",
         )
-        assert_matches_type(Optional[KnowledgeResetByIDResponse], knowledge, path=["response"])
+        assert_matches_type(Optional[KnowledgeResponse], knowledge, path=["response"])
 
     @parametrize
     async def test_raw_response_reset_by_id(self, async_client: AsyncPyopenwebui) -> None:
@@ -480,7 +478,7 @@ class TestAsyncKnowledge:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         knowledge = await response.parse()
-        assert_matches_type(Optional[KnowledgeResetByIDResponse], knowledge, path=["response"])
+        assert_matches_type(Optional[KnowledgeResponse], knowledge, path=["response"])
 
     @parametrize
     async def test_streaming_response_reset_by_id(self, async_client: AsyncPyopenwebui) -> None:
@@ -491,7 +489,7 @@ class TestAsyncKnowledge:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             knowledge = await response.parse()
-            assert_matches_type(Optional[KnowledgeResetByIDResponse], knowledge, path=["response"])
+            assert_matches_type(Optional[KnowledgeResponse], knowledge, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -509,7 +507,7 @@ class TestAsyncKnowledge:
             description="description",
             name="name",
         )
-        assert_matches_type(Optional[KnowledgeUpdateByIDResponse], knowledge, path=["response"])
+        assert_matches_type(Optional[KnowledgeFilesResponse], knowledge, path=["response"])
 
     @parametrize
     async def test_method_update_by_id_with_all_params(self, async_client: AsyncPyopenwebui) -> None:
@@ -520,7 +518,7 @@ class TestAsyncKnowledge:
             access_control={},
             data={},
         )
-        assert_matches_type(Optional[KnowledgeUpdateByIDResponse], knowledge, path=["response"])
+        assert_matches_type(Optional[KnowledgeFilesResponse], knowledge, path=["response"])
 
     @parametrize
     async def test_raw_response_update_by_id(self, async_client: AsyncPyopenwebui) -> None:
@@ -533,7 +531,7 @@ class TestAsyncKnowledge:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         knowledge = await response.parse()
-        assert_matches_type(Optional[KnowledgeUpdateByIDResponse], knowledge, path=["response"])
+        assert_matches_type(Optional[KnowledgeFilesResponse], knowledge, path=["response"])
 
     @parametrize
     async def test_streaming_response_update_by_id(self, async_client: AsyncPyopenwebui) -> None:
@@ -546,7 +544,7 @@ class TestAsyncKnowledge:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             knowledge = await response.parse()
-            assert_matches_type(Optional[KnowledgeUpdateByIDResponse], knowledge, path=["response"])
+            assert_matches_type(Optional[KnowledgeFilesResponse], knowledge, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

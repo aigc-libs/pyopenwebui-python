@@ -20,10 +20,8 @@ from ....._response import (
     async_to_streamed_response_wrapper,
 )
 from ....._base_client import make_request_options
-from .....types.api.v1.knowledge import file_add_params, file_remove_params, file_update_params
-from .....types.api.v1.knowledge.file_add_response import FileAddResponse
-from .....types.api.v1.knowledge.file_remove_response import FileRemoveResponse
-from .....types.api.v1.knowledge.file_update_response import FileUpdateResponse
+from .....types.api.v1.knowledge import file_add_by_id_params, file_remove_by_id_params, file_update_by_id_params
+from .....types.api.v1.knowledge_files_response import KnowledgeFilesResponse
 
 __all__ = ["FileResource", "AsyncFileResource"]
 
@@ -35,7 +33,7 @@ class FileResource(SyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#accessing-raw-response-data-eg-headers
         """
         return FileResourceWithRawResponse(self)
 
@@ -44,11 +42,11 @@ class FileResource(SyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#with_streaming_response
+        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#with_streaming_response
         """
         return FileResourceWithStreamingResponse(self)
 
-    def update(
+    def add_by_id(
         self,
         id: str,
         *,
@@ -59,42 +57,7 @@ class FileResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[FileUpdateResponse]:
-        """
-        Update File From Knowledge By Id
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
-        return self._post(
-            f"/api/v1/knowledge/{id}/file/update",
-            body=maybe_transform({"file_id": file_id}, file_update_params.FileUpdateParams),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=FileUpdateResponse,
-        )
-
-    def add(
-        self,
-        id: str,
-        *,
-        file_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[FileAddResponse]:
+    ) -> Optional[KnowledgeFilesResponse]:
         """
         Add File To Knowledge By Id
 
@@ -111,14 +74,14 @@ class FileResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._post(
             f"/api/v1/knowledge/{id}/file/add",
-            body=maybe_transform({"file_id": file_id}, file_add_params.FileAddParams),
+            body=maybe_transform({"file_id": file_id}, file_add_by_id_params.FileAddByIDParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=FileAddResponse,
+            cast_to=KnowledgeFilesResponse,
         )
 
-    def remove(
+    def remove_by_id(
         self,
         id: str,
         *,
@@ -129,7 +92,7 @@ class FileResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[FileRemoveResponse]:
+    ) -> Optional[KnowledgeFilesResponse]:
         """
         Remove File From Knowledge By Id
 
@@ -146,11 +109,46 @@ class FileResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._post(
             f"/api/v1/knowledge/{id}/file/remove",
-            body=maybe_transform({"file_id": file_id}, file_remove_params.FileRemoveParams),
+            body=maybe_transform({"file_id": file_id}, file_remove_by_id_params.FileRemoveByIDParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=FileRemoveResponse,
+            cast_to=KnowledgeFilesResponse,
+        )
+
+    def update_by_id(
+        self,
+        id: str,
+        *,
+        file_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[KnowledgeFilesResponse]:
+        """
+        Update File From Knowledge By Id
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return self._post(
+            f"/api/v1/knowledge/{id}/file/update",
+            body=maybe_transform({"file_id": file_id}, file_update_by_id_params.FileUpdateByIDParams),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=KnowledgeFilesResponse,
         )
 
 
@@ -161,7 +159,7 @@ class AsyncFileResource(AsyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#accessing-raw-response-data-eg-headers
         """
         return AsyncFileResourceWithRawResponse(self)
 
@@ -170,11 +168,11 @@ class AsyncFileResource(AsyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#with_streaming_response
+        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#with_streaming_response
         """
         return AsyncFileResourceWithStreamingResponse(self)
 
-    async def update(
+    async def add_by_id(
         self,
         id: str,
         *,
@@ -185,42 +183,7 @@ class AsyncFileResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[FileUpdateResponse]:
-        """
-        Update File From Knowledge By Id
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
-        return await self._post(
-            f"/api/v1/knowledge/{id}/file/update",
-            body=await async_maybe_transform({"file_id": file_id}, file_update_params.FileUpdateParams),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=FileUpdateResponse,
-        )
-
-    async def add(
-        self,
-        id: str,
-        *,
-        file_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[FileAddResponse]:
+    ) -> Optional[KnowledgeFilesResponse]:
         """
         Add File To Knowledge By Id
 
@@ -237,14 +200,14 @@ class AsyncFileResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._post(
             f"/api/v1/knowledge/{id}/file/add",
-            body=await async_maybe_transform({"file_id": file_id}, file_add_params.FileAddParams),
+            body=await async_maybe_transform({"file_id": file_id}, file_add_by_id_params.FileAddByIDParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=FileAddResponse,
+            cast_to=KnowledgeFilesResponse,
         )
 
-    async def remove(
+    async def remove_by_id(
         self,
         id: str,
         *,
@@ -255,7 +218,7 @@ class AsyncFileResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[FileRemoveResponse]:
+    ) -> Optional[KnowledgeFilesResponse]:
         """
         Remove File From Knowledge By Id
 
@@ -272,11 +235,46 @@ class AsyncFileResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._post(
             f"/api/v1/knowledge/{id}/file/remove",
-            body=await async_maybe_transform({"file_id": file_id}, file_remove_params.FileRemoveParams),
+            body=await async_maybe_transform({"file_id": file_id}, file_remove_by_id_params.FileRemoveByIDParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=FileRemoveResponse,
+            cast_to=KnowledgeFilesResponse,
+        )
+
+    async def update_by_id(
+        self,
+        id: str,
+        *,
+        file_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[KnowledgeFilesResponse]:
+        """
+        Update File From Knowledge By Id
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return await self._post(
+            f"/api/v1/knowledge/{id}/file/update",
+            body=await async_maybe_transform({"file_id": file_id}, file_update_by_id_params.FileUpdateByIDParams),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=KnowledgeFilesResponse,
         )
 
 
@@ -284,14 +282,14 @@ class FileResourceWithRawResponse:
     def __init__(self, file: FileResource) -> None:
         self._file = file
 
-        self.update = to_raw_response_wrapper(
-            file.update,
+        self.add_by_id = to_raw_response_wrapper(
+            file.add_by_id,
         )
-        self.add = to_raw_response_wrapper(
-            file.add,
+        self.remove_by_id = to_raw_response_wrapper(
+            file.remove_by_id,
         )
-        self.remove = to_raw_response_wrapper(
-            file.remove,
+        self.update_by_id = to_raw_response_wrapper(
+            file.update_by_id,
         )
 
 
@@ -299,14 +297,14 @@ class AsyncFileResourceWithRawResponse:
     def __init__(self, file: AsyncFileResource) -> None:
         self._file = file
 
-        self.update = async_to_raw_response_wrapper(
-            file.update,
+        self.add_by_id = async_to_raw_response_wrapper(
+            file.add_by_id,
         )
-        self.add = async_to_raw_response_wrapper(
-            file.add,
+        self.remove_by_id = async_to_raw_response_wrapper(
+            file.remove_by_id,
         )
-        self.remove = async_to_raw_response_wrapper(
-            file.remove,
+        self.update_by_id = async_to_raw_response_wrapper(
+            file.update_by_id,
         )
 
 
@@ -314,14 +312,14 @@ class FileResourceWithStreamingResponse:
     def __init__(self, file: FileResource) -> None:
         self._file = file
 
-        self.update = to_streamed_response_wrapper(
-            file.update,
+        self.add_by_id = to_streamed_response_wrapper(
+            file.add_by_id,
         )
-        self.add = to_streamed_response_wrapper(
-            file.add,
+        self.remove_by_id = to_streamed_response_wrapper(
+            file.remove_by_id,
         )
-        self.remove = to_streamed_response_wrapper(
-            file.remove,
+        self.update_by_id = to_streamed_response_wrapper(
+            file.update_by_id,
         )
 
 
@@ -329,12 +327,12 @@ class AsyncFileResourceWithStreamingResponse:
     def __init__(self, file: AsyncFileResource) -> None:
         self._file = file
 
-        self.update = async_to_streamed_response_wrapper(
-            file.update,
+        self.add_by_id = async_to_streamed_response_wrapper(
+            file.add_by_id,
         )
-        self.add = async_to_streamed_response_wrapper(
-            file.add,
+        self.remove_by_id = async_to_streamed_response_wrapper(
+            file.remove_by_id,
         )
-        self.remove = async_to_streamed_response_wrapper(
-            file.remove,
+        self.update_by_id = async_to_streamed_response_wrapper(
+            file.update_by_id,
         )

@@ -1,37 +1,14 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import TYPE_CHECKING, Dict, List, Optional
+from typing import List, Optional
 from typing_extensions import TypeAlias
 
 from ...._models import BaseModel
+from .model_meta import ModelMeta
+from .model_params import ModelParams
+from .user_response import UserResponse
 
-__all__ = ["ModelGetResponse", "ModelGetResponseItem", "ModelGetResponseItemMeta", "ModelGetResponseItemUser"]
-
-
-class ModelGetResponseItemMeta(BaseModel):
-    capabilities: Optional[object] = None
-
-    description: Optional[str] = None
-
-    profile_image_url: Optional[str] = None
-
-    if TYPE_CHECKING:
-        # Stub to indicate that arbitrary properties are accepted.
-        # To access properties that are not valid identifiers you can use `getattr`, e.g.
-        # `getattr(obj, '$type')`
-        def __getattr__(self, attr: str) -> object: ...
-
-
-class ModelGetResponseItemUser(BaseModel):
-    id: str
-
-    email: str
-
-    name: str
-
-    profile_image_url: str
-
-    role: str
+__all__ = ["ModelGetResponse", "ModelGetResponseItem"]
 
 
 class ModelGetResponseItem(BaseModel):
@@ -41,11 +18,11 @@ class ModelGetResponseItem(BaseModel):
 
     is_active: bool
 
-    meta: ModelGetResponseItemMeta
+    meta: ModelMeta
 
     name: str
 
-    params: Dict[str, object]
+    params: ModelParams
 
     updated_at: int
 
@@ -55,7 +32,7 @@ class ModelGetResponseItem(BaseModel):
 
     base_model_id: Optional[str] = None
 
-    user: Optional[ModelGetResponseItemUser] = None
+    user: Optional[UserResponse] = None
 
 
 ModelGetResponse: TypeAlias = List[ModelGetResponseItem]

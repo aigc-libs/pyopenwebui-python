@@ -3,7 +3,7 @@
 from typing import List
 from typing_extensions import TypeAlias
 
-from ...tool_model import ToolModel
+from .tool_model import ToolModel
 
 __all__ = ["ToolExportResponse"]
 

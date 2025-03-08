@@ -36,8 +36,9 @@ from ......_response import (
     async_to_streamed_response_wrapper,
 )
 from ......_base_client import make_request_options
-from ......types.function_model import FunctionModel
 from ......types.api.v1.functions import id_update_params
+from ......types.api.v1.function_model import FunctionModel
+from ......types.api.v1.function_meta_param import FunctionMetaParam
 from ......types.api.v1.functions.id_delete_response import IDDeleteResponse
 
 __all__ = ["IDResource", "AsyncIDResource"]
@@ -58,7 +59,7 @@ class IDResource(SyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#accessing-raw-response-data-eg-headers
         """
         return IDResourceWithRawResponse(self)
 
@@ -67,7 +68,7 @@ class IDResource(SyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#with_streaming_response
+        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#with_streaming_response
         """
         return IDResourceWithStreamingResponse(self)
 
@@ -77,7 +78,7 @@ class IDResource(SyncAPIResource):
         *,
         id_2: str,
         content: str,
-        meta: id_update_params.Meta,
+        meta: FunctionMetaParam,
         name: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -199,7 +200,7 @@ class AsyncIDResource(AsyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#accessing-raw-response-data-eg-headers
         """
         return AsyncIDResourceWithRawResponse(self)
 
@@ -208,7 +209,7 @@ class AsyncIDResource(AsyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#with_streaming_response
+        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#with_streaming_response
         """
         return AsyncIDResourceWithStreamingResponse(self)
 
@@ -218,7 +219,7 @@ class AsyncIDResource(AsyncAPIResource):
         *,
         id_2: str,
         content: str,
-        meta: id_update_params.Meta,
+        meta: FunctionMetaParam,
         name: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.

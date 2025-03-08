@@ -29,8 +29,8 @@ from ....._response import (
 )
 from ....._base_client import make_request_options
 from .....types.api.v1 import group_create_params
+from .....types.api.v1.group_response import GroupResponse
 from .....types.api.v1.group_get_response import GroupGetResponse
-from .....types.api.v1.group_create_response import GroupCreateResponse
 
 __all__ = ["GroupsResource", "AsyncGroupsResource"]
 
@@ -46,7 +46,7 @@ class GroupsResource(SyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#accessing-raw-response-data-eg-headers
         """
         return GroupsResourceWithRawResponse(self)
 
@@ -55,7 +55,7 @@ class GroupsResource(SyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#with_streaming_response
+        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#with_streaming_response
         """
         return GroupsResourceWithStreamingResponse(self)
 
@@ -71,7 +71,7 @@ class GroupsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[GroupCreateResponse]:
+    ) -> Optional[GroupResponse]:
         """
         Create New Group
 
@@ -97,7 +97,7 @@ class GroupsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=GroupCreateResponse,
+            cast_to=GroupResponse,
         )
 
     def get(
@@ -131,7 +131,7 @@ class AsyncGroupsResource(AsyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#accessing-raw-response-data-eg-headers
         """
         return AsyncGroupsResourceWithRawResponse(self)
 
@@ -140,7 +140,7 @@ class AsyncGroupsResource(AsyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#with_streaming_response
+        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#with_streaming_response
         """
         return AsyncGroupsResourceWithStreamingResponse(self)
 
@@ -156,7 +156,7 @@ class AsyncGroupsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[GroupCreateResponse]:
+    ) -> Optional[GroupResponse]:
         """
         Create New Group
 
@@ -182,7 +182,7 @@ class AsyncGroupsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=GroupCreateResponse,
+            cast_to=GroupResponse,
         )
 
     async def get(

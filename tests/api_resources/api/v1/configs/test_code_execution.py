@@ -9,10 +9,7 @@ import pytest
 
 from pyopenwebui import Pyopenwebui, AsyncPyopenwebui
 from tests.utils import assert_matches_type
-from pyopenwebui.types.api.v1.configs import (
-    CodeExecutionGetResponse,
-    CodeExecutionSetResponse,
-)
+from pyopenwebui.types.api.v1.configs import CodeInterpreterConfigForm
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -23,7 +20,7 @@ class TestCodeExecution:
     @parametrize
     def test_method_get(self, client: Pyopenwebui) -> None:
         code_execution = client.api.v1.configs.code_execution.get()
-        assert_matches_type(CodeExecutionGetResponse, code_execution, path=["response"])
+        assert_matches_type(CodeInterpreterConfigForm, code_execution, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Pyopenwebui) -> None:
@@ -32,7 +29,7 @@ class TestCodeExecution:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         code_execution = response.parse()
-        assert_matches_type(CodeExecutionGetResponse, code_execution, path=["response"])
+        assert_matches_type(CodeInterpreterConfigForm, code_execution, path=["response"])
 
     @parametrize
     def test_streaming_response_get(self, client: Pyopenwebui) -> None:
@@ -41,7 +38,7 @@ class TestCodeExecution:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             code_execution = response.parse()
-            assert_matches_type(CodeExecutionGetResponse, code_execution, path=["response"])
+            assert_matches_type(CodeInterpreterConfigForm, code_execution, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -64,7 +61,7 @@ class TestCodeExecution:
             enable_code_execution=True,
             enable_code_interpreter=True,
         )
-        assert_matches_type(CodeExecutionSetResponse, code_execution, path=["response"])
+        assert_matches_type(CodeInterpreterConfigForm, code_execution, path=["response"])
 
     @parametrize
     def test_raw_response_set(self, client: Pyopenwebui) -> None:
@@ -89,7 +86,7 @@ class TestCodeExecution:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         code_execution = response.parse()
-        assert_matches_type(CodeExecutionSetResponse, code_execution, path=["response"])
+        assert_matches_type(CodeInterpreterConfigForm, code_execution, path=["response"])
 
     @parametrize
     def test_streaming_response_set(self, client: Pyopenwebui) -> None:
@@ -114,7 +111,7 @@ class TestCodeExecution:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             code_execution = response.parse()
-            assert_matches_type(CodeExecutionSetResponse, code_execution, path=["response"])
+            assert_matches_type(CodeInterpreterConfigForm, code_execution, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -125,7 +122,7 @@ class TestAsyncCodeExecution:
     @parametrize
     async def test_method_get(self, async_client: AsyncPyopenwebui) -> None:
         code_execution = await async_client.api.v1.configs.code_execution.get()
-        assert_matches_type(CodeExecutionGetResponse, code_execution, path=["response"])
+        assert_matches_type(CodeInterpreterConfigForm, code_execution, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncPyopenwebui) -> None:
@@ -134,7 +131,7 @@ class TestAsyncCodeExecution:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         code_execution = await response.parse()
-        assert_matches_type(CodeExecutionGetResponse, code_execution, path=["response"])
+        assert_matches_type(CodeInterpreterConfigForm, code_execution, path=["response"])
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncPyopenwebui) -> None:
@@ -143,7 +140,7 @@ class TestAsyncCodeExecution:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             code_execution = await response.parse()
-            assert_matches_type(CodeExecutionGetResponse, code_execution, path=["response"])
+            assert_matches_type(CodeInterpreterConfigForm, code_execution, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -166,7 +163,7 @@ class TestAsyncCodeExecution:
             enable_code_execution=True,
             enable_code_interpreter=True,
         )
-        assert_matches_type(CodeExecutionSetResponse, code_execution, path=["response"])
+        assert_matches_type(CodeInterpreterConfigForm, code_execution, path=["response"])
 
     @parametrize
     async def test_raw_response_set(self, async_client: AsyncPyopenwebui) -> None:
@@ -191,7 +188,7 @@ class TestAsyncCodeExecution:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         code_execution = await response.parse()
-        assert_matches_type(CodeExecutionSetResponse, code_execution, path=["response"])
+        assert_matches_type(CodeInterpreterConfigForm, code_execution, path=["response"])
 
     @parametrize
     async def test_streaming_response_set(self, async_client: AsyncPyopenwebui) -> None:
@@ -216,6 +213,6 @@ class TestAsyncCodeExecution:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             code_execution = await response.parse()
-            assert_matches_type(CodeExecutionSetResponse, code_execution, path=["response"])
+            assert_matches_type(CodeInterpreterConfigForm, code_execution, path=["response"])
 
         assert cast(Any, response.is_closed) is True

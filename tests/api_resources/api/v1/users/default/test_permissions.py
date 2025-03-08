@@ -9,7 +9,7 @@ import pytest
 
 from pyopenwebui import Pyopenwebui, AsyncPyopenwebui
 from tests.utils import assert_matches_type
-from pyopenwebui.types.api.v1.users.default import PermissionGetResponse
+from pyopenwebui.types.api.v1.users.default import UserPermissions
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -81,7 +81,7 @@ class TestPermissions:
     @parametrize
     def test_method_get(self, client: Pyopenwebui) -> None:
         permission = client.api.v1.users.default.permissions.get()
-        assert_matches_type(PermissionGetResponse, permission, path=["response"])
+        assert_matches_type(UserPermissions, permission, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Pyopenwebui) -> None:
@@ -90,7 +90,7 @@ class TestPermissions:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         permission = response.parse()
-        assert_matches_type(PermissionGetResponse, permission, path=["response"])
+        assert_matches_type(UserPermissions, permission, path=["response"])
 
     @parametrize
     def test_streaming_response_get(self, client: Pyopenwebui) -> None:
@@ -99,7 +99,7 @@ class TestPermissions:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             permission = response.parse()
-            assert_matches_type(PermissionGetResponse, permission, path=["response"])
+            assert_matches_type(UserPermissions, permission, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -171,7 +171,7 @@ class TestAsyncPermissions:
     @parametrize
     async def test_method_get(self, async_client: AsyncPyopenwebui) -> None:
         permission = await async_client.api.v1.users.default.permissions.get()
-        assert_matches_type(PermissionGetResponse, permission, path=["response"])
+        assert_matches_type(UserPermissions, permission, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncPyopenwebui) -> None:
@@ -180,7 +180,7 @@ class TestAsyncPermissions:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         permission = await response.parse()
-        assert_matches_type(PermissionGetResponse, permission, path=["response"])
+        assert_matches_type(UserPermissions, permission, path=["response"])
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncPyopenwebui) -> None:
@@ -189,6 +189,6 @@ class TestAsyncPermissions:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             permission = await response.parse()
-            assert_matches_type(PermissionGetResponse, permission, path=["response"])
+            assert_matches_type(UserPermissions, permission, path=["response"])
 
         assert cast(Any, response.is_closed) is True

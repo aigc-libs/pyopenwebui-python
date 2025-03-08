@@ -66,7 +66,7 @@ from .process.process import (
     AsyncProcessResourceWithStreamingResponse,
 )
 from ....._base_client import make_request_options
-from .....types.api.v1 import retrieval_delete_params
+from .....types.api.v1 import retrieval_delete_entries_params
 
 __all__ = ["RetrievalResource", "AsyncRetrievalResource"]
 
@@ -102,7 +102,7 @@ class RetrievalResource(SyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#accessing-raw-response-data-eg-headers
         """
         return RetrievalResourceWithRawResponse(self)
 
@@ -111,11 +111,11 @@ class RetrievalResource(SyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#with_streaming_response
+        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#with_streaming_response
         """
         return RetrievalResourceWithStreamingResponse(self)
 
-    def delete(
+    def delete_entries(
         self,
         *,
         collection_name: str,
@@ -146,7 +146,7 @@ class RetrievalResource(SyncAPIResource):
                     "collection_name": collection_name,
                     "file_id": file_id,
                 },
-                retrieval_delete_params.RetrievalDeleteParams,
+                retrieval_delete_entries_params.RetrievalDeleteEntriesParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -257,7 +257,7 @@ class AsyncRetrievalResource(AsyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#accessing-raw-response-data-eg-headers
         """
         return AsyncRetrievalResourceWithRawResponse(self)
 
@@ -266,11 +266,11 @@ class AsyncRetrievalResource(AsyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#with_streaming_response
+        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#with_streaming_response
         """
         return AsyncRetrievalResourceWithStreamingResponse(self)
 
-    async def delete(
+    async def delete_entries(
         self,
         *,
         collection_name: str,
@@ -301,7 +301,7 @@ class AsyncRetrievalResource(AsyncAPIResource):
                     "collection_name": collection_name,
                     "file_id": file_id,
                 },
-                retrieval_delete_params.RetrievalDeleteParams,
+                retrieval_delete_entries_params.RetrievalDeleteEntriesParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -385,8 +385,8 @@ class RetrievalResourceWithRawResponse:
     def __init__(self, retrieval: RetrievalResource) -> None:
         self._retrieval = retrieval
 
-        self.delete = to_raw_response_wrapper(
-            retrieval.delete,
+        self.delete_entries = to_raw_response_wrapper(
+            retrieval.delete_entries,
         )
         self.get_embeddings = to_raw_response_wrapper(
             retrieval.get_embeddings,
@@ -427,8 +427,8 @@ class AsyncRetrievalResourceWithRawResponse:
     def __init__(self, retrieval: AsyncRetrievalResource) -> None:
         self._retrieval = retrieval
 
-        self.delete = async_to_raw_response_wrapper(
-            retrieval.delete,
+        self.delete_entries = async_to_raw_response_wrapper(
+            retrieval.delete_entries,
         )
         self.get_embeddings = async_to_raw_response_wrapper(
             retrieval.get_embeddings,
@@ -469,8 +469,8 @@ class RetrievalResourceWithStreamingResponse:
     def __init__(self, retrieval: RetrievalResource) -> None:
         self._retrieval = retrieval
 
-        self.delete = to_streamed_response_wrapper(
-            retrieval.delete,
+        self.delete_entries = to_streamed_response_wrapper(
+            retrieval.delete_entries,
         )
         self.get_embeddings = to_streamed_response_wrapper(
             retrieval.get_embeddings,
@@ -511,8 +511,8 @@ class AsyncRetrievalResourceWithStreamingResponse:
     def __init__(self, retrieval: AsyncRetrievalResource) -> None:
         self._retrieval = retrieval
 
-        self.delete = async_to_streamed_response_wrapper(
-            retrieval.delete,
+        self.delete_entries = async_to_streamed_response_wrapper(
+            retrieval.delete_entries,
         )
         self.get_embeddings = async_to_streamed_response_wrapper(
             retrieval.get_embeddings,

@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, Optional
+from typing import Optional
 
 import httpx
 
@@ -13,6 +13,14 @@ from .model import (
     AsyncModelResourceWithRawResponse,
     ModelResourceWithStreamingResponse,
     AsyncModelResourceWithStreamingResponse,
+)
+from .delete import (
+    DeleteResource,
+    AsyncDeleteResource,
+    DeleteResourceWithRawResponse,
+    AsyncDeleteResourceWithRawResponse,
+    DeleteResourceWithStreamingResponse,
+    AsyncDeleteResourceWithStreamingResponse,
 )
 from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ....._utils import (
@@ -29,9 +37,10 @@ from ....._response import (
 )
 from ....._base_client import make_request_options
 from .....types.api.v1 import model_get_params, model_create_params
-from .....types.model_model import ModelModel
+from .....types.api.v1.model_model import ModelModel
+from .....types.api.v1.model_meta_param import ModelMetaParam
 from .....types.api.v1.model_get_response import ModelGetResponse
-from .....types.api.v1.model_delete_response import ModelDeleteResponse
+from .....types.api.v1.model_params_param import ModelParamsParam
 from .....types.api.v1.model_get_base_response import ModelGetBaseResponse
 
 __all__ = ["ModelsResource", "AsyncModelsResource"]
@@ -43,12 +52,16 @@ class ModelsResource(SyncAPIResource):
         return ModelResource(self._client)
 
     @cached_property
+    def delete(self) -> DeleteResource:
+        return DeleteResource(self._client)
+
+    @cached_property
     def with_raw_response(self) -> ModelsResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#accessing-raw-response-data-eg-headers
         """
         return ModelsResourceWithRawResponse(self)
 
@@ -57,7 +70,7 @@ class ModelsResource(SyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#with_streaming_response
+        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#with_streaming_response
         """
         return ModelsResourceWithStreamingResponse(self)
 
@@ -65,9 +78,9 @@ class ModelsResource(SyncAPIResource):
         self,
         *,
         id: str,
-        meta: model_create_params.Meta,
+        meta: ModelMetaParam,
         name: str,
-        params: Dict[str, object],
+        params: ModelParamsParam,
         access_control: Optional[object] | NotGiven = NOT_GIVEN,
         base_model_id: Optional[str] | NotGiven = NOT_GIVEN,
         is_active: bool | NotGiven = NOT_GIVEN,
@@ -108,25 +121,6 @@ class ModelsResource(SyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=ModelModel,
-        )
-
-    def delete(
-        self,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ModelDeleteResponse:
-        """Delete All Models"""
-        return self._delete(
-            "/api/v1/models/delete/all",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=ModelDeleteResponse,
         )
 
     def get(
@@ -190,12 +184,16 @@ class AsyncModelsResource(AsyncAPIResource):
         return AsyncModelResource(self._client)
 
     @cached_property
+    def delete(self) -> AsyncDeleteResource:
+        return AsyncDeleteResource(self._client)
+
+    @cached_property
     def with_raw_response(self) -> AsyncModelsResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#accessing-raw-response-data-eg-headers
         """
         return AsyncModelsResourceWithRawResponse(self)
 
@@ -204,7 +202,7 @@ class AsyncModelsResource(AsyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#with_streaming_response
+        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#with_streaming_response
         """
         return AsyncModelsResourceWithStreamingResponse(self)
 
@@ -212,9 +210,9 @@ class AsyncModelsResource(AsyncAPIResource):
         self,
         *,
         id: str,
-        meta: model_create_params.Meta,
+        meta: ModelMetaParam,
         name: str,
-        params: Dict[str, object],
+        params: ModelParamsParam,
         access_control: Optional[object] | NotGiven = NOT_GIVEN,
         base_model_id: Optional[str] | NotGiven = NOT_GIVEN,
         is_active: bool | NotGiven = NOT_GIVEN,
@@ -255,25 +253,6 @@ class AsyncModelsResource(AsyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=ModelModel,
-        )
-
-    async def delete(
-        self,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ModelDeleteResponse:
-        """Delete All Models"""
-        return await self._delete(
-            "/api/v1/models/delete/all",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=ModelDeleteResponse,
         )
 
     async def get(
@@ -338,9 +317,6 @@ class ModelsResourceWithRawResponse:
         self.create = to_raw_response_wrapper(
             models.create,
         )
-        self.delete = to_raw_response_wrapper(
-            models.delete,
-        )
         self.get = to_raw_response_wrapper(
             models.get,
         )
@@ -352,6 +328,10 @@ class ModelsResourceWithRawResponse:
     def model(self) -> ModelResourceWithRawResponse:
         return ModelResourceWithRawResponse(self._models.model)
 
+    @cached_property
+    def delete(self) -> DeleteResourceWithRawResponse:
+        return DeleteResourceWithRawResponse(self._models.delete)
+
 
 class AsyncModelsResourceWithRawResponse:
     def __init__(self, models: AsyncModelsResource) -> None:
@@ -359,9 +339,6 @@ class AsyncModelsResourceWithRawResponse:
 
         self.create = async_to_raw_response_wrapper(
             models.create,
-        )
-        self.delete = async_to_raw_response_wrapper(
-            models.delete,
         )
         self.get = async_to_raw_response_wrapper(
             models.get,
@@ -374,6 +351,10 @@ class AsyncModelsResourceWithRawResponse:
     def model(self) -> AsyncModelResourceWithRawResponse:
         return AsyncModelResourceWithRawResponse(self._models.model)
 
+    @cached_property
+    def delete(self) -> AsyncDeleteResourceWithRawResponse:
+        return AsyncDeleteResourceWithRawResponse(self._models.delete)
+
 
 class ModelsResourceWithStreamingResponse:
     def __init__(self, models: ModelsResource) -> None:
@@ -381,9 +362,6 @@ class ModelsResourceWithStreamingResponse:
 
         self.create = to_streamed_response_wrapper(
             models.create,
-        )
-        self.delete = to_streamed_response_wrapper(
-            models.delete,
         )
         self.get = to_streamed_response_wrapper(
             models.get,
@@ -396,6 +374,10 @@ class ModelsResourceWithStreamingResponse:
     def model(self) -> ModelResourceWithStreamingResponse:
         return ModelResourceWithStreamingResponse(self._models.model)
 
+    @cached_property
+    def delete(self) -> DeleteResourceWithStreamingResponse:
+        return DeleteResourceWithStreamingResponse(self._models.delete)
+
 
 class AsyncModelsResourceWithStreamingResponse:
     def __init__(self, models: AsyncModelsResource) -> None:
@@ -403,9 +385,6 @@ class AsyncModelsResourceWithStreamingResponse:
 
         self.create = async_to_streamed_response_wrapper(
             models.create,
-        )
-        self.delete = async_to_streamed_response_wrapper(
-            models.delete,
         )
         self.get = async_to_streamed_response_wrapper(
             models.get,
@@ -417,3 +396,7 @@ class AsyncModelsResourceWithStreamingResponse:
     @cached_property
     def model(self) -> AsyncModelResourceWithStreamingResponse:
         return AsyncModelResourceWithStreamingResponse(self._models.model)
+
+    @cached_property
+    def delete(self) -> AsyncDeleteResourceWithStreamingResponse:
+        return AsyncDeleteResourceWithStreamingResponse(self._models.delete)

@@ -27,7 +27,7 @@ from ........_response import (
 )
 from ........_base_client import make_request_options
 from ........types.api.v1.auths.admin.config.ldap import server_update_params
-from ........types.api.v1.auths.admin.config.ldap.server_get_response import ServerGetResponse
+from ........types.api.v1.auths.admin.config.ldap.ldap_server_config import LdapServerConfig
 
 __all__ = ["ServerResource", "AsyncServerResource"]
 
@@ -39,7 +39,7 @@ class ServerResource(SyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#accessing-raw-response-data-eg-headers
         """
         return ServerResourceWithRawResponse(self)
 
@@ -48,7 +48,7 @@ class ServerResource(SyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#with_streaming_response
+        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#with_streaming_response
         """
         return ServerResourceWithStreamingResponse(self)
 
@@ -120,14 +120,14 @@ class ServerResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ServerGetResponse:
+    ) -> LdapServerConfig:
         """Get Ldap Server"""
         return self._get(
             "/api/v1/auths/admin/config/ldap/server",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ServerGetResponse,
+            cast_to=LdapServerConfig,
         )
 
 
@@ -138,7 +138,7 @@ class AsyncServerResource(AsyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#accessing-raw-response-data-eg-headers
         """
         return AsyncServerResourceWithRawResponse(self)
 
@@ -147,7 +147,7 @@ class AsyncServerResource(AsyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#with_streaming_response
+        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#with_streaming_response
         """
         return AsyncServerResourceWithStreamingResponse(self)
 
@@ -219,14 +219,14 @@ class AsyncServerResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ServerGetResponse:
+    ) -> LdapServerConfig:
         """Get Ldap Server"""
         return await self._get(
             "/api/v1/auths/admin/config/ldap/server",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ServerGetResponse,
+            cast_to=LdapServerConfig,
         )
 
 

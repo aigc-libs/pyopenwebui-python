@@ -3,7 +3,7 @@
 from typing import List
 from typing_extensions import TypeAlias
 
-from ...memory_model import MemoryModel
+from .memory_model import MemoryModel
 
 __all__ = ["MemoryGetResponse"]
 

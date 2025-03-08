@@ -21,9 +21,8 @@ from ....._response import (
 )
 from ....._base_client import make_request_options
 from .....types.api.v1.groups import id_update_params
-from .....types.api.v1.groups.id_get_response import IDGetResponse
+from .....types.api.v1.group_response import GroupResponse
 from .....types.api.v1.groups.id_delete_response import IDDeleteResponse
-from .....types.api.v1.groups.id_update_response import IDUpdateResponse
 
 __all__ = ["IDResource", "AsyncIDResource"]
 
@@ -35,7 +34,7 @@ class IDResource(SyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#accessing-raw-response-data-eg-headers
         """
         return IDResourceWithRawResponse(self)
 
@@ -44,7 +43,7 @@ class IDResource(SyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#with_streaming_response
+        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#with_streaming_response
         """
         return IDResourceWithStreamingResponse(self)
 
@@ -62,7 +61,7 @@ class IDResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IDUpdateResponse]:
+    ) -> Optional[GroupResponse]:
         """
         Update Group By Id
 
@@ -91,7 +90,7 @@ class IDResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=IDUpdateResponse,
+            cast_to=GroupResponse,
         )
 
     def delete(
@@ -137,7 +136,7 @@ class IDResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IDGetResponse]:
+    ) -> Optional[GroupResponse]:
         """
         Get Group By Id
 
@@ -157,7 +156,7 @@ class IDResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=IDGetResponse,
+            cast_to=GroupResponse,
         )
 
 
@@ -168,7 +167,7 @@ class AsyncIDResource(AsyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#accessing-raw-response-data-eg-headers
         """
         return AsyncIDResourceWithRawResponse(self)
 
@@ -177,7 +176,7 @@ class AsyncIDResource(AsyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#with_streaming_response
+        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#with_streaming_response
         """
         return AsyncIDResourceWithStreamingResponse(self)
 
@@ -195,7 +194,7 @@ class AsyncIDResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IDUpdateResponse]:
+    ) -> Optional[GroupResponse]:
         """
         Update Group By Id
 
@@ -224,7 +223,7 @@ class AsyncIDResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=IDUpdateResponse,
+            cast_to=GroupResponse,
         )
 
     async def delete(
@@ -270,7 +269,7 @@ class AsyncIDResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IDGetResponse]:
+    ) -> Optional[GroupResponse]:
         """
         Get Group By Id
 
@@ -290,7 +289,7 @@ class AsyncIDResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=IDGetResponse,
+            cast_to=GroupResponse,
         )
 
 

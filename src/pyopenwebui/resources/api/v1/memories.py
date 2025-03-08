@@ -21,7 +21,7 @@ from ...._response import (
 )
 from ...._base_client import make_request_options
 from ....types.api.v1 import memory_add_params, memory_query_params, memory_update_by_id_params
-from ....types.memory_model import MemoryModel
+from ....types.api.v1.memory_model import MemoryModel
 from ....types.api.v1.memory_get_response import MemoryGetResponse
 from ....types.api.v1.memory_reset_response import MemoryResetResponse
 from ....types.api.v1.memory_delete_response import MemoryDeleteResponse
@@ -37,7 +37,7 @@ class MemoriesResource(SyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#accessing-raw-response-data-eg-headers
         """
         return MemoriesResourceWithRawResponse(self)
 
@@ -46,7 +46,7 @@ class MemoriesResource(SyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#with_streaming_response
+        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#with_streaming_response
         """
         return MemoriesResourceWithStreamingResponse(self)
 
@@ -273,7 +273,7 @@ class AsyncMemoriesResource(AsyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#accessing-raw-response-data-eg-headers
         """
         return AsyncMemoriesResourceWithRawResponse(self)
 
@@ -282,7 +282,7 @@ class AsyncMemoriesResource(AsyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#with_streaming_response
+        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#with_streaming_response
         """
         return AsyncMemoriesResourceWithStreamingResponse(self)
 

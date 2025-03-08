@@ -3,7 +3,7 @@
 from typing import List
 from typing_extensions import TypeAlias
 
-from ...user_model import UserModel
+from .user_model import UserModel
 
 __all__ = ["UserGetResponse"]
 

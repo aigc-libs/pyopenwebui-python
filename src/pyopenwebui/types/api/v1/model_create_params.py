@@ -2,34 +2,26 @@
 
 from __future__ import annotations
 
-from typing import Dict, Union, Optional
-from typing_extensions import Required, TypeAlias, TypedDict
+from typing import Optional
+from typing_extensions import Required, TypedDict
 
-__all__ = ["ModelCreateParams", "Meta"]
+from .model_meta_param import ModelMetaParam
+from .model_params_param import ModelParamsParam
+
+__all__ = ["ModelCreateParams"]
 
 
 class ModelCreateParams(TypedDict, total=False):
     id: Required[str]
 
-    meta: Required[Meta]
+    meta: Required[ModelMetaParam]
 
     name: Required[str]
 
-    params: Required[Dict[str, object]]
+    params: Required[ModelParamsParam]
 
     access_control: Optional[object]
 
     base_model_id: Optional[str]
 
     is_active: bool
-
-
-class MetaTyped(TypedDict, total=False):
-    capabilities: Optional[object]
-
-    description: Optional[str]
-
-    profile_image_url: Optional[str]
-
-
-Meta: TypeAlias = Union[MetaTyped, Dict[str, object]]
