@@ -43,7 +43,7 @@ class DocResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> DocResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#accessing-raw-response-data-eg-headers
@@ -97,8 +97,8 @@ class DocResource(SyncAPIResource):
     def update(
         self,
         *,
-        query_name: str,
-        body_name: str,
+        name_1: str,
+        name_2: str,
         title: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -123,7 +123,7 @@ class DocResource(SyncAPIResource):
             "/documents/doc/update",
             body=maybe_transform(
                 {
-                    "name": body_name,
+                    "name_2": name_2,
                     "title": title,
                 },
                 doc_update_params.DocUpdateParams,
@@ -133,7 +133,7 @@ class DocResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform({"name": query_name}, doc_update_params.DocUpdateParams),
+                query=maybe_transform({"name_1": name_1}, doc_update_params.DocUpdateParams),
             ),
             cast_to=DocumentResponse,
         )
@@ -182,7 +182,7 @@ class AsyncDocResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncDocResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#accessing-raw-response-data-eg-headers
@@ -236,8 +236,8 @@ class AsyncDocResource(AsyncAPIResource):
     async def update(
         self,
         *,
-        query_name: str,
-        body_name: str,
+        name_1: str,
+        name_2: str,
         title: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -262,7 +262,7 @@ class AsyncDocResource(AsyncAPIResource):
             "/documents/doc/update",
             body=await async_maybe_transform(
                 {
-                    "name": body_name,
+                    "name_2": name_2,
                     "title": title,
                 },
                 doc_update_params.DocUpdateParams,
@@ -272,7 +272,7 @@ class AsyncDocResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform({"name": query_name}, doc_update_params.DocUpdateParams),
+                query=await async_maybe_transform({"name_1": name_1}, doc_update_params.DocUpdateParams),
             ),
             cast_to=DocumentResponse,
         )

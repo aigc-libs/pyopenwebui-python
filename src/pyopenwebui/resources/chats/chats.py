@@ -6,14 +6,6 @@ from typing import Optional
 
 import httpx
 
-from .all import (
-    AllResource,
-    AsyncAllResource,
-    AllResourceWithRawResponse,
-    AsyncAllResourceWithRawResponse,
-    AllResourceWithStreamingResponse,
-    AsyncAllResourceWithStreamingResponse,
-)
 from .tags import (
     TagsResource,
     AsyncTagsResource,
@@ -23,7 +15,14 @@ from .tags import (
     AsyncTagsResourceWithStreamingResponse,
 )
 from ...types import chat_list_params, chat_create_params, chat_list_user_params
-from .all.all import AllResource, AsyncAllResource
+from .all.all import (
+    AllResource,
+    AsyncAllResource,
+    AllResourceWithRawResponse,
+    AsyncAllResourceWithRawResponse,
+    AllResourceWithStreamingResponse,
+    AsyncAllResourceWithStreamingResponse,
+)
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._utils import (
     maybe_transform,
@@ -73,7 +72,7 @@ class ChatsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> ChatsResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#accessing-raw-response-data-eg-headers
@@ -490,7 +489,7 @@ class AsyncChatsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncChatsResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#accessing-raw-response-data-eg-headers

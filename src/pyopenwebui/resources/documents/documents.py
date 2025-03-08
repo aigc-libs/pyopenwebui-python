@@ -6,7 +6,8 @@ from typing import Optional
 
 import httpx
 
-from .doc import (
+from ...types import document_create_params
+from .doc.doc import (
     DocResource,
     AsyncDocResource,
     DocResourceWithRawResponse,
@@ -14,8 +15,6 @@ from .doc import (
     DocResourceWithStreamingResponse,
     AsyncDocResourceWithStreamingResponse,
 )
-from ...types import document_create_params
-from .doc.doc import DocResource, AsyncDocResource
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._utils import (
     maybe_transform,
@@ -44,7 +43,7 @@ class DocumentsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> DocumentsResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#accessing-raw-response-data-eg-headers
@@ -133,7 +132,7 @@ class AsyncDocumentsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncDocumentsResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#accessing-raw-response-data-eg-headers

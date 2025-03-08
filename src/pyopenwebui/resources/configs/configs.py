@@ -13,14 +13,6 @@ from .banners import (
     BannersResourceWithStreamingResponse,
     AsyncBannersResourceWithStreamingResponse,
 )
-from .default import (
-    DefaultResource,
-    AsyncDefaultResource,
-    DefaultResourceWithRawResponse,
-    AsyncDefaultResourceWithRawResponse,
-    DefaultResourceWithStreamingResponse,
-    AsyncDefaultResourceWithStreamingResponse,
-)
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._utils import (
     maybe_transform,
@@ -35,7 +27,14 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._base_client import make_request_options
-from .default.default import DefaultResource, AsyncDefaultResource
+from .default.default import (
+    DefaultResource,
+    AsyncDefaultResource,
+    DefaultResourceWithRawResponse,
+    AsyncDefaultResourceWithRawResponse,
+    DefaultResourceWithStreamingResponse,
+    AsyncDefaultResourceWithStreamingResponse,
+)
 
 __all__ = ["ConfigsResource", "AsyncConfigsResource"]
 
@@ -52,7 +51,7 @@ class ConfigsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> ConfigsResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#accessing-raw-response-data-eg-headers
@@ -132,7 +131,7 @@ class AsyncConfigsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncConfigsResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#accessing-raw-response-data-eg-headers

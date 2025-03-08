@@ -31,7 +31,7 @@ class ModelsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> ModelsResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#accessing-raw-response-data-eg-headers
@@ -50,8 +50,8 @@ class ModelsResource(SyncAPIResource):
     def update(
         self,
         *,
-        query_id: str,
-        body_id: str,
+        id_1: str,
+        id_2: str,
         meta: model_update_params.Meta,
         name: str,
         params: Dict[str, object],
@@ -79,7 +79,7 @@ class ModelsResource(SyncAPIResource):
             "/models/update",
             body=maybe_transform(
                 {
-                    "id": body_id,
+                    "id_2": id_2,
                     "meta": meta,
                     "name": name,
                     "params": params,
@@ -92,7 +92,7 @@ class ModelsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform({"id": query_id}, model_update_params.ModelUpdateParams),
+                query=maybe_transform({"id_1": id_1}, model_update_params.ModelUpdateParams),
             ),
             cast_to=ModelModel,
         )
@@ -217,7 +217,7 @@ class AsyncModelsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncModelsResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#accessing-raw-response-data-eg-headers
@@ -236,8 +236,8 @@ class AsyncModelsResource(AsyncAPIResource):
     async def update(
         self,
         *,
-        query_id: str,
-        body_id: str,
+        id_1: str,
+        id_2: str,
         meta: model_update_params.Meta,
         name: str,
         params: Dict[str, object],
@@ -265,7 +265,7 @@ class AsyncModelsResource(AsyncAPIResource):
             "/models/update",
             body=await async_maybe_transform(
                 {
-                    "id": body_id,
+                    "id_2": id_2,
                     "meta": meta,
                     "name": name,
                     "params": params,
@@ -278,7 +278,7 @@ class AsyncModelsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform({"id": query_id}, model_update_params.ModelUpdateParams),
+                query=await async_maybe_transform({"id_1": id_1}, model_update_params.ModelUpdateParams),
             ),
             cast_to=ModelModel,
         )

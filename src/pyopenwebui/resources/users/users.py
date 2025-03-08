@@ -4,22 +4,6 @@ from __future__ import annotations
 
 import httpx
 
-from .user import (
-    UserResource,
-    AsyncUserResource,
-    UserResourceWithRawResponse,
-    AsyncUserResourceWithRawResponse,
-    UserResourceWithStreamingResponse,
-    AsyncUserResourceWithStreamingResponse,
-)
-from .update import (
-    UpdateResource,
-    AsyncUpdateResource,
-    UpdateResourceWithRawResponse,
-    AsyncUpdateResourceWithRawResponse,
-    UpdateResourceWithStreamingResponse,
-    AsyncUpdateResourceWithStreamingResponse,
-)
 from ...types import user_list_params
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._utils import (
@@ -27,7 +11,14 @@ from ..._utils import (
     async_maybe_transform,
 )
 from ..._compat import cached_property
-from .user.user import UserResource, AsyncUserResource
+from .user.user import (
+    UserResource,
+    AsyncUserResource,
+    UserResourceWithRawResponse,
+    AsyncUserResourceWithRawResponse,
+    UserResourceWithStreamingResponse,
+    AsyncUserResourceWithStreamingResponse,
+)
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
     to_raw_response_wrapper,
@@ -35,7 +26,16 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from .permissions import (
+from .update.update import (
+    UpdateResource,
+    AsyncUpdateResource,
+    UpdateResourceWithRawResponse,
+    AsyncUpdateResourceWithRawResponse,
+    UpdateResourceWithStreamingResponse,
+    AsyncUpdateResourceWithStreamingResponse,
+)
+from ..._base_client import make_request_options
+from .permissions.permissions import (
     PermissionsResource,
     AsyncPermissionsResource,
     PermissionsResourceWithRawResponse,
@@ -43,9 +43,6 @@ from .permissions import (
     PermissionsResourceWithStreamingResponse,
     AsyncPermissionsResourceWithStreamingResponse,
 )
-from .update.update import UpdateResource, AsyncUpdateResource
-from ..._base_client import make_request_options
-from .permissions.permissions import PermissionsResource, AsyncPermissionsResource
 from ...types.user_list_response import UserListResponse
 from ...types.shared.user_response import UserResponse
 from ...types.user_delete_response import UserDeleteResponse
@@ -69,7 +66,7 @@ class UsersResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> UsersResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#accessing-raw-response-data-eg-headers
@@ -210,7 +207,7 @@ class AsyncUsersResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncUsersResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#accessing-raw-response-data-eg-headers

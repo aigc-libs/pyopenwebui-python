@@ -14,14 +14,6 @@ from .export import (
     ExportResourceWithStreamingResponse,
     AsyncExportResourceWithStreamingResponse,
 )
-from .valves import (
-    ValvesResource,
-    AsyncValvesResource,
-    ValvesResourceWithRawResponse,
-    AsyncValvesResourceWithRawResponse,
-    ValvesResourceWithStreamingResponse,
-    AsyncValvesResourceWithStreamingResponse,
-)
 from ...types import function_create_params, function_update_params
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._utils import (
@@ -36,7 +28,14 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from .valves.valves import ValvesResource, AsyncValvesResource
+from .valves.valves import (
+    ValvesResource,
+    AsyncValvesResource,
+    ValvesResourceWithRawResponse,
+    AsyncValvesResourceWithRawResponse,
+    ValvesResourceWithStreamingResponse,
+    AsyncValvesResourceWithStreamingResponse,
+)
 from ..._base_client import make_request_options
 from ...types.function_model import FunctionModel
 from ...types.function_response import FunctionResponse
@@ -58,7 +57,7 @@ class FunctionsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> FunctionsResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#accessing-raw-response-data-eg-headers
@@ -152,9 +151,9 @@ class FunctionsResource(SyncAPIResource):
 
     def update(
         self,
+        id_1: str,
         *,
-        path_id: str,
-        body_id: str,
+        id_2: str,
         content: str,
         meta: function_update_params.Meta,
         name: str,
@@ -177,13 +176,13 @@ class FunctionsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not path_id:
-            raise ValueError(f"Expected a non-empty value for `path_id` but received {path_id!r}")
+        if not id_1:
+            raise ValueError(f"Expected a non-empty value for `id_1` but received {id_1!r}")
         return self._post(
-            f"/functions/id/{path_id}/update",
+            f"/functions/id/{id_1}/update",
             body=maybe_transform(
                 {
-                    "id": body_id,
+                    "id_2": id_2,
                     "content": content,
                     "meta": meta,
                     "name": name,
@@ -327,7 +326,7 @@ class AsyncFunctionsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncFunctionsResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#accessing-raw-response-data-eg-headers
@@ -421,9 +420,9 @@ class AsyncFunctionsResource(AsyncAPIResource):
 
     async def update(
         self,
+        id_1: str,
         *,
-        path_id: str,
-        body_id: str,
+        id_2: str,
         content: str,
         meta: function_update_params.Meta,
         name: str,
@@ -446,13 +445,13 @@ class AsyncFunctionsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not path_id:
-            raise ValueError(f"Expected a non-empty value for `path_id` but received {path_id!r}")
+        if not id_1:
+            raise ValueError(f"Expected a non-empty value for `id_1` but received {id_1!r}")
         return await self._post(
-            f"/functions/id/{path_id}/update",
+            f"/functions/id/{id_1}/update",
             body=await async_maybe_transform(
                 {
-                    "id": body_id,
+                    "id_2": id_2,
                     "content": content,
                     "meta": meta,
                     "name": name,

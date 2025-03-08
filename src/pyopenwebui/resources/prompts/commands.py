@@ -31,7 +31,7 @@ class CommandsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> CommandsResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#accessing-raw-response-data-eg-headers
@@ -82,9 +82,9 @@ class CommandsResource(SyncAPIResource):
 
     def update(
         self,
+        command_1: str,
         *,
-        path_command: str,
-        body_command: str,
+        command_2: str,
         content: str,
         title: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -106,13 +106,13 @@ class CommandsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not path_command:
-            raise ValueError(f"Expected a non-empty value for `path_command` but received {path_command!r}")
+        if not command_1:
+            raise ValueError(f"Expected a non-empty value for `command_1` but received {command_1!r}")
         return self._post(
-            f"/prompts/command/{path_command}/update",
+            f"/prompts/command/{command_1}/update",
             body=maybe_transform(
                 {
-                    "command": body_command,
+                    "command_2": command_2,
                     "content": content,
                     "title": title,
                 },
@@ -162,7 +162,7 @@ class AsyncCommandsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncCommandsResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#accessing-raw-response-data-eg-headers
@@ -213,9 +213,9 @@ class AsyncCommandsResource(AsyncAPIResource):
 
     async def update(
         self,
+        command_1: str,
         *,
-        path_command: str,
-        body_command: str,
+        command_2: str,
         content: str,
         title: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -237,13 +237,13 @@ class AsyncCommandsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not path_command:
-            raise ValueError(f"Expected a non-empty value for `path_command` but received {path_command!r}")
+        if not command_1:
+            raise ValueError(f"Expected a non-empty value for `command_1` but received {command_1!r}")
         return await self._post(
-            f"/prompts/command/{path_command}/update",
+            f"/prompts/command/{command_1}/update",
             body=await async_maybe_transform(
                 {
-                    "command": body_command,
+                    "command_2": command_2,
                     "content": content,
                     "title": title,
                 },

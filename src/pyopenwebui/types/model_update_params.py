@@ -11,9 +11,9 @@ __all__ = ["ModelUpdateParams", "Meta"]
 
 
 class ModelUpdateParams(TypedDict, total=False):
-    query_id: Required[Annotated[str, PropertyInfo(alias="id")]]
+    id_1: Required[Annotated[str, PropertyInfo(alias="id")]]
 
-    body_id: Required[Annotated[str, PropertyInfo(alias="id")]]
+    id_2: Required[Annotated[str, PropertyInfo(alias="id")]]
 
     meta: Required[Meta]
 

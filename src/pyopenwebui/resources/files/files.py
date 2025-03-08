@@ -7,14 +7,6 @@ from typing import Mapping, Optional, cast
 import httpx
 
 from ...types import file_create_params
-from .content import (
-    ContentResource,
-    AsyncContentResource,
-    ContentResourceWithRawResponse,
-    AsyncContentResourceWithRawResponse,
-    ContentResourceWithStreamingResponse,
-    AsyncContentResourceWithStreamingResponse,
-)
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven, FileTypes
 from ..._utils import (
     extract_files,
@@ -31,7 +23,14 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._base_client import make_request_options
-from .content.content import ContentResource, AsyncContentResource
+from .content.content import (
+    ContentResource,
+    AsyncContentResource,
+    ContentResourceWithRawResponse,
+    AsyncContentResourceWithRawResponse,
+    ContentResourceWithStreamingResponse,
+    AsyncContentResourceWithStreamingResponse,
+)
 from ...types.shared.file_model import FileModel
 from ...types.file_list_response import FileListResponse
 
@@ -46,7 +45,7 @@ class FilesResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> FilesResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#accessing-raw-response-data-eg-headers
@@ -214,7 +213,7 @@ class AsyncFilesResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncFilesResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#accessing-raw-response-data-eg-headers
