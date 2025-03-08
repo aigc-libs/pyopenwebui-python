@@ -29,9 +29,11 @@ from .messages.messages import (
     MessagesResourceWithStreamingResponse,
     AsyncMessagesResourceWithStreamingResponse,
 )
-from .....types.api.v1.channel_model import ChannelModel
 from .....types.api.v1.channel_get_response import ChannelGetResponse
+from .....types.api.v1.channel_create_response import ChannelCreateResponse
+from .....types.api.v1.channel_get_by_id_response import ChannelGetByIDResponse
 from .....types.api.v1.channel_delete_by_id_response import ChannelDeleteByIDResponse
+from .....types.api.v1.channel_update_by_id_response import ChannelUpdateByIDResponse
 
 __all__ = ["ChannelsResource", "AsyncChannelsResource"]
 
@@ -47,7 +49,7 @@ class ChannelsResource(SyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#accessing-raw-response-data-eg-headers
         """
         return ChannelsResourceWithRawResponse(self)
 
@@ -56,7 +58,7 @@ class ChannelsResource(SyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#with_streaming_response
+        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#with_streaming_response
         """
         return ChannelsResourceWithStreamingResponse(self)
 
@@ -74,7 +76,7 @@ class ChannelsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ChannelModel]:
+    ) -> Optional[ChannelCreateResponse]:
         """
         Create New Channel
 
@@ -102,7 +104,7 @@ class ChannelsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ChannelModel,
+            cast_to=ChannelCreateResponse,
         )
 
     def delete_by_id(
@@ -167,7 +169,7 @@ class ChannelsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ChannelModel]:
+    ) -> Optional[ChannelGetByIDResponse]:
         """
         Get Channel By Id
 
@@ -187,7 +189,7 @@ class ChannelsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ChannelModel,
+            cast_to=ChannelGetByIDResponse,
         )
 
     def update_by_id(
@@ -205,7 +207,7 @@ class ChannelsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ChannelModel]:
+    ) -> Optional[ChannelUpdateByIDResponse]:
         """
         Update Channel By Id
 
@@ -235,7 +237,7 @@ class ChannelsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ChannelModel,
+            cast_to=ChannelUpdateByIDResponse,
         )
 
 
@@ -250,7 +252,7 @@ class AsyncChannelsResource(AsyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#accessing-raw-response-data-eg-headers
         """
         return AsyncChannelsResourceWithRawResponse(self)
 
@@ -259,7 +261,7 @@ class AsyncChannelsResource(AsyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#with_streaming_response
+        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#with_streaming_response
         """
         return AsyncChannelsResourceWithStreamingResponse(self)
 
@@ -277,7 +279,7 @@ class AsyncChannelsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ChannelModel]:
+    ) -> Optional[ChannelCreateResponse]:
         """
         Create New Channel
 
@@ -305,7 +307,7 @@ class AsyncChannelsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ChannelModel,
+            cast_to=ChannelCreateResponse,
         )
 
     async def delete_by_id(
@@ -370,7 +372,7 @@ class AsyncChannelsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ChannelModel]:
+    ) -> Optional[ChannelGetByIDResponse]:
         """
         Get Channel By Id
 
@@ -390,7 +392,7 @@ class AsyncChannelsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ChannelModel,
+            cast_to=ChannelGetByIDResponse,
         )
 
     async def update_by_id(
@@ -408,7 +410,7 @@ class AsyncChannelsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ChannelModel]:
+    ) -> Optional[ChannelUpdateByIDResponse]:
         """
         Update Channel By Id
 
@@ -438,7 +440,7 @@ class AsyncChannelsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ChannelModel,
+            cast_to=ChannelUpdateByIDResponse,
         )
 
 

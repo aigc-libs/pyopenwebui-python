@@ -9,7 +9,10 @@ import pytest
 
 from pyopenwebui import Pyopenwebui, AsyncPyopenwebui
 from tests.utils import assert_matches_type
-from pyopenwebui.types.api.v1.configs import DirectConnectionsConfigForm
+from pyopenwebui.types.api.v1.configs import (
+    DirectConnectionGetResponse,
+    DirectConnectionSetResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -20,7 +23,7 @@ class TestDirectConnections:
     @parametrize
     def test_method_get(self, client: Pyopenwebui) -> None:
         direct_connection = client.api.v1.configs.direct_connections.get()
-        assert_matches_type(DirectConnectionsConfigForm, direct_connection, path=["response"])
+        assert_matches_type(DirectConnectionGetResponse, direct_connection, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Pyopenwebui) -> None:
@@ -29,7 +32,7 @@ class TestDirectConnections:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         direct_connection = response.parse()
-        assert_matches_type(DirectConnectionsConfigForm, direct_connection, path=["response"])
+        assert_matches_type(DirectConnectionGetResponse, direct_connection, path=["response"])
 
     @parametrize
     def test_streaming_response_get(self, client: Pyopenwebui) -> None:
@@ -38,7 +41,7 @@ class TestDirectConnections:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             direct_connection = response.parse()
-            assert_matches_type(DirectConnectionsConfigForm, direct_connection, path=["response"])
+            assert_matches_type(DirectConnectionGetResponse, direct_connection, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -47,7 +50,7 @@ class TestDirectConnections:
         direct_connection = client.api.v1.configs.direct_connections.set(
             enable_direct_connections=True,
         )
-        assert_matches_type(DirectConnectionsConfigForm, direct_connection, path=["response"])
+        assert_matches_type(DirectConnectionSetResponse, direct_connection, path=["response"])
 
     @parametrize
     def test_raw_response_set(self, client: Pyopenwebui) -> None:
@@ -58,7 +61,7 @@ class TestDirectConnections:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         direct_connection = response.parse()
-        assert_matches_type(DirectConnectionsConfigForm, direct_connection, path=["response"])
+        assert_matches_type(DirectConnectionSetResponse, direct_connection, path=["response"])
 
     @parametrize
     def test_streaming_response_set(self, client: Pyopenwebui) -> None:
@@ -69,7 +72,7 @@ class TestDirectConnections:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             direct_connection = response.parse()
-            assert_matches_type(DirectConnectionsConfigForm, direct_connection, path=["response"])
+            assert_matches_type(DirectConnectionSetResponse, direct_connection, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -80,7 +83,7 @@ class TestAsyncDirectConnections:
     @parametrize
     async def test_method_get(self, async_client: AsyncPyopenwebui) -> None:
         direct_connection = await async_client.api.v1.configs.direct_connections.get()
-        assert_matches_type(DirectConnectionsConfigForm, direct_connection, path=["response"])
+        assert_matches_type(DirectConnectionGetResponse, direct_connection, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncPyopenwebui) -> None:
@@ -89,7 +92,7 @@ class TestAsyncDirectConnections:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         direct_connection = await response.parse()
-        assert_matches_type(DirectConnectionsConfigForm, direct_connection, path=["response"])
+        assert_matches_type(DirectConnectionGetResponse, direct_connection, path=["response"])
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncPyopenwebui) -> None:
@@ -98,7 +101,7 @@ class TestAsyncDirectConnections:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             direct_connection = await response.parse()
-            assert_matches_type(DirectConnectionsConfigForm, direct_connection, path=["response"])
+            assert_matches_type(DirectConnectionGetResponse, direct_connection, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -107,7 +110,7 @@ class TestAsyncDirectConnections:
         direct_connection = await async_client.api.v1.configs.direct_connections.set(
             enable_direct_connections=True,
         )
-        assert_matches_type(DirectConnectionsConfigForm, direct_connection, path=["response"])
+        assert_matches_type(DirectConnectionSetResponse, direct_connection, path=["response"])
 
     @parametrize
     async def test_raw_response_set(self, async_client: AsyncPyopenwebui) -> None:
@@ -118,7 +121,7 @@ class TestAsyncDirectConnections:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         direct_connection = await response.parse()
-        assert_matches_type(DirectConnectionsConfigForm, direct_connection, path=["response"])
+        assert_matches_type(DirectConnectionSetResponse, direct_connection, path=["response"])
 
     @parametrize
     async def test_streaming_response_set(self, async_client: AsyncPyopenwebui) -> None:
@@ -129,6 +132,6 @@ class TestAsyncDirectConnections:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             direct_connection = await response.parse()
-            assert_matches_type(DirectConnectionsConfigForm, direct_connection, path=["response"])
+            assert_matches_type(DirectConnectionSetResponse, direct_connection, path=["response"])
 
         assert cast(Any, response.is_closed) is True

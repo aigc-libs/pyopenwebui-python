@@ -9,7 +9,11 @@ import pytest
 
 from pyopenwebui import Pyopenwebui, AsyncPyopenwebui
 from tests.utils import assert_matches_type
-from pyopenwebui.types.api.v1.evaluations import FeedbackModel
+from pyopenwebui.types.api.v1.evaluations import (
+    FeedbackCreateResponse,
+    FeedbackGetByIDResponse,
+    FeedbackUpdateByIDResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -22,7 +26,7 @@ class TestFeedback:
         feedback = client.api.v1.evaluations.feedback.create(
             type="type",
         )
-        assert_matches_type(FeedbackModel, feedback, path=["response"])
+        assert_matches_type(FeedbackCreateResponse, feedback, path=["response"])
 
     @parametrize
     def test_method_create_with_all_params(self, client: Pyopenwebui) -> None:
@@ -38,7 +42,7 @@ class TestFeedback:
             meta={},
             snapshot={"chat": {}},
         )
-        assert_matches_type(FeedbackModel, feedback, path=["response"])
+        assert_matches_type(FeedbackCreateResponse, feedback, path=["response"])
 
     @parametrize
     def test_raw_response_create(self, client: Pyopenwebui) -> None:
@@ -49,7 +53,7 @@ class TestFeedback:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         feedback = response.parse()
-        assert_matches_type(FeedbackModel, feedback, path=["response"])
+        assert_matches_type(FeedbackCreateResponse, feedback, path=["response"])
 
     @parametrize
     def test_streaming_response_create(self, client: Pyopenwebui) -> None:
@@ -60,7 +64,7 @@ class TestFeedback:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             feedback = response.parse()
-            assert_matches_type(FeedbackModel, feedback, path=["response"])
+            assert_matches_type(FeedbackCreateResponse, feedback, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -107,7 +111,7 @@ class TestFeedback:
         feedback = client.api.v1.evaluations.feedback.get_by_id(
             "id",
         )
-        assert_matches_type(FeedbackModel, feedback, path=["response"])
+        assert_matches_type(FeedbackGetByIDResponse, feedback, path=["response"])
 
     @parametrize
     def test_raw_response_get_by_id(self, client: Pyopenwebui) -> None:
@@ -118,7 +122,7 @@ class TestFeedback:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         feedback = response.parse()
-        assert_matches_type(FeedbackModel, feedback, path=["response"])
+        assert_matches_type(FeedbackGetByIDResponse, feedback, path=["response"])
 
     @parametrize
     def test_streaming_response_get_by_id(self, client: Pyopenwebui) -> None:
@@ -129,7 +133,7 @@ class TestFeedback:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             feedback = response.parse()
-            assert_matches_type(FeedbackModel, feedback, path=["response"])
+            assert_matches_type(FeedbackGetByIDResponse, feedback, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -146,7 +150,7 @@ class TestFeedback:
             id="id",
             type="type",
         )
-        assert_matches_type(FeedbackModel, feedback, path=["response"])
+        assert_matches_type(FeedbackUpdateByIDResponse, feedback, path=["response"])
 
     @parametrize
     def test_method_update_by_id_with_all_params(self, client: Pyopenwebui) -> None:
@@ -163,7 +167,7 @@ class TestFeedback:
             meta={},
             snapshot={"chat": {}},
         )
-        assert_matches_type(FeedbackModel, feedback, path=["response"])
+        assert_matches_type(FeedbackUpdateByIDResponse, feedback, path=["response"])
 
     @parametrize
     def test_raw_response_update_by_id(self, client: Pyopenwebui) -> None:
@@ -175,7 +179,7 @@ class TestFeedback:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         feedback = response.parse()
-        assert_matches_type(FeedbackModel, feedback, path=["response"])
+        assert_matches_type(FeedbackUpdateByIDResponse, feedback, path=["response"])
 
     @parametrize
     def test_streaming_response_update_by_id(self, client: Pyopenwebui) -> None:
@@ -187,7 +191,7 @@ class TestFeedback:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             feedback = response.parse()
-            assert_matches_type(FeedbackModel, feedback, path=["response"])
+            assert_matches_type(FeedbackUpdateByIDResponse, feedback, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -208,7 +212,7 @@ class TestAsyncFeedback:
         feedback = await async_client.api.v1.evaluations.feedback.create(
             type="type",
         )
-        assert_matches_type(FeedbackModel, feedback, path=["response"])
+        assert_matches_type(FeedbackCreateResponse, feedback, path=["response"])
 
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncPyopenwebui) -> None:
@@ -224,7 +228,7 @@ class TestAsyncFeedback:
             meta={},
             snapshot={"chat": {}},
         )
-        assert_matches_type(FeedbackModel, feedback, path=["response"])
+        assert_matches_type(FeedbackCreateResponse, feedback, path=["response"])
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncPyopenwebui) -> None:
@@ -235,7 +239,7 @@ class TestAsyncFeedback:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         feedback = await response.parse()
-        assert_matches_type(FeedbackModel, feedback, path=["response"])
+        assert_matches_type(FeedbackCreateResponse, feedback, path=["response"])
 
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncPyopenwebui) -> None:
@@ -246,7 +250,7 @@ class TestAsyncFeedback:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             feedback = await response.parse()
-            assert_matches_type(FeedbackModel, feedback, path=["response"])
+            assert_matches_type(FeedbackCreateResponse, feedback, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -293,7 +297,7 @@ class TestAsyncFeedback:
         feedback = await async_client.api.v1.evaluations.feedback.get_by_id(
             "id",
         )
-        assert_matches_type(FeedbackModel, feedback, path=["response"])
+        assert_matches_type(FeedbackGetByIDResponse, feedback, path=["response"])
 
     @parametrize
     async def test_raw_response_get_by_id(self, async_client: AsyncPyopenwebui) -> None:
@@ -304,7 +308,7 @@ class TestAsyncFeedback:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         feedback = await response.parse()
-        assert_matches_type(FeedbackModel, feedback, path=["response"])
+        assert_matches_type(FeedbackGetByIDResponse, feedback, path=["response"])
 
     @parametrize
     async def test_streaming_response_get_by_id(self, async_client: AsyncPyopenwebui) -> None:
@@ -315,7 +319,7 @@ class TestAsyncFeedback:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             feedback = await response.parse()
-            assert_matches_type(FeedbackModel, feedback, path=["response"])
+            assert_matches_type(FeedbackGetByIDResponse, feedback, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -332,7 +336,7 @@ class TestAsyncFeedback:
             id="id",
             type="type",
         )
-        assert_matches_type(FeedbackModel, feedback, path=["response"])
+        assert_matches_type(FeedbackUpdateByIDResponse, feedback, path=["response"])
 
     @parametrize
     async def test_method_update_by_id_with_all_params(self, async_client: AsyncPyopenwebui) -> None:
@@ -349,7 +353,7 @@ class TestAsyncFeedback:
             meta={},
             snapshot={"chat": {}},
         )
-        assert_matches_type(FeedbackModel, feedback, path=["response"])
+        assert_matches_type(FeedbackUpdateByIDResponse, feedback, path=["response"])
 
     @parametrize
     async def test_raw_response_update_by_id(self, async_client: AsyncPyopenwebui) -> None:
@@ -361,7 +365,7 @@ class TestAsyncFeedback:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         feedback = await response.parse()
-        assert_matches_type(FeedbackModel, feedback, path=["response"])
+        assert_matches_type(FeedbackUpdateByIDResponse, feedback, path=["response"])
 
     @parametrize
     async def test_streaming_response_update_by_id(self, async_client: AsyncPyopenwebui) -> None:
@@ -373,7 +377,7 @@ class TestAsyncFeedback:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             feedback = await response.parse()
-            assert_matches_type(FeedbackModel, feedback, path=["response"])
+            assert_matches_type(FeedbackUpdateByIDResponse, feedback, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

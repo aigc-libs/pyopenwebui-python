@@ -21,7 +21,7 @@ from ....._response import (
 )
 from ....._base_client import make_request_options
 from .....types.api.v1.chats import folder_update_params
-from .....types.api.v1.chat_response import ChatResponse
+from .....types.chat_response import ChatResponse
 from .....types.api.v1.chats.folder_get_response import FolderGetResponse
 
 __all__ = ["FolderResource", "AsyncFolderResource"]
@@ -34,7 +34,7 @@ class FolderResource(SyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#accessing-raw-response-data-eg-headers
         """
         return FolderResourceWithRawResponse(self)
 
@@ -43,7 +43,7 @@ class FolderResource(SyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#with_streaming_response
+        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#with_streaming_response
         """
         return FolderResourceWithStreamingResponse(self)
 
@@ -123,7 +123,7 @@ class AsyncFolderResource(AsyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#accessing-raw-response-data-eg-headers
         """
         return AsyncFolderResourceWithRawResponse(self)
 
@@ -132,7 +132,7 @@ class AsyncFolderResource(AsyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#with_streaming_response
+        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#with_streaming_response
         """
         return AsyncFolderResourceWithStreamingResponse(self)
 

@@ -17,17 +17,20 @@ class TestModels:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @parametrize
-    def test_method_get_openai_model(self, client: Pyopenwebui) -> None:
-        model = client.ollama.v1.models.get_openai_model(
-            0,
+    def test_method_list(self, client: Pyopenwebui) -> None:
+        model = client.ollama.v1.models.list()
+        assert_matches_type(object, model, path=["response"])
+
+    @parametrize
+    def test_method_list_with_all_params(self, client: Pyopenwebui) -> None:
+        model = client.ollama.v1.models.list(
+            url_idx=0,
         )
         assert_matches_type(object, model, path=["response"])
 
     @parametrize
-    def test_raw_response_get_openai_model(self, client: Pyopenwebui) -> None:
-        response = client.ollama.v1.models.with_raw_response.get_openai_model(
-            0,
-        )
+    def test_raw_response_list(self, client: Pyopenwebui) -> None:
+        response = client.ollama.v1.models.with_raw_response.list()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -35,10 +38,8 @@ class TestModels:
         assert_matches_type(object, model, path=["response"])
 
     @parametrize
-    def test_streaming_response_get_openai_model(self, client: Pyopenwebui) -> None:
-        with client.ollama.v1.models.with_streaming_response.get_openai_model(
-            0,
-        ) as response:
+    def test_streaming_response_list(self, client: Pyopenwebui) -> None:
+        with client.ollama.v1.models.with_streaming_response.list() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
@@ -48,20 +49,17 @@ class TestModels:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
-    def test_method_list_openai_models(self, client: Pyopenwebui) -> None:
-        model = client.ollama.v1.models.list_openai_models()
-        assert_matches_type(object, model, path=["response"])
-
-    @parametrize
-    def test_method_list_openai_models_with_all_params(self, client: Pyopenwebui) -> None:
-        model = client.ollama.v1.models.list_openai_models(
-            url_idx=0,
+    def test_method_get_by_index(self, client: Pyopenwebui) -> None:
+        model = client.ollama.v1.models.get_by_index(
+            0,
         )
         assert_matches_type(object, model, path=["response"])
 
     @parametrize
-    def test_raw_response_list_openai_models(self, client: Pyopenwebui) -> None:
-        response = client.ollama.v1.models.with_raw_response.list_openai_models()
+    def test_raw_response_get_by_index(self, client: Pyopenwebui) -> None:
+        response = client.ollama.v1.models.with_raw_response.get_by_index(
+            0,
+        )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -69,8 +67,10 @@ class TestModels:
         assert_matches_type(object, model, path=["response"])
 
     @parametrize
-    def test_streaming_response_list_openai_models(self, client: Pyopenwebui) -> None:
-        with client.ollama.v1.models.with_streaming_response.list_openai_models() as response:
+    def test_streaming_response_get_by_index(self, client: Pyopenwebui) -> None:
+        with client.ollama.v1.models.with_streaming_response.get_by_index(
+            0,
+        ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
@@ -84,17 +84,20 @@ class TestAsyncModels:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @parametrize
-    async def test_method_get_openai_model(self, async_client: AsyncPyopenwebui) -> None:
-        model = await async_client.ollama.v1.models.get_openai_model(
-            0,
+    async def test_method_list(self, async_client: AsyncPyopenwebui) -> None:
+        model = await async_client.ollama.v1.models.list()
+        assert_matches_type(object, model, path=["response"])
+
+    @parametrize
+    async def test_method_list_with_all_params(self, async_client: AsyncPyopenwebui) -> None:
+        model = await async_client.ollama.v1.models.list(
+            url_idx=0,
         )
         assert_matches_type(object, model, path=["response"])
 
     @parametrize
-    async def test_raw_response_get_openai_model(self, async_client: AsyncPyopenwebui) -> None:
-        response = await async_client.ollama.v1.models.with_raw_response.get_openai_model(
-            0,
-        )
+    async def test_raw_response_list(self, async_client: AsyncPyopenwebui) -> None:
+        response = await async_client.ollama.v1.models.with_raw_response.list()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -102,10 +105,8 @@ class TestAsyncModels:
         assert_matches_type(object, model, path=["response"])
 
     @parametrize
-    async def test_streaming_response_get_openai_model(self, async_client: AsyncPyopenwebui) -> None:
-        async with async_client.ollama.v1.models.with_streaming_response.get_openai_model(
-            0,
-        ) as response:
+    async def test_streaming_response_list(self, async_client: AsyncPyopenwebui) -> None:
+        async with async_client.ollama.v1.models.with_streaming_response.list() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
@@ -115,20 +116,17 @@ class TestAsyncModels:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
-    async def test_method_list_openai_models(self, async_client: AsyncPyopenwebui) -> None:
-        model = await async_client.ollama.v1.models.list_openai_models()
-        assert_matches_type(object, model, path=["response"])
-
-    @parametrize
-    async def test_method_list_openai_models_with_all_params(self, async_client: AsyncPyopenwebui) -> None:
-        model = await async_client.ollama.v1.models.list_openai_models(
-            url_idx=0,
+    async def test_method_get_by_index(self, async_client: AsyncPyopenwebui) -> None:
+        model = await async_client.ollama.v1.models.get_by_index(
+            0,
         )
         assert_matches_type(object, model, path=["response"])
 
     @parametrize
-    async def test_raw_response_list_openai_models(self, async_client: AsyncPyopenwebui) -> None:
-        response = await async_client.ollama.v1.models.with_raw_response.list_openai_models()
+    async def test_raw_response_get_by_index(self, async_client: AsyncPyopenwebui) -> None:
+        response = await async_client.ollama.v1.models.with_raw_response.get_by_index(
+            0,
+        )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -136,8 +134,10 @@ class TestAsyncModels:
         assert_matches_type(object, model, path=["response"])
 
     @parametrize
-    async def test_streaming_response_list_openai_models(self, async_client: AsyncPyopenwebui) -> None:
-        async with async_client.ollama.v1.models.with_streaming_response.list_openai_models() as response:
+    async def test_streaming_response_get_by_index(self, async_client: AsyncPyopenwebui) -> None:
+        async with async_client.ollama.v1.models.with_streaming_response.get_by_index(
+            0,
+        ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 

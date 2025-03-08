@@ -21,7 +21,9 @@ from ....._response import (
 )
 from ....._base_client import make_request_options
 from .....types.api.v1.evaluations import feedback_create_params, feedback_update_by_id_params
-from .....types.api.v1.evaluations.feedback_model import FeedbackModel
+from .....types.api.v1.evaluations.feedback_create_response import FeedbackCreateResponse
+from .....types.api.v1.evaluations.feedback_get_by_id_response import FeedbackGetByIDResponse
+from .....types.api.v1.evaluations.feedback_update_by_id_response import FeedbackUpdateByIDResponse
 
 __all__ = ["FeedbackResource", "AsyncFeedbackResource"]
 
@@ -33,7 +35,7 @@ class FeedbackResource(SyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#accessing-raw-response-data-eg-headers
         """
         return FeedbackResourceWithRawResponse(self)
 
@@ -42,7 +44,7 @@ class FeedbackResource(SyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#with_streaming_response
+        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#with_streaming_response
         """
         return FeedbackResourceWithStreamingResponse(self)
 
@@ -59,7 +61,7 @@ class FeedbackResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> FeedbackModel:
+    ) -> FeedbackCreateResponse:
         """
         Create Feedback
 
@@ -86,7 +88,7 @@ class FeedbackResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=FeedbackModel,
+            cast_to=FeedbackCreateResponse,
         )
 
     def delete_by_id(
@@ -132,7 +134,7 @@ class FeedbackResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> FeedbackModel:
+    ) -> FeedbackGetByIDResponse:
         """
         Get Feedback By Id
 
@@ -152,7 +154,7 @@ class FeedbackResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=FeedbackModel,
+            cast_to=FeedbackGetByIDResponse,
         )
 
     def update_by_id(
@@ -169,7 +171,7 @@ class FeedbackResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> FeedbackModel:
+    ) -> FeedbackUpdateByIDResponse:
         """
         Update Feedback By Id
 
@@ -198,7 +200,7 @@ class FeedbackResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=FeedbackModel,
+            cast_to=FeedbackUpdateByIDResponse,
         )
 
 
@@ -209,7 +211,7 @@ class AsyncFeedbackResource(AsyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#accessing-raw-response-data-eg-headers
         """
         return AsyncFeedbackResourceWithRawResponse(self)
 
@@ -218,7 +220,7 @@ class AsyncFeedbackResource(AsyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#with_streaming_response
+        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#with_streaming_response
         """
         return AsyncFeedbackResourceWithStreamingResponse(self)
 
@@ -235,7 +237,7 @@ class AsyncFeedbackResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> FeedbackModel:
+    ) -> FeedbackCreateResponse:
         """
         Create Feedback
 
@@ -262,7 +264,7 @@ class AsyncFeedbackResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=FeedbackModel,
+            cast_to=FeedbackCreateResponse,
         )
 
     async def delete_by_id(
@@ -308,7 +310,7 @@ class AsyncFeedbackResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> FeedbackModel:
+    ) -> FeedbackGetByIDResponse:
         """
         Get Feedback By Id
 
@@ -328,7 +330,7 @@ class AsyncFeedbackResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=FeedbackModel,
+            cast_to=FeedbackGetByIDResponse,
         )
 
     async def update_by_id(
@@ -345,7 +347,7 @@ class AsyncFeedbackResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> FeedbackModel:
+    ) -> FeedbackUpdateByIDResponse:
         """
         Update Feedback By Id
 
@@ -374,7 +376,7 @@ class AsyncFeedbackResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=FeedbackModel,
+            cast_to=FeedbackUpdateByIDResponse,
         )
 
 

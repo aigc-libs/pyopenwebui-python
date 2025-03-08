@@ -1,14 +1,29 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List
+from typing import List, Optional
 
 from ......_models import BaseModel
-from .batch_process_files_result import BatchProcessFilesResult
 
-__all__ = ["FileBatchResponse"]
+__all__ = ["FileBatchResponse", "Error", "Result"]
+
+
+class Error(BaseModel):
+    file_id: str
+
+    status: str
+
+    error: Optional[str] = None
+
+
+class Result(BaseModel):
+    file_id: str
+
+    status: str
+
+    error: Optional[str] = None
 
 
 class FileBatchResponse(BaseModel):
-    errors: List[BatchProcessFilesResult]
+    errors: List[Error]
 
-    results: List[BatchProcessFilesResult]
+    results: List[Result]

@@ -6,9 +6,8 @@ from typing import Optional
 from typing_extensions import Required, Annotated, TypedDict
 
 from ....._utils import PropertyInfo
-from ..tool_meta_param import ToolMetaParam
 
-__all__ = ["IDUpdateParams"]
+__all__ = ["IDUpdateParams", "Meta"]
 
 
 class IDUpdateParams(TypedDict, total=False):
@@ -16,8 +15,14 @@ class IDUpdateParams(TypedDict, total=False):
 
     content: Required[str]
 
-    meta: Required[ToolMetaParam]
+    meta: Required[Meta]
 
     name: Required[str]
 
     access_control: Optional[object]
+
+
+class Meta(TypedDict, total=False):
+    description: Optional[str]
+
+    manifest: Optional[object]

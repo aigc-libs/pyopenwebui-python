@@ -19,7 +19,7 @@ from ......_response import (
 )
 from ......_base_client import make_request_options
 from ......types.api.v1.users.default import permission_update_params
-from ......types.api.v1.users.default.user_permissions import UserPermissions
+from ......types.api.v1.users.default.permission_get_response import PermissionGetResponse
 
 __all__ = ["PermissionsResource", "AsyncPermissionsResource"]
 
@@ -31,7 +31,7 @@ class PermissionsResource(SyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#accessing-raw-response-data-eg-headers
         """
         return PermissionsResourceWithRawResponse(self)
 
@@ -40,7 +40,7 @@ class PermissionsResource(SyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#with_streaming_response
+        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#with_streaming_response
         """
         return PermissionsResourceWithStreamingResponse(self)
 
@@ -94,14 +94,14 @@ class PermissionsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UserPermissions:
+    ) -> PermissionGetResponse:
         """Get User Permissions"""
         return self._get(
             "/api/v1/users/default/permissions",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=UserPermissions,
+            cast_to=PermissionGetResponse,
         )
 
 
@@ -112,7 +112,7 @@ class AsyncPermissionsResource(AsyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#accessing-raw-response-data-eg-headers
         """
         return AsyncPermissionsResourceWithRawResponse(self)
 
@@ -121,7 +121,7 @@ class AsyncPermissionsResource(AsyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#with_streaming_response
+        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#with_streaming_response
         """
         return AsyncPermissionsResourceWithStreamingResponse(self)
 
@@ -175,14 +175,14 @@ class AsyncPermissionsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UserPermissions:
+    ) -> PermissionGetResponse:
         """Get User Permissions"""
         return await self._get(
             "/api/v1/users/default/permissions",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=UserPermissions,
+            cast_to=PermissionGetResponse,
         )
 
 

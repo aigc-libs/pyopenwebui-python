@@ -9,8 +9,8 @@ import pytest
 
 from pyopenwebui import Pyopenwebui, AsyncPyopenwebui
 from tests.utils import assert_matches_type
+from pyopenwebui.types import ModelModel
 from pyopenwebui.types.api.v1 import (
-    ModelModel,
     ModelGetResponse,
     ModelDeleteResponse,
     ModelGetBaseResponse,

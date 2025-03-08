@@ -25,7 +25,7 @@ class VersionResource(SyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#accessing-raw-response-data-eg-headers
         """
         return VersionResourceWithRawResponse(self)
 
@@ -34,11 +34,11 @@ class VersionResource(SyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#with_streaming_response
+        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#with_streaming_response
         """
         return VersionResourceWithStreamingResponse(self)
 
-    def get(
+    def retrieve(
         self,
         *,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -57,7 +57,7 @@ class VersionResource(SyncAPIResource):
             cast_to=object,
         )
 
-    def get_latest_release(
+    def list_updates(
         self,
         *,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -84,7 +84,7 @@ class AsyncVersionResource(AsyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#accessing-raw-response-data-eg-headers
         """
         return AsyncVersionResourceWithRawResponse(self)
 
@@ -93,11 +93,11 @@ class AsyncVersionResource(AsyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#with_streaming_response
+        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#with_streaming_response
         """
         return AsyncVersionResourceWithStreamingResponse(self)
 
-    async def get(
+    async def retrieve(
         self,
         *,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -116,7 +116,7 @@ class AsyncVersionResource(AsyncAPIResource):
             cast_to=object,
         )
 
-    async def get_latest_release(
+    async def list_updates(
         self,
         *,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -140,11 +140,11 @@ class VersionResourceWithRawResponse:
     def __init__(self, version: VersionResource) -> None:
         self._version = version
 
-        self.get = to_raw_response_wrapper(
-            version.get,
+        self.retrieve = to_raw_response_wrapper(
+            version.retrieve,
         )
-        self.get_latest_release = to_raw_response_wrapper(
-            version.get_latest_release,
+        self.list_updates = to_raw_response_wrapper(
+            version.list_updates,
         )
 
 
@@ -152,11 +152,11 @@ class AsyncVersionResourceWithRawResponse:
     def __init__(self, version: AsyncVersionResource) -> None:
         self._version = version
 
-        self.get = async_to_raw_response_wrapper(
-            version.get,
+        self.retrieve = async_to_raw_response_wrapper(
+            version.retrieve,
         )
-        self.get_latest_release = async_to_raw_response_wrapper(
-            version.get_latest_release,
+        self.list_updates = async_to_raw_response_wrapper(
+            version.list_updates,
         )
 
 
@@ -164,11 +164,11 @@ class VersionResourceWithStreamingResponse:
     def __init__(self, version: VersionResource) -> None:
         self._version = version
 
-        self.get = to_streamed_response_wrapper(
-            version.get,
+        self.retrieve = to_streamed_response_wrapper(
+            version.retrieve,
         )
-        self.get_latest_release = to_streamed_response_wrapper(
-            version.get_latest_release,
+        self.list_updates = to_streamed_response_wrapper(
+            version.list_updates,
         )
 
 
@@ -176,9 +176,9 @@ class AsyncVersionResourceWithStreamingResponse:
     def __init__(self, version: AsyncVersionResource) -> None:
         self._version = version
 
-        self.get = async_to_streamed_response_wrapper(
-            version.get,
+        self.retrieve = async_to_streamed_response_wrapper(
+            version.retrieve,
         )
-        self.get_latest_release = async_to_streamed_response_wrapper(
-            version.get_latest_release,
+        self.list_updates = async_to_streamed_response_wrapper(
+            version.list_updates,
         )

@@ -20,7 +20,7 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._base_client import make_request_options
-from ...types.ollama import config_update_config_params
+from ...types.ollama import config_update_params
 
 __all__ = ["ConfigResource", "AsyncConfigResource"]
 
@@ -32,7 +32,7 @@ class ConfigResource(SyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#accessing-raw-response-data-eg-headers
         """
         return ConfigResourceWithRawResponse(self)
 
@@ -41,30 +41,11 @@ class ConfigResource(SyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#with_streaming_response
+        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#with_streaming_response
         """
         return ConfigResourceWithStreamingResponse(self)
 
-    def get_config(
-        self,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> object:
-        """Get Config"""
-        return self._get(
-            "/ollama/config",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=object,
-        )
-
-    def update_config(
+    def update(
         self,
         *,
         ollama_api_configs: object,
@@ -97,8 +78,27 @@ class ConfigResource(SyncAPIResource):
                     "ollama_base_urls": ollama_base_urls,
                     "enable_ollama_api": enable_ollama_api,
                 },
-                config_update_config_params.ConfigUpdateConfigParams,
+                config_update_params.ConfigUpdateParams,
             ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=object,
+        )
+
+    def get(
+        self,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> object:
+        """Get Config"""
+        return self._get(
+            "/ollama/config",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -113,7 +113,7 @@ class AsyncConfigResource(AsyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#accessing-raw-response-data-eg-headers
         """
         return AsyncConfigResourceWithRawResponse(self)
 
@@ -122,30 +122,11 @@ class AsyncConfigResource(AsyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#with_streaming_response
+        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#with_streaming_response
         """
         return AsyncConfigResourceWithStreamingResponse(self)
 
-    async def get_config(
-        self,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> object:
-        """Get Config"""
-        return await self._get(
-            "/ollama/config",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=object,
-        )
-
-    async def update_config(
+    async def update(
         self,
         *,
         ollama_api_configs: object,
@@ -178,8 +159,27 @@ class AsyncConfigResource(AsyncAPIResource):
                     "ollama_base_urls": ollama_base_urls,
                     "enable_ollama_api": enable_ollama_api,
                 },
-                config_update_config_params.ConfigUpdateConfigParams,
+                config_update_params.ConfigUpdateParams,
             ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=object,
+        )
+
+    async def get(
+        self,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> object:
+        """Get Config"""
+        return await self._get(
+            "/ollama/config",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -191,11 +191,11 @@ class ConfigResourceWithRawResponse:
     def __init__(self, config: ConfigResource) -> None:
         self._config = config
 
-        self.get_config = to_raw_response_wrapper(
-            config.get_config,
+        self.update = to_raw_response_wrapper(
+            config.update,
         )
-        self.update_config = to_raw_response_wrapper(
-            config.update_config,
+        self.get = to_raw_response_wrapper(
+            config.get,
         )
 
 
@@ -203,11 +203,11 @@ class AsyncConfigResourceWithRawResponse:
     def __init__(self, config: AsyncConfigResource) -> None:
         self._config = config
 
-        self.get_config = async_to_raw_response_wrapper(
-            config.get_config,
+        self.update = async_to_raw_response_wrapper(
+            config.update,
         )
-        self.update_config = async_to_raw_response_wrapper(
-            config.update_config,
+        self.get = async_to_raw_response_wrapper(
+            config.get,
         )
 
 
@@ -215,11 +215,11 @@ class ConfigResourceWithStreamingResponse:
     def __init__(self, config: ConfigResource) -> None:
         self._config = config
 
-        self.get_config = to_streamed_response_wrapper(
-            config.get_config,
+        self.update = to_streamed_response_wrapper(
+            config.update,
         )
-        self.update_config = to_streamed_response_wrapper(
-            config.update_config,
+        self.get = to_streamed_response_wrapper(
+            config.get,
         )
 
 
@@ -227,9 +227,9 @@ class AsyncConfigResourceWithStreamingResponse:
     def __init__(self, config: AsyncConfigResource) -> None:
         self._config = config
 
-        self.get_config = async_to_streamed_response_wrapper(
-            config.get_config,
+        self.update = async_to_streamed_response_wrapper(
+            config.update,
         )
-        self.update_config = async_to_streamed_response_wrapper(
-            config.update_config,
+        self.get = async_to_streamed_response_wrapper(
+            config.get,
         )

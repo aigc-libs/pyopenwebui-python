@@ -29,9 +29,8 @@ from ....._response import (
 )
 from ....._base_client import make_request_options
 from .....types.api.v1 import tool_create_params
-from .....types.api.v1.tool_meta_param import ToolMetaParam
+from .....types.tool_response import ToolResponse
 from .....types.api.v1.tool_get_response import ToolGetResponse
-from .....types.api.v1.tool_create_response import ToolCreateResponse
 from .....types.api.v1.tool_export_response import ToolExportResponse
 from .....types.api.v1.tool_get_list_response import ToolGetListResponse
 
@@ -49,7 +48,7 @@ class ToolsResource(SyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#accessing-raw-response-data-eg-headers
         """
         return ToolsResourceWithRawResponse(self)
 
@@ -58,7 +57,7 @@ class ToolsResource(SyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#with_streaming_response
+        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#with_streaming_response
         """
         return ToolsResourceWithStreamingResponse(self)
 
@@ -67,7 +66,7 @@ class ToolsResource(SyncAPIResource):
         *,
         id: str,
         content: str,
-        meta: ToolMetaParam,
+        meta: tool_create_params.Meta,
         name: str,
         access_control: Optional[object] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -76,7 +75,7 @@ class ToolsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ToolCreateResponse]:
+    ) -> Optional[ToolResponse]:
         """
         Create New Tools
 
@@ -104,7 +103,7 @@ class ToolsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ToolCreateResponse,
+            cast_to=ToolResponse,
         )
 
     def export(
@@ -176,7 +175,7 @@ class AsyncToolsResource(AsyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#accessing-raw-response-data-eg-headers
         """
         return AsyncToolsResourceWithRawResponse(self)
 
@@ -185,7 +184,7 @@ class AsyncToolsResource(AsyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#with_streaming_response
+        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#with_streaming_response
         """
         return AsyncToolsResourceWithStreamingResponse(self)
 
@@ -194,7 +193,7 @@ class AsyncToolsResource(AsyncAPIResource):
         *,
         id: str,
         content: str,
-        meta: ToolMetaParam,
+        meta: tool_create_params.Meta,
         name: str,
         access_control: Optional[object] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -203,7 +202,7 @@ class AsyncToolsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ToolCreateResponse]:
+    ) -> Optional[ToolResponse]:
         """
         Create New Tools
 
@@ -231,7 +230,7 @@ class AsyncToolsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ToolCreateResponse,
+            cast_to=ToolResponse,
         )
 
     async def export(
