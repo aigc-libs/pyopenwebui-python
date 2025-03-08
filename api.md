@@ -1051,6 +1051,7 @@ from pyopenwebui.types.api.v1 import (
     ChatDeleteByIDResponse,
     ChatGetResponse,
     ChatGetArchivedListResponse,
+    ChatListByUserResponse,
     ChatSearchResponse,
 )
 ```
@@ -1064,6 +1065,7 @@ Methods:
 - <code title="get /api/v1/chats/archived">client.api.v1.chats.<a href="./src/pyopenwebui/resources/api/v1/chats/chats.py">get_archived_list</a>(\*\*<a href="src/pyopenwebui/types/api/v1/chat_get_archived_list_params.py">params</a>) -> <a href="./src/pyopenwebui/types/api/v1/chat_get_archived_list_response.py">ChatGetArchivedListResponse</a></code>
 - <code title="get /api/v1/chats/{id}">client.api.v1.chats.<a href="./src/pyopenwebui/resources/api/v1/chats/chats.py">get_by_id</a>(id) -> <a href="./src/pyopenwebui/types/api/v1/chat_response.py">Optional[ChatResponse]</a></code>
 - <code title="post /api/v1/chats/import">client.api.v1.chats.<a href="./src/pyopenwebui/resources/api/v1/chats/chats.py">import\_</a>(\*\*<a href="src/pyopenwebui/types/api/v1/chat_import_params.py">params</a>) -> <a href="./src/pyopenwebui/types/api/v1/chat_response.py">Optional[ChatResponse]</a></code>
+- <code title="get /api/v1/chats/list/user/{user_id}">client.api.v1.chats.<a href="./src/pyopenwebui/resources/api/v1/chats/chats.py">list_by_user</a>(user_id, \*\*<a href="src/pyopenwebui/types/api/v1/chat_list_by_user_params.py">params</a>) -> <a href="./src/pyopenwebui/types/api/v1/chat_list_by_user_response.py">ChatListByUserResponse</a></code>
 - <code title="post /api/v1/chats/{id}/pin">client.api.v1.chats.<a href="./src/pyopenwebui/resources/api/v1/chats/chats.py">pin_by_id</a>(id) -> <a href="./src/pyopenwebui/types/api/v1/chat_response.py">Optional[ChatResponse]</a></code>
 - <code title="get /api/v1/chats/search">client.api.v1.chats.<a href="./src/pyopenwebui/resources/api/v1/chats/chats.py">search</a>(\*\*<a href="src/pyopenwebui/types/api/v1/chat_search_params.py">params</a>) -> <a href="./src/pyopenwebui/types/api/v1/chat_search_response.py">ChatSearchResponse</a></code>
 - <code title="post /api/v1/chats/{id}">client.api.v1.chats.<a href="./src/pyopenwebui/resources/api/v1/chats/chats.py">update_by_id</a>(id, \*\*<a href="src/pyopenwebui/types/api/v1/chat_update_by_id_params.py">params</a>) -> <a href="./src/pyopenwebui/types/api/v1/chat_response.py">Optional[ChatResponse]</a></code>

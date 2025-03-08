@@ -81,6 +81,7 @@ from .....types.api.v1 import (
     chat_create_params,
     chat_import_params,
     chat_search_params,
+    chat_list_by_user_params,
     chat_update_by_id_params,
     chat_get_archived_list_params,
 )
@@ -89,6 +90,7 @@ from .....types.api.v1.chat_get_response import ChatGetResponse
 from .....types.api.v1.chat_search_response import ChatSearchResponse
 from .....types.api.v1.chat_delete_all_response import ChatDeleteAllResponse
 from .....types.api.v1.chat_delete_by_id_response import ChatDeleteByIDResponse
+from .....types.api.v1.chat_list_by_user_response import ChatListByUserResponse
 from .....types.api.v1.chat_get_archived_list_response import ChatGetArchivedListResponse
 
 __all__ = ["ChatsResource", "AsyncChatsResource"]
@@ -377,6 +379,51 @@ class ChatsResource(SyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=ChatResponse,
+        )
+
+    def list_by_user(
+        self,
+        user_id: str,
+        *,
+        limit: int | NotGiven = NOT_GIVEN,
+        skip: int | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> ChatListByUserResponse:
+        """
+        Get User Chat List By User Id
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not user_id:
+            raise ValueError(f"Expected a non-empty value for `user_id` but received {user_id!r}")
+        return self._get(
+            f"/api/v1/chats/list/user/{user_id}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "limit": limit,
+                        "skip": skip,
+                    },
+                    chat_list_by_user_params.ChatListByUserParams,
+                ),
+            ),
+            cast_to=ChatListByUserResponse,
         )
 
     def pin_by_id(
@@ -775,6 +822,51 @@ class AsyncChatsResource(AsyncAPIResource):
             cast_to=ChatResponse,
         )
 
+    async def list_by_user(
+        self,
+        user_id: str,
+        *,
+        limit: int | NotGiven = NOT_GIVEN,
+        skip: int | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> ChatListByUserResponse:
+        """
+        Get User Chat List By User Id
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not user_id:
+            raise ValueError(f"Expected a non-empty value for `user_id` but received {user_id!r}")
+        return await self._get(
+            f"/api/v1/chats/list/user/{user_id}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "limit": limit,
+                        "skip": skip,
+                    },
+                    chat_list_by_user_params.ChatListByUserParams,
+                ),
+            ),
+            cast_to=ChatListByUserResponse,
+        )
+
     async def pin_by_id(
         self,
         id: str,
@@ -911,6 +1003,9 @@ class ChatsResourceWithRawResponse:
         self.import_ = to_raw_response_wrapper(
             chats.import_,
         )
+        self.list_by_user = to_raw_response_wrapper(
+            chats.list_by_user,
+        )
         self.pin_by_id = to_raw_response_wrapper(
             chats.pin_by_id,
         )
@@ -974,6 +1069,9 @@ class AsyncChatsResourceWithRawResponse:
         )
         self.import_ = async_to_raw_response_wrapper(
             chats.import_,
+        )
+        self.list_by_user = async_to_raw_response_wrapper(
+            chats.list_by_user,
         )
         self.pin_by_id = async_to_raw_response_wrapper(
             chats.pin_by_id,
@@ -1039,6 +1137,9 @@ class ChatsResourceWithStreamingResponse:
         self.import_ = to_streamed_response_wrapper(
             chats.import_,
         )
+        self.list_by_user = to_streamed_response_wrapper(
+            chats.list_by_user,
+        )
         self.pin_by_id = to_streamed_response_wrapper(
             chats.pin_by_id,
         )
@@ -1102,6 +1203,9 @@ class AsyncChatsResourceWithStreamingResponse:
         )
         self.import_ = async_to_streamed_response_wrapper(
             chats.import_,
+        )
+        self.list_by_user = async_to_streamed_response_wrapper(
+            chats.list_by_user,
         )
         self.pin_by_id = async_to_streamed_response_wrapper(
             chats.pin_by_id,

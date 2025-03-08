@@ -15,6 +15,7 @@ from pyopenwebui.types.api.v1 import (
     ChatSearchResponse,
     ChatDeleteAllResponse,
     ChatDeleteByIDResponse,
+    ChatListByUserResponse,
     ChatGetArchivedListResponse,
 )
 
@@ -261,6 +262,53 @@ class TestChats:
             assert_matches_type(Optional[ChatResponse], chat, path=["response"])
 
         assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_method_list_by_user(self, client: Pyopenwebui) -> None:
+        chat = client.api.v1.chats.list_by_user(
+            user_id="user_id",
+        )
+        assert_matches_type(ChatListByUserResponse, chat, path=["response"])
+
+    @parametrize
+    def test_method_list_by_user_with_all_params(self, client: Pyopenwebui) -> None:
+        chat = client.api.v1.chats.list_by_user(
+            user_id="user_id",
+            limit=0,
+            skip=0,
+        )
+        assert_matches_type(ChatListByUserResponse, chat, path=["response"])
+
+    @parametrize
+    def test_raw_response_list_by_user(self, client: Pyopenwebui) -> None:
+        response = client.api.v1.chats.with_raw_response.list_by_user(
+            user_id="user_id",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        chat = response.parse()
+        assert_matches_type(ChatListByUserResponse, chat, path=["response"])
+
+    @parametrize
+    def test_streaming_response_list_by_user(self, client: Pyopenwebui) -> None:
+        with client.api.v1.chats.with_streaming_response.list_by_user(
+            user_id="user_id",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            chat = response.parse()
+            assert_matches_type(ChatListByUserResponse, chat, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_list_by_user(self, client: Pyopenwebui) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `user_id` but received ''"):
+            client.api.v1.chats.with_raw_response.list_by_user(
+                user_id="",
+            )
 
     @parametrize
     def test_method_pin_by_id(self, client: Pyopenwebui) -> None:
@@ -622,6 +670,53 @@ class TestAsyncChats:
             assert_matches_type(Optional[ChatResponse], chat, path=["response"])
 
         assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_method_list_by_user(self, async_client: AsyncPyopenwebui) -> None:
+        chat = await async_client.api.v1.chats.list_by_user(
+            user_id="user_id",
+        )
+        assert_matches_type(ChatListByUserResponse, chat, path=["response"])
+
+    @parametrize
+    async def test_method_list_by_user_with_all_params(self, async_client: AsyncPyopenwebui) -> None:
+        chat = await async_client.api.v1.chats.list_by_user(
+            user_id="user_id",
+            limit=0,
+            skip=0,
+        )
+        assert_matches_type(ChatListByUserResponse, chat, path=["response"])
+
+    @parametrize
+    async def test_raw_response_list_by_user(self, async_client: AsyncPyopenwebui) -> None:
+        response = await async_client.api.v1.chats.with_raw_response.list_by_user(
+            user_id="user_id",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        chat = await response.parse()
+        assert_matches_type(ChatListByUserResponse, chat, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_list_by_user(self, async_client: AsyncPyopenwebui) -> None:
+        async with async_client.api.v1.chats.with_streaming_response.list_by_user(
+            user_id="user_id",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            chat = await response.parse()
+            assert_matches_type(ChatListByUserResponse, chat, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_list_by_user(self, async_client: AsyncPyopenwebui) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `user_id` but received ''"):
+            await async_client.api.v1.chats.with_raw_response.list_by_user(
+                user_id="",
+            )
 
     @parametrize
     async def test_method_pin_by_id(self, async_client: AsyncPyopenwebui) -> None:
