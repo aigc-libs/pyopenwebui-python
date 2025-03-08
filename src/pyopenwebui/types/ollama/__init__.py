@@ -2,5 +2,5 @@
 
 from __future__ import annotations
 
-from .api_show_info_params import APIShowInfoParams as APIShowInfoParams
-from .config_update_params import ConfigUpdateParams as ConfigUpdateParams
+from .api_show_model_info_params import APIShowModelInfoParams as APIShowModelInfoParams
+from .config_update_config_params import ConfigUpdateConfigParams as ConfigUpdateConfigParams

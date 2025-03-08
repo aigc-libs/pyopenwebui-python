@@ -13,8 +13,6 @@ class EmbeddingCreateParams(TypedDict, total=False):
 
     prompt: Required[str]
 
-    url_idx: Optional[int]
-
     keep_alive: Union[int, str, None]
 
     options: Optional[object]

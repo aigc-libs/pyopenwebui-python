@@ -20,7 +20,7 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._base_client import make_request_options
-from ....types.ollama.api import version_list_params
+from ....types.ollama.api import version_list_versions_params
 
 __all__ = ["VersionResource", "AsyncVersionResource"]
 
@@ -45,7 +45,38 @@ class VersionResource(SyncAPIResource):
         """
         return VersionResourceWithStreamingResponse(self)
 
-    def list(
+    def get_version(
+        self,
+        url_idx: int,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> object:
+        """
+        Get Ollama Versions
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._get(
+            f"/ollama/api/version/{url_idx}",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=object,
+        )
+
+    def list_versions(
         self,
         *,
         url_idx: Optional[int] | NotGiven = NOT_GIVEN,
@@ -75,38 +106,7 @@ class VersionResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform({"url_idx": url_idx}, version_list_params.VersionListParams),
-            ),
-            cast_to=object,
-        )
-
-    def get_by_index(
-        self,
-        url_idx: int,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> object:
-        """
-        Get Ollama Versions
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return self._get(
-            f"/ollama/api/version/{url_idx}",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                query=maybe_transform({"url_idx": url_idx}, version_list_versions_params.VersionListVersionsParams),
             ),
             cast_to=object,
         )
@@ -132,42 +132,7 @@ class AsyncVersionResource(AsyncAPIResource):
         """
         return AsyncVersionResourceWithStreamingResponse(self)
 
-    async def list(
-        self,
-        *,
-        url_idx: Optional[int] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> object:
-        """
-        Get Ollama Versions
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return await self._get(
-            "/ollama/api/version",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=await async_maybe_transform({"url_idx": url_idx}, version_list_params.VersionListParams),
-            ),
-            cast_to=object,
-        )
-
-    async def get_by_index(
+    async def get_version(
         self,
         url_idx: int,
         *,
@@ -198,16 +163,53 @@ class AsyncVersionResource(AsyncAPIResource):
             cast_to=object,
         )
 
+    async def list_versions(
+        self,
+        *,
+        url_idx: Optional[int] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> object:
+        """
+        Get Ollama Versions
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return await self._get(
+            "/ollama/api/version",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {"url_idx": url_idx}, version_list_versions_params.VersionListVersionsParams
+                ),
+            ),
+            cast_to=object,
+        )
+
 
 class VersionResourceWithRawResponse:
     def __init__(self, version: VersionResource) -> None:
         self._version = version
 
-        self.list = to_raw_response_wrapper(
-            version.list,
+        self.get_version = to_raw_response_wrapper(
+            version.get_version,
         )
-        self.get_by_index = to_raw_response_wrapper(
-            version.get_by_index,
+        self.list_versions = to_raw_response_wrapper(
+            version.list_versions,
         )
 
 
@@ -215,11 +217,11 @@ class AsyncVersionResourceWithRawResponse:
     def __init__(self, version: AsyncVersionResource) -> None:
         self._version = version
 
-        self.list = async_to_raw_response_wrapper(
-            version.list,
+        self.get_version = async_to_raw_response_wrapper(
+            version.get_version,
         )
-        self.get_by_index = async_to_raw_response_wrapper(
-            version.get_by_index,
+        self.list_versions = async_to_raw_response_wrapper(
+            version.list_versions,
         )
 
 
@@ -227,11 +229,11 @@ class VersionResourceWithStreamingResponse:
     def __init__(self, version: VersionResource) -> None:
         self._version = version
 
-        self.list = to_streamed_response_wrapper(
-            version.list,
+        self.get_version = to_streamed_response_wrapper(
+            version.get_version,
         )
-        self.get_by_index = to_streamed_response_wrapper(
-            version.get_by_index,
+        self.list_versions = to_streamed_response_wrapper(
+            version.list_versions,
         )
 
 
@@ -239,9 +241,9 @@ class AsyncVersionResourceWithStreamingResponse:
     def __init__(self, version: AsyncVersionResource) -> None:
         self._version = version
 
-        self.list = async_to_streamed_response_wrapper(
-            version.list,
+        self.get_version = async_to_streamed_response_wrapper(
+            version.get_version,
         )
-        self.get_by_index = async_to_streamed_response_wrapper(
-            version.get_by_index,
+        self.list_versions = async_to_streamed_response_wrapper(
+            version.list_versions,
         )

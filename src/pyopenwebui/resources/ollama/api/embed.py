@@ -20,7 +20,7 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._base_client import make_request_options
-from ....types.ollama.api import embed_add_params, embed_add_by_index_params
+from ....types.ollama.api import embed_create_params, embed_embed_model_params
 
 __all__ = ["EmbedResource", "AsyncEmbedResource"]
 
@@ -45,57 +45,7 @@ class EmbedResource(SyncAPIResource):
         """
         return EmbedResourceWithStreamingResponse(self)
 
-    def add(
-        self,
-        *,
-        input: Union[List[str], str],
-        model: str,
-        url_idx: Optional[int] | NotGiven = NOT_GIVEN,
-        keep_alive: Union[int, str, None] | NotGiven = NOT_GIVEN,
-        options: Optional[object] | NotGiven = NOT_GIVEN,
-        truncate: Optional[bool] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> object:
-        """
-        Embed
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return self._post(
-            "/ollama/api/embed",
-            body=maybe_transform(
-                {
-                    "input": input,
-                    "model": model,
-                    "keep_alive": keep_alive,
-                    "options": options,
-                    "truncate": truncate,
-                },
-                embed_add_params.EmbedAddParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform({"url_idx": url_idx}, embed_add_params.EmbedAddParams),
-            ),
-            cast_to=object,
-        )
-
-    def add_by_index(
+    def create(
         self,
         url_idx: int,
         *,
@@ -133,10 +83,60 @@ class EmbedResource(SyncAPIResource):
                     "options": options,
                     "truncate": truncate,
                 },
-                embed_add_by_index_params.EmbedAddByIndexParams,
+                embed_create_params.EmbedCreateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=object,
+        )
+
+    def embed_model(
+        self,
+        *,
+        input: Union[List[str], str],
+        model: str,
+        url_idx: Optional[int] | NotGiven = NOT_GIVEN,
+        keep_alive: Union[int, str, None] | NotGiven = NOT_GIVEN,
+        options: Optional[object] | NotGiven = NOT_GIVEN,
+        truncate: Optional[bool] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> object:
+        """
+        Embed
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._post(
+            "/ollama/api/embed",
+            body=maybe_transform(
+                {
+                    "input": input,
+                    "model": model,
+                    "keep_alive": keep_alive,
+                    "options": options,
+                    "truncate": truncate,
+                },
+                embed_embed_model_params.EmbedEmbedModelParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform({"url_idx": url_idx}, embed_embed_model_params.EmbedEmbedModelParams),
             ),
             cast_to=object,
         )
@@ -162,57 +162,7 @@ class AsyncEmbedResource(AsyncAPIResource):
         """
         return AsyncEmbedResourceWithStreamingResponse(self)
 
-    async def add(
-        self,
-        *,
-        input: Union[List[str], str],
-        model: str,
-        url_idx: Optional[int] | NotGiven = NOT_GIVEN,
-        keep_alive: Union[int, str, None] | NotGiven = NOT_GIVEN,
-        options: Optional[object] | NotGiven = NOT_GIVEN,
-        truncate: Optional[bool] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> object:
-        """
-        Embed
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return await self._post(
-            "/ollama/api/embed",
-            body=await async_maybe_transform(
-                {
-                    "input": input,
-                    "model": model,
-                    "keep_alive": keep_alive,
-                    "options": options,
-                    "truncate": truncate,
-                },
-                embed_add_params.EmbedAddParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=await async_maybe_transform({"url_idx": url_idx}, embed_add_params.EmbedAddParams),
-            ),
-            cast_to=object,
-        )
-
-    async def add_by_index(
+    async def create(
         self,
         url_idx: int,
         *,
@@ -250,10 +200,60 @@ class AsyncEmbedResource(AsyncAPIResource):
                     "options": options,
                     "truncate": truncate,
                 },
-                embed_add_by_index_params.EmbedAddByIndexParams,
+                embed_create_params.EmbedCreateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=object,
+        )
+
+    async def embed_model(
+        self,
+        *,
+        input: Union[List[str], str],
+        model: str,
+        url_idx: Optional[int] | NotGiven = NOT_GIVEN,
+        keep_alive: Union[int, str, None] | NotGiven = NOT_GIVEN,
+        options: Optional[object] | NotGiven = NOT_GIVEN,
+        truncate: Optional[bool] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> object:
+        """
+        Embed
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return await self._post(
+            "/ollama/api/embed",
+            body=await async_maybe_transform(
+                {
+                    "input": input,
+                    "model": model,
+                    "keep_alive": keep_alive,
+                    "options": options,
+                    "truncate": truncate,
+                },
+                embed_embed_model_params.EmbedEmbedModelParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform({"url_idx": url_idx}, embed_embed_model_params.EmbedEmbedModelParams),
             ),
             cast_to=object,
         )
@@ -263,11 +263,11 @@ class EmbedResourceWithRawResponse:
     def __init__(self, embed: EmbedResource) -> None:
         self._embed = embed
 
-        self.add = to_raw_response_wrapper(
-            embed.add,
+        self.create = to_raw_response_wrapper(
+            embed.create,
         )
-        self.add_by_index = to_raw_response_wrapper(
-            embed.add_by_index,
+        self.embed_model = to_raw_response_wrapper(
+            embed.embed_model,
         )
 
 
@@ -275,11 +275,11 @@ class AsyncEmbedResourceWithRawResponse:
     def __init__(self, embed: AsyncEmbedResource) -> None:
         self._embed = embed
 
-        self.add = async_to_raw_response_wrapper(
-            embed.add,
+        self.create = async_to_raw_response_wrapper(
+            embed.create,
         )
-        self.add_by_index = async_to_raw_response_wrapper(
-            embed.add_by_index,
+        self.embed_model = async_to_raw_response_wrapper(
+            embed.embed_model,
         )
 
 
@@ -287,11 +287,11 @@ class EmbedResourceWithStreamingResponse:
     def __init__(self, embed: EmbedResource) -> None:
         self._embed = embed
 
-        self.add = to_streamed_response_wrapper(
-            embed.add,
+        self.create = to_streamed_response_wrapper(
+            embed.create,
         )
-        self.add_by_index = to_streamed_response_wrapper(
-            embed.add_by_index,
+        self.embed_model = to_streamed_response_wrapper(
+            embed.embed_model,
         )
 
 
@@ -299,9 +299,9 @@ class AsyncEmbedResourceWithStreamingResponse:
     def __init__(self, embed: AsyncEmbedResource) -> None:
         self._embed = embed
 
-        self.add = async_to_streamed_response_wrapper(
-            embed.add,
+        self.create = async_to_streamed_response_wrapper(
+            embed.create,
         )
-        self.add_by_index = async_to_streamed_response_wrapper(
-            embed.add_by_index,
+        self.embed_model = async_to_streamed_response_wrapper(
+            embed.embed_model,
         )

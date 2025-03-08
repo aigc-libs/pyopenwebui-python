@@ -20,7 +20,7 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._base_client import make_request_options
-from ....types.ollama.api import delete_remove_params, delete_remove_by_index_params
+from ....types.ollama.api import delete_delete_params, delete_delete_model_params
 
 __all__ = ["DeleteResource", "AsyncDeleteResource"]
 
@@ -45,44 +45,7 @@ class DeleteResource(SyncAPIResource):
         """
         return DeleteResourceWithStreamingResponse(self)
 
-    def remove(
-        self,
-        *,
-        name: str,
-        url_idx: Optional[int] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> object:
-        """
-        Delete Model
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return self._delete(
-            "/ollama/api/delete",
-            body=maybe_transform({"name": name}, delete_remove_params.DeleteRemoveParams),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform({"url_idx": url_idx}, delete_remove_params.DeleteRemoveParams),
-            ),
-            cast_to=object,
-        )
-
-    def remove_by_index(
+    def delete(
         self,
         url_idx: int,
         *,
@@ -108,9 +71,46 @@ class DeleteResource(SyncAPIResource):
         """
         return self._delete(
             f"/ollama/api/delete/{url_idx}",
-            body=maybe_transform({"name": name}, delete_remove_by_index_params.DeleteRemoveByIndexParams),
+            body=maybe_transform({"name": name}, delete_delete_params.DeleteDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=object,
+        )
+
+    def delete_model(
+        self,
+        *,
+        name: str,
+        url_idx: Optional[int] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> object:
+        """
+        Delete Model
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._delete(
+            "/ollama/api/delete",
+            body=maybe_transform({"name": name}, delete_delete_model_params.DeleteDeleteModelParams),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform({"url_idx": url_idx}, delete_delete_model_params.DeleteDeleteModelParams),
             ),
             cast_to=object,
         )
@@ -136,44 +136,7 @@ class AsyncDeleteResource(AsyncAPIResource):
         """
         return AsyncDeleteResourceWithStreamingResponse(self)
 
-    async def remove(
-        self,
-        *,
-        name: str,
-        url_idx: Optional[int] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> object:
-        """
-        Delete Model
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return await self._delete(
-            "/ollama/api/delete",
-            body=await async_maybe_transform({"name": name}, delete_remove_params.DeleteRemoveParams),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=await async_maybe_transform({"url_idx": url_idx}, delete_remove_params.DeleteRemoveParams),
-            ),
-            cast_to=object,
-        )
-
-    async def remove_by_index(
+    async def delete(
         self,
         url_idx: int,
         *,
@@ -199,9 +162,48 @@ class AsyncDeleteResource(AsyncAPIResource):
         """
         return await self._delete(
             f"/ollama/api/delete/{url_idx}",
-            body=await async_maybe_transform({"name": name}, delete_remove_by_index_params.DeleteRemoveByIndexParams),
+            body=await async_maybe_transform({"name": name}, delete_delete_params.DeleteDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=object,
+        )
+
+    async def delete_model(
+        self,
+        *,
+        name: str,
+        url_idx: Optional[int] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> object:
+        """
+        Delete Model
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return await self._delete(
+            "/ollama/api/delete",
+            body=await async_maybe_transform({"name": name}, delete_delete_model_params.DeleteDeleteModelParams),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {"url_idx": url_idx}, delete_delete_model_params.DeleteDeleteModelParams
+                ),
             ),
             cast_to=object,
         )
@@ -211,11 +213,11 @@ class DeleteResourceWithRawResponse:
     def __init__(self, delete: DeleteResource) -> None:
         self._delete = delete
 
-        self.remove = to_raw_response_wrapper(
-            delete.remove,
+        self.delete = to_raw_response_wrapper(
+            delete.delete,
         )
-        self.remove_by_index = to_raw_response_wrapper(
-            delete.remove_by_index,
+        self.delete_model = to_raw_response_wrapper(
+            delete.delete_model,
         )
 
 
@@ -223,11 +225,11 @@ class AsyncDeleteResourceWithRawResponse:
     def __init__(self, delete: AsyncDeleteResource) -> None:
         self._delete = delete
 
-        self.remove = async_to_raw_response_wrapper(
-            delete.remove,
+        self.delete = async_to_raw_response_wrapper(
+            delete.delete,
         )
-        self.remove_by_index = async_to_raw_response_wrapper(
-            delete.remove_by_index,
+        self.delete_model = async_to_raw_response_wrapper(
+            delete.delete_model,
         )
 
 
@@ -235,11 +237,11 @@ class DeleteResourceWithStreamingResponse:
     def __init__(self, delete: DeleteResource) -> None:
         self._delete = delete
 
-        self.remove = to_streamed_response_wrapper(
-            delete.remove,
+        self.delete = to_streamed_response_wrapper(
+            delete.delete,
         )
-        self.remove_by_index = to_streamed_response_wrapper(
-            delete.remove_by_index,
+        self.delete_model = to_streamed_response_wrapper(
+            delete.delete_model,
         )
 
 
@@ -247,9 +249,9 @@ class AsyncDeleteResourceWithStreamingResponse:
     def __init__(self, delete: AsyncDeleteResource) -> None:
         self._delete = delete
 
-        self.remove = async_to_streamed_response_wrapper(
-            delete.remove,
+        self.delete = async_to_streamed_response_wrapper(
+            delete.delete,
         )
-        self.remove_by_index = async_to_streamed_response_wrapper(
-            delete.remove_by_index,
+        self.delete_model = async_to_streamed_response_wrapper(
+            delete.delete_model,
         )

@@ -2,5 +2,5 @@
 
 from __future__ import annotations
 
+from .openai_verify_params import OpenAIVerifyParams as OpenAIVerifyParams
 from .ollama_verify_connection_params import OllamaVerifyConnectionParams as OllamaVerifyConnectionParams
-from .openai_verify_connection_params import OpenAIVerifyConnectionParams as OpenAIVerifyConnectionParams

@@ -17,16 +17,16 @@ class TestUtils:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @parametrize
-    def test_method_download_pdf(self, client: Pyopenwebui) -> None:
-        util = client.api.v1.utils.download_pdf(
+    def test_method_download_chat_as_pdf(self, client: Pyopenwebui) -> None:
+        util = client.api.v1.utils.download_chat_as_pdf(
             messages=[{}],
             title="title",
         )
         assert_matches_type(object, util, path=["response"])
 
     @parametrize
-    def test_raw_response_download_pdf(self, client: Pyopenwebui) -> None:
-        response = client.api.v1.utils.with_raw_response.download_pdf(
+    def test_raw_response_download_chat_as_pdf(self, client: Pyopenwebui) -> None:
+        response = client.api.v1.utils.with_raw_response.download_chat_as_pdf(
             messages=[{}],
             title="title",
         )
@@ -37,8 +37,8 @@ class TestUtils:
         assert_matches_type(object, util, path=["response"])
 
     @parametrize
-    def test_streaming_response_download_pdf(self, client: Pyopenwebui) -> None:
-        with client.api.v1.utils.with_streaming_response.download_pdf(
+    def test_streaming_response_download_chat_as_pdf(self, client: Pyopenwebui) -> None:
+        with client.api.v1.utils.with_streaming_response.download_chat_as_pdf(
             messages=[{}],
             title="title",
         ) as response:
@@ -117,16 +117,16 @@ class TestAsyncUtils:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @parametrize
-    async def test_method_download_pdf(self, async_client: AsyncPyopenwebui) -> None:
-        util = await async_client.api.v1.utils.download_pdf(
+    async def test_method_download_chat_as_pdf(self, async_client: AsyncPyopenwebui) -> None:
+        util = await async_client.api.v1.utils.download_chat_as_pdf(
             messages=[{}],
             title="title",
         )
         assert_matches_type(object, util, path=["response"])
 
     @parametrize
-    async def test_raw_response_download_pdf(self, async_client: AsyncPyopenwebui) -> None:
-        response = await async_client.api.v1.utils.with_raw_response.download_pdf(
+    async def test_raw_response_download_chat_as_pdf(self, async_client: AsyncPyopenwebui) -> None:
+        response = await async_client.api.v1.utils.with_raw_response.download_chat_as_pdf(
             messages=[{}],
             title="title",
         )
@@ -137,8 +137,8 @@ class TestAsyncUtils:
         assert_matches_type(object, util, path=["response"])
 
     @parametrize
-    async def test_streaming_response_download_pdf(self, async_client: AsyncPyopenwebui) -> None:
-        async with async_client.api.v1.utils.with_streaming_response.download_pdf(
+    async def test_streaming_response_download_chat_as_pdf(self, async_client: AsyncPyopenwebui) -> None:
+        async with async_client.api.v1.utils.with_streaming_response.download_chat_as_pdf(
             messages=[{}],
             title="title",
         ) as response:

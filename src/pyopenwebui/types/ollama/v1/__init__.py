@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
-from .model_list_params import ModelListParams as ModelListParams
-from .completion_generate_params import CompletionGenerateParams as CompletionGenerateParams
-from .completion_get_by_index_params import CompletionGetByIndexParams as CompletionGetByIndexParams
+from .completion_create_params import CompletionCreateParams as CompletionCreateParams
+from .model_list_openai_models_params import ModelListOpenAIModelsParams as ModelListOpenAIModelsParams
+from .completion_generate_openai_completion_params import (
+    CompletionGenerateOpenAICompletionParams as CompletionGenerateOpenAICompletionParams,
+)

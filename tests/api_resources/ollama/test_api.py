@@ -42,15 +42,15 @@ class TestAPI:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
-    def test_method_show_info(self, client: Pyopenwebui) -> None:
-        api = client.ollama.api.show_info(
+    def test_method_show_model_info(self, client: Pyopenwebui) -> None:
+        api = client.ollama.api.show_model_info(
             name="name",
         )
         assert_matches_type(object, api, path=["response"])
 
     @parametrize
-    def test_raw_response_show_info(self, client: Pyopenwebui) -> None:
-        response = client.ollama.api.with_raw_response.show_info(
+    def test_raw_response_show_model_info(self, client: Pyopenwebui) -> None:
+        response = client.ollama.api.with_raw_response.show_model_info(
             name="name",
         )
 
@@ -60,8 +60,8 @@ class TestAPI:
         assert_matches_type(object, api, path=["response"])
 
     @parametrize
-    def test_streaming_response_show_info(self, client: Pyopenwebui) -> None:
-        with client.ollama.api.with_streaming_response.show_info(
+    def test_streaming_response_show_model_info(self, client: Pyopenwebui) -> None:
+        with client.ollama.api.with_streaming_response.show_model_info(
             name="name",
         ) as response:
             assert not response.is_closed
@@ -102,15 +102,15 @@ class TestAsyncAPI:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
-    async def test_method_show_info(self, async_client: AsyncPyopenwebui) -> None:
-        api = await async_client.ollama.api.show_info(
+    async def test_method_show_model_info(self, async_client: AsyncPyopenwebui) -> None:
+        api = await async_client.ollama.api.show_model_info(
             name="name",
         )
         assert_matches_type(object, api, path=["response"])
 
     @parametrize
-    async def test_raw_response_show_info(self, async_client: AsyncPyopenwebui) -> None:
-        response = await async_client.ollama.api.with_raw_response.show_info(
+    async def test_raw_response_show_model_info(self, async_client: AsyncPyopenwebui) -> None:
+        response = await async_client.ollama.api.with_raw_response.show_model_info(
             name="name",
         )
 
@@ -120,8 +120,8 @@ class TestAsyncAPI:
         assert_matches_type(object, api, path=["response"])
 
     @parametrize
-    async def test_streaming_response_show_info(self, async_client: AsyncPyopenwebui) -> None:
-        async with async_client.ollama.api.with_streaming_response.show_info(
+    async def test_streaming_response_show_model_info(self, async_client: AsyncPyopenwebui) -> None:
+        async with async_client.ollama.api.with_streaming_response.show_model_info(
             name="name",
         ) as response:
             assert not response.is_closed

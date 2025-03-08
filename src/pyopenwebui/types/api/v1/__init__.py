@@ -69,6 +69,7 @@ from .channel_create_params import ChannelCreateParams as ChannelCreateParams
 from .function_get_response import FunctionGetResponse as FunctionGetResponse
 from .image_generate_params import ImageGenerateParams as ImageGenerateParams
 from .memory_reset_response import MemoryResetResponse as MemoryResetResponse
+from .model_delete_response import ModelDeleteResponse as ModelDeleteResponse
 from .session_user_response import SessionUserResponse as SessionUserResponse
 from .auth_add_user_response import AuthAddUserResponse as AuthAddUserResponse
 from .file_metadata_response import FileMetadataResponse as FileMetadataResponse
@@ -89,8 +90,8 @@ from .chat_list_by_user_params import ChatListByUserParams as ChatListByUserPara
 from .chat_update_by_id_params import ChatUpdateByIDParams as ChatUpdateByIDParams
 from .knowledge_files_response import KnowledgeFilesResponse as KnowledgeFilesResponse
 from .prompt_get_list_response import PromptGetListResponse as PromptGetListResponse
-from .util_download_pdf_params import UtilDownloadPdfParams as UtilDownloadPdfParams
 from .util_get_gravatar_params import UtilGetGravatarParams as UtilGetGravatarParams
+from .chat_archive_all_response import ChatArchiveAllResponse as ChatArchiveAllResponse
 from .folder_update_name_params import FolderUpdateNameParams as FolderUpdateNameParams
 from .chat_delete_by_id_response import ChatDeleteByIDResponse as ChatDeleteByIDResponse
 from .chat_list_by_user_response import ChatListByUserResponse as ChatListByUserResponse
@@ -109,3 +110,4 @@ from .chat_get_archived_list_response import ChatGetArchivedListResponse as Chat
 from .config_set_suggestions_response import ConfigSetSuggestionsResponse as ConfigSetSuggestionsResponse
 from .knowledge_delete_by_id_response import KnowledgeDeleteByIDResponse as KnowledgeDeleteByIDResponse
 from .retrieval_delete_entries_params import RetrievalDeleteEntriesParams as RetrievalDeleteEntriesParams
+from .util_download_chat_as_pdf_params import UtilDownloadChatAsPdfParams as UtilDownloadChatAsPdfParams

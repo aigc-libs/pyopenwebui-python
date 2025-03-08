@@ -12,5 +12,3 @@ class ChatCreateParams(TypedDict, total=False):
     body: Required[object]
 
     bypass_filter: Optional[bool]
-
-    url_idx: Optional[int]

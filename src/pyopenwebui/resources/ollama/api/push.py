@@ -20,7 +20,7 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._base_client import make_request_options
-from ....types.ollama.api import push_remove_params, push_remove_by_index_params
+from ....types.ollama.api import push_delete_params, push_push_model_params
 
 __all__ = ["PushResource", "AsyncPushResource"]
 
@@ -45,53 +45,7 @@ class PushResource(SyncAPIResource):
         """
         return PushResourceWithStreamingResponse(self)
 
-    def remove(
-        self,
-        *,
-        name: str,
-        url_idx: Optional[int] | NotGiven = NOT_GIVEN,
-        insecure: Optional[bool] | NotGiven = NOT_GIVEN,
-        stream: Optional[bool] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> object:
-        """
-        Push Model
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return self._delete(
-            "/ollama/api/push",
-            body=maybe_transform(
-                {
-                    "name": name,
-                    "insecure": insecure,
-                    "stream": stream,
-                },
-                push_remove_params.PushRemoveParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform({"url_idx": url_idx}, push_remove_params.PushRemoveParams),
-            ),
-            cast_to=object,
-        )
-
-    def remove_by_index(
+    def delete(
         self,
         url_idx: int,
         *,
@@ -125,10 +79,56 @@ class PushResource(SyncAPIResource):
                     "insecure": insecure,
                     "stream": stream,
                 },
-                push_remove_by_index_params.PushRemoveByIndexParams,
+                push_delete_params.PushDeleteParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=object,
+        )
+
+    def push_model(
+        self,
+        *,
+        name: str,
+        url_idx: Optional[int] | NotGiven = NOT_GIVEN,
+        insecure: Optional[bool] | NotGiven = NOT_GIVEN,
+        stream: Optional[bool] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> object:
+        """
+        Push Model
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._delete(
+            "/ollama/api/push",
+            body=maybe_transform(
+                {
+                    "name": name,
+                    "insecure": insecure,
+                    "stream": stream,
+                },
+                push_push_model_params.PushPushModelParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform({"url_idx": url_idx}, push_push_model_params.PushPushModelParams),
             ),
             cast_to=object,
         )
@@ -154,53 +154,7 @@ class AsyncPushResource(AsyncAPIResource):
         """
         return AsyncPushResourceWithStreamingResponse(self)
 
-    async def remove(
-        self,
-        *,
-        name: str,
-        url_idx: Optional[int] | NotGiven = NOT_GIVEN,
-        insecure: Optional[bool] | NotGiven = NOT_GIVEN,
-        stream: Optional[bool] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> object:
-        """
-        Push Model
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return await self._delete(
-            "/ollama/api/push",
-            body=await async_maybe_transform(
-                {
-                    "name": name,
-                    "insecure": insecure,
-                    "stream": stream,
-                },
-                push_remove_params.PushRemoveParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=await async_maybe_transform({"url_idx": url_idx}, push_remove_params.PushRemoveParams),
-            ),
-            cast_to=object,
-        )
-
-    async def remove_by_index(
+    async def delete(
         self,
         url_idx: int,
         *,
@@ -234,10 +188,56 @@ class AsyncPushResource(AsyncAPIResource):
                     "insecure": insecure,
                     "stream": stream,
                 },
-                push_remove_by_index_params.PushRemoveByIndexParams,
+                push_delete_params.PushDeleteParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=object,
+        )
+
+    async def push_model(
+        self,
+        *,
+        name: str,
+        url_idx: Optional[int] | NotGiven = NOT_GIVEN,
+        insecure: Optional[bool] | NotGiven = NOT_GIVEN,
+        stream: Optional[bool] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> object:
+        """
+        Push Model
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return await self._delete(
+            "/ollama/api/push",
+            body=await async_maybe_transform(
+                {
+                    "name": name,
+                    "insecure": insecure,
+                    "stream": stream,
+                },
+                push_push_model_params.PushPushModelParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform({"url_idx": url_idx}, push_push_model_params.PushPushModelParams),
             ),
             cast_to=object,
         )
@@ -247,11 +247,11 @@ class PushResourceWithRawResponse:
     def __init__(self, push: PushResource) -> None:
         self._push = push
 
-        self.remove = to_raw_response_wrapper(
-            push.remove,
+        self.delete = to_raw_response_wrapper(
+            push.delete,
         )
-        self.remove_by_index = to_raw_response_wrapper(
-            push.remove_by_index,
+        self.push_model = to_raw_response_wrapper(
+            push.push_model,
         )
 
 
@@ -259,11 +259,11 @@ class AsyncPushResourceWithRawResponse:
     def __init__(self, push: AsyncPushResource) -> None:
         self._push = push
 
-        self.remove = async_to_raw_response_wrapper(
-            push.remove,
+        self.delete = async_to_raw_response_wrapper(
+            push.delete,
         )
-        self.remove_by_index = async_to_raw_response_wrapper(
-            push.remove_by_index,
+        self.push_model = async_to_raw_response_wrapper(
+            push.push_model,
         )
 
 
@@ -271,11 +271,11 @@ class PushResourceWithStreamingResponse:
     def __init__(self, push: PushResource) -> None:
         self._push = push
 
-        self.remove = to_streamed_response_wrapper(
-            push.remove,
+        self.delete = to_streamed_response_wrapper(
+            push.delete,
         )
-        self.remove_by_index = to_streamed_response_wrapper(
-            push.remove_by_index,
+        self.push_model = to_streamed_response_wrapper(
+            push.push_model,
         )
 
 
@@ -283,9 +283,9 @@ class AsyncPushResourceWithStreamingResponse:
     def __init__(self, push: AsyncPushResource) -> None:
         self._push = push
 
-        self.remove = async_to_streamed_response_wrapper(
-            push.remove,
+        self.delete = async_to_streamed_response_wrapper(
+            push.delete,
         )
-        self.remove_by_index = async_to_streamed_response_wrapper(
-            push.remove_by_index,
+        self.push_model = async_to_streamed_response_wrapper(
+            push.push_model,
         )

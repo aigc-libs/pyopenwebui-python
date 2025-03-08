@@ -20,7 +20,7 @@ from ....._response import (
     async_to_streamed_response_wrapper,
 )
 from ....._base_client import make_request_options
-from .....types.ollama.v1.chat import completion_generate_params, completion_get_by_index_params
+from .....types.ollama.v1.chat import completion_create_params, completion_generate_openai_chat_completion_params
 
 __all__ = ["CompletionsResource", "AsyncCompletionsResource"]
 
@@ -45,44 +45,7 @@ class CompletionsResource(SyncAPIResource):
         """
         return CompletionsResourceWithStreamingResponse(self)
 
-    def generate(
-        self,
-        *,
-        body: object,
-        url_idx: Optional[int] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> object:
-        """
-        Generate Openai Chat Completion
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return self._post(
-            "/ollama/v1/chat/completions",
-            body=maybe_transform(body, completion_generate_params.CompletionGenerateParams),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform({"url_idx": url_idx}, completion_generate_params.CompletionGenerateParams),
-            ),
-            cast_to=object,
-        )
-
-    def get_by_index(
+    def create(
         self,
         url_idx: int,
         *,
@@ -108,9 +71,51 @@ class CompletionsResource(SyncAPIResource):
         """
         return self._post(
             f"/ollama/v1/chat/completions/{url_idx}",
-            body=maybe_transform(body, completion_get_by_index_params.CompletionGetByIndexParams),
+            body=maybe_transform(body, completion_create_params.CompletionCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=object,
+        )
+
+    def generate_openai_chat_completion(
+        self,
+        *,
+        body: object,
+        url_idx: Optional[int] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> object:
+        """
+        Generate Openai Chat Completion
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._post(
+            "/ollama/v1/chat/completions",
+            body=maybe_transform(
+                body, completion_generate_openai_chat_completion_params.CompletionGenerateOpenAIChatCompletionParams
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {"url_idx": url_idx},
+                    completion_generate_openai_chat_completion_params.CompletionGenerateOpenAIChatCompletionParams,
+                ),
             ),
             cast_to=object,
         )
@@ -136,46 +141,7 @@ class AsyncCompletionsResource(AsyncAPIResource):
         """
         return AsyncCompletionsResourceWithStreamingResponse(self)
 
-    async def generate(
-        self,
-        *,
-        body: object,
-        url_idx: Optional[int] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> object:
-        """
-        Generate Openai Chat Completion
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return await self._post(
-            "/ollama/v1/chat/completions",
-            body=await async_maybe_transform(body, completion_generate_params.CompletionGenerateParams),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=await async_maybe_transform(
-                    {"url_idx": url_idx}, completion_generate_params.CompletionGenerateParams
-                ),
-            ),
-            cast_to=object,
-        )
-
-    async def get_by_index(
+    async def create(
         self,
         url_idx: int,
         *,
@@ -201,9 +167,51 @@ class AsyncCompletionsResource(AsyncAPIResource):
         """
         return await self._post(
             f"/ollama/v1/chat/completions/{url_idx}",
-            body=await async_maybe_transform(body, completion_get_by_index_params.CompletionGetByIndexParams),
+            body=await async_maybe_transform(body, completion_create_params.CompletionCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=object,
+        )
+
+    async def generate_openai_chat_completion(
+        self,
+        *,
+        body: object,
+        url_idx: Optional[int] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> object:
+        """
+        Generate Openai Chat Completion
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return await self._post(
+            "/ollama/v1/chat/completions",
+            body=await async_maybe_transform(
+                body, completion_generate_openai_chat_completion_params.CompletionGenerateOpenAIChatCompletionParams
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {"url_idx": url_idx},
+                    completion_generate_openai_chat_completion_params.CompletionGenerateOpenAIChatCompletionParams,
+                ),
             ),
             cast_to=object,
         )
@@ -213,11 +221,11 @@ class CompletionsResourceWithRawResponse:
     def __init__(self, completions: CompletionsResource) -> None:
         self._completions = completions
 
-        self.generate = to_raw_response_wrapper(
-            completions.generate,
+        self.create = to_raw_response_wrapper(
+            completions.create,
         )
-        self.get_by_index = to_raw_response_wrapper(
-            completions.get_by_index,
+        self.generate_openai_chat_completion = to_raw_response_wrapper(
+            completions.generate_openai_chat_completion,
         )
 
 
@@ -225,11 +233,11 @@ class AsyncCompletionsResourceWithRawResponse:
     def __init__(self, completions: AsyncCompletionsResource) -> None:
         self._completions = completions
 
-        self.generate = async_to_raw_response_wrapper(
-            completions.generate,
+        self.create = async_to_raw_response_wrapper(
+            completions.create,
         )
-        self.get_by_index = async_to_raw_response_wrapper(
-            completions.get_by_index,
+        self.generate_openai_chat_completion = async_to_raw_response_wrapper(
+            completions.generate_openai_chat_completion,
         )
 
 
@@ -237,11 +245,11 @@ class CompletionsResourceWithStreamingResponse:
     def __init__(self, completions: CompletionsResource) -> None:
         self._completions = completions
 
-        self.generate = to_streamed_response_wrapper(
-            completions.generate,
+        self.create = to_streamed_response_wrapper(
+            completions.create,
         )
-        self.get_by_index = to_streamed_response_wrapper(
-            completions.get_by_index,
+        self.generate_openai_chat_completion = to_streamed_response_wrapper(
+            completions.generate_openai_chat_completion,
         )
 
 
@@ -249,9 +257,9 @@ class AsyncCompletionsResourceWithStreamingResponse:
     def __init__(self, completions: AsyncCompletionsResource) -> None:
         self._completions = completions
 
-        self.generate = async_to_streamed_response_wrapper(
-            completions.generate,
+        self.create = async_to_streamed_response_wrapper(
+            completions.create,
         )
-        self.get_by_index = async_to_streamed_response_wrapper(
-            completions.get_by_index,
+        self.generate_openai_chat_completion = async_to_streamed_response_wrapper(
+            completions.generate_openai_chat_completion,
         )

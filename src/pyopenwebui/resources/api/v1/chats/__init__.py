@@ -56,14 +56,6 @@ from .pinned import (
     PinnedResourceWithStreamingResponse,
     AsyncPinnedResourceWithStreamingResponse,
 )
-from .archive import (
-    ArchiveResource,
-    AsyncArchiveResource,
-    ArchiveResourceWithRawResponse,
-    AsyncArchiveResourceWithRawResponse,
-    ArchiveResourceWithStreamingResponse,
-    AsyncArchiveResourceWithStreamingResponse,
-)
 
 __all__ = [
     "FolderResource",
@@ -84,12 +76,6 @@ __all__ = [
     "AsyncAllResourceWithRawResponse",
     "AllResourceWithStreamingResponse",
     "AsyncAllResourceWithStreamingResponse",
-    "ArchiveResource",
-    "AsyncArchiveResource",
-    "ArchiveResourceWithRawResponse",
-    "AsyncArchiveResourceWithRawResponse",
-    "ArchiveResourceWithStreamingResponse",
-    "AsyncArchiveResourceWithStreamingResponse",
     "ShareResource",
     "AsyncShareResource",
     "ShareResourceWithRawResponse",

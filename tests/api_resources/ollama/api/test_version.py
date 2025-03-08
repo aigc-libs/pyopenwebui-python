@@ -17,20 +17,17 @@ class TestVersion:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @parametrize
-    def test_method_list(self, client: Pyopenwebui) -> None:
-        version = client.ollama.api.version.list()
-        assert_matches_type(object, version, path=["response"])
-
-    @parametrize
-    def test_method_list_with_all_params(self, client: Pyopenwebui) -> None:
-        version = client.ollama.api.version.list(
-            url_idx=0,
+    def test_method_get_version(self, client: Pyopenwebui) -> None:
+        version = client.ollama.api.version.get_version(
+            0,
         )
         assert_matches_type(object, version, path=["response"])
 
     @parametrize
-    def test_raw_response_list(self, client: Pyopenwebui) -> None:
-        response = client.ollama.api.version.with_raw_response.list()
+    def test_raw_response_get_version(self, client: Pyopenwebui) -> None:
+        response = client.ollama.api.version.with_raw_response.get_version(
+            0,
+        )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -38,8 +35,10 @@ class TestVersion:
         assert_matches_type(object, version, path=["response"])
 
     @parametrize
-    def test_streaming_response_list(self, client: Pyopenwebui) -> None:
-        with client.ollama.api.version.with_streaming_response.list() as response:
+    def test_streaming_response_get_version(self, client: Pyopenwebui) -> None:
+        with client.ollama.api.version.with_streaming_response.get_version(
+            0,
+        ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
@@ -49,17 +48,20 @@ class TestVersion:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
-    def test_method_get_by_index(self, client: Pyopenwebui) -> None:
-        version = client.ollama.api.version.get_by_index(
-            0,
+    def test_method_list_versions(self, client: Pyopenwebui) -> None:
+        version = client.ollama.api.version.list_versions()
+        assert_matches_type(object, version, path=["response"])
+
+    @parametrize
+    def test_method_list_versions_with_all_params(self, client: Pyopenwebui) -> None:
+        version = client.ollama.api.version.list_versions(
+            url_idx=0,
         )
         assert_matches_type(object, version, path=["response"])
 
     @parametrize
-    def test_raw_response_get_by_index(self, client: Pyopenwebui) -> None:
-        response = client.ollama.api.version.with_raw_response.get_by_index(
-            0,
-        )
+    def test_raw_response_list_versions(self, client: Pyopenwebui) -> None:
+        response = client.ollama.api.version.with_raw_response.list_versions()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -67,10 +69,8 @@ class TestVersion:
         assert_matches_type(object, version, path=["response"])
 
     @parametrize
-    def test_streaming_response_get_by_index(self, client: Pyopenwebui) -> None:
-        with client.ollama.api.version.with_streaming_response.get_by_index(
-            0,
-        ) as response:
+    def test_streaming_response_list_versions(self, client: Pyopenwebui) -> None:
+        with client.ollama.api.version.with_streaming_response.list_versions() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
@@ -84,20 +84,17 @@ class TestAsyncVersion:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @parametrize
-    async def test_method_list(self, async_client: AsyncPyopenwebui) -> None:
-        version = await async_client.ollama.api.version.list()
-        assert_matches_type(object, version, path=["response"])
-
-    @parametrize
-    async def test_method_list_with_all_params(self, async_client: AsyncPyopenwebui) -> None:
-        version = await async_client.ollama.api.version.list(
-            url_idx=0,
+    async def test_method_get_version(self, async_client: AsyncPyopenwebui) -> None:
+        version = await async_client.ollama.api.version.get_version(
+            0,
         )
         assert_matches_type(object, version, path=["response"])
 
     @parametrize
-    async def test_raw_response_list(self, async_client: AsyncPyopenwebui) -> None:
-        response = await async_client.ollama.api.version.with_raw_response.list()
+    async def test_raw_response_get_version(self, async_client: AsyncPyopenwebui) -> None:
+        response = await async_client.ollama.api.version.with_raw_response.get_version(
+            0,
+        )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -105,8 +102,10 @@ class TestAsyncVersion:
         assert_matches_type(object, version, path=["response"])
 
     @parametrize
-    async def test_streaming_response_list(self, async_client: AsyncPyopenwebui) -> None:
-        async with async_client.ollama.api.version.with_streaming_response.list() as response:
+    async def test_streaming_response_get_version(self, async_client: AsyncPyopenwebui) -> None:
+        async with async_client.ollama.api.version.with_streaming_response.get_version(
+            0,
+        ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
@@ -116,17 +115,20 @@ class TestAsyncVersion:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
-    async def test_method_get_by_index(self, async_client: AsyncPyopenwebui) -> None:
-        version = await async_client.ollama.api.version.get_by_index(
-            0,
+    async def test_method_list_versions(self, async_client: AsyncPyopenwebui) -> None:
+        version = await async_client.ollama.api.version.list_versions()
+        assert_matches_type(object, version, path=["response"])
+
+    @parametrize
+    async def test_method_list_versions_with_all_params(self, async_client: AsyncPyopenwebui) -> None:
+        version = await async_client.ollama.api.version.list_versions(
+            url_idx=0,
         )
         assert_matches_type(object, version, path=["response"])
 
     @parametrize
-    async def test_raw_response_get_by_index(self, async_client: AsyncPyopenwebui) -> None:
-        response = await async_client.ollama.api.version.with_raw_response.get_by_index(
-            0,
-        )
+    async def test_raw_response_list_versions(self, async_client: AsyncPyopenwebui) -> None:
+        response = await async_client.ollama.api.version.with_raw_response.list_versions()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -134,10 +136,8 @@ class TestAsyncVersion:
         assert_matches_type(object, version, path=["response"])
 
     @parametrize
-    async def test_streaming_response_get_by_index(self, async_client: AsyncPyopenwebui) -> None:
-        async with async_client.ollama.api.version.with_streaming_response.get_by_index(
-            0,
-        ) as response:
+    async def test_streaming_response_list_versions(self, async_client: AsyncPyopenwebui) -> None:
+        async with async_client.ollama.api.version.with_streaming_response.list_versions() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 

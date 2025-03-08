@@ -14,6 +14,7 @@ from pyopenwebui.types.api.v1 import (
     ChatGetResponse,
     ChatSearchResponse,
     ChatDeleteAllResponse,
+    ChatArchiveAllResponse,
     ChatDeleteByIDResponse,
     ChatListByUserResponse,
     ChatGetArchivedListResponse,
@@ -53,6 +54,69 @@ class TestChats:
 
             chat = response.parse()
             assert_matches_type(Optional[ChatResponse], chat, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_method_archive(self, client: Pyopenwebui) -> None:
+        chat = client.api.v1.chats.archive(
+            "id",
+        )
+        assert_matches_type(Optional[ChatResponse], chat, path=["response"])
+
+    @parametrize
+    def test_raw_response_archive(self, client: Pyopenwebui) -> None:
+        response = client.api.v1.chats.with_raw_response.archive(
+            "id",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        chat = response.parse()
+        assert_matches_type(Optional[ChatResponse], chat, path=["response"])
+
+    @parametrize
+    def test_streaming_response_archive(self, client: Pyopenwebui) -> None:
+        with client.api.v1.chats.with_streaming_response.archive(
+            "id",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            chat = response.parse()
+            assert_matches_type(Optional[ChatResponse], chat, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_archive(self, client: Pyopenwebui) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            client.api.v1.chats.with_raw_response.archive(
+                "",
+            )
+
+    @parametrize
+    def test_method_archive_all(self, client: Pyopenwebui) -> None:
+        chat = client.api.v1.chats.archive_all()
+        assert_matches_type(ChatArchiveAllResponse, chat, path=["response"])
+
+    @parametrize
+    def test_raw_response_archive_all(self, client: Pyopenwebui) -> None:
+        response = client.api.v1.chats.with_raw_response.archive_all()
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        chat = response.parse()
+        assert_matches_type(ChatArchiveAllResponse, chat, path=["response"])
+
+    @parametrize
+    def test_streaming_response_archive_all(self, client: Pyopenwebui) -> None:
+        with client.api.v1.chats.with_streaming_response.archive_all() as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            chat = response.parse()
+            assert_matches_type(ChatArchiveAllResponse, chat, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -461,6 +525,69 @@ class TestAsyncChats:
 
             chat = await response.parse()
             assert_matches_type(Optional[ChatResponse], chat, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_method_archive(self, async_client: AsyncPyopenwebui) -> None:
+        chat = await async_client.api.v1.chats.archive(
+            "id",
+        )
+        assert_matches_type(Optional[ChatResponse], chat, path=["response"])
+
+    @parametrize
+    async def test_raw_response_archive(self, async_client: AsyncPyopenwebui) -> None:
+        response = await async_client.api.v1.chats.with_raw_response.archive(
+            "id",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        chat = await response.parse()
+        assert_matches_type(Optional[ChatResponse], chat, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_archive(self, async_client: AsyncPyopenwebui) -> None:
+        async with async_client.api.v1.chats.with_streaming_response.archive(
+            "id",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            chat = await response.parse()
+            assert_matches_type(Optional[ChatResponse], chat, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_archive(self, async_client: AsyncPyopenwebui) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            await async_client.api.v1.chats.with_raw_response.archive(
+                "",
+            )
+
+    @parametrize
+    async def test_method_archive_all(self, async_client: AsyncPyopenwebui) -> None:
+        chat = await async_client.api.v1.chats.archive_all()
+        assert_matches_type(ChatArchiveAllResponse, chat, path=["response"])
+
+    @parametrize
+    async def test_raw_response_archive_all(self, async_client: AsyncPyopenwebui) -> None:
+        response = await async_client.api.v1.chats.with_raw_response.archive_all()
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        chat = await response.parse()
+        assert_matches_type(ChatArchiveAllResponse, chat, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_archive_all(self, async_client: AsyncPyopenwebui) -> None:
+        async with async_client.api.v1.chats.with_streaming_response.archive_all() as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            chat = await response.parse()
+            assert_matches_type(ChatArchiveAllResponse, chat, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
