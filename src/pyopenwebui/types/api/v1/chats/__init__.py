@@ -13,6 +13,7 @@ from .pinned_get_response import PinnedGetResponse as PinnedGetResponse
 from .tag_delete_response import TagDeleteResponse as TagDeleteResponse
 from .archive_all_response import ArchiveAllResponse as ArchiveAllResponse
 from .folder_update_params import FolderUpdateParams as FolderUpdateParams
+from .pinned_list_response import PinnedListResponse as PinnedListResponse
 from .all_get_tags_response import AllGetTagsResponse as AllGetTagsResponse
 from .share_delete_response import ShareDeleteResponse as ShareDeleteResponse
 from .all_get_in_db_response import AllGetInDBResponse as AllGetInDBResponse

@@ -1086,11 +1086,12 @@ Methods:
 Types:
 
 ```python
-from pyopenwebui.types.api.v1.chats import PinnedGetResponse
+from pyopenwebui.types.api.v1.chats import PinnedListResponse, PinnedGetResponse
 ```
 
 Methods:
 
+- <code title="get /api/v1/chats/pinned">client.api.v1.chats.pinned.<a href="./src/pyopenwebui/resources/api/v1/chats/pinned.py">list</a>() -> <a href="./src/pyopenwebui/types/api/v1/chats/pinned_list_response.py">PinnedListResponse</a></code>
 - <code title="get /api/v1/chats/{id}/pinned">client.api.v1.chats.pinned.<a href="./src/pyopenwebui/resources/api/v1/chats/pinned.py">get</a>(id) -> <a href="./src/pyopenwebui/types/api/v1/chats/pinned_get_response.py">Optional[PinnedGetResponse]</a></code>
 
 #### All
@@ -1421,6 +1422,8 @@ from pyopenwebui.types.api.v1 import (
     FolderUpdateResponse,
     FolderDeleteByIDResponse,
     FolderGetResponse,
+    FolderUpdateNameResponse,
+    FolderUpdateParentResponse,
 )
 ```
 
@@ -1431,6 +1434,8 @@ Methods:
 - <code title="delete /api/v1/folders/{id}">client.api.v1.folders.<a href="./src/pyopenwebui/resources/api/v1/folders.py">delete_by_id</a>(id) -> <a href="./src/pyopenwebui/types/api/v1/folder_delete_by_id_response.py">object</a></code>
 - <code title="get /api/v1/folders/">client.api.v1.folders.<a href="./src/pyopenwebui/resources/api/v1/folders.py">get</a>() -> <a href="./src/pyopenwebui/types/api/v1/folder_get_response.py">FolderGetResponse</a></code>
 - <code title="get /api/v1/folders/{id}">client.api.v1.folders.<a href="./src/pyopenwebui/resources/api/v1/folders.py">get_by_id</a>(id) -> <a href="./src/pyopenwebui/types/api/v1/folder_model.py">Optional[FolderModel]</a></code>
+- <code title="post /api/v1/folders/{id}/update">client.api.v1.folders.<a href="./src/pyopenwebui/resources/api/v1/folders.py">update_name</a>(id, \*\*<a href="src/pyopenwebui/types/api/v1/folder_update_name_params.py">params</a>) -> <a href="./src/pyopenwebui/types/api/v1/folder_update_name_response.py">object</a></code>
+- <code title="post /api/v1/folders/{id}/update/parent">client.api.v1.folders.<a href="./src/pyopenwebui/resources/api/v1/folders.py">update_parent</a>(id, \*\*<a href="src/pyopenwebui/types/api/v1/folder_update_parent_params.py">params</a>) -> <a href="./src/pyopenwebui/types/api/v1/folder_update_parent_response.py">object</a></code>
 
 ### Groups
 
