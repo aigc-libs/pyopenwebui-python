@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from .chat_get_params import ChatGetParams as ChatGetParams
 from .user_get_params import UserGetParams as UserGetParams
+from .chat_list_params import ChatListParams as ChatListParams
 from .model_get_params import ModelGetParams as ModelGetParams
 from .chat_get_response import ChatGetResponse as ChatGetResponse
 from .memory_add_params import MemoryAddParams as MemoryAddParams
@@ -13,6 +14,7 @@ from .auth_signin_params import AuthSigninParams as AuthSigninParams
 from .auth_signup_params import AuthSignupParams as AuthSignupParams
 from .chat_create_params import ChatCreateParams as ChatCreateParams
 from .chat_import_params import ChatImportParams as ChatImportParams
+from .chat_list_response import ChatListResponse as ChatListResponse
 from .chat_search_params import ChatSearchParams as ChatSearchParams
 from .file_list_response import FileListResponse as FileListResponse
 from .file_upload_params import FileUploadParams as FileUploadParams
@@ -31,7 +33,6 @@ from .auth_add_user_params import AuthAddUserParams as AuthAddUserParams
 from .auth_signin_response import AuthSigninResponse as AuthSigninResponse
 from .auth_signup_response import AuthSignupResponse as AuthSignupResponse
 from .channel_get_response import ChannelGetResponse as ChannelGetResponse
-from .chat_pinned_response import ChatPinnedResponse as ChatPinnedResponse
 from .chat_search_response import ChatSearchResponse as ChatSearchResponse
 from .config_import_params import ConfigImportParams as ConfigImportParams
 from .file_upload_response import FileUploadResponse as FileUploadResponse
@@ -58,23 +59,18 @@ from .auth_ldap_auth_response import AuthLdapAuthResponse as AuthLdapAuthRespons
 from .channel_create_response import ChannelCreateResponse as ChannelCreateResponse
 from .knowledge_create_params import KnowledgeCreateParams as KnowledgeCreateParams
 from .model_get_base_response import ModelGetBaseResponse as ModelGetBaseResponse
-from .retrieval_delete_params import RetrievalDeleteParams as RetrievalDeleteParams
 from .user_get_by_id_response import UserGetByIDResponse as UserGetByIDResponse
 from .chat_delete_all_response import ChatDeleteAllResponse as ChatDeleteAllResponse
 from .chat_update_by_id_params import ChatUpdateByIDParams as ChatUpdateByIDParams
 from .prompt_get_list_response import PromptGetListResponse as PromptGetListResponse
-from .util_download_pdf_params import UtilDownloadPdfParams as UtilDownloadPdfParams
 from .util_get_gravatar_params import UtilGetGravatarParams as UtilGetGravatarParams
-from .chat_archive_all_response import ChatArchiveAllResponse as ChatArchiveAllResponse
 from .folder_get_by_id_response import FolderGetByIDResponse as FolderGetByIDResponse
-from .folder_update_name_params import FolderUpdateNameParams as FolderUpdateNameParams
 from .knowledge_create_response import KnowledgeCreateResponse as KnowledgeCreateResponse
 from .channel_get_by_id_response import ChannelGetByIDResponse as ChannelGetByIDResponse
 from .chat_delete_by_id_response import ChatDeleteByIDResponse as ChatDeleteByIDResponse
 from .memory_update_by_id_params import MemoryUpdateByIDParams as MemoryUpdateByIDParams
 from .user_delete_by_id_response import UserDeleteByIDResponse as UserDeleteByIDResponse
 from .channel_update_by_id_params import ChannelUpdateByIDParams as ChannelUpdateByIDParams
-from .folder_update_parent_params import FolderUpdateParentParams as FolderUpdateParentParams
 from .knowledge_get_list_response import KnowledgeGetListResponse as KnowledgeGetListResponse
 from .function_get_export_response import FunctionGetExportResponse as FunctionGetExportResponse
 from .knowledge_get_by_id_response import KnowledgeGetByIDResponse as KnowledgeGetByIDResponse
@@ -82,7 +78,6 @@ from .memory_delete_by_id_response import MemoryDeleteByIDResponse as MemoryDele
 from .channel_delete_by_id_response import ChannelDeleteByIDResponse as ChannelDeleteByIDResponse
 from .channel_update_by_id_response import ChannelUpdateByIDResponse as ChannelUpdateByIDResponse
 from .chat_get_archived_list_params import ChatGetArchivedListParams as ChatGetArchivedListParams
-from .chat_retrieve_pinned_response import ChatRetrievePinnedResponse as ChatRetrievePinnedResponse
 from .config_set_suggestions_params import ConfigSetSuggestionsParams as ConfigSetSuggestionsParams
 from .knowledge_update_by_id_params import KnowledgeUpdateByIDParams as KnowledgeUpdateByIDParams
 from .auth_get_session_user_response import AuthGetSessionUserResponse as AuthGetSessionUserResponse
@@ -91,3 +86,5 @@ from .chat_get_archived_list_response import ChatGetArchivedListResponse as Chat
 from .config_set_suggestions_response import ConfigSetSuggestionsResponse as ConfigSetSuggestionsResponse
 from .knowledge_delete_by_id_response import KnowledgeDeleteByIDResponse as KnowledgeDeleteByIDResponse
 from .knowledge_update_by_id_response import KnowledgeUpdateByIDResponse as KnowledgeUpdateByIDResponse
+from .retrieval_delete_entries_params import RetrievalDeleteEntriesParams as RetrievalDeleteEntriesParams
+from .util_download_chat_as_pdf_params import UtilDownloadChatAsPdfParams as UtilDownloadChatAsPdfParams

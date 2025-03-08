@@ -20,12 +20,7 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._base_client import make_request_options
-from ....types.api.v1 import (
-    folder_create_params,
-    folder_update_params,
-    folder_update_name_params,
-    folder_update_parent_params,
-)
+from ....types.api.v1 import folder_create_params, folder_update_params
 from ....types.api.v1.folder_get_response import FolderGetResponse
 from ....types.api.v1.folder_get_by_id_response import FolderGetByIDResponse
 
@@ -204,76 +199,6 @@ class FoldersResource(SyncAPIResource):
             cast_to=FolderGetByIDResponse,
         )
 
-    def update_name(
-        self,
-        id: str,
-        *,
-        name: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> object:
-        """
-        Update Folder Name By Id
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
-        return self._post(
-            f"/api/v1/folders/{id}/update",
-            body=maybe_transform({"name": name}, folder_update_name_params.FolderUpdateNameParams),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=object,
-        )
-
-    def update_parent(
-        self,
-        id: str,
-        *,
-        parent_id: Optional[str] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> object:
-        """
-        Update Folder Parent Id By Id
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
-        return self._post(
-            f"/api/v1/folders/{id}/update/parent",
-            body=maybe_transform({"parent_id": parent_id}, folder_update_parent_params.FolderUpdateParentParams),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=object,
-        )
-
 
 class AsyncFoldersResource(AsyncAPIResource):
     @cached_property
@@ -447,78 +372,6 @@ class AsyncFoldersResource(AsyncAPIResource):
             cast_to=FolderGetByIDResponse,
         )
 
-    async def update_name(
-        self,
-        id: str,
-        *,
-        name: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> object:
-        """
-        Update Folder Name By Id
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
-        return await self._post(
-            f"/api/v1/folders/{id}/update",
-            body=await async_maybe_transform({"name": name}, folder_update_name_params.FolderUpdateNameParams),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=object,
-        )
-
-    async def update_parent(
-        self,
-        id: str,
-        *,
-        parent_id: Optional[str] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> object:
-        """
-        Update Folder Parent Id By Id
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
-        return await self._post(
-            f"/api/v1/folders/{id}/update/parent",
-            body=await async_maybe_transform(
-                {"parent_id": parent_id}, folder_update_parent_params.FolderUpdateParentParams
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=object,
-        )
-
 
 class FoldersResourceWithRawResponse:
     def __init__(self, folders: FoldersResource) -> None:
@@ -538,12 +391,6 @@ class FoldersResourceWithRawResponse:
         )
         self.get_by_id = to_raw_response_wrapper(
             folders.get_by_id,
-        )
-        self.update_name = to_raw_response_wrapper(
-            folders.update_name,
-        )
-        self.update_parent = to_raw_response_wrapper(
-            folders.update_parent,
         )
 
 
@@ -566,12 +413,6 @@ class AsyncFoldersResourceWithRawResponse:
         self.get_by_id = async_to_raw_response_wrapper(
             folders.get_by_id,
         )
-        self.update_name = async_to_raw_response_wrapper(
-            folders.update_name,
-        )
-        self.update_parent = async_to_raw_response_wrapper(
-            folders.update_parent,
-        )
 
 
 class FoldersResourceWithStreamingResponse:
@@ -593,12 +434,6 @@ class FoldersResourceWithStreamingResponse:
         self.get_by_id = to_streamed_response_wrapper(
             folders.get_by_id,
         )
-        self.update_name = to_streamed_response_wrapper(
-            folders.update_name,
-        )
-        self.update_parent = to_streamed_response_wrapper(
-            folders.update_parent,
-        )
 
 
 class AsyncFoldersResourceWithStreamingResponse:
@@ -619,10 +454,4 @@ class AsyncFoldersResourceWithStreamingResponse:
         )
         self.get_by_id = async_to_streamed_response_wrapper(
             folders.get_by_id,
-        )
-        self.update_name = async_to_streamed_response_wrapper(
-            folders.update_name,
-        )
-        self.update_parent = async_to_streamed_response_wrapper(
-            folders.update_parent,
         )

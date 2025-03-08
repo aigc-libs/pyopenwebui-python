@@ -17,15 +17,15 @@ class TestPush:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @parametrize
-    def test_method_delete(self, client: Pyopenwebui) -> None:
-        push = client.ollama.api.push.delete(
+    def test_method_push(self, client: Pyopenwebui) -> None:
+        push = client.ollama.api.push.push(
             name="name",
         )
         assert_matches_type(object, push, path=["response"])
 
     @parametrize
-    def test_method_delete_with_all_params(self, client: Pyopenwebui) -> None:
-        push = client.ollama.api.push.delete(
+    def test_method_push_with_all_params(self, client: Pyopenwebui) -> None:
+        push = client.ollama.api.push.push(
             name="name",
             url_idx=0,
             insecure=True,
@@ -34,8 +34,8 @@ class TestPush:
         assert_matches_type(object, push, path=["response"])
 
     @parametrize
-    def test_raw_response_delete(self, client: Pyopenwebui) -> None:
-        response = client.ollama.api.push.with_raw_response.delete(
+    def test_raw_response_push(self, client: Pyopenwebui) -> None:
+        response = client.ollama.api.push.with_raw_response.push(
             name="name",
         )
 
@@ -45,8 +45,8 @@ class TestPush:
         assert_matches_type(object, push, path=["response"])
 
     @parametrize
-    def test_streaming_response_delete(self, client: Pyopenwebui) -> None:
-        with client.ollama.api.push.with_streaming_response.delete(
+    def test_streaming_response_push(self, client: Pyopenwebui) -> None:
+        with client.ollama.api.push.with_streaming_response.push(
             name="name",
         ) as response:
             assert not response.is_closed
@@ -58,16 +58,16 @@ class TestPush:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
-    def test_method_delete_by_index(self, client: Pyopenwebui) -> None:
-        push = client.ollama.api.push.delete_by_index(
+    def test_method_push_by_index(self, client: Pyopenwebui) -> None:
+        push = client.ollama.api.push.push_by_index(
             url_idx=0,
             name="name",
         )
         assert_matches_type(object, push, path=["response"])
 
     @parametrize
-    def test_method_delete_by_index_with_all_params(self, client: Pyopenwebui) -> None:
-        push = client.ollama.api.push.delete_by_index(
+    def test_method_push_by_index_with_all_params(self, client: Pyopenwebui) -> None:
+        push = client.ollama.api.push.push_by_index(
             url_idx=0,
             name="name",
             insecure=True,
@@ -76,8 +76,8 @@ class TestPush:
         assert_matches_type(object, push, path=["response"])
 
     @parametrize
-    def test_raw_response_delete_by_index(self, client: Pyopenwebui) -> None:
-        response = client.ollama.api.push.with_raw_response.delete_by_index(
+    def test_raw_response_push_by_index(self, client: Pyopenwebui) -> None:
+        response = client.ollama.api.push.with_raw_response.push_by_index(
             url_idx=0,
             name="name",
         )
@@ -88,8 +88,8 @@ class TestPush:
         assert_matches_type(object, push, path=["response"])
 
     @parametrize
-    def test_streaming_response_delete_by_index(self, client: Pyopenwebui) -> None:
-        with client.ollama.api.push.with_streaming_response.delete_by_index(
+    def test_streaming_response_push_by_index(self, client: Pyopenwebui) -> None:
+        with client.ollama.api.push.with_streaming_response.push_by_index(
             url_idx=0,
             name="name",
         ) as response:
@@ -106,15 +106,15 @@ class TestAsyncPush:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @parametrize
-    async def test_method_delete(self, async_client: AsyncPyopenwebui) -> None:
-        push = await async_client.ollama.api.push.delete(
+    async def test_method_push(self, async_client: AsyncPyopenwebui) -> None:
+        push = await async_client.ollama.api.push.push(
             name="name",
         )
         assert_matches_type(object, push, path=["response"])
 
     @parametrize
-    async def test_method_delete_with_all_params(self, async_client: AsyncPyopenwebui) -> None:
-        push = await async_client.ollama.api.push.delete(
+    async def test_method_push_with_all_params(self, async_client: AsyncPyopenwebui) -> None:
+        push = await async_client.ollama.api.push.push(
             name="name",
             url_idx=0,
             insecure=True,
@@ -123,8 +123,8 @@ class TestAsyncPush:
         assert_matches_type(object, push, path=["response"])
 
     @parametrize
-    async def test_raw_response_delete(self, async_client: AsyncPyopenwebui) -> None:
-        response = await async_client.ollama.api.push.with_raw_response.delete(
+    async def test_raw_response_push(self, async_client: AsyncPyopenwebui) -> None:
+        response = await async_client.ollama.api.push.with_raw_response.push(
             name="name",
         )
 
@@ -134,8 +134,8 @@ class TestAsyncPush:
         assert_matches_type(object, push, path=["response"])
 
     @parametrize
-    async def test_streaming_response_delete(self, async_client: AsyncPyopenwebui) -> None:
-        async with async_client.ollama.api.push.with_streaming_response.delete(
+    async def test_streaming_response_push(self, async_client: AsyncPyopenwebui) -> None:
+        async with async_client.ollama.api.push.with_streaming_response.push(
             name="name",
         ) as response:
             assert not response.is_closed
@@ -147,16 +147,16 @@ class TestAsyncPush:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
-    async def test_method_delete_by_index(self, async_client: AsyncPyopenwebui) -> None:
-        push = await async_client.ollama.api.push.delete_by_index(
+    async def test_method_push_by_index(self, async_client: AsyncPyopenwebui) -> None:
+        push = await async_client.ollama.api.push.push_by_index(
             url_idx=0,
             name="name",
         )
         assert_matches_type(object, push, path=["response"])
 
     @parametrize
-    async def test_method_delete_by_index_with_all_params(self, async_client: AsyncPyopenwebui) -> None:
-        push = await async_client.ollama.api.push.delete_by_index(
+    async def test_method_push_by_index_with_all_params(self, async_client: AsyncPyopenwebui) -> None:
+        push = await async_client.ollama.api.push.push_by_index(
             url_idx=0,
             name="name",
             insecure=True,
@@ -165,8 +165,8 @@ class TestAsyncPush:
         assert_matches_type(object, push, path=["response"])
 
     @parametrize
-    async def test_raw_response_delete_by_index(self, async_client: AsyncPyopenwebui) -> None:
-        response = await async_client.ollama.api.push.with_raw_response.delete_by_index(
+    async def test_raw_response_push_by_index(self, async_client: AsyncPyopenwebui) -> None:
+        response = await async_client.ollama.api.push.with_raw_response.push_by_index(
             url_idx=0,
             name="name",
         )
@@ -177,8 +177,8 @@ class TestAsyncPush:
         assert_matches_type(object, push, path=["response"])
 
     @parametrize
-    async def test_streaming_response_delete_by_index(self, async_client: AsyncPyopenwebui) -> None:
-        async with async_client.ollama.api.push.with_streaming_response.delete_by_index(
+    async def test_streaming_response_push_by_index(self, async_client: AsyncPyopenwebui) -> None:
+        async with async_client.ollama.api.push.with_streaming_response.push_by_index(
             url_idx=0,
             name="name",
         ) as response:

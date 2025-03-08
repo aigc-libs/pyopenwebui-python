@@ -166,26 +166,26 @@ Methods:
 Types:
 
 ```python
-from pyopenwebui.types.ollama.api import PullCreateResponse, PullRetrieveByIndexResponse
+from pyopenwebui.types.ollama.api import PullPullResponse, PullPullByIndexResponse
 ```
 
 Methods:
 
-- <code title="post /ollama/api/pull">client.ollama.api.pull.<a href="./src/pyopenwebui/resources/ollama/api/pull.py">create</a>(\*\*<a href="src/pyopenwebui/types/ollama/api/pull_create_params.py">params</a>) -> <a href="./src/pyopenwebui/types/ollama/api/pull_create_response.py">object</a></code>
-- <code title="post /ollama/api/pull/{url_idx}">client.ollama.api.pull.<a href="./src/pyopenwebui/resources/ollama/api/pull.py">retrieve_by_index</a>(url_idx, \*\*<a href="src/pyopenwebui/types/ollama/api/pull_retrieve_by_index_params.py">params</a>) -> <a href="./src/pyopenwebui/types/ollama/api/pull_retrieve_by_index_response.py">object</a></code>
+- <code title="post /ollama/api/pull">client.ollama.api.pull.<a href="./src/pyopenwebui/resources/ollama/api/pull.py">pull</a>(\*\*<a href="src/pyopenwebui/types/ollama/api/pull_pull_params.py">params</a>) -> <a href="./src/pyopenwebui/types/ollama/api/pull_pull_response.py">object</a></code>
+- <code title="post /ollama/api/pull/{url_idx}">client.ollama.api.pull.<a href="./src/pyopenwebui/resources/ollama/api/pull.py">pull_by_index</a>(url_idx, \*\*<a href="src/pyopenwebui/types/ollama/api/pull_pull_by_index_params.py">params</a>) -> <a href="./src/pyopenwebui/types/ollama/api/pull_pull_by_index_response.py">object</a></code>
 
 ### Push
 
 Types:
 
 ```python
-from pyopenwebui.types.ollama.api import PushDeleteResponse, PushDeleteByIndexResponse
+from pyopenwebui.types.ollama.api import PushPushResponse, PushPushByIndexResponse
 ```
 
 Methods:
 
-- <code title="delete /ollama/api/push">client.ollama.api.push.<a href="./src/pyopenwebui/resources/ollama/api/push.py">delete</a>(\*\*<a href="src/pyopenwebui/types/ollama/api/push_delete_params.py">params</a>) -> <a href="./src/pyopenwebui/types/ollama/api/push_delete_response.py">object</a></code>
-- <code title="delete /ollama/api/push/{url_idx}">client.ollama.api.push.<a href="./src/pyopenwebui/resources/ollama/api/push.py">delete_by_index</a>(url_idx, \*\*<a href="src/pyopenwebui/types/ollama/api/push_delete_by_index_params.py">params</a>) -> <a href="./src/pyopenwebui/types/ollama/api/push_delete_by_index_response.py">object</a></code>
+- <code title="delete /ollama/api/push">client.ollama.api.push.<a href="./src/pyopenwebui/resources/ollama/api/push.py">push</a>(\*\*<a href="src/pyopenwebui/types/ollama/api/push_push_params.py">params</a>) -> <a href="./src/pyopenwebui/types/ollama/api/push_push_response.py">object</a></code>
+- <code title="delete /ollama/api/push/{url_idx}">client.ollama.api.push.<a href="./src/pyopenwebui/resources/ollama/api/push.py">push_by_index</a>(url_idx, \*\*<a href="src/pyopenwebui/types/ollama/api/push_push_by_index_params.py">params</a>) -> <a href="./src/pyopenwebui/types/ollama/api/push_push_by_index_response.py">object</a></code>
 
 ### Create
 
@@ -205,13 +205,13 @@ Methods:
 Types:
 
 ```python
-from pyopenwebui.types.ollama.api import CopyCreateResponse, CopyCreateByIndexResponse
+from pyopenwebui.types.ollama.api import CopyCopyResponse, CopyCopyByIndexResponse
 ```
 
 Methods:
 
-- <code title="post /ollama/api/copy">client.ollama.api.copy.<a href="./src/pyopenwebui/resources/ollama/api/copy.py">create</a>(\*\*<a href="src/pyopenwebui/types/ollama/api/copy_create_params.py">params</a>) -> <a href="./src/pyopenwebui/types/ollama/api/copy_create_response.py">object</a></code>
-- <code title="post /ollama/api/copy/{url_idx}">client.ollama.api.copy.<a href="./src/pyopenwebui/resources/ollama/api/copy.py">create_by_index</a>(url_idx, \*\*<a href="src/pyopenwebui/types/ollama/api/copy_create_by_index_params.py">params</a>) -> <a href="./src/pyopenwebui/types/ollama/api/copy_create_by_index_response.py">object</a></code>
+- <code title="post /ollama/api/copy">client.ollama.api.copy.<a href="./src/pyopenwebui/resources/ollama/api/copy.py">copy</a>(\*\*<a href="src/pyopenwebui/types/ollama/api/copy_copy_params.py">params</a>) -> <a href="./src/pyopenwebui/types/ollama/api/copy_copy_response.py">object</a></code>
+- <code title="post /ollama/api/copy/{url_idx}">client.ollama.api.copy.<a href="./src/pyopenwebui/resources/ollama/api/copy.py">copy_by_index</a>(url_idx, \*\*<a href="src/pyopenwebui/types/ollama/api/copy_copy_by_index_params.py">params</a>) -> <a href="./src/pyopenwebui/types/ollama/api/copy_copy_by_index_response.py">object</a></code>
 
 ### Delete
 
@@ -231,52 +231,55 @@ Methods:
 Types:
 
 ```python
-from pyopenwebui.types.ollama.api import EmbedCreateResponse, EmbedCreateByIndexResponse
+from pyopenwebui.types.ollama.api import EmbedEmbedResponse, EmbedEmbedByIndexResponse
 ```
 
 Methods:
 
-- <code title="post /ollama/api/embed">client.ollama.api.embed.<a href="./src/pyopenwebui/resources/ollama/api/embed.py">create</a>(\*\*<a href="src/pyopenwebui/types/ollama/api/embed_create_params.py">params</a>) -> <a href="./src/pyopenwebui/types/ollama/api/embed_create_response.py">object</a></code>
-- <code title="post /ollama/api/embed/{url_idx}">client.ollama.api.embed.<a href="./src/pyopenwebui/resources/ollama/api/embed.py">create_by_index</a>(url_idx, \*\*<a href="src/pyopenwebui/types/ollama/api/embed_create_by_index_params.py">params</a>) -> <a href="./src/pyopenwebui/types/ollama/api/embed_create_by_index_response.py">object</a></code>
+- <code title="post /ollama/api/embed">client.ollama.api.embed.<a href="./src/pyopenwebui/resources/ollama/api/embed.py">embed</a>(\*\*<a href="src/pyopenwebui/types/ollama/api/embed_embed_params.py">params</a>) -> <a href="./src/pyopenwebui/types/ollama/api/embed_embed_response.py">object</a></code>
+- <code title="post /ollama/api/embed/{url_idx}">client.ollama.api.embed.<a href="./src/pyopenwebui/resources/ollama/api/embed.py">embed_by_index</a>(url_idx, \*\*<a href="src/pyopenwebui/types/ollama/api/embed_embed_by_index_params.py">params</a>) -> <a href="./src/pyopenwebui/types/ollama/api/embed_embed_by_index_response.py">object</a></code>
 
 ### Embeddings
 
 Types:
 
 ```python
-from pyopenwebui.types.ollama.api import EmbeddingCreateResponse, EmbeddingCreateByIndexResponse
+from pyopenwebui.types.ollama.api import (
+    EmbeddingEmbeddingsResponse,
+    EmbeddingEmbeddingsByIndexResponse,
+)
 ```
 
 Methods:
 
-- <code title="post /ollama/api/embeddings">client.ollama.api.embeddings.<a href="./src/pyopenwebui/resources/ollama/api/embeddings.py">create</a>(\*\*<a href="src/pyopenwebui/types/ollama/api/embedding_create_params.py">params</a>) -> <a href="./src/pyopenwebui/types/ollama/api/embedding_create_response.py">object</a></code>
-- <code title="post /ollama/api/embeddings/{url_idx}">client.ollama.api.embeddings.<a href="./src/pyopenwebui/resources/ollama/api/embeddings.py">create_by_index</a>(url_idx, \*\*<a href="src/pyopenwebui/types/ollama/api/embedding_create_by_index_params.py">params</a>) -> <a href="./src/pyopenwebui/types/ollama/api/embedding_create_by_index_response.py">object</a></code>
+- <code title="post /ollama/api/embeddings">client.ollama.api.embeddings.<a href="./src/pyopenwebui/resources/ollama/api/embeddings.py">embeddings</a>(\*\*<a href="src/pyopenwebui/types/ollama/api/embedding_embeddings_params.py">params</a>) -> <a href="./src/pyopenwebui/types/ollama/api/embedding_embeddings_response.py">object</a></code>
+- <code title="post /ollama/api/embeddings/{url_idx}">client.ollama.api.embeddings.<a href="./src/pyopenwebui/resources/ollama/api/embeddings.py">embeddings_by_index</a>(url_idx, \*\*<a href="src/pyopenwebui/types/ollama/api/embedding_embeddings_by_index_params.py">params</a>) -> <a href="./src/pyopenwebui/types/ollama/api/embedding_embeddings_by_index_response.py">object</a></code>
 
 ### Generate
 
 Types:
 
 ```python
-from pyopenwebui.types.ollama.api import GenerateCreateResponse, GenerateCreateByIndexResponse
+from pyopenwebui.types.ollama.api import GenerateGenerateResponse, GenerateGenerateByIndexResponse
 ```
 
 Methods:
 
-- <code title="post /ollama/api/generate">client.ollama.api.generate.<a href="./src/pyopenwebui/resources/ollama/api/generate.py">create</a>(\*\*<a href="src/pyopenwebui/types/ollama/api/generate_create_params.py">params</a>) -> <a href="./src/pyopenwebui/types/ollama/api/generate_create_response.py">object</a></code>
-- <code title="post /ollama/api/generate/{url_idx}">client.ollama.api.generate.<a href="./src/pyopenwebui/resources/ollama/api/generate.py">create_by_index</a>(url_idx, \*\*<a href="src/pyopenwebui/types/ollama/api/generate_create_by_index_params.py">params</a>) -> <a href="./src/pyopenwebui/types/ollama/api/generate_create_by_index_response.py">object</a></code>
+- <code title="post /ollama/api/generate">client.ollama.api.generate.<a href="./src/pyopenwebui/resources/ollama/api/generate.py">generate</a>(\*\*<a href="src/pyopenwebui/types/ollama/api/generate_generate_params.py">params</a>) -> <a href="./src/pyopenwebui/types/ollama/api/generate_generate_response.py">object</a></code>
+- <code title="post /ollama/api/generate/{url_idx}">client.ollama.api.generate.<a href="./src/pyopenwebui/resources/ollama/api/generate.py">generate_by_index</a>(url_idx, \*\*<a href="src/pyopenwebui/types/ollama/api/generate_generate_by_index_params.py">params</a>) -> <a href="./src/pyopenwebui/types/ollama/api/generate_generate_by_index_response.py">object</a></code>
 
 ### Chat
 
 Types:
 
 ```python
-from pyopenwebui.types.ollama.api import ChatCreateResponse, ChatCreateByIndexResponse
+from pyopenwebui.types.ollama.api import ChatChatResponse, ChatChatByIndexResponse
 ```
 
 Methods:
 
-- <code title="post /ollama/api/chat">client.ollama.api.chat.<a href="./src/pyopenwebui/resources/ollama/api/chat.py">create</a>(\*\*<a href="src/pyopenwebui/types/ollama/api/chat_create_params.py">params</a>) -> <a href="./src/pyopenwebui/types/ollama/api/chat_create_response.py">object</a></code>
-- <code title="post /ollama/api/chat/{url_idx}">client.ollama.api.chat.<a href="./src/pyopenwebui/resources/ollama/api/chat.py">create_by_index</a>(url_idx, \*\*<a href="src/pyopenwebui/types/ollama/api/chat_create_by_index_params.py">params</a>) -> <a href="./src/pyopenwebui/types/ollama/api/chat_create_by_index_response.py">object</a></code>
+- <code title="post /ollama/api/chat">client.ollama.api.chat.<a href="./src/pyopenwebui/resources/ollama/api/chat.py">chat</a>(\*\*<a href="src/pyopenwebui/types/ollama/api/chat_chat_params.py">params</a>) -> <a href="./src/pyopenwebui/types/ollama/api/chat_chat_response.py">object</a></code>
+- <code title="post /ollama/api/chat/{url_idx}">client.ollama.api.chat.<a href="./src/pyopenwebui/resources/ollama/api/chat.py">chat_by_index</a>(url_idx, \*\*<a href="src/pyopenwebui/types/ollama/api/chat_chat_by_index_params.py">params</a>) -> <a href="./src/pyopenwebui/types/ollama/api/chat_chat_by_index_response.py">object</a></code>
 
 ## V1
 
@@ -285,13 +288,16 @@ Methods:
 Types:
 
 ```python
-from pyopenwebui.types.ollama.v1 import CompletionGenerateResponse, CompletionGetByIndexResponse
+from pyopenwebui.types.ollama.v1 import (
+    CompletionGenerateResponse,
+    CompletionGenerateByIndexResponse,
+)
 ```
 
 Methods:
 
 - <code title="post /ollama/v1/completions">client.ollama.v1.completions.<a href="./src/pyopenwebui/resources/ollama/v1/completions.py">generate</a>(\*\*<a href="src/pyopenwebui/types/ollama/v1/completion_generate_params.py">params</a>) -> <a href="./src/pyopenwebui/types/ollama/v1/completion_generate_response.py">object</a></code>
-- <code title="post /ollama/v1/completions/{url_idx}">client.ollama.v1.completions.<a href="./src/pyopenwebui/resources/ollama/v1/completions.py">get_by_index</a>(url_idx, \*\*<a href="src/pyopenwebui/types/ollama/v1/completion_get_by_index_params.py">params</a>) -> <a href="./src/pyopenwebui/types/ollama/v1/completion_get_by_index_response.py">object</a></code>
+- <code title="post /ollama/v1/completions/{url_idx}">client.ollama.v1.completions.<a href="./src/pyopenwebui/resources/ollama/v1/completions.py">generate_by_index</a>(url_idx, \*\*<a href="src/pyopenwebui/types/ollama/v1/completion_generate_by_index_params.py">params</a>) -> <a href="./src/pyopenwebui/types/ollama/v1/completion_generate_by_index_response.py">object</a></code>
 
 ### Chat
 
@@ -302,14 +308,14 @@ Types:
 ```python
 from pyopenwebui.types.ollama.v1.chat import (
     CompletionGenerateResponse,
-    CompletionGetByIndexResponse,
+    CompletionGenerateByIndexResponse,
 )
 ```
 
 Methods:
 
 - <code title="post /ollama/v1/chat/completions">client.ollama.v1.chat.completions.<a href="./src/pyopenwebui/resources/ollama/v1/chat/completions.py">generate</a>(\*\*<a href="src/pyopenwebui/types/ollama/v1/chat/completion_generate_params.py">params</a>) -> <a href="./src/pyopenwebui/types/ollama/v1/chat/completion_generate_response.py">object</a></code>
-- <code title="post /ollama/v1/chat/completions/{url_idx}">client.ollama.v1.chat.completions.<a href="./src/pyopenwebui/resources/ollama/v1/chat/completions.py">get_by_index</a>(url_idx, \*\*<a href="src/pyopenwebui/types/ollama/v1/chat/completion_get_by_index_params.py">params</a>) -> <a href="./src/pyopenwebui/types/ollama/v1/chat/completion_get_by_index_response.py">object</a></code>
+- <code title="post /ollama/v1/chat/completions/{url_idx}">client.ollama.v1.chat.completions.<a href="./src/pyopenwebui/resources/ollama/v1/chat/completions.py">generate_by_index</a>(url_idx, \*\*<a href="src/pyopenwebui/types/ollama/v1/chat/completion_generate_by_index_params.py">params</a>) -> <a href="./src/pyopenwebui/types/ollama/v1/chat/completion_generate_by_index_response.py">object</a></code>
 
 ### Models
 
@@ -331,26 +337,29 @@ Methods:
 Types:
 
 ```python
-from pyopenwebui.types.ollama.models import DownloadCreateResponse, DownloadRetrieveByIndexResponse
+from pyopenwebui.types.ollama.models import (
+    DownloadDownloadResponse,
+    DownloadDownloadByIndexResponse,
+)
 ```
 
 Methods:
 
-- <code title="post /ollama/models/download">client.ollama.models.download.<a href="./src/pyopenwebui/resources/ollama/models/download.py">create</a>(\*\*<a href="src/pyopenwebui/types/ollama/models/download_create_params.py">params</a>) -> <a href="./src/pyopenwebui/types/ollama/models/download_create_response.py">object</a></code>
-- <code title="post /ollama/models/download/{url_idx}">client.ollama.models.download.<a href="./src/pyopenwebui/resources/ollama/models/download.py">retrieve_by_index</a>(url_idx, \*\*<a href="src/pyopenwebui/types/ollama/models/download_retrieve_by_index_params.py">params</a>) -> <a href="./src/pyopenwebui/types/ollama/models/download_retrieve_by_index_response.py">object</a></code>
+- <code title="post /ollama/models/download">client.ollama.models.download.<a href="./src/pyopenwebui/resources/ollama/models/download.py">download</a>(\*\*<a href="src/pyopenwebui/types/ollama/models/download_download_params.py">params</a>) -> <a href="./src/pyopenwebui/types/ollama/models/download_download_response.py">object</a></code>
+- <code title="post /ollama/models/download/{url_idx}">client.ollama.models.download.<a href="./src/pyopenwebui/resources/ollama/models/download.py">download_by_index</a>(url_idx, \*\*<a href="src/pyopenwebui/types/ollama/models/download_download_by_index_params.py">params</a>) -> <a href="./src/pyopenwebui/types/ollama/models/download_download_by_index_response.py">object</a></code>
 
 ### Upload
 
 Types:
 
 ```python
-from pyopenwebui.types.ollama.models import UploadCreateResponse, UploadCreateByIndexResponse
+from pyopenwebui.types.ollama.models import UploadUploadResponse, UploadUploadByIndexResponse
 ```
 
 Methods:
 
-- <code title="post /ollama/models/upload">client.ollama.models.upload.<a href="./src/pyopenwebui/resources/ollama/models/upload.py">create</a>(\*\*<a href="src/pyopenwebui/types/ollama/models/upload_create_params.py">params</a>) -> <a href="./src/pyopenwebui/types/ollama/models/upload_create_response.py">object</a></code>
-- <code title="post /ollama/models/upload/{url_idx}">client.ollama.models.upload.<a href="./src/pyopenwebui/resources/ollama/models/upload.py">create_by_index</a>(url_idx, \*\*<a href="src/pyopenwebui/types/ollama/models/upload_create_by_index_params.py">params</a>) -> <a href="./src/pyopenwebui/types/ollama/models/upload_create_by_index_response.py">object</a></code>
+- <code title="post /ollama/models/upload">client.ollama.models.upload.<a href="./src/pyopenwebui/resources/ollama/models/upload.py">upload</a>(\*\*<a href="src/pyopenwebui/types/ollama/models/upload_upload_params.py">params</a>) -> <a href="./src/pyopenwebui/types/ollama/models/upload_upload_response.py">object</a></code>
+- <code title="post /ollama/models/upload/{url_idx}">client.ollama.models.upload.<a href="./src/pyopenwebui/resources/ollama/models/upload.py">upload_by_index</a>(url_idx, \*\*<a href="src/pyopenwebui/types/ollama/models/upload_upload_by_index_params.py">params</a>) -> <a href="./src/pyopenwebui/types/ollama/models/upload_upload_by_index_response.py">object</a></code>
 
 # OpenAI
 
@@ -670,7 +679,7 @@ Types:
 
 ```python
 from pyopenwebui.types.api.v1 import (
-    RetrievalDeleteResponse,
+    RetrievalDeleteEntriesResponse,
     RetrievalGetEmbeddingsResponse,
     RetrievalGetStatusResponse,
     RetrievalGetTemplateResponse,
@@ -679,7 +688,7 @@ from pyopenwebui.types.api.v1 import (
 
 Methods:
 
-- <code title="post /api/v1/retrieval/delete">client.api.v1.retrieval.<a href="./src/pyopenwebui/resources/api/v1/retrieval/retrieval.py">delete</a>(\*\*<a href="src/pyopenwebui/types/api/v1/retrieval_delete_params.py">params</a>) -> <a href="./src/pyopenwebui/types/api/v1/retrieval_delete_response.py">object</a></code>
+- <code title="post /api/v1/retrieval/delete">client.api.v1.retrieval.<a href="./src/pyopenwebui/resources/api/v1/retrieval/retrieval.py">delete_entries</a>(\*\*<a href="src/pyopenwebui/types/api/v1/retrieval_delete_entries_params.py">params</a>) -> <a href="./src/pyopenwebui/types/api/v1/retrieval_delete_entries_response.py">object</a></code>
 - <code title="get /api/v1/retrieval/ef/{text}">client.api.v1.retrieval.<a href="./src/pyopenwebui/resources/api/v1/retrieval/retrieval.py">get_embeddings</a>(text) -> <a href="./src/pyopenwebui/types/api/v1/retrieval_get_embeddings_response.py">object</a></code>
 - <code title="get /api/v1/retrieval/">client.api.v1.retrieval.<a href="./src/pyopenwebui/resources/api/v1/retrieval/retrieval.py">get_status</a>() -> <a href="./src/pyopenwebui/types/api/v1/retrieval_get_status_response.py">object</a></code>
 - <code title="get /api/v1/retrieval/template">client.api.v1.retrieval.<a href="./src/pyopenwebui/resources/api/v1/retrieval/retrieval.py">get_template</a>() -> <a href="./src/pyopenwebui/types/api/v1/retrieval_get_template_response.py">object</a></code>
@@ -1112,13 +1121,11 @@ Types:
 
 ```python
 from pyopenwebui.types.api.v1 import (
-    ChatArchiveAllResponse,
+    ChatListResponse,
     ChatDeleteAllResponse,
     ChatDeleteByIDResponse,
     ChatGetResponse,
     ChatGetArchivedListResponse,
-    ChatPinnedResponse,
-    ChatRetrievePinnedResponse,
     ChatSearchResponse,
 )
 ```
@@ -1126,8 +1133,8 @@ from pyopenwebui.types.api.v1 import (
 Methods:
 
 - <code title="post /api/v1/chats/new">client.api.v1.chats.<a href="./src/pyopenwebui/resources/api/v1/chats/chats.py">create</a>(\*\*<a href="src/pyopenwebui/types/api/v1/chat_create_params.py">params</a>) -> <a href="./src/pyopenwebui/types/chat_response.py">Optional[ChatResponse]</a></code>
+- <code title="get /api/v1/chats/list/user/{user_id}">client.api.v1.chats.<a href="./src/pyopenwebui/resources/api/v1/chats/chats.py">list</a>(user_id, \*\*<a href="src/pyopenwebui/types/api/v1/chat_list_params.py">params</a>) -> <a href="./src/pyopenwebui/types/api/v1/chat_list_response.py">ChatListResponse</a></code>
 - <code title="post /api/v1/chats/{id}/archive">client.api.v1.chats.<a href="./src/pyopenwebui/resources/api/v1/chats/chats.py">archive</a>(id) -> <a href="./src/pyopenwebui/types/chat_response.py">Optional[ChatResponse]</a></code>
-- <code title="post /api/v1/chats/archive/all">client.api.v1.chats.<a href="./src/pyopenwebui/resources/api/v1/chats/chats.py">archive_all</a>() -> <a href="./src/pyopenwebui/types/api/v1/chat_archive_all_response.py">ChatArchiveAllResponse</a></code>
 - <code title="delete /api/v1/chats/">client.api.v1.chats.<a href="./src/pyopenwebui/resources/api/v1/chats/chats.py">delete_all</a>() -> <a href="./src/pyopenwebui/types/api/v1/chat_delete_all_response.py">ChatDeleteAllResponse</a></code>
 - <code title="delete /api/v1/chats/{id}">client.api.v1.chats.<a href="./src/pyopenwebui/resources/api/v1/chats/chats.py">delete_by_id</a>(id) -> <a href="./src/pyopenwebui/types/api/v1/chat_delete_by_id_response.py">ChatDeleteByIDResponse</a></code>
 - <code title="get /api/v1/chats/">client.api.v1.chats.<a href="./src/pyopenwebui/resources/api/v1/chats/chats.py">get</a>(\*\*<a href="src/pyopenwebui/types/api/v1/chat_get_params.py">params</a>) -> <a href="./src/pyopenwebui/types/api/v1/chat_get_response.py">ChatGetResponse</a></code>
@@ -1135,23 +1142,8 @@ Methods:
 - <code title="get /api/v1/chats/{id}">client.api.v1.chats.<a href="./src/pyopenwebui/resources/api/v1/chats/chats.py">get_by_id</a>(id) -> <a href="./src/pyopenwebui/types/chat_response.py">Optional[ChatResponse]</a></code>
 - <code title="post /api/v1/chats/import">client.api.v1.chats.<a href="./src/pyopenwebui/resources/api/v1/chats/chats.py">import\_</a>(\*\*<a href="src/pyopenwebui/types/api/v1/chat_import_params.py">params</a>) -> <a href="./src/pyopenwebui/types/chat_response.py">Optional[ChatResponse]</a></code>
 - <code title="post /api/v1/chats/{id}/pin">client.api.v1.chats.<a href="./src/pyopenwebui/resources/api/v1/chats/chats.py">pin_by_id</a>(id) -> <a href="./src/pyopenwebui/types/chat_response.py">Optional[ChatResponse]</a></code>
-- <code title="get /api/v1/chats/{id}/pinned">client.api.v1.chats.<a href="./src/pyopenwebui/resources/api/v1/chats/chats.py">pinned</a>(id) -> <a href="./src/pyopenwebui/types/api/v1/chat_pinned_response.py">Optional[ChatPinnedResponse]</a></code>
-- <code title="get /api/v1/chats/pinned">client.api.v1.chats.<a href="./src/pyopenwebui/resources/api/v1/chats/chats.py">retrieve_pinned</a>() -> <a href="./src/pyopenwebui/types/api/v1/chat_retrieve_pinned_response.py">ChatRetrievePinnedResponse</a></code>
-- <code title="get /api/v1/chats/share/{share_id}">client.api.v1.chats.<a href="./src/pyopenwebui/resources/api/v1/chats/chats.py">retrieve_shared</a>(share_id) -> <a href="./src/pyopenwebui/types/chat_response.py">Optional[ChatResponse]</a></code>
 - <code title="get /api/v1/chats/search">client.api.v1.chats.<a href="./src/pyopenwebui/resources/api/v1/chats/chats.py">search</a>(\*\*<a href="src/pyopenwebui/types/api/v1/chat_search_params.py">params</a>) -> <a href="./src/pyopenwebui/types/api/v1/chat_search_response.py">ChatSearchResponse</a></code>
 - <code title="post /api/v1/chats/{id}">client.api.v1.chats.<a href="./src/pyopenwebui/resources/api/v1/chats/chats.py">update_by_id</a>(id, \*\*<a href="src/pyopenwebui/types/api/v1/chat_update_by_id_params.py">params</a>) -> <a href="./src/pyopenwebui/types/chat_response.py">Optional[ChatResponse]</a></code>
-
-#### List
-
-Types:
-
-```python
-from pyopenwebui.types.api.v1.chats import ListUserResponse
-```
-
-Methods:
-
-- <code title="get /api/v1/chats/list/user/{user_id}">client.api.v1.chats.list.<a href="./src/pyopenwebui/resources/api/v1/chats/list.py">user</a>(user_id, \*\*<a href="src/pyopenwebui/types/api/v1/chats/list_user_params.py">params</a>) -> <a href="./src/pyopenwebui/types/api/v1/chats/list_user_response.py">ListUserResponse</a></code>
 
 #### Folder
 
@@ -1166,25 +1158,38 @@ Methods:
 - <code title="post /api/v1/chats/{id}/folder">client.api.v1.chats.folder.<a href="./src/pyopenwebui/resources/api/v1/chats/folder.py">update</a>(id, \*\*<a href="src/pyopenwebui/types/api/v1/chats/folder_update_params.py">params</a>) -> <a href="./src/pyopenwebui/types/chat_response.py">Optional[ChatResponse]</a></code>
 - <code title="get /api/v1/chats/folder/{folder_id}">client.api.v1.chats.folder.<a href="./src/pyopenwebui/resources/api/v1/chats/folder.py">get</a>(folder_id) -> <a href="./src/pyopenwebui/types/api/v1/chats/folder_get_response.py">FolderGetResponse</a></code>
 
+#### Pinned
+
+Types:
+
+```python
+from pyopenwebui.types.api.v1.chats import PinnedGetResponse, PinnedGetByIDResponse
+```
+
+Methods:
+
+- <code title="get /api/v1/chats/pinned">client.api.v1.chats.pinned.<a href="./src/pyopenwebui/resources/api/v1/chats/pinned.py">get</a>() -> <a href="./src/pyopenwebui/types/api/v1/chats/pinned_get_response.py">PinnedGetResponse</a></code>
+- <code title="get /api/v1/chats/{id}/pinned">client.api.v1.chats.pinned.<a href="./src/pyopenwebui/resources/api/v1/chats/pinned.py">get_by_id</a>(id) -> <a href="./src/pyopenwebui/types/api/v1/chats/pinned_get_by_id_response.py">Optional[PinnedGetByIDResponse]</a></code>
+
 #### All
 
 Types:
 
 ```python
-from pyopenwebui.types.api.v1.chats import AllArchivedResponse, AllDBResponse, AllTagsResponse
+from pyopenwebui.types.api.v1.chats import (
+    AllGetResponse,
+    AllGetArchivedResponse,
+    AllGetDBResponse,
+    AllGetTagsResponse,
+)
 ```
 
 Methods:
 
-- <code title="get /api/v1/chats/all/archived">client.api.v1.chats.all.<a href="./src/pyopenwebui/resources/api/v1/chats/all.py">archived</a>() -> <a href="./src/pyopenwebui/types/api/v1/chats/all_archived_response.py">AllArchivedResponse</a></code>
-- <code title="get /api/v1/chats/all/db">client.api.v1.chats.all.<a href="./src/pyopenwebui/resources/api/v1/chats/all.py">db</a>() -> <a href="./src/pyopenwebui/types/api/v1/chats/all_db_response.py">AllDBResponse</a></code>
-- <code title="get /api/v1/chats/all/tags">client.api.v1.chats.all.<a href="./src/pyopenwebui/resources/api/v1/chats/all.py">tags</a>() -> <a href="./src/pyopenwebui/types/api/v1/chats/all_tags_response.py">AllTagsResponse</a></code>
-
-#### Clone
-
-Methods:
-
-- <code title="post /api/v1/chats/{id}/clone/shared">client.api.v1.chats.clone.<a href="./src/pyopenwebui/resources/api/v1/chats/clone.py">shared</a>(id) -> <a href="./src/pyopenwebui/types/chat_response.py">Optional[ChatResponse]</a></code>
+- <code title="get /api/v1/chats/all">client.api.v1.chats.all.<a href="./src/pyopenwebui/resources/api/v1/chats/all.py">get</a>() -> <a href="./src/pyopenwebui/types/api/v1/chats/all_get_response.py">AllGetResponse</a></code>
+- <code title="get /api/v1/chats/all/archived">client.api.v1.chats.all.<a href="./src/pyopenwebui/resources/api/v1/chats/all.py">get_archived</a>() -> <a href="./src/pyopenwebui/types/api/v1/chats/all_get_archived_response.py">AllGetArchivedResponse</a></code>
+- <code title="get /api/v1/chats/all/db">client.api.v1.chats.all.<a href="./src/pyopenwebui/resources/api/v1/chats/all.py">get_db</a>() -> <a href="./src/pyopenwebui/types/api/v1/chats/all_get_db_response.py">AllGetDBResponse</a></code>
+- <code title="get /api/v1/chats/all/tags">client.api.v1.chats.all.<a href="./src/pyopenwebui/resources/api/v1/chats/all.py">get_tags</a>() -> <a href="./src/pyopenwebui/types/api/v1/chats/all_get_tags_response.py">AllGetTagsResponse</a></code>
 
 #### Share
 
@@ -1197,31 +1202,35 @@ from pyopenwebui.types.api.v1.chats import ShareDeleteResponse
 Methods:
 
 - <code title="delete /api/v1/chats/{id}/share">client.api.v1.chats.share.<a href="./src/pyopenwebui/resources/api/v1/chats/share.py">delete</a>(id) -> <a href="./src/pyopenwebui/types/api/v1/chats/share_delete_response.py">Optional[ShareDeleteResponse]</a></code>
+- <code title="get /api/v1/chats/share/{share_id}">client.api.v1.chats.share.<a href="./src/pyopenwebui/resources/api/v1/chats/share.py">get</a>(share_id) -> <a href="./src/pyopenwebui/types/chat_response.py">Optional[ChatResponse]</a></code>
 
 #### Tags
 
 Types:
 
 ```python
-from pyopenwebui.types.api.v1.chats import TagAddResponse, TagGetResponse
+from pyopenwebui.types.api.v1.chats import (
+    TagDeleteResponse,
+    TagAddResponse,
+    TagDeleteAllResponse,
+    TagGetResponse,
+    TagGetByIDResponse,
+)
 ```
 
 Methods:
 
-- <code title="post /api/v1/chats/{id}/tags">client.api.v1.chats.tags.<a href="./src/pyopenwebui/resources/api/v1/chats/tags/tags.py">add</a>(id, \*\*<a href="src/pyopenwebui/types/api/v1/chats/tag_add_params.py">params</a>) -> <a href="./src/pyopenwebui/types/api/v1/chats/tag_add_response.py">TagAddResponse</a></code>
-- <code title="get /api/v1/chats/{id}/tags">client.api.v1.chats.tags.<a href="./src/pyopenwebui/resources/api/v1/chats/tags/tags.py">get</a>(id) -> <a href="./src/pyopenwebui/types/api/v1/chats/tag_get_response.py">TagGetResponse</a></code>
+- <code title="delete /api/v1/chats/{id}/tags">client.api.v1.chats.tags.<a href="./src/pyopenwebui/resources/api/v1/chats/tags.py">delete</a>(id, \*\*<a href="src/pyopenwebui/types/api/v1/chats/tag_delete_params.py">params</a>) -> <a href="./src/pyopenwebui/types/api/v1/chats/tag_delete_response.py">TagDeleteResponse</a></code>
+- <code title="post /api/v1/chats/{id}/tags">client.api.v1.chats.tags.<a href="./src/pyopenwebui/resources/api/v1/chats/tags.py">add</a>(id, \*\*<a href="src/pyopenwebui/types/api/v1/chats/tag_add_params.py">params</a>) -> <a href="./src/pyopenwebui/types/api/v1/chats/tag_add_response.py">TagAddResponse</a></code>
+- <code title="delete /api/v1/chats/{id}/tags/all">client.api.v1.chats.tags.<a href="./src/pyopenwebui/resources/api/v1/chats/tags.py">delete_all</a>(id) -> <a href="./src/pyopenwebui/types/api/v1/chats/tag_delete_all_response.py">Optional[TagDeleteAllResponse]</a></code>
+- <code title="post /api/v1/chats/tags">client.api.v1.chats.tags.<a href="./src/pyopenwebui/resources/api/v1/chats/tags.py">get</a>(\*\*<a href="src/pyopenwebui/types/api/v1/chats/tag_get_params.py">params</a>) -> <a href="./src/pyopenwebui/types/api/v1/chats/tag_get_response.py">TagGetResponse</a></code>
+- <code title="get /api/v1/chats/{id}/tags">client.api.v1.chats.tags.<a href="./src/pyopenwebui/resources/api/v1/chats/tags.py">get_by_id</a>(id) -> <a href="./src/pyopenwebui/types/api/v1/chats/tag_get_by_id_response.py">TagGetByIDResponse</a></code>
 
-##### Delete
-
-Types:
-
-```python
-from pyopenwebui.types.api.v1.chats.tags import DeleteAllResponse
-```
+#### Clone
 
 Methods:
 
-- <code title="delete /api/v1/chats/{id}/tags/all">client.api.v1.chats.tags.delete.<a href="./src/pyopenwebui/resources/api/v1/chats/tags/delete.py">all</a>(id) -> <a href="./src/pyopenwebui/types/api/v1/chats/tags/delete_all_response.py">Optional[DeleteAllResponse]</a></code>
+- <code title="post /api/v1/chats/{id}/clone/shared">client.api.v1.chats.clone.<a href="./src/pyopenwebui/resources/api/v1/chats/clone.py">shared</a>(id) -> <a href="./src/pyopenwebui/types/chat_response.py">Optional[ChatResponse]</a></code>
 
 ### Models
 
@@ -1334,14 +1343,14 @@ Methods:
 Types:
 
 ```python
-from pyopenwebui.types.api.v1.prompts import CommandDeleteResponse
+from pyopenwebui.types.api.v1.prompts import CommandDeleteByCommandResponse
 ```
 
 Methods:
 
-- <code title="post /api/v1/prompts/command/{command}/update">client.api.v1.prompts.command.<a href="./src/pyopenwebui/resources/api/v1/prompts/command.py">update</a>(command_1, \*\*<a href="src/pyopenwebui/types/api/v1/prompts/command_update_params.py">params</a>) -> <a href="./src/pyopenwebui/types/shared/prompt_model.py">Optional[PromptModel]</a></code>
-- <code title="delete /api/v1/prompts/command/{command}/delete">client.api.v1.prompts.command.<a href="./src/pyopenwebui/resources/api/v1/prompts/command.py">delete</a>(command) -> <a href="./src/pyopenwebui/types/api/v1/prompts/command_delete_response.py">CommandDeleteResponse</a></code>
-- <code title="get /api/v1/prompts/command/{command}">client.api.v1.prompts.command.<a href="./src/pyopenwebui/resources/api/v1/prompts/command.py">get</a>(command) -> <a href="./src/pyopenwebui/types/shared/prompt_model.py">Optional[PromptModel]</a></code>
+- <code title="delete /api/v1/prompts/command/{command}/delete">client.api.v1.prompts.command.<a href="./src/pyopenwebui/resources/api/v1/prompts/command.py">delete_by_command</a>(command) -> <a href="./src/pyopenwebui/types/api/v1/prompts/command_delete_by_command_response.py">CommandDeleteByCommandResponse</a></code>
+- <code title="get /api/v1/prompts/command/{command}">client.api.v1.prompts.command.<a href="./src/pyopenwebui/resources/api/v1/prompts/command.py">get_by_command</a>(command) -> <a href="./src/pyopenwebui/types/shared/prompt_model.py">Optional[PromptModel]</a></code>
+- <code title="post /api/v1/prompts/command/{command}/update">client.api.v1.prompts.command.<a href="./src/pyopenwebui/resources/api/v1/prompts/command.py">update_by_command</a>(command_1, \*\*<a href="src/pyopenwebui/types/api/v1/prompts/command_update_by_command_params.py">params</a>) -> <a href="./src/pyopenwebui/types/shared/prompt_model.py">Optional[PromptModel]</a></code>
 
 ### Tools
 
@@ -1445,8 +1454,6 @@ from pyopenwebui.types.api.v1 import (
     FolderDeleteByIDResponse,
     FolderGetResponse,
     FolderGetByIDResponse,
-    FolderUpdateNameResponse,
-    FolderUpdateParentResponse,
 )
 ```
 
@@ -1457,8 +1464,6 @@ Methods:
 - <code title="delete /api/v1/folders/{id}">client.api.v1.folders.<a href="./src/pyopenwebui/resources/api/v1/folders.py">delete_by_id</a>(id) -> <a href="./src/pyopenwebui/types/api/v1/folder_delete_by_id_response.py">object</a></code>
 - <code title="get /api/v1/folders/">client.api.v1.folders.<a href="./src/pyopenwebui/resources/api/v1/folders.py">get</a>() -> <a href="./src/pyopenwebui/types/api/v1/folder_get_response.py">FolderGetResponse</a></code>
 - <code title="get /api/v1/folders/{id}">client.api.v1.folders.<a href="./src/pyopenwebui/resources/api/v1/folders.py">get_by_id</a>(id) -> <a href="./src/pyopenwebui/types/api/v1/folder_get_by_id_response.py">Optional[FolderGetByIDResponse]</a></code>
-- <code title="post /api/v1/folders/{id}/update">client.api.v1.folders.<a href="./src/pyopenwebui/resources/api/v1/folders.py">update_name</a>(id, \*\*<a href="src/pyopenwebui/types/api/v1/folder_update_name_params.py">params</a>) -> <a href="./src/pyopenwebui/types/api/v1/folder_update_name_response.py">object</a></code>
-- <code title="post /api/v1/folders/{id}/update/parent">client.api.v1.folders.<a href="./src/pyopenwebui/resources/api/v1/folders.py">update_parent</a>(id, \*\*<a href="src/pyopenwebui/types/api/v1/folder_update_parent_params.py">params</a>) -> <a href="./src/pyopenwebui/types/api/v1/folder_update_parent_response.py">object</a></code>
 
 ### Groups
 
@@ -1683,7 +1688,7 @@ Types:
 
 ```python
 from pyopenwebui.types.api.v1 import (
-    UtilDownloadPdfResponse,
+    UtilDownloadChatAsPdfResponse,
     UtilGetGravatarResponse,
     UtilMarkdownResponse,
 )
@@ -1691,7 +1696,7 @@ from pyopenwebui.types.api.v1 import (
 
 Methods:
 
-- <code title="post /api/v1/utils/pdf">client.api.v1.utils.<a href="./src/pyopenwebui/resources/api/v1/utils/utils.py">download_pdf</a>(\*\*<a href="src/pyopenwebui/types/api/v1/util_download_pdf_params.py">params</a>) -> <a href="./src/pyopenwebui/types/api/v1/util_download_pdf_response.py">object</a></code>
+- <code title="post /api/v1/utils/pdf">client.api.v1.utils.<a href="./src/pyopenwebui/resources/api/v1/utils/utils.py">download_chat_as_pdf</a>(\*\*<a href="src/pyopenwebui/types/api/v1/util_download_chat_as_pdf_params.py">params</a>) -> <a href="./src/pyopenwebui/types/api/v1/util_download_chat_as_pdf_response.py">object</a></code>
 - <code title="get /api/v1/utils/gravatar">client.api.v1.utils.<a href="./src/pyopenwebui/resources/api/v1/utils/utils.py">get_gravatar</a>(\*\*<a href="src/pyopenwebui/types/api/v1/util_get_gravatar_params.py">params</a>) -> <a href="./src/pyopenwebui/types/api/v1/util_get_gravatar_response.py">object</a></code>
 - <code title="post /api/v1/utils/markdown">client.api.v1.utils.<a href="./src/pyopenwebui/resources/api/v1/utils/utils.py">markdown</a>(\*\*<a href="src/pyopenwebui/types/api/v1/util_markdown_params.py">params</a>) -> <a href="./src/pyopenwebui/types/api/v1/util_markdown_response.py">object</a></code>
 
@@ -1794,13 +1799,13 @@ Methods:
 Types:
 
 ```python
-from pyopenwebui.types.api import VersionRetrieveResponse, VersionGetLatestUpdatesResponse
+from pyopenwebui.types.api import VersionRetrieveResponse, VersionListUpdatesResponse
 ```
 
 Methods:
 
 - <code title="get /api/version">client.api.version.<a href="./src/pyopenwebui/resources/api/version.py">retrieve</a>() -> <a href="./src/pyopenwebui/types/api/version_retrieve_response.py">object</a></code>
-- <code title="get /api/version/updates">client.api.version.<a href="./src/pyopenwebui/resources/api/version.py">get_latest_updates</a>() -> <a href="./src/pyopenwebui/types/api/version_get_latest_updates_response.py">object</a></code>
+- <code title="get /api/version/updates">client.api.version.<a href="./src/pyopenwebui/resources/api/version.py">list_updates</a>() -> <a href="./src/pyopenwebui/types/api/version_list_updates_response.py">object</a></code>
 
 # OAuth
 

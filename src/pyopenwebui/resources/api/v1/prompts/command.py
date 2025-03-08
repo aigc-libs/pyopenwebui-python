@@ -20,9 +20,9 @@ from ....._response import (
     async_to_streamed_response_wrapper,
 )
 from ....._base_client import make_request_options
-from .....types.api.v1.prompts import command_update_params
+from .....types.api.v1.prompts import command_update_by_command_params
 from .....types.shared.prompt_model import PromptModel
-from .....types.api.v1.prompts.command_delete_response import CommandDeleteResponse
+from .....types.api.v1.prompts.command_delete_by_command_response import CommandDeleteByCommandResponse
 
 __all__ = ["CommandResource", "AsyncCommandResource"]
 
@@ -47,7 +47,73 @@ class CommandResource(SyncAPIResource):
         """
         return CommandResourceWithStreamingResponse(self)
 
-    def update(
+    def delete_by_command(
+        self,
+        command: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> CommandDeleteByCommandResponse:
+        """
+        Delete Prompt By Command
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not command:
+            raise ValueError(f"Expected a non-empty value for `command` but received {command!r}")
+        return self._delete(
+            f"/api/v1/prompts/command/{command}/delete",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=CommandDeleteByCommandResponse,
+        )
+
+    def get_by_command(
+        self,
+        command: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[PromptModel]:
+        """
+        Get Prompt By Command
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not command:
+            raise ValueError(f"Expected a non-empty value for `command` but received {command!r}")
+        return self._get(
+            f"/api/v1/prompts/command/{command}",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=PromptModel,
+        )
+
+    def update_by_command(
         self,
         command_1: str,
         *,
@@ -85,74 +151,8 @@ class CommandResource(SyncAPIResource):
                     "title": title,
                     "access_control": access_control,
                 },
-                command_update_params.CommandUpdateParams,
+                command_update_by_command_params.CommandUpdateByCommandParams,
             ),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=PromptModel,
-        )
-
-    def delete(
-        self,
-        command: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CommandDeleteResponse:
-        """
-        Delete Prompt By Command
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not command:
-            raise ValueError(f"Expected a non-empty value for `command` but received {command!r}")
-        return self._delete(
-            f"/api/v1/prompts/command/{command}/delete",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=CommandDeleteResponse,
-        )
-
-    def get(
-        self,
-        command: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[PromptModel]:
-        """
-        Get Prompt By Command
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not command:
-            raise ValueError(f"Expected a non-empty value for `command` but received {command!r}")
-        return self._get(
-            f"/api/v1/prompts/command/{command}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -180,7 +180,73 @@ class AsyncCommandResource(AsyncAPIResource):
         """
         return AsyncCommandResourceWithStreamingResponse(self)
 
-    async def update(
+    async def delete_by_command(
+        self,
+        command: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> CommandDeleteByCommandResponse:
+        """
+        Delete Prompt By Command
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not command:
+            raise ValueError(f"Expected a non-empty value for `command` but received {command!r}")
+        return await self._delete(
+            f"/api/v1/prompts/command/{command}/delete",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=CommandDeleteByCommandResponse,
+        )
+
+    async def get_by_command(
+        self,
+        command: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[PromptModel]:
+        """
+        Get Prompt By Command
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not command:
+            raise ValueError(f"Expected a non-empty value for `command` but received {command!r}")
+        return await self._get(
+            f"/api/v1/prompts/command/{command}",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=PromptModel,
+        )
+
+    async def update_by_command(
         self,
         command_1: str,
         *,
@@ -218,74 +284,8 @@ class AsyncCommandResource(AsyncAPIResource):
                     "title": title,
                     "access_control": access_control,
                 },
-                command_update_params.CommandUpdateParams,
+                command_update_by_command_params.CommandUpdateByCommandParams,
             ),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=PromptModel,
-        )
-
-    async def delete(
-        self,
-        command: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CommandDeleteResponse:
-        """
-        Delete Prompt By Command
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not command:
-            raise ValueError(f"Expected a non-empty value for `command` but received {command!r}")
-        return await self._delete(
-            f"/api/v1/prompts/command/{command}/delete",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=CommandDeleteResponse,
-        )
-
-    async def get(
-        self,
-        command: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[PromptModel]:
-        """
-        Get Prompt By Command
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not command:
-            raise ValueError(f"Expected a non-empty value for `command` but received {command!r}")
-        return await self._get(
-            f"/api/v1/prompts/command/{command}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -297,14 +297,14 @@ class CommandResourceWithRawResponse:
     def __init__(self, command: CommandResource) -> None:
         self._command = command
 
-        self.update = to_raw_response_wrapper(
-            command.update,
+        self.delete_by_command = to_raw_response_wrapper(
+            command.delete_by_command,
         )
-        self.delete = to_raw_response_wrapper(
-            command.delete,
+        self.get_by_command = to_raw_response_wrapper(
+            command.get_by_command,
         )
-        self.get = to_raw_response_wrapper(
-            command.get,
+        self.update_by_command = to_raw_response_wrapper(
+            command.update_by_command,
         )
 
 
@@ -312,14 +312,14 @@ class AsyncCommandResourceWithRawResponse:
     def __init__(self, command: AsyncCommandResource) -> None:
         self._command = command
 
-        self.update = async_to_raw_response_wrapper(
-            command.update,
+        self.delete_by_command = async_to_raw_response_wrapper(
+            command.delete_by_command,
         )
-        self.delete = async_to_raw_response_wrapper(
-            command.delete,
+        self.get_by_command = async_to_raw_response_wrapper(
+            command.get_by_command,
         )
-        self.get = async_to_raw_response_wrapper(
-            command.get,
+        self.update_by_command = async_to_raw_response_wrapper(
+            command.update_by_command,
         )
 
 
@@ -327,14 +327,14 @@ class CommandResourceWithStreamingResponse:
     def __init__(self, command: CommandResource) -> None:
         self._command = command
 
-        self.update = to_streamed_response_wrapper(
-            command.update,
+        self.delete_by_command = to_streamed_response_wrapper(
+            command.delete_by_command,
         )
-        self.delete = to_streamed_response_wrapper(
-            command.delete,
+        self.get_by_command = to_streamed_response_wrapper(
+            command.get_by_command,
         )
-        self.get = to_streamed_response_wrapper(
-            command.get,
+        self.update_by_command = to_streamed_response_wrapper(
+            command.update_by_command,
         )
 
 
@@ -342,12 +342,12 @@ class AsyncCommandResourceWithStreamingResponse:
     def __init__(self, command: AsyncCommandResource) -> None:
         self._command = command
 
-        self.update = async_to_streamed_response_wrapper(
-            command.update,
+        self.delete_by_command = async_to_streamed_response_wrapper(
+            command.delete_by_command,
         )
-        self.delete = async_to_streamed_response_wrapper(
-            command.delete,
+        self.get_by_command = async_to_streamed_response_wrapper(
+            command.get_by_command,
         )
-        self.get = async_to_streamed_response_wrapper(
-            command.get,
+        self.update_by_command = async_to_streamed_response_wrapper(
+            command.update_by_command,
         )

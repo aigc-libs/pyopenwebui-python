@@ -18,7 +18,7 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._base_client import make_request_options
-from ....types.ollama.api import pull_create_params, pull_retrieve_by_index_params
+from ....types.ollama.api import pull_pull_params, pull_pull_by_index_params
 
 __all__ = ["PullResource", "AsyncPullResource"]
 
@@ -43,7 +43,7 @@ class PullResource(SyncAPIResource):
         """
         return PullResourceWithStreamingResponse(self)
 
-    def create(
+    def pull(
         self,
         *,
         name: str,
@@ -69,18 +69,18 @@ class PullResource(SyncAPIResource):
         """
         return self._post(
             "/ollama/api/pull",
-            body=maybe_transform({"name": name}, pull_create_params.PullCreateParams),
+            body=maybe_transform({"name": name}, pull_pull_params.PullPullParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform({"url_idx": url_idx}, pull_create_params.PullCreateParams),
+                query=maybe_transform({"url_idx": url_idx}, pull_pull_params.PullPullParams),
             ),
             cast_to=object,
         )
 
-    def retrieve_by_index(
+    def pull_by_index(
         self,
         url_idx: int,
         *,
@@ -106,7 +106,7 @@ class PullResource(SyncAPIResource):
         """
         return self._post(
             f"/ollama/api/pull/{url_idx}",
-            body=maybe_transform({"name": name}, pull_retrieve_by_index_params.PullRetrieveByIndexParams),
+            body=maybe_transform({"name": name}, pull_pull_by_index_params.PullPullByIndexParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -134,7 +134,7 @@ class AsyncPullResource(AsyncAPIResource):
         """
         return AsyncPullResourceWithStreamingResponse(self)
 
-    async def create(
+    async def pull(
         self,
         *,
         name: str,
@@ -160,18 +160,18 @@ class AsyncPullResource(AsyncAPIResource):
         """
         return await self._post(
             "/ollama/api/pull",
-            body=await async_maybe_transform({"name": name}, pull_create_params.PullCreateParams),
+            body=await async_maybe_transform({"name": name}, pull_pull_params.PullPullParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform({"url_idx": url_idx}, pull_create_params.PullCreateParams),
+                query=await async_maybe_transform({"url_idx": url_idx}, pull_pull_params.PullPullParams),
             ),
             cast_to=object,
         )
 
-    async def retrieve_by_index(
+    async def pull_by_index(
         self,
         url_idx: int,
         *,
@@ -197,7 +197,7 @@ class AsyncPullResource(AsyncAPIResource):
         """
         return await self._post(
             f"/ollama/api/pull/{url_idx}",
-            body=await async_maybe_transform({"name": name}, pull_retrieve_by_index_params.PullRetrieveByIndexParams),
+            body=await async_maybe_transform({"name": name}, pull_pull_by_index_params.PullPullByIndexParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -209,11 +209,11 @@ class PullResourceWithRawResponse:
     def __init__(self, pull: PullResource) -> None:
         self._pull = pull
 
-        self.create = to_raw_response_wrapper(
-            pull.create,
+        self.pull = to_raw_response_wrapper(
+            pull.pull,
         )
-        self.retrieve_by_index = to_raw_response_wrapper(
-            pull.retrieve_by_index,
+        self.pull_by_index = to_raw_response_wrapper(
+            pull.pull_by_index,
         )
 
 
@@ -221,11 +221,11 @@ class AsyncPullResourceWithRawResponse:
     def __init__(self, pull: AsyncPullResource) -> None:
         self._pull = pull
 
-        self.create = async_to_raw_response_wrapper(
-            pull.create,
+        self.pull = async_to_raw_response_wrapper(
+            pull.pull,
         )
-        self.retrieve_by_index = async_to_raw_response_wrapper(
-            pull.retrieve_by_index,
+        self.pull_by_index = async_to_raw_response_wrapper(
+            pull.pull_by_index,
         )
 
 
@@ -233,11 +233,11 @@ class PullResourceWithStreamingResponse:
     def __init__(self, pull: PullResource) -> None:
         self._pull = pull
 
-        self.create = to_streamed_response_wrapper(
-            pull.create,
+        self.pull = to_streamed_response_wrapper(
+            pull.pull,
         )
-        self.retrieve_by_index = to_streamed_response_wrapper(
-            pull.retrieve_by_index,
+        self.pull_by_index = to_streamed_response_wrapper(
+            pull.pull_by_index,
         )
 
 
@@ -245,9 +245,9 @@ class AsyncPullResourceWithStreamingResponse:
     def __init__(self, pull: AsyncPullResource) -> None:
         self._pull = pull
 
-        self.create = async_to_streamed_response_wrapper(
-            pull.create,
+        self.pull = async_to_streamed_response_wrapper(
+            pull.pull,
         )
-        self.retrieve_by_index = async_to_streamed_response_wrapper(
-            pull.retrieve_by_index,
+        self.pull_by_index = async_to_streamed_response_wrapper(
+            pull.pull_by_index,
         )

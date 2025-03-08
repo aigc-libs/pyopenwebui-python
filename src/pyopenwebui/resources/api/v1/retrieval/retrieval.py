@@ -66,7 +66,7 @@ from .process.process import (
     AsyncProcessResourceWithStreamingResponse,
 )
 from ....._base_client import make_request_options
-from .....types.api.v1 import retrieval_delete_params
+from .....types.api.v1 import retrieval_delete_entries_params
 
 __all__ = ["RetrievalResource", "AsyncRetrievalResource"]
 
@@ -115,7 +115,7 @@ class RetrievalResource(SyncAPIResource):
         """
         return RetrievalResourceWithStreamingResponse(self)
 
-    def delete(
+    def delete_entries(
         self,
         *,
         collection_name: str,
@@ -146,7 +146,7 @@ class RetrievalResource(SyncAPIResource):
                     "collection_name": collection_name,
                     "file_id": file_id,
                 },
-                retrieval_delete_params.RetrievalDeleteParams,
+                retrieval_delete_entries_params.RetrievalDeleteEntriesParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -270,7 +270,7 @@ class AsyncRetrievalResource(AsyncAPIResource):
         """
         return AsyncRetrievalResourceWithStreamingResponse(self)
 
-    async def delete(
+    async def delete_entries(
         self,
         *,
         collection_name: str,
@@ -301,7 +301,7 @@ class AsyncRetrievalResource(AsyncAPIResource):
                     "collection_name": collection_name,
                     "file_id": file_id,
                 },
-                retrieval_delete_params.RetrievalDeleteParams,
+                retrieval_delete_entries_params.RetrievalDeleteEntriesParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -385,8 +385,8 @@ class RetrievalResourceWithRawResponse:
     def __init__(self, retrieval: RetrievalResource) -> None:
         self._retrieval = retrieval
 
-        self.delete = to_raw_response_wrapper(
-            retrieval.delete,
+        self.delete_entries = to_raw_response_wrapper(
+            retrieval.delete_entries,
         )
         self.get_embeddings = to_raw_response_wrapper(
             retrieval.get_embeddings,
@@ -427,8 +427,8 @@ class AsyncRetrievalResourceWithRawResponse:
     def __init__(self, retrieval: AsyncRetrievalResource) -> None:
         self._retrieval = retrieval
 
-        self.delete = async_to_raw_response_wrapper(
-            retrieval.delete,
+        self.delete_entries = async_to_raw_response_wrapper(
+            retrieval.delete_entries,
         )
         self.get_embeddings = async_to_raw_response_wrapper(
             retrieval.get_embeddings,
@@ -469,8 +469,8 @@ class RetrievalResourceWithStreamingResponse:
     def __init__(self, retrieval: RetrievalResource) -> None:
         self._retrieval = retrieval
 
-        self.delete = to_streamed_response_wrapper(
-            retrieval.delete,
+        self.delete_entries = to_streamed_response_wrapper(
+            retrieval.delete_entries,
         )
         self.get_embeddings = to_streamed_response_wrapper(
             retrieval.get_embeddings,
@@ -511,8 +511,8 @@ class AsyncRetrievalResourceWithStreamingResponse:
     def __init__(self, retrieval: AsyncRetrievalResource) -> None:
         self._retrieval = retrieval
 
-        self.delete = async_to_streamed_response_wrapper(
-            retrieval.delete,
+        self.delete_entries = async_to_streamed_response_wrapper(
+            retrieval.delete_entries,
         )
         self.get_embeddings = async_to_streamed_response_wrapper(
             retrieval.get_embeddings,

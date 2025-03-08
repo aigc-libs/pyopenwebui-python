@@ -17,23 +17,23 @@ class TestPull:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @parametrize
-    def test_method_create(self, client: Pyopenwebui) -> None:
-        pull = client.ollama.api.pull.create(
+    def test_method_pull(self, client: Pyopenwebui) -> None:
+        pull = client.ollama.api.pull.pull(
             name="name",
         )
         assert_matches_type(object, pull, path=["response"])
 
     @parametrize
-    def test_method_create_with_all_params(self, client: Pyopenwebui) -> None:
-        pull = client.ollama.api.pull.create(
+    def test_method_pull_with_all_params(self, client: Pyopenwebui) -> None:
+        pull = client.ollama.api.pull.pull(
             name="name",
             url_idx=0,
         )
         assert_matches_type(object, pull, path=["response"])
 
     @parametrize
-    def test_raw_response_create(self, client: Pyopenwebui) -> None:
-        response = client.ollama.api.pull.with_raw_response.create(
+    def test_raw_response_pull(self, client: Pyopenwebui) -> None:
+        response = client.ollama.api.pull.with_raw_response.pull(
             name="name",
         )
 
@@ -43,8 +43,8 @@ class TestPull:
         assert_matches_type(object, pull, path=["response"])
 
     @parametrize
-    def test_streaming_response_create(self, client: Pyopenwebui) -> None:
-        with client.ollama.api.pull.with_streaming_response.create(
+    def test_streaming_response_pull(self, client: Pyopenwebui) -> None:
+        with client.ollama.api.pull.with_streaming_response.pull(
             name="name",
         ) as response:
             assert not response.is_closed
@@ -56,16 +56,16 @@ class TestPull:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
-    def test_method_retrieve_by_index(self, client: Pyopenwebui) -> None:
-        pull = client.ollama.api.pull.retrieve_by_index(
+    def test_method_pull_by_index(self, client: Pyopenwebui) -> None:
+        pull = client.ollama.api.pull.pull_by_index(
             url_idx=0,
             name="name",
         )
         assert_matches_type(object, pull, path=["response"])
 
     @parametrize
-    def test_raw_response_retrieve_by_index(self, client: Pyopenwebui) -> None:
-        response = client.ollama.api.pull.with_raw_response.retrieve_by_index(
+    def test_raw_response_pull_by_index(self, client: Pyopenwebui) -> None:
+        response = client.ollama.api.pull.with_raw_response.pull_by_index(
             url_idx=0,
             name="name",
         )
@@ -76,8 +76,8 @@ class TestPull:
         assert_matches_type(object, pull, path=["response"])
 
     @parametrize
-    def test_streaming_response_retrieve_by_index(self, client: Pyopenwebui) -> None:
-        with client.ollama.api.pull.with_streaming_response.retrieve_by_index(
+    def test_streaming_response_pull_by_index(self, client: Pyopenwebui) -> None:
+        with client.ollama.api.pull.with_streaming_response.pull_by_index(
             url_idx=0,
             name="name",
         ) as response:
@@ -94,23 +94,23 @@ class TestAsyncPull:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @parametrize
-    async def test_method_create(self, async_client: AsyncPyopenwebui) -> None:
-        pull = await async_client.ollama.api.pull.create(
+    async def test_method_pull(self, async_client: AsyncPyopenwebui) -> None:
+        pull = await async_client.ollama.api.pull.pull(
             name="name",
         )
         assert_matches_type(object, pull, path=["response"])
 
     @parametrize
-    async def test_method_create_with_all_params(self, async_client: AsyncPyopenwebui) -> None:
-        pull = await async_client.ollama.api.pull.create(
+    async def test_method_pull_with_all_params(self, async_client: AsyncPyopenwebui) -> None:
+        pull = await async_client.ollama.api.pull.pull(
             name="name",
             url_idx=0,
         )
         assert_matches_type(object, pull, path=["response"])
 
     @parametrize
-    async def test_raw_response_create(self, async_client: AsyncPyopenwebui) -> None:
-        response = await async_client.ollama.api.pull.with_raw_response.create(
+    async def test_raw_response_pull(self, async_client: AsyncPyopenwebui) -> None:
+        response = await async_client.ollama.api.pull.with_raw_response.pull(
             name="name",
         )
 
@@ -120,8 +120,8 @@ class TestAsyncPull:
         assert_matches_type(object, pull, path=["response"])
 
     @parametrize
-    async def test_streaming_response_create(self, async_client: AsyncPyopenwebui) -> None:
-        async with async_client.ollama.api.pull.with_streaming_response.create(
+    async def test_streaming_response_pull(self, async_client: AsyncPyopenwebui) -> None:
+        async with async_client.ollama.api.pull.with_streaming_response.pull(
             name="name",
         ) as response:
             assert not response.is_closed
@@ -133,16 +133,16 @@ class TestAsyncPull:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
-    async def test_method_retrieve_by_index(self, async_client: AsyncPyopenwebui) -> None:
-        pull = await async_client.ollama.api.pull.retrieve_by_index(
+    async def test_method_pull_by_index(self, async_client: AsyncPyopenwebui) -> None:
+        pull = await async_client.ollama.api.pull.pull_by_index(
             url_idx=0,
             name="name",
         )
         assert_matches_type(object, pull, path=["response"])
 
     @parametrize
-    async def test_raw_response_retrieve_by_index(self, async_client: AsyncPyopenwebui) -> None:
-        response = await async_client.ollama.api.pull.with_raw_response.retrieve_by_index(
+    async def test_raw_response_pull_by_index(self, async_client: AsyncPyopenwebui) -> None:
+        response = await async_client.ollama.api.pull.with_raw_response.pull_by_index(
             url_idx=0,
             name="name",
         )
@@ -153,8 +153,8 @@ class TestAsyncPull:
         assert_matches_type(object, pull, path=["response"])
 
     @parametrize
-    async def test_streaming_response_retrieve_by_index(self, async_client: AsyncPyopenwebui) -> None:
-        async with async_client.ollama.api.pull.with_streaming_response.retrieve_by_index(
+    async def test_streaming_response_pull_by_index(self, async_client: AsyncPyopenwebui) -> None:
+        async with async_client.ollama.api.pull.with_streaming_response.pull_by_index(
             url_idx=0,
             name="name",
         ) as response:

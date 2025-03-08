@@ -20,7 +20,7 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._base_client import make_request_options
-from ....types.ollama.api import embedding_create_params, embedding_create_by_index_params
+from ....types.ollama.api import embedding_embeddings_params, embedding_embeddings_by_index_params
 
 __all__ = ["EmbeddingsResource", "AsyncEmbeddingsResource"]
 
@@ -45,7 +45,7 @@ class EmbeddingsResource(SyncAPIResource):
         """
         return EmbeddingsResourceWithStreamingResponse(self)
 
-    def create(
+    def embeddings(
         self,
         *,
         model: str,
@@ -81,19 +81,19 @@ class EmbeddingsResource(SyncAPIResource):
                     "keep_alive": keep_alive,
                     "options": options,
                 },
-                embedding_create_params.EmbeddingCreateParams,
+                embedding_embeddings_params.EmbeddingEmbeddingsParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform({"url_idx": url_idx}, embedding_create_params.EmbeddingCreateParams),
+                query=maybe_transform({"url_idx": url_idx}, embedding_embeddings_params.EmbeddingEmbeddingsParams),
             ),
             cast_to=object,
         )
 
-    def create_by_index(
+    def embeddings_by_index(
         self,
         url_idx: int,
         *,
@@ -129,7 +129,7 @@ class EmbeddingsResource(SyncAPIResource):
                     "keep_alive": keep_alive,
                     "options": options,
                 },
-                embedding_create_by_index_params.EmbeddingCreateByIndexParams,
+                embedding_embeddings_by_index_params.EmbeddingEmbeddingsByIndexParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -158,7 +158,7 @@ class AsyncEmbeddingsResource(AsyncAPIResource):
         """
         return AsyncEmbeddingsResourceWithStreamingResponse(self)
 
-    async def create(
+    async def embeddings(
         self,
         *,
         model: str,
@@ -194,19 +194,21 @@ class AsyncEmbeddingsResource(AsyncAPIResource):
                     "keep_alive": keep_alive,
                     "options": options,
                 },
-                embedding_create_params.EmbeddingCreateParams,
+                embedding_embeddings_params.EmbeddingEmbeddingsParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform({"url_idx": url_idx}, embedding_create_params.EmbeddingCreateParams),
+                query=await async_maybe_transform(
+                    {"url_idx": url_idx}, embedding_embeddings_params.EmbeddingEmbeddingsParams
+                ),
             ),
             cast_to=object,
         )
 
-    async def create_by_index(
+    async def embeddings_by_index(
         self,
         url_idx: int,
         *,
@@ -242,7 +244,7 @@ class AsyncEmbeddingsResource(AsyncAPIResource):
                     "keep_alive": keep_alive,
                     "options": options,
                 },
-                embedding_create_by_index_params.EmbeddingCreateByIndexParams,
+                embedding_embeddings_by_index_params.EmbeddingEmbeddingsByIndexParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -255,11 +257,11 @@ class EmbeddingsResourceWithRawResponse:
     def __init__(self, embeddings: EmbeddingsResource) -> None:
         self._embeddings = embeddings
 
-        self.create = to_raw_response_wrapper(
-            embeddings.create,
+        self.embeddings = to_raw_response_wrapper(
+            embeddings.embeddings,
         )
-        self.create_by_index = to_raw_response_wrapper(
-            embeddings.create_by_index,
+        self.embeddings_by_index = to_raw_response_wrapper(
+            embeddings.embeddings_by_index,
         )
 
 
@@ -267,11 +269,11 @@ class AsyncEmbeddingsResourceWithRawResponse:
     def __init__(self, embeddings: AsyncEmbeddingsResource) -> None:
         self._embeddings = embeddings
 
-        self.create = async_to_raw_response_wrapper(
-            embeddings.create,
+        self.embeddings = async_to_raw_response_wrapper(
+            embeddings.embeddings,
         )
-        self.create_by_index = async_to_raw_response_wrapper(
-            embeddings.create_by_index,
+        self.embeddings_by_index = async_to_raw_response_wrapper(
+            embeddings.embeddings_by_index,
         )
 
 
@@ -279,11 +281,11 @@ class EmbeddingsResourceWithStreamingResponse:
     def __init__(self, embeddings: EmbeddingsResource) -> None:
         self._embeddings = embeddings
 
-        self.create = to_streamed_response_wrapper(
-            embeddings.create,
+        self.embeddings = to_streamed_response_wrapper(
+            embeddings.embeddings,
         )
-        self.create_by_index = to_streamed_response_wrapper(
-            embeddings.create_by_index,
+        self.embeddings_by_index = to_streamed_response_wrapper(
+            embeddings.embeddings_by_index,
         )
 
 
@@ -291,9 +293,9 @@ class AsyncEmbeddingsResourceWithStreamingResponse:
     def __init__(self, embeddings: AsyncEmbeddingsResource) -> None:
         self._embeddings = embeddings
 
-        self.create = async_to_streamed_response_wrapper(
-            embeddings.create,
+        self.embeddings = async_to_streamed_response_wrapper(
+            embeddings.embeddings,
         )
-        self.create_by_index = async_to_streamed_response_wrapper(
-            embeddings.create_by_index,
+        self.embeddings_by_index = async_to_streamed_response_wrapper(
+            embeddings.embeddings_by_index,
         )

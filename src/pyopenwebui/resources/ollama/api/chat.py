@@ -20,7 +20,7 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._base_client import make_request_options
-from ....types.ollama.api import chat_create_params, chat_create_by_index_params
+from ....types.ollama.api import chat_chat_params, chat_chat_by_index_params
 
 __all__ = ["ChatResource", "AsyncChatResource"]
 
@@ -45,7 +45,7 @@ class ChatResource(SyncAPIResource):
         """
         return ChatResourceWithStreamingResponse(self)
 
-    def create(
+    def chat(
         self,
         *,
         body: object,
@@ -72,7 +72,7 @@ class ChatResource(SyncAPIResource):
         """
         return self._post(
             "/ollama/api/chat",
-            body=maybe_transform(body, chat_create_params.ChatCreateParams),
+            body=maybe_transform(body, chat_chat_params.ChatChatParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -83,13 +83,13 @@ class ChatResource(SyncAPIResource):
                         "bypass_filter": bypass_filter,
                         "url_idx": url_idx,
                     },
-                    chat_create_params.ChatCreateParams,
+                    chat_chat_params.ChatChatParams,
                 ),
             ),
             cast_to=object,
         )
 
-    def create_by_index(
+    def chat_by_index(
         self,
         url_idx: int,
         *,
@@ -116,14 +116,14 @@ class ChatResource(SyncAPIResource):
         """
         return self._post(
             f"/ollama/api/chat/{url_idx}",
-            body=maybe_transform(body, chat_create_by_index_params.ChatCreateByIndexParams),
+            body=maybe_transform(body, chat_chat_by_index_params.ChatChatByIndexParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
                 query=maybe_transform(
-                    {"bypass_filter": bypass_filter}, chat_create_by_index_params.ChatCreateByIndexParams
+                    {"bypass_filter": bypass_filter}, chat_chat_by_index_params.ChatChatByIndexParams
                 ),
             ),
             cast_to=object,
@@ -150,7 +150,7 @@ class AsyncChatResource(AsyncAPIResource):
         """
         return AsyncChatResourceWithStreamingResponse(self)
 
-    async def create(
+    async def chat(
         self,
         *,
         body: object,
@@ -177,7 +177,7 @@ class AsyncChatResource(AsyncAPIResource):
         """
         return await self._post(
             "/ollama/api/chat",
-            body=await async_maybe_transform(body, chat_create_params.ChatCreateParams),
+            body=await async_maybe_transform(body, chat_chat_params.ChatChatParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -188,13 +188,13 @@ class AsyncChatResource(AsyncAPIResource):
                         "bypass_filter": bypass_filter,
                         "url_idx": url_idx,
                     },
-                    chat_create_params.ChatCreateParams,
+                    chat_chat_params.ChatChatParams,
                 ),
             ),
             cast_to=object,
         )
 
-    async def create_by_index(
+    async def chat_by_index(
         self,
         url_idx: int,
         *,
@@ -221,14 +221,14 @@ class AsyncChatResource(AsyncAPIResource):
         """
         return await self._post(
             f"/ollama/api/chat/{url_idx}",
-            body=await async_maybe_transform(body, chat_create_by_index_params.ChatCreateByIndexParams),
+            body=await async_maybe_transform(body, chat_chat_by_index_params.ChatChatByIndexParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
                 query=await async_maybe_transform(
-                    {"bypass_filter": bypass_filter}, chat_create_by_index_params.ChatCreateByIndexParams
+                    {"bypass_filter": bypass_filter}, chat_chat_by_index_params.ChatChatByIndexParams
                 ),
             ),
             cast_to=object,
@@ -239,11 +239,11 @@ class ChatResourceWithRawResponse:
     def __init__(self, chat: ChatResource) -> None:
         self._chat = chat
 
-        self.create = to_raw_response_wrapper(
-            chat.create,
+        self.chat = to_raw_response_wrapper(
+            chat.chat,
         )
-        self.create_by_index = to_raw_response_wrapper(
-            chat.create_by_index,
+        self.chat_by_index = to_raw_response_wrapper(
+            chat.chat_by_index,
         )
 
 
@@ -251,11 +251,11 @@ class AsyncChatResourceWithRawResponse:
     def __init__(self, chat: AsyncChatResource) -> None:
         self._chat = chat
 
-        self.create = async_to_raw_response_wrapper(
-            chat.create,
+        self.chat = async_to_raw_response_wrapper(
+            chat.chat,
         )
-        self.create_by_index = async_to_raw_response_wrapper(
-            chat.create_by_index,
+        self.chat_by_index = async_to_raw_response_wrapper(
+            chat.chat_by_index,
         )
 
 
@@ -263,11 +263,11 @@ class ChatResourceWithStreamingResponse:
     def __init__(self, chat: ChatResource) -> None:
         self._chat = chat
 
-        self.create = to_streamed_response_wrapper(
-            chat.create,
+        self.chat = to_streamed_response_wrapper(
+            chat.chat,
         )
-        self.create_by_index = to_streamed_response_wrapper(
-            chat.create_by_index,
+        self.chat_by_index = to_streamed_response_wrapper(
+            chat.chat_by_index,
         )
 
 
@@ -275,9 +275,9 @@ class AsyncChatResourceWithStreamingResponse:
     def __init__(self, chat: AsyncChatResource) -> None:
         self._chat = chat
 
-        self.create = async_to_streamed_response_wrapper(
-            chat.create,
+        self.chat = async_to_streamed_response_wrapper(
+            chat.chat,
         )
-        self.create_by_index = async_to_streamed_response_wrapper(
-            chat.create_by_index,
+        self.chat_by_index = async_to_streamed_response_wrapper(
+            chat.chat_by_index,
         )

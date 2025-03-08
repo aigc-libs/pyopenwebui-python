@@ -20,7 +20,7 @@ from ....._response import (
     async_to_streamed_response_wrapper,
 )
 from ....._base_client import make_request_options
-from .....types.ollama.v1.chat import completion_generate_params, completion_get_by_index_params
+from .....types.ollama.v1.chat import completion_generate_params, completion_generate_by_index_params
 
 __all__ = ["CompletionsResource", "AsyncCompletionsResource"]
 
@@ -82,7 +82,7 @@ class CompletionsResource(SyncAPIResource):
             cast_to=object,
         )
 
-    def get_by_index(
+    def generate_by_index(
         self,
         url_idx: int,
         *,
@@ -108,7 +108,7 @@ class CompletionsResource(SyncAPIResource):
         """
         return self._post(
             f"/ollama/v1/chat/completions/{url_idx}",
-            body=maybe_transform(body, completion_get_by_index_params.CompletionGetByIndexParams),
+            body=maybe_transform(body, completion_generate_by_index_params.CompletionGenerateByIndexParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -175,7 +175,7 @@ class AsyncCompletionsResource(AsyncAPIResource):
             cast_to=object,
         )
 
-    async def get_by_index(
+    async def generate_by_index(
         self,
         url_idx: int,
         *,
@@ -201,7 +201,7 @@ class AsyncCompletionsResource(AsyncAPIResource):
         """
         return await self._post(
             f"/ollama/v1/chat/completions/{url_idx}",
-            body=await async_maybe_transform(body, completion_get_by_index_params.CompletionGetByIndexParams),
+            body=await async_maybe_transform(body, completion_generate_by_index_params.CompletionGenerateByIndexParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -216,8 +216,8 @@ class CompletionsResourceWithRawResponse:
         self.generate = to_raw_response_wrapper(
             completions.generate,
         )
-        self.get_by_index = to_raw_response_wrapper(
-            completions.get_by_index,
+        self.generate_by_index = to_raw_response_wrapper(
+            completions.generate_by_index,
         )
 
 
@@ -228,8 +228,8 @@ class AsyncCompletionsResourceWithRawResponse:
         self.generate = async_to_raw_response_wrapper(
             completions.generate,
         )
-        self.get_by_index = async_to_raw_response_wrapper(
-            completions.get_by_index,
+        self.generate_by_index = async_to_raw_response_wrapper(
+            completions.generate_by_index,
         )
 
 
@@ -240,8 +240,8 @@ class CompletionsResourceWithStreamingResponse:
         self.generate = to_streamed_response_wrapper(
             completions.generate,
         )
-        self.get_by_index = to_streamed_response_wrapper(
-            completions.get_by_index,
+        self.generate_by_index = to_streamed_response_wrapper(
+            completions.generate_by_index,
         )
 
 
@@ -252,6 +252,6 @@ class AsyncCompletionsResourceWithStreamingResponse:
         self.generate = async_to_streamed_response_wrapper(
             completions.generate,
         )
-        self.get_by_index = async_to_streamed_response_wrapper(
-            completions.get_by_index,
+        self.generate_by_index = async_to_streamed_response_wrapper(
+            completions.generate_by_index,
         )

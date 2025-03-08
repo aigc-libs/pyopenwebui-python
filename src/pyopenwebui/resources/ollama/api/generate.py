@@ -20,7 +20,7 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._base_client import make_request_options
-from ....types.ollama.api import generate_create_params, generate_create_by_index_params
+from ....types.ollama.api import generate_generate_params, generate_generate_by_index_params
 
 __all__ = ["GenerateResource", "AsyncGenerateResource"]
 
@@ -45,7 +45,7 @@ class GenerateResource(SyncAPIResource):
         """
         return GenerateResourceWithStreamingResponse(self)
 
-    def create(
+    def generate(
         self,
         *,
         model: str,
@@ -97,19 +97,19 @@ class GenerateResource(SyncAPIResource):
                     "system": system,
                     "template": template,
                 },
-                generate_create_params.GenerateCreateParams,
+                generate_generate_params.GenerateGenerateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform({"url_idx": url_idx}, generate_create_params.GenerateCreateParams),
+                query=maybe_transform({"url_idx": url_idx}, generate_generate_params.GenerateGenerateParams),
             ),
             cast_to=object,
         )
 
-    def create_by_index(
+    def generate_by_index(
         self,
         url_idx: int,
         *,
@@ -161,7 +161,7 @@ class GenerateResource(SyncAPIResource):
                     "system": system,
                     "template": template,
                 },
-                generate_create_by_index_params.GenerateCreateByIndexParams,
+                generate_generate_by_index_params.GenerateGenerateByIndexParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -190,7 +190,7 @@ class AsyncGenerateResource(AsyncAPIResource):
         """
         return AsyncGenerateResourceWithStreamingResponse(self)
 
-    async def create(
+    async def generate(
         self,
         *,
         model: str,
@@ -242,19 +242,21 @@ class AsyncGenerateResource(AsyncAPIResource):
                     "system": system,
                     "template": template,
                 },
-                generate_create_params.GenerateCreateParams,
+                generate_generate_params.GenerateGenerateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform({"url_idx": url_idx}, generate_create_params.GenerateCreateParams),
+                query=await async_maybe_transform(
+                    {"url_idx": url_idx}, generate_generate_params.GenerateGenerateParams
+                ),
             ),
             cast_to=object,
         )
 
-    async def create_by_index(
+    async def generate_by_index(
         self,
         url_idx: int,
         *,
@@ -306,7 +308,7 @@ class AsyncGenerateResource(AsyncAPIResource):
                     "system": system,
                     "template": template,
                 },
-                generate_create_by_index_params.GenerateCreateByIndexParams,
+                generate_generate_by_index_params.GenerateGenerateByIndexParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -319,11 +321,11 @@ class GenerateResourceWithRawResponse:
     def __init__(self, generate: GenerateResource) -> None:
         self._generate = generate
 
-        self.create = to_raw_response_wrapper(
-            generate.create,
+        self.generate = to_raw_response_wrapper(
+            generate.generate,
         )
-        self.create_by_index = to_raw_response_wrapper(
-            generate.create_by_index,
+        self.generate_by_index = to_raw_response_wrapper(
+            generate.generate_by_index,
         )
 
 
@@ -331,11 +333,11 @@ class AsyncGenerateResourceWithRawResponse:
     def __init__(self, generate: AsyncGenerateResource) -> None:
         self._generate = generate
 
-        self.create = async_to_raw_response_wrapper(
-            generate.create,
+        self.generate = async_to_raw_response_wrapper(
+            generate.generate,
         )
-        self.create_by_index = async_to_raw_response_wrapper(
-            generate.create_by_index,
+        self.generate_by_index = async_to_raw_response_wrapper(
+            generate.generate_by_index,
         )
 
 
@@ -343,11 +345,11 @@ class GenerateResourceWithStreamingResponse:
     def __init__(self, generate: GenerateResource) -> None:
         self._generate = generate
 
-        self.create = to_streamed_response_wrapper(
-            generate.create,
+        self.generate = to_streamed_response_wrapper(
+            generate.generate,
         )
-        self.create_by_index = to_streamed_response_wrapper(
-            generate.create_by_index,
+        self.generate_by_index = to_streamed_response_wrapper(
+            generate.generate_by_index,
         )
 
 
@@ -355,9 +357,9 @@ class AsyncGenerateResourceWithStreamingResponse:
     def __init__(self, generate: AsyncGenerateResource) -> None:
         self._generate = generate
 
-        self.create = async_to_streamed_response_wrapper(
-            generate.create,
+        self.generate = async_to_streamed_response_wrapper(
+            generate.generate,
         )
-        self.create_by_index = async_to_streamed_response_wrapper(
-            generate.create_by_index,
+        self.generate_by_index = async_to_streamed_response_wrapper(
+            generate.generate_by_index,
         )

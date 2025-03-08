@@ -17,16 +17,16 @@ class TestGenerate:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @parametrize
-    def test_method_create(self, client: Pyopenwebui) -> None:
-        generate = client.ollama.api.generate.create(
+    def test_method_generate(self, client: Pyopenwebui) -> None:
+        generate = client.ollama.api.generate.generate(
             model="model",
             prompt="prompt",
         )
         assert_matches_type(object, generate, path=["response"])
 
     @parametrize
-    def test_method_create_with_all_params(self, client: Pyopenwebui) -> None:
-        generate = client.ollama.api.generate.create(
+    def test_method_generate_with_all_params(self, client: Pyopenwebui) -> None:
+        generate = client.ollama.api.generate.generate(
             model="model",
             prompt="prompt",
             url_idx=0,
@@ -44,8 +44,8 @@ class TestGenerate:
         assert_matches_type(object, generate, path=["response"])
 
     @parametrize
-    def test_raw_response_create(self, client: Pyopenwebui) -> None:
-        response = client.ollama.api.generate.with_raw_response.create(
+    def test_raw_response_generate(self, client: Pyopenwebui) -> None:
+        response = client.ollama.api.generate.with_raw_response.generate(
             model="model",
             prompt="prompt",
         )
@@ -56,8 +56,8 @@ class TestGenerate:
         assert_matches_type(object, generate, path=["response"])
 
     @parametrize
-    def test_streaming_response_create(self, client: Pyopenwebui) -> None:
-        with client.ollama.api.generate.with_streaming_response.create(
+    def test_streaming_response_generate(self, client: Pyopenwebui) -> None:
+        with client.ollama.api.generate.with_streaming_response.generate(
             model="model",
             prompt="prompt",
         ) as response:
@@ -70,8 +70,8 @@ class TestGenerate:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
-    def test_method_create_by_index(self, client: Pyopenwebui) -> None:
-        generate = client.ollama.api.generate.create_by_index(
+    def test_method_generate_by_index(self, client: Pyopenwebui) -> None:
+        generate = client.ollama.api.generate.generate_by_index(
             url_idx=0,
             model="model",
             prompt="prompt",
@@ -79,8 +79,8 @@ class TestGenerate:
         assert_matches_type(object, generate, path=["response"])
 
     @parametrize
-    def test_method_create_by_index_with_all_params(self, client: Pyopenwebui) -> None:
-        generate = client.ollama.api.generate.create_by_index(
+    def test_method_generate_by_index_with_all_params(self, client: Pyopenwebui) -> None:
+        generate = client.ollama.api.generate.generate_by_index(
             url_idx=0,
             model="model",
             prompt="prompt",
@@ -98,8 +98,8 @@ class TestGenerate:
         assert_matches_type(object, generate, path=["response"])
 
     @parametrize
-    def test_raw_response_create_by_index(self, client: Pyopenwebui) -> None:
-        response = client.ollama.api.generate.with_raw_response.create_by_index(
+    def test_raw_response_generate_by_index(self, client: Pyopenwebui) -> None:
+        response = client.ollama.api.generate.with_raw_response.generate_by_index(
             url_idx=0,
             model="model",
             prompt="prompt",
@@ -111,8 +111,8 @@ class TestGenerate:
         assert_matches_type(object, generate, path=["response"])
 
     @parametrize
-    def test_streaming_response_create_by_index(self, client: Pyopenwebui) -> None:
-        with client.ollama.api.generate.with_streaming_response.create_by_index(
+    def test_streaming_response_generate_by_index(self, client: Pyopenwebui) -> None:
+        with client.ollama.api.generate.with_streaming_response.generate_by_index(
             url_idx=0,
             model="model",
             prompt="prompt",
@@ -130,16 +130,16 @@ class TestAsyncGenerate:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @parametrize
-    async def test_method_create(self, async_client: AsyncPyopenwebui) -> None:
-        generate = await async_client.ollama.api.generate.create(
+    async def test_method_generate(self, async_client: AsyncPyopenwebui) -> None:
+        generate = await async_client.ollama.api.generate.generate(
             model="model",
             prompt="prompt",
         )
         assert_matches_type(object, generate, path=["response"])
 
     @parametrize
-    async def test_method_create_with_all_params(self, async_client: AsyncPyopenwebui) -> None:
-        generate = await async_client.ollama.api.generate.create(
+    async def test_method_generate_with_all_params(self, async_client: AsyncPyopenwebui) -> None:
+        generate = await async_client.ollama.api.generate.generate(
             model="model",
             prompt="prompt",
             url_idx=0,
@@ -157,8 +157,8 @@ class TestAsyncGenerate:
         assert_matches_type(object, generate, path=["response"])
 
     @parametrize
-    async def test_raw_response_create(self, async_client: AsyncPyopenwebui) -> None:
-        response = await async_client.ollama.api.generate.with_raw_response.create(
+    async def test_raw_response_generate(self, async_client: AsyncPyopenwebui) -> None:
+        response = await async_client.ollama.api.generate.with_raw_response.generate(
             model="model",
             prompt="prompt",
         )
@@ -169,8 +169,8 @@ class TestAsyncGenerate:
         assert_matches_type(object, generate, path=["response"])
 
     @parametrize
-    async def test_streaming_response_create(self, async_client: AsyncPyopenwebui) -> None:
-        async with async_client.ollama.api.generate.with_streaming_response.create(
+    async def test_streaming_response_generate(self, async_client: AsyncPyopenwebui) -> None:
+        async with async_client.ollama.api.generate.with_streaming_response.generate(
             model="model",
             prompt="prompt",
         ) as response:
@@ -183,8 +183,8 @@ class TestAsyncGenerate:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
-    async def test_method_create_by_index(self, async_client: AsyncPyopenwebui) -> None:
-        generate = await async_client.ollama.api.generate.create_by_index(
+    async def test_method_generate_by_index(self, async_client: AsyncPyopenwebui) -> None:
+        generate = await async_client.ollama.api.generate.generate_by_index(
             url_idx=0,
             model="model",
             prompt="prompt",
@@ -192,8 +192,8 @@ class TestAsyncGenerate:
         assert_matches_type(object, generate, path=["response"])
 
     @parametrize
-    async def test_method_create_by_index_with_all_params(self, async_client: AsyncPyopenwebui) -> None:
-        generate = await async_client.ollama.api.generate.create_by_index(
+    async def test_method_generate_by_index_with_all_params(self, async_client: AsyncPyopenwebui) -> None:
+        generate = await async_client.ollama.api.generate.generate_by_index(
             url_idx=0,
             model="model",
             prompt="prompt",
@@ -211,8 +211,8 @@ class TestAsyncGenerate:
         assert_matches_type(object, generate, path=["response"])
 
     @parametrize
-    async def test_raw_response_create_by_index(self, async_client: AsyncPyopenwebui) -> None:
-        response = await async_client.ollama.api.generate.with_raw_response.create_by_index(
+    async def test_raw_response_generate_by_index(self, async_client: AsyncPyopenwebui) -> None:
+        response = await async_client.ollama.api.generate.with_raw_response.generate_by_index(
             url_idx=0,
             model="model",
             prompt="prompt",
@@ -224,8 +224,8 @@ class TestAsyncGenerate:
         assert_matches_type(object, generate, path=["response"])
 
     @parametrize
-    async def test_streaming_response_create_by_index(self, async_client: AsyncPyopenwebui) -> None:
-        async with async_client.ollama.api.generate.with_streaming_response.create_by_index(
+    async def test_streaming_response_generate_by_index(self, async_client: AsyncPyopenwebui) -> None:
+        async with async_client.ollama.api.generate.with_streaming_response.generate_by_index(
             url_idx=0,
             model="model",
             prompt="prompt",

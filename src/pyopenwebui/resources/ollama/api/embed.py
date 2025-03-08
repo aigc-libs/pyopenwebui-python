@@ -20,7 +20,7 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._base_client import make_request_options
-from ....types.ollama.api import embed_create_params, embed_create_by_index_params
+from ....types.ollama.api import embed_embed_params, embed_embed_by_index_params
 
 __all__ = ["EmbedResource", "AsyncEmbedResource"]
 
@@ -45,7 +45,7 @@ class EmbedResource(SyncAPIResource):
         """
         return EmbedResourceWithStreamingResponse(self)
 
-    def create(
+    def embed(
         self,
         *,
         input: Union[List[str], str],
@@ -83,19 +83,19 @@ class EmbedResource(SyncAPIResource):
                     "options": options,
                     "truncate": truncate,
                 },
-                embed_create_params.EmbedCreateParams,
+                embed_embed_params.EmbedEmbedParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform({"url_idx": url_idx}, embed_create_params.EmbedCreateParams),
+                query=maybe_transform({"url_idx": url_idx}, embed_embed_params.EmbedEmbedParams),
             ),
             cast_to=object,
         )
 
-    def create_by_index(
+    def embed_by_index(
         self,
         url_idx: int,
         *,
@@ -133,7 +133,7 @@ class EmbedResource(SyncAPIResource):
                     "options": options,
                     "truncate": truncate,
                 },
-                embed_create_by_index_params.EmbedCreateByIndexParams,
+                embed_embed_by_index_params.EmbedEmbedByIndexParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -162,7 +162,7 @@ class AsyncEmbedResource(AsyncAPIResource):
         """
         return AsyncEmbedResourceWithStreamingResponse(self)
 
-    async def create(
+    async def embed(
         self,
         *,
         input: Union[List[str], str],
@@ -200,19 +200,19 @@ class AsyncEmbedResource(AsyncAPIResource):
                     "options": options,
                     "truncate": truncate,
                 },
-                embed_create_params.EmbedCreateParams,
+                embed_embed_params.EmbedEmbedParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform({"url_idx": url_idx}, embed_create_params.EmbedCreateParams),
+                query=await async_maybe_transform({"url_idx": url_idx}, embed_embed_params.EmbedEmbedParams),
             ),
             cast_to=object,
         )
 
-    async def create_by_index(
+    async def embed_by_index(
         self,
         url_idx: int,
         *,
@@ -250,7 +250,7 @@ class AsyncEmbedResource(AsyncAPIResource):
                     "options": options,
                     "truncate": truncate,
                 },
-                embed_create_by_index_params.EmbedCreateByIndexParams,
+                embed_embed_by_index_params.EmbedEmbedByIndexParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -263,11 +263,11 @@ class EmbedResourceWithRawResponse:
     def __init__(self, embed: EmbedResource) -> None:
         self._embed = embed
 
-        self.create = to_raw_response_wrapper(
-            embed.create,
+        self.embed = to_raw_response_wrapper(
+            embed.embed,
         )
-        self.create_by_index = to_raw_response_wrapper(
-            embed.create_by_index,
+        self.embed_by_index = to_raw_response_wrapper(
+            embed.embed_by_index,
         )
 
 
@@ -275,11 +275,11 @@ class AsyncEmbedResourceWithRawResponse:
     def __init__(self, embed: AsyncEmbedResource) -> None:
         self._embed = embed
 
-        self.create = async_to_raw_response_wrapper(
-            embed.create,
+        self.embed = async_to_raw_response_wrapper(
+            embed.embed,
         )
-        self.create_by_index = async_to_raw_response_wrapper(
-            embed.create_by_index,
+        self.embed_by_index = async_to_raw_response_wrapper(
+            embed.embed_by_index,
         )
 
 
@@ -287,11 +287,11 @@ class EmbedResourceWithStreamingResponse:
     def __init__(self, embed: EmbedResource) -> None:
         self._embed = embed
 
-        self.create = to_streamed_response_wrapper(
-            embed.create,
+        self.embed = to_streamed_response_wrapper(
+            embed.embed,
         )
-        self.create_by_index = to_streamed_response_wrapper(
-            embed.create_by_index,
+        self.embed_by_index = to_streamed_response_wrapper(
+            embed.embed_by_index,
         )
 
 
@@ -299,9 +299,9 @@ class AsyncEmbedResourceWithStreamingResponse:
     def __init__(self, embed: AsyncEmbedResource) -> None:
         self._embed = embed
 
-        self.create = async_to_streamed_response_wrapper(
-            embed.create,
+        self.embed = async_to_streamed_response_wrapper(
+            embed.embed,
         )
-        self.create_by_index = async_to_streamed_response_wrapper(
-            embed.create_by_index,
+        self.embed_by_index = async_to_streamed_response_wrapper(
+            embed.embed_by_index,
         )

@@ -57,7 +57,7 @@ class VersionResource(SyncAPIResource):
             cast_to=object,
         )
 
-    def get_latest_updates(
+    def list_updates(
         self,
         *,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -116,7 +116,7 @@ class AsyncVersionResource(AsyncAPIResource):
             cast_to=object,
         )
 
-    async def get_latest_updates(
+    async def list_updates(
         self,
         *,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -143,8 +143,8 @@ class VersionResourceWithRawResponse:
         self.retrieve = to_raw_response_wrapper(
             version.retrieve,
         )
-        self.get_latest_updates = to_raw_response_wrapper(
-            version.get_latest_updates,
+        self.list_updates = to_raw_response_wrapper(
+            version.list_updates,
         )
 
 
@@ -155,8 +155,8 @@ class AsyncVersionResourceWithRawResponse:
         self.retrieve = async_to_raw_response_wrapper(
             version.retrieve,
         )
-        self.get_latest_updates = async_to_raw_response_wrapper(
-            version.get_latest_updates,
+        self.list_updates = async_to_raw_response_wrapper(
+            version.list_updates,
         )
 
 
@@ -167,8 +167,8 @@ class VersionResourceWithStreamingResponse:
         self.retrieve = to_streamed_response_wrapper(
             version.retrieve,
         )
-        self.get_latest_updates = to_streamed_response_wrapper(
-            version.get_latest_updates,
+        self.list_updates = to_streamed_response_wrapper(
+            version.list_updates,
         )
 
 
@@ -179,6 +179,6 @@ class AsyncVersionResourceWithStreamingResponse:
         self.retrieve = async_to_streamed_response_wrapper(
             version.retrieve,
         )
-        self.get_latest_updates = async_to_streamed_response_wrapper(
-            version.get_latest_updates,
+        self.list_updates = async_to_streamed_response_wrapper(
+            version.list_updates,
         )

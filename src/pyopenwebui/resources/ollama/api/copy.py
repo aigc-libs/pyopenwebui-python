@@ -20,7 +20,7 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._base_client import make_request_options
-from ....types.ollama.api import copy_create_params, copy_create_by_index_params
+from ....types.ollama.api import copy_copy_params, copy_copy_by_index_params
 
 __all__ = ["CopyResource", "AsyncCopyResource"]
 
@@ -45,7 +45,7 @@ class CopyResource(SyncAPIResource):
         """
         return CopyResourceWithStreamingResponse(self)
 
-    def create(
+    def copy(
         self,
         *,
         destination: str,
@@ -77,19 +77,19 @@ class CopyResource(SyncAPIResource):
                     "destination": destination,
                     "source": source,
                 },
-                copy_create_params.CopyCreateParams,
+                copy_copy_params.CopyCopyParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform({"url_idx": url_idx}, copy_create_params.CopyCreateParams),
+                query=maybe_transform({"url_idx": url_idx}, copy_copy_params.CopyCopyParams),
             ),
             cast_to=object,
         )
 
-    def create_by_index(
+    def copy_by_index(
         self,
         url_idx: int,
         *,
@@ -121,7 +121,7 @@ class CopyResource(SyncAPIResource):
                     "destination": destination,
                     "source": source,
                 },
-                copy_create_by_index_params.CopyCreateByIndexParams,
+                copy_copy_by_index_params.CopyCopyByIndexParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -150,7 +150,7 @@ class AsyncCopyResource(AsyncAPIResource):
         """
         return AsyncCopyResourceWithStreamingResponse(self)
 
-    async def create(
+    async def copy(
         self,
         *,
         destination: str,
@@ -182,19 +182,19 @@ class AsyncCopyResource(AsyncAPIResource):
                     "destination": destination,
                     "source": source,
                 },
-                copy_create_params.CopyCreateParams,
+                copy_copy_params.CopyCopyParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform({"url_idx": url_idx}, copy_create_params.CopyCreateParams),
+                query=await async_maybe_transform({"url_idx": url_idx}, copy_copy_params.CopyCopyParams),
             ),
             cast_to=object,
         )
 
-    async def create_by_index(
+    async def copy_by_index(
         self,
         url_idx: int,
         *,
@@ -226,7 +226,7 @@ class AsyncCopyResource(AsyncAPIResource):
                     "destination": destination,
                     "source": source,
                 },
-                copy_create_by_index_params.CopyCreateByIndexParams,
+                copy_copy_by_index_params.CopyCopyByIndexParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -239,11 +239,11 @@ class CopyResourceWithRawResponse:
     def __init__(self, copy: CopyResource) -> None:
         self._copy = copy
 
-        self.create = to_raw_response_wrapper(
-            copy.create,
+        self.copy = to_raw_response_wrapper(
+            copy.copy,
         )
-        self.create_by_index = to_raw_response_wrapper(
-            copy.create_by_index,
+        self.copy_by_index = to_raw_response_wrapper(
+            copy.copy_by_index,
         )
 
 
@@ -251,11 +251,11 @@ class AsyncCopyResourceWithRawResponse:
     def __init__(self, copy: AsyncCopyResource) -> None:
         self._copy = copy
 
-        self.create = async_to_raw_response_wrapper(
-            copy.create,
+        self.copy = async_to_raw_response_wrapper(
+            copy.copy,
         )
-        self.create_by_index = async_to_raw_response_wrapper(
-            copy.create_by_index,
+        self.copy_by_index = async_to_raw_response_wrapper(
+            copy.copy_by_index,
         )
 
 
@@ -263,11 +263,11 @@ class CopyResourceWithStreamingResponse:
     def __init__(self, copy: CopyResource) -> None:
         self._copy = copy
 
-        self.create = to_streamed_response_wrapper(
-            copy.create,
+        self.copy = to_streamed_response_wrapper(
+            copy.copy,
         )
-        self.create_by_index = to_streamed_response_wrapper(
-            copy.create_by_index,
+        self.copy_by_index = to_streamed_response_wrapper(
+            copy.copy_by_index,
         )
 
 
@@ -275,9 +275,9 @@ class AsyncCopyResourceWithStreamingResponse:
     def __init__(self, copy: AsyncCopyResource) -> None:
         self._copy = copy
 
-        self.create = async_to_streamed_response_wrapper(
-            copy.create,
+        self.copy = async_to_streamed_response_wrapper(
+            copy.copy,
         )
-        self.create_by_index = async_to_streamed_response_wrapper(
-            copy.create_by_index,
+        self.copy_by_index = async_to_streamed_response_wrapper(
+            copy.copy_by_index,
         )

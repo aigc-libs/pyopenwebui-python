@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.5.0 (2025-03-08)
+
+Full Changelog: [v0.4.0...v0.5.0](https://github.com/aigc-libs/pyopenwebui-python/compare/v0.4.0...v0.5.0)
+
+### Features
+
+* **api:** update via SDK Studio ([58760a2](https://github.com/aigc-libs/pyopenwebui-python/commit/58760a2500244b8c5624f7eb86794f693615f2b2))
+* **api:** update via SDK Studio ([cb90dff](https://github.com/aigc-libs/pyopenwebui-python/commit/cb90dff53133f9c8ddbf25e57be7186d8f750286))
+* **api:** update via SDK Studio ([0ea42bf](https://github.com/aigc-libs/pyopenwebui-python/commit/0ea42bfbb01913663e50d9e5f965a3d8e3d1f801))
+* **api:** update via SDK Studio ([12d3f3f](https://github.com/aigc-libs/pyopenwebui-python/commit/12d3f3f1ce6f508e9725656f632f29287a806d0b))
+* **api:** update via SDK Studio ([#50](https://github.com/aigc-libs/pyopenwebui-python/issues/50)) ([a20862b](https://github.com/aigc-libs/pyopenwebui-python/commit/a20862b2fd41587723b15acb2e7a1510edfbac04))
+
 ## 0.4.0 (2025-03-08)
 
 Full Changelog: [v0.3.22...v0.4.0](https://github.com/aigc-libs/pyopenwebui-python/compare/v0.3.22...v0.4.0)

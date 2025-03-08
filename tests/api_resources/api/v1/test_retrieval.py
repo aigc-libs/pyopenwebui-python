@@ -17,16 +17,16 @@ class TestRetrieval:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @parametrize
-    def test_method_delete(self, client: Pyopenwebui) -> None:
-        retrieval = client.api.v1.retrieval.delete(
+    def test_method_delete_entries(self, client: Pyopenwebui) -> None:
+        retrieval = client.api.v1.retrieval.delete_entries(
             collection_name="collection_name",
             file_id="file_id",
         )
         assert_matches_type(object, retrieval, path=["response"])
 
     @parametrize
-    def test_raw_response_delete(self, client: Pyopenwebui) -> None:
-        response = client.api.v1.retrieval.with_raw_response.delete(
+    def test_raw_response_delete_entries(self, client: Pyopenwebui) -> None:
+        response = client.api.v1.retrieval.with_raw_response.delete_entries(
             collection_name="collection_name",
             file_id="file_id",
         )
@@ -37,8 +37,8 @@ class TestRetrieval:
         assert_matches_type(object, retrieval, path=["response"])
 
     @parametrize
-    def test_streaming_response_delete(self, client: Pyopenwebui) -> None:
-        with client.api.v1.retrieval.with_streaming_response.delete(
+    def test_streaming_response_delete_entries(self, client: Pyopenwebui) -> None:
+        with client.api.v1.retrieval.with_streaming_response.delete_entries(
             collection_name="collection_name",
             file_id="file_id",
         ) as response:
@@ -143,16 +143,16 @@ class TestAsyncRetrieval:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @parametrize
-    async def test_method_delete(self, async_client: AsyncPyopenwebui) -> None:
-        retrieval = await async_client.api.v1.retrieval.delete(
+    async def test_method_delete_entries(self, async_client: AsyncPyopenwebui) -> None:
+        retrieval = await async_client.api.v1.retrieval.delete_entries(
             collection_name="collection_name",
             file_id="file_id",
         )
         assert_matches_type(object, retrieval, path=["response"])
 
     @parametrize
-    async def test_raw_response_delete(self, async_client: AsyncPyopenwebui) -> None:
-        response = await async_client.api.v1.retrieval.with_raw_response.delete(
+    async def test_raw_response_delete_entries(self, async_client: AsyncPyopenwebui) -> None:
+        response = await async_client.api.v1.retrieval.with_raw_response.delete_entries(
             collection_name="collection_name",
             file_id="file_id",
         )
@@ -163,8 +163,8 @@ class TestAsyncRetrieval:
         assert_matches_type(object, retrieval, path=["response"])
 
     @parametrize
-    async def test_streaming_response_delete(self, async_client: AsyncPyopenwebui) -> None:
-        async with async_client.api.v1.retrieval.with_streaming_response.delete(
+    async def test_streaming_response_delete_entries(self, async_client: AsyncPyopenwebui) -> None:
+        async with async_client.api.v1.retrieval.with_streaming_response.delete_entries(
             collection_name="collection_name",
             file_id="file_id",
         ) as response:

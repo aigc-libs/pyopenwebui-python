@@ -22,7 +22,7 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._base_client import make_request_options
-from ....types.ollama.models import upload_create_params, upload_create_by_index_params
+from ....types.ollama.models import upload_upload_params, upload_upload_by_index_params
 
 __all__ = ["UploadResource", "AsyncUploadResource"]
 
@@ -47,7 +47,7 @@ class UploadResource(SyncAPIResource):
         """
         return UploadResourceWithStreamingResponse(self)
 
-    def create(
+    def upload(
         self,
         *,
         file: FileTypes,
@@ -79,19 +79,19 @@ class UploadResource(SyncAPIResource):
         extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
         return self._post(
             "/ollama/models/upload",
-            body=maybe_transform(body, upload_create_params.UploadCreateParams),
+            body=maybe_transform(body, upload_upload_params.UploadUploadParams),
             files=files,
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform({"url_idx": url_idx}, upload_create_params.UploadCreateParams),
+                query=maybe_transform({"url_idx": url_idx}, upload_upload_params.UploadUploadParams),
             ),
             cast_to=object,
         )
 
-    def create_by_index(
+    def upload_by_index(
         self,
         url_idx: int,
         *,
@@ -123,7 +123,7 @@ class UploadResource(SyncAPIResource):
         extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
         return self._post(
             f"/ollama/models/upload/{url_idx}",
-            body=maybe_transform(body, upload_create_by_index_params.UploadCreateByIndexParams),
+            body=maybe_transform(body, upload_upload_by_index_params.UploadUploadByIndexParams),
             files=files,
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -152,7 +152,7 @@ class AsyncUploadResource(AsyncAPIResource):
         """
         return AsyncUploadResourceWithStreamingResponse(self)
 
-    async def create(
+    async def upload(
         self,
         *,
         file: FileTypes,
@@ -184,19 +184,19 @@ class AsyncUploadResource(AsyncAPIResource):
         extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
         return await self._post(
             "/ollama/models/upload",
-            body=await async_maybe_transform(body, upload_create_params.UploadCreateParams),
+            body=await async_maybe_transform(body, upload_upload_params.UploadUploadParams),
             files=files,
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform({"url_idx": url_idx}, upload_create_params.UploadCreateParams),
+                query=await async_maybe_transform({"url_idx": url_idx}, upload_upload_params.UploadUploadParams),
             ),
             cast_to=object,
         )
 
-    async def create_by_index(
+    async def upload_by_index(
         self,
         url_idx: int,
         *,
@@ -228,7 +228,7 @@ class AsyncUploadResource(AsyncAPIResource):
         extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
         return await self._post(
             f"/ollama/models/upload/{url_idx}",
-            body=await async_maybe_transform(body, upload_create_by_index_params.UploadCreateByIndexParams),
+            body=await async_maybe_transform(body, upload_upload_by_index_params.UploadUploadByIndexParams),
             files=files,
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -241,11 +241,11 @@ class UploadResourceWithRawResponse:
     def __init__(self, upload: UploadResource) -> None:
         self._upload = upload
 
-        self.create = to_raw_response_wrapper(
-            upload.create,
+        self.upload = to_raw_response_wrapper(
+            upload.upload,
         )
-        self.create_by_index = to_raw_response_wrapper(
-            upload.create_by_index,
+        self.upload_by_index = to_raw_response_wrapper(
+            upload.upload_by_index,
         )
 
 
@@ -253,11 +253,11 @@ class AsyncUploadResourceWithRawResponse:
     def __init__(self, upload: AsyncUploadResource) -> None:
         self._upload = upload
 
-        self.create = async_to_raw_response_wrapper(
-            upload.create,
+        self.upload = async_to_raw_response_wrapper(
+            upload.upload,
         )
-        self.create_by_index = async_to_raw_response_wrapper(
-            upload.create_by_index,
+        self.upload_by_index = async_to_raw_response_wrapper(
+            upload.upload_by_index,
         )
 
 
@@ -265,11 +265,11 @@ class UploadResourceWithStreamingResponse:
     def __init__(self, upload: UploadResource) -> None:
         self._upload = upload
 
-        self.create = to_streamed_response_wrapper(
-            upload.create,
+        self.upload = to_streamed_response_wrapper(
+            upload.upload,
         )
-        self.create_by_index = to_streamed_response_wrapper(
-            upload.create_by_index,
+        self.upload_by_index = to_streamed_response_wrapper(
+            upload.upload_by_index,
         )
 
 
@@ -277,9 +277,9 @@ class AsyncUploadResourceWithStreamingResponse:
     def __init__(self, upload: AsyncUploadResource) -> None:
         self._upload = upload
 
-        self.create = async_to_streamed_response_wrapper(
-            upload.create,
+        self.upload = async_to_streamed_response_wrapper(
+            upload.upload,
         )
-        self.create_by_index = async_to_streamed_response_wrapper(
-            upload.create_by_index,
+        self.upload_by_index = async_to_streamed_response_wrapper(
+            upload.upload_by_index,
         )

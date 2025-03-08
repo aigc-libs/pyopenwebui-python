@@ -44,7 +44,7 @@ from ....._response import (
     async_to_streamed_response_wrapper,
 )
 from ....._base_client import make_request_options
-from .....types.api.v1 import util_markdown_params, util_download_pdf_params, util_get_gravatar_params
+from .....types.api.v1 import util_markdown_params, util_get_gravatar_params, util_download_chat_as_pdf_params
 
 __all__ = ["UtilsResource", "AsyncUtilsResource"]
 
@@ -81,7 +81,7 @@ class UtilsResource(SyncAPIResource):
         """
         return UtilsResourceWithStreamingResponse(self)
 
-    def download_pdf(
+    def download_chat_as_pdf(
         self,
         *,
         messages: Iterable[object],
@@ -112,7 +112,7 @@ class UtilsResource(SyncAPIResource):
                     "messages": messages,
                     "title": title,
                 },
-                util_download_pdf_params.UtilDownloadPdfParams,
+                util_download_chat_as_pdf_params.UtilDownloadChatAsPdfParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -220,7 +220,7 @@ class AsyncUtilsResource(AsyncAPIResource):
         """
         return AsyncUtilsResourceWithStreamingResponse(self)
 
-    async def download_pdf(
+    async def download_chat_as_pdf(
         self,
         *,
         messages: Iterable[object],
@@ -251,7 +251,7 @@ class AsyncUtilsResource(AsyncAPIResource):
                     "messages": messages,
                     "title": title,
                 },
-                util_download_pdf_params.UtilDownloadPdfParams,
+                util_download_chat_as_pdf_params.UtilDownloadChatAsPdfParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -331,8 +331,8 @@ class UtilsResourceWithRawResponse:
     def __init__(self, utils: UtilsResource) -> None:
         self._utils = utils
 
-        self.download_pdf = to_raw_response_wrapper(
-            utils.download_pdf,
+        self.download_chat_as_pdf = to_raw_response_wrapper(
+            utils.download_chat_as_pdf,
         )
         self.get_gravatar = to_raw_response_wrapper(
             utils.get_gravatar,
@@ -358,8 +358,8 @@ class AsyncUtilsResourceWithRawResponse:
     def __init__(self, utils: AsyncUtilsResource) -> None:
         self._utils = utils
 
-        self.download_pdf = async_to_raw_response_wrapper(
-            utils.download_pdf,
+        self.download_chat_as_pdf = async_to_raw_response_wrapper(
+            utils.download_chat_as_pdf,
         )
         self.get_gravatar = async_to_raw_response_wrapper(
             utils.get_gravatar,
@@ -385,8 +385,8 @@ class UtilsResourceWithStreamingResponse:
     def __init__(self, utils: UtilsResource) -> None:
         self._utils = utils
 
-        self.download_pdf = to_streamed_response_wrapper(
-            utils.download_pdf,
+        self.download_chat_as_pdf = to_streamed_response_wrapper(
+            utils.download_chat_as_pdf,
         )
         self.get_gravatar = to_streamed_response_wrapper(
             utils.get_gravatar,
@@ -412,8 +412,8 @@ class AsyncUtilsResourceWithStreamingResponse:
     def __init__(self, utils: AsyncUtilsResource) -> None:
         self._utils = utils
 
-        self.download_pdf = async_to_streamed_response_wrapper(
-            utils.download_pdf,
+        self.download_chat_as_pdf = async_to_streamed_response_wrapper(
+            utils.download_chat_as_pdf,
         )
         self.get_gravatar = async_to_streamed_response_wrapper(
             utils.get_gravatar,

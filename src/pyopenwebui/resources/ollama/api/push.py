@@ -20,7 +20,7 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._base_client import make_request_options
-from ....types.ollama.api import push_delete_params, push_delete_by_index_params
+from ....types.ollama.api import push_push_params, push_push_by_index_params
 
 __all__ = ["PushResource", "AsyncPushResource"]
 
@@ -45,7 +45,7 @@ class PushResource(SyncAPIResource):
         """
         return PushResourceWithStreamingResponse(self)
 
-    def delete(
+    def push(
         self,
         *,
         name: str,
@@ -79,19 +79,19 @@ class PushResource(SyncAPIResource):
                     "insecure": insecure,
                     "stream": stream,
                 },
-                push_delete_params.PushDeleteParams,
+                push_push_params.PushPushParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform({"url_idx": url_idx}, push_delete_params.PushDeleteParams),
+                query=maybe_transform({"url_idx": url_idx}, push_push_params.PushPushParams),
             ),
             cast_to=object,
         )
 
-    def delete_by_index(
+    def push_by_index(
         self,
         url_idx: int,
         *,
@@ -125,7 +125,7 @@ class PushResource(SyncAPIResource):
                     "insecure": insecure,
                     "stream": stream,
                 },
-                push_delete_by_index_params.PushDeleteByIndexParams,
+                push_push_by_index_params.PushPushByIndexParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -154,7 +154,7 @@ class AsyncPushResource(AsyncAPIResource):
         """
         return AsyncPushResourceWithStreamingResponse(self)
 
-    async def delete(
+    async def push(
         self,
         *,
         name: str,
@@ -188,19 +188,19 @@ class AsyncPushResource(AsyncAPIResource):
                     "insecure": insecure,
                     "stream": stream,
                 },
-                push_delete_params.PushDeleteParams,
+                push_push_params.PushPushParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform({"url_idx": url_idx}, push_delete_params.PushDeleteParams),
+                query=await async_maybe_transform({"url_idx": url_idx}, push_push_params.PushPushParams),
             ),
             cast_to=object,
         )
 
-    async def delete_by_index(
+    async def push_by_index(
         self,
         url_idx: int,
         *,
@@ -234,7 +234,7 @@ class AsyncPushResource(AsyncAPIResource):
                     "insecure": insecure,
                     "stream": stream,
                 },
-                push_delete_by_index_params.PushDeleteByIndexParams,
+                push_push_by_index_params.PushPushByIndexParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -247,11 +247,11 @@ class PushResourceWithRawResponse:
     def __init__(self, push: PushResource) -> None:
         self._push = push
 
-        self.delete = to_raw_response_wrapper(
-            push.delete,
+        self.push = to_raw_response_wrapper(
+            push.push,
         )
-        self.delete_by_index = to_raw_response_wrapper(
-            push.delete_by_index,
+        self.push_by_index = to_raw_response_wrapper(
+            push.push_by_index,
         )
 
 
@@ -259,11 +259,11 @@ class AsyncPushResourceWithRawResponse:
     def __init__(self, push: AsyncPushResource) -> None:
         self._push = push
 
-        self.delete = async_to_raw_response_wrapper(
-            push.delete,
+        self.push = async_to_raw_response_wrapper(
+            push.push,
         )
-        self.delete_by_index = async_to_raw_response_wrapper(
-            push.delete_by_index,
+        self.push_by_index = async_to_raw_response_wrapper(
+            push.push_by_index,
         )
 
 
@@ -271,11 +271,11 @@ class PushResourceWithStreamingResponse:
     def __init__(self, push: PushResource) -> None:
         self._push = push
 
-        self.delete = to_streamed_response_wrapper(
-            push.delete,
+        self.push = to_streamed_response_wrapper(
+            push.push,
         )
-        self.delete_by_index = to_streamed_response_wrapper(
-            push.delete_by_index,
+        self.push_by_index = to_streamed_response_wrapper(
+            push.push_by_index,
         )
 
 
@@ -283,9 +283,9 @@ class AsyncPushResourceWithStreamingResponse:
     def __init__(self, push: AsyncPushResource) -> None:
         self._push = push
 
-        self.delete = async_to_streamed_response_wrapper(
-            push.delete,
+        self.push = async_to_streamed_response_wrapper(
+            push.push,
         )
-        self.delete_by_index = async_to_streamed_response_wrapper(
-            push.delete_by_index,
+        self.push_by_index = async_to_streamed_response_wrapper(
+            push.push_by_index,
         )

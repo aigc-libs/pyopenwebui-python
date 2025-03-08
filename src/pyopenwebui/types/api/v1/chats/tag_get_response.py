@@ -3,8 +3,8 @@
 from typing import List
 from typing_extensions import TypeAlias
 
-from ....chats.tag_model import TagModel
+from ....chat_title_id_response import ChatTitleIDResponse
 
 __all__ = ["TagGetResponse"]
 
-TagGetResponse: TypeAlias = List[TagModel]
+TagGetResponse: TypeAlias = List[ChatTitleIDResponse]

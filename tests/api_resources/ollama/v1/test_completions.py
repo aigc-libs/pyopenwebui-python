@@ -56,16 +56,16 @@ class TestCompletions:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
-    def test_method_get_by_index(self, client: Pyopenwebui) -> None:
-        completion = client.ollama.v1.completions.get_by_index(
+    def test_method_generate_by_index(self, client: Pyopenwebui) -> None:
+        completion = client.ollama.v1.completions.generate_by_index(
             url_idx=0,
             body={},
         )
         assert_matches_type(object, completion, path=["response"])
 
     @parametrize
-    def test_raw_response_get_by_index(self, client: Pyopenwebui) -> None:
-        response = client.ollama.v1.completions.with_raw_response.get_by_index(
+    def test_raw_response_generate_by_index(self, client: Pyopenwebui) -> None:
+        response = client.ollama.v1.completions.with_raw_response.generate_by_index(
             url_idx=0,
             body={},
         )
@@ -76,8 +76,8 @@ class TestCompletions:
         assert_matches_type(object, completion, path=["response"])
 
     @parametrize
-    def test_streaming_response_get_by_index(self, client: Pyopenwebui) -> None:
-        with client.ollama.v1.completions.with_streaming_response.get_by_index(
+    def test_streaming_response_generate_by_index(self, client: Pyopenwebui) -> None:
+        with client.ollama.v1.completions.with_streaming_response.generate_by_index(
             url_idx=0,
             body={},
         ) as response:
@@ -133,16 +133,16 @@ class TestAsyncCompletions:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
-    async def test_method_get_by_index(self, async_client: AsyncPyopenwebui) -> None:
-        completion = await async_client.ollama.v1.completions.get_by_index(
+    async def test_method_generate_by_index(self, async_client: AsyncPyopenwebui) -> None:
+        completion = await async_client.ollama.v1.completions.generate_by_index(
             url_idx=0,
             body={},
         )
         assert_matches_type(object, completion, path=["response"])
 
     @parametrize
-    async def test_raw_response_get_by_index(self, async_client: AsyncPyopenwebui) -> None:
-        response = await async_client.ollama.v1.completions.with_raw_response.get_by_index(
+    async def test_raw_response_generate_by_index(self, async_client: AsyncPyopenwebui) -> None:
+        response = await async_client.ollama.v1.completions.with_raw_response.generate_by_index(
             url_idx=0,
             body={},
         )
@@ -153,8 +153,8 @@ class TestAsyncCompletions:
         assert_matches_type(object, completion, path=["response"])
 
     @parametrize
-    async def test_streaming_response_get_by_index(self, async_client: AsyncPyopenwebui) -> None:
-        async with async_client.ollama.v1.completions.with_streaming_response.get_by_index(
+    async def test_streaming_response_generate_by_index(self, async_client: AsyncPyopenwebui) -> None:
+        async with async_client.ollama.v1.completions.with_streaming_response.generate_by_index(
             url_idx=0,
             body={},
         ) as response:

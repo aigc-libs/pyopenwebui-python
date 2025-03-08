@@ -20,7 +20,7 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._base_client import make_request_options
-from ....types.ollama.models import download_create_params, download_retrieve_by_index_params
+from ....types.ollama.models import download_download_params, download_download_by_index_params
 
 __all__ = ["DownloadResource", "AsyncDownloadResource"]
 
@@ -45,7 +45,7 @@ class DownloadResource(SyncAPIResource):
         """
         return DownloadResourceWithStreamingResponse(self)
 
-    def create(
+    def download(
         self,
         *,
         url: str,
@@ -71,18 +71,18 @@ class DownloadResource(SyncAPIResource):
         """
         return self._post(
             "/ollama/models/download",
-            body=maybe_transform({"url": url}, download_create_params.DownloadCreateParams),
+            body=maybe_transform({"url": url}, download_download_params.DownloadDownloadParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform({"url_idx": url_idx}, download_create_params.DownloadCreateParams),
+                query=maybe_transform({"url_idx": url_idx}, download_download_params.DownloadDownloadParams),
             ),
             cast_to=object,
         )
 
-    def retrieve_by_index(
+    def download_by_index(
         self,
         url_idx: int,
         *,
@@ -108,7 +108,7 @@ class DownloadResource(SyncAPIResource):
         """
         return self._post(
             f"/ollama/models/download/{url_idx}",
-            body=maybe_transform({"url": url}, download_retrieve_by_index_params.DownloadRetrieveByIndexParams),
+            body=maybe_transform({"url": url}, download_download_by_index_params.DownloadDownloadByIndexParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -136,7 +136,7 @@ class AsyncDownloadResource(AsyncAPIResource):
         """
         return AsyncDownloadResourceWithStreamingResponse(self)
 
-    async def create(
+    async def download(
         self,
         *,
         url: str,
@@ -162,18 +162,20 @@ class AsyncDownloadResource(AsyncAPIResource):
         """
         return await self._post(
             "/ollama/models/download",
-            body=await async_maybe_transform({"url": url}, download_create_params.DownloadCreateParams),
+            body=await async_maybe_transform({"url": url}, download_download_params.DownloadDownloadParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform({"url_idx": url_idx}, download_create_params.DownloadCreateParams),
+                query=await async_maybe_transform(
+                    {"url_idx": url_idx}, download_download_params.DownloadDownloadParams
+                ),
             ),
             cast_to=object,
         )
 
-    async def retrieve_by_index(
+    async def download_by_index(
         self,
         url_idx: int,
         *,
@@ -200,7 +202,7 @@ class AsyncDownloadResource(AsyncAPIResource):
         return await self._post(
             f"/ollama/models/download/{url_idx}",
             body=await async_maybe_transform(
-                {"url": url}, download_retrieve_by_index_params.DownloadRetrieveByIndexParams
+                {"url": url}, download_download_by_index_params.DownloadDownloadByIndexParams
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -213,11 +215,11 @@ class DownloadResourceWithRawResponse:
     def __init__(self, download: DownloadResource) -> None:
         self._download = download
 
-        self.create = to_raw_response_wrapper(
-            download.create,
+        self.download = to_raw_response_wrapper(
+            download.download,
         )
-        self.retrieve_by_index = to_raw_response_wrapper(
-            download.retrieve_by_index,
+        self.download_by_index = to_raw_response_wrapper(
+            download.download_by_index,
         )
 
 
@@ -225,11 +227,11 @@ class AsyncDownloadResourceWithRawResponse:
     def __init__(self, download: AsyncDownloadResource) -> None:
         self._download = download
 
-        self.create = async_to_raw_response_wrapper(
-            download.create,
+        self.download = async_to_raw_response_wrapper(
+            download.download,
         )
-        self.retrieve_by_index = async_to_raw_response_wrapper(
-            download.retrieve_by_index,
+        self.download_by_index = async_to_raw_response_wrapper(
+            download.download_by_index,
         )
 
 
@@ -237,11 +239,11 @@ class DownloadResourceWithStreamingResponse:
     def __init__(self, download: DownloadResource) -> None:
         self._download = download
 
-        self.create = to_streamed_response_wrapper(
-            download.create,
+        self.download = to_streamed_response_wrapper(
+            download.download,
         )
-        self.retrieve_by_index = to_streamed_response_wrapper(
-            download.retrieve_by_index,
+        self.download_by_index = to_streamed_response_wrapper(
+            download.download_by_index,
         )
 
 
@@ -249,9 +251,9 @@ class AsyncDownloadResourceWithStreamingResponse:
     def __init__(self, download: AsyncDownloadResource) -> None:
         self._download = download
 
-        self.create = async_to_streamed_response_wrapper(
-            download.create,
+        self.download = async_to_streamed_response_wrapper(
+            download.download,
         )
-        self.retrieve_by_index = async_to_streamed_response_wrapper(
-            download.retrieve_by_index,
+        self.download_by_index = async_to_streamed_response_wrapper(
+            download.download_by_index,
         )
