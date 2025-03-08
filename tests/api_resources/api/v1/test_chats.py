@@ -15,7 +15,9 @@ from pyopenwebui.types.api.v1 import (
     ChatPinnedResponse,
     ChatSearchResponse,
     ChatDeleteAllResponse,
+    ChatArchiveAllResponse,
     ChatDeleteByIDResponse,
+    ChatRetrievePinnedResponse,
     ChatGetArchivedListResponse,
 )
 
@@ -93,6 +95,31 @@ class TestChats:
             client.api.v1.chats.with_raw_response.archive(
                 "",
             )
+
+    @parametrize
+    def test_method_archive_all(self, client: Pyopenwebui) -> None:
+        chat = client.api.v1.chats.archive_all()
+        assert_matches_type(ChatArchiveAllResponse, chat, path=["response"])
+
+    @parametrize
+    def test_raw_response_archive_all(self, client: Pyopenwebui) -> None:
+        response = client.api.v1.chats.with_raw_response.archive_all()
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        chat = response.parse()
+        assert_matches_type(ChatArchiveAllResponse, chat, path=["response"])
+
+    @parametrize
+    def test_streaming_response_archive_all(self, client: Pyopenwebui) -> None:
+        with client.api.v1.chats.with_streaming_response.archive_all() as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            chat = response.parse()
+            assert_matches_type(ChatArchiveAllResponse, chat, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_method_delete_all(self, client: Pyopenwebui) -> None:
@@ -378,6 +405,69 @@ class TestChats:
             )
 
     @parametrize
+    def test_method_retrieve_pinned(self, client: Pyopenwebui) -> None:
+        chat = client.api.v1.chats.retrieve_pinned()
+        assert_matches_type(ChatRetrievePinnedResponse, chat, path=["response"])
+
+    @parametrize
+    def test_raw_response_retrieve_pinned(self, client: Pyopenwebui) -> None:
+        response = client.api.v1.chats.with_raw_response.retrieve_pinned()
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        chat = response.parse()
+        assert_matches_type(ChatRetrievePinnedResponse, chat, path=["response"])
+
+    @parametrize
+    def test_streaming_response_retrieve_pinned(self, client: Pyopenwebui) -> None:
+        with client.api.v1.chats.with_streaming_response.retrieve_pinned() as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            chat = response.parse()
+            assert_matches_type(ChatRetrievePinnedResponse, chat, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_method_retrieve_shared(self, client: Pyopenwebui) -> None:
+        chat = client.api.v1.chats.retrieve_shared(
+            "share_id",
+        )
+        assert_matches_type(Optional[ChatResponse], chat, path=["response"])
+
+    @parametrize
+    def test_raw_response_retrieve_shared(self, client: Pyopenwebui) -> None:
+        response = client.api.v1.chats.with_raw_response.retrieve_shared(
+            "share_id",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        chat = response.parse()
+        assert_matches_type(Optional[ChatResponse], chat, path=["response"])
+
+    @parametrize
+    def test_streaming_response_retrieve_shared(self, client: Pyopenwebui) -> None:
+        with client.api.v1.chats.with_streaming_response.retrieve_shared(
+            "share_id",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            chat = response.parse()
+            assert_matches_type(Optional[ChatResponse], chat, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_retrieve_shared(self, client: Pyopenwebui) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `share_id` but received ''"):
+            client.api.v1.chats.with_raw_response.retrieve_shared(
+                "",
+            )
+
+    @parametrize
     def test_method_search(self, client: Pyopenwebui) -> None:
         chat = client.api.v1.chats.search(
             text="text",
@@ -530,6 +620,31 @@ class TestAsyncChats:
             await async_client.api.v1.chats.with_raw_response.archive(
                 "",
             )
+
+    @parametrize
+    async def test_method_archive_all(self, async_client: AsyncPyopenwebui) -> None:
+        chat = await async_client.api.v1.chats.archive_all()
+        assert_matches_type(ChatArchiveAllResponse, chat, path=["response"])
+
+    @parametrize
+    async def test_raw_response_archive_all(self, async_client: AsyncPyopenwebui) -> None:
+        response = await async_client.api.v1.chats.with_raw_response.archive_all()
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        chat = await response.parse()
+        assert_matches_type(ChatArchiveAllResponse, chat, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_archive_all(self, async_client: AsyncPyopenwebui) -> None:
+        async with async_client.api.v1.chats.with_streaming_response.archive_all() as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            chat = await response.parse()
+            assert_matches_type(ChatArchiveAllResponse, chat, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_method_delete_all(self, async_client: AsyncPyopenwebui) -> None:
@@ -811,6 +926,69 @@ class TestAsyncChats:
     async def test_path_params_pinned(self, async_client: AsyncPyopenwebui) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.api.v1.chats.with_raw_response.pinned(
+                "",
+            )
+
+    @parametrize
+    async def test_method_retrieve_pinned(self, async_client: AsyncPyopenwebui) -> None:
+        chat = await async_client.api.v1.chats.retrieve_pinned()
+        assert_matches_type(ChatRetrievePinnedResponse, chat, path=["response"])
+
+    @parametrize
+    async def test_raw_response_retrieve_pinned(self, async_client: AsyncPyopenwebui) -> None:
+        response = await async_client.api.v1.chats.with_raw_response.retrieve_pinned()
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        chat = await response.parse()
+        assert_matches_type(ChatRetrievePinnedResponse, chat, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_retrieve_pinned(self, async_client: AsyncPyopenwebui) -> None:
+        async with async_client.api.v1.chats.with_streaming_response.retrieve_pinned() as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            chat = await response.parse()
+            assert_matches_type(ChatRetrievePinnedResponse, chat, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_method_retrieve_shared(self, async_client: AsyncPyopenwebui) -> None:
+        chat = await async_client.api.v1.chats.retrieve_shared(
+            "share_id",
+        )
+        assert_matches_type(Optional[ChatResponse], chat, path=["response"])
+
+    @parametrize
+    async def test_raw_response_retrieve_shared(self, async_client: AsyncPyopenwebui) -> None:
+        response = await async_client.api.v1.chats.with_raw_response.retrieve_shared(
+            "share_id",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        chat = await response.parse()
+        assert_matches_type(Optional[ChatResponse], chat, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_retrieve_shared(self, async_client: AsyncPyopenwebui) -> None:
+        async with async_client.api.v1.chats.with_streaming_response.retrieve_shared(
+            "share_id",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            chat = await response.parse()
+            assert_matches_type(Optional[ChatResponse], chat, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_retrieve_shared(self, async_client: AsyncPyopenwebui) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `share_id` but received ''"):
+            await async_client.api.v1.chats.with_raw_response.retrieve_shared(
                 "",
             )
 

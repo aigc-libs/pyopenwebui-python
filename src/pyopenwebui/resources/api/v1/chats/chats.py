@@ -81,7 +81,9 @@ from .....types.api.v1.chat_get_response import ChatGetResponse
 from .....types.api.v1.chat_pinned_response import ChatPinnedResponse
 from .....types.api.v1.chat_search_response import ChatSearchResponse
 from .....types.api.v1.chat_delete_all_response import ChatDeleteAllResponse
+from .....types.api.v1.chat_archive_all_response import ChatArchiveAllResponse
 from .....types.api.v1.chat_delete_by_id_response import ChatDeleteByIDResponse
+from .....types.api.v1.chat_retrieve_pinned_response import ChatRetrievePinnedResponse
 from .....types.api.v1.chat_get_archived_list_response import ChatGetArchivedListResponse
 
 __all__ = ["ChatsResource", "AsyncChatsResource"]
@@ -194,6 +196,25 @@ class ChatsResource(SyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=ChatResponse,
+        )
+
+    def archive_all(
+        self,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> ChatArchiveAllResponse:
+        """Archive All Chats"""
+        return self._post(
+            "/api/v1/chats/archive/all",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=ChatArchiveAllResponse,
         )
 
     def delete_all(
@@ -467,6 +488,58 @@ class ChatsResource(SyncAPIResource):
             cast_to=ChatPinnedResponse,
         )
 
+    def retrieve_pinned(
+        self,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> ChatRetrievePinnedResponse:
+        """Get User Pinned Chats"""
+        return self._get(
+            "/api/v1/chats/pinned",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=ChatRetrievePinnedResponse,
+        )
+
+    def retrieve_shared(
+        self,
+        share_id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[ChatResponse]:
+        """
+        Get Shared Chat By Id
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not share_id:
+            raise ValueError(f"Expected a non-empty value for `share_id` but received {share_id!r}")
+        return self._get(
+            f"/api/v1/chats/share/{share_id}",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=ChatResponse,
+        )
+
     def search(
         self,
         *,
@@ -652,6 +725,25 @@ class AsyncChatsResource(AsyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=ChatResponse,
+        )
+
+    async def archive_all(
+        self,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> ChatArchiveAllResponse:
+        """Archive All Chats"""
+        return await self._post(
+            "/api/v1/chats/archive/all",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=ChatArchiveAllResponse,
         )
 
     async def delete_all(
@@ -925,6 +1017,58 @@ class AsyncChatsResource(AsyncAPIResource):
             cast_to=ChatPinnedResponse,
         )
 
+    async def retrieve_pinned(
+        self,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> ChatRetrievePinnedResponse:
+        """Get User Pinned Chats"""
+        return await self._get(
+            "/api/v1/chats/pinned",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=ChatRetrievePinnedResponse,
+        )
+
+    async def retrieve_shared(
+        self,
+        share_id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[ChatResponse]:
+        """
+        Get Shared Chat By Id
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not share_id:
+            raise ValueError(f"Expected a non-empty value for `share_id` but received {share_id!r}")
+        return await self._get(
+            f"/api/v1/chats/share/{share_id}",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=ChatResponse,
+        )
+
     async def search(
         self,
         *,
@@ -1013,6 +1157,9 @@ class ChatsResourceWithRawResponse:
         self.archive = to_raw_response_wrapper(
             chats.archive,
         )
+        self.archive_all = to_raw_response_wrapper(
+            chats.archive_all,
+        )
         self.delete_all = to_raw_response_wrapper(
             chats.delete_all,
         )
@@ -1036,6 +1183,12 @@ class ChatsResourceWithRawResponse:
         )
         self.pinned = to_raw_response_wrapper(
             chats.pinned,
+        )
+        self.retrieve_pinned = to_raw_response_wrapper(
+            chats.retrieve_pinned,
+        )
+        self.retrieve_shared = to_raw_response_wrapper(
+            chats.retrieve_shared,
         )
         self.search = to_raw_response_wrapper(
             chats.search,
@@ -1079,6 +1232,9 @@ class AsyncChatsResourceWithRawResponse:
         self.archive = async_to_raw_response_wrapper(
             chats.archive,
         )
+        self.archive_all = async_to_raw_response_wrapper(
+            chats.archive_all,
+        )
         self.delete_all = async_to_raw_response_wrapper(
             chats.delete_all,
         )
@@ -1102,6 +1258,12 @@ class AsyncChatsResourceWithRawResponse:
         )
         self.pinned = async_to_raw_response_wrapper(
             chats.pinned,
+        )
+        self.retrieve_pinned = async_to_raw_response_wrapper(
+            chats.retrieve_pinned,
+        )
+        self.retrieve_shared = async_to_raw_response_wrapper(
+            chats.retrieve_shared,
         )
         self.search = async_to_raw_response_wrapper(
             chats.search,
@@ -1145,6 +1307,9 @@ class ChatsResourceWithStreamingResponse:
         self.archive = to_streamed_response_wrapper(
             chats.archive,
         )
+        self.archive_all = to_streamed_response_wrapper(
+            chats.archive_all,
+        )
         self.delete_all = to_streamed_response_wrapper(
             chats.delete_all,
         )
@@ -1168,6 +1333,12 @@ class ChatsResourceWithStreamingResponse:
         )
         self.pinned = to_streamed_response_wrapper(
             chats.pinned,
+        )
+        self.retrieve_pinned = to_streamed_response_wrapper(
+            chats.retrieve_pinned,
+        )
+        self.retrieve_shared = to_streamed_response_wrapper(
+            chats.retrieve_shared,
         )
         self.search = to_streamed_response_wrapper(
             chats.search,
@@ -1211,6 +1382,9 @@ class AsyncChatsResourceWithStreamingResponse:
         self.archive = async_to_streamed_response_wrapper(
             chats.archive,
         )
+        self.archive_all = async_to_streamed_response_wrapper(
+            chats.archive_all,
+        )
         self.delete_all = async_to_streamed_response_wrapper(
             chats.delete_all,
         )
@@ -1234,6 +1408,12 @@ class AsyncChatsResourceWithStreamingResponse:
         )
         self.pinned = async_to_streamed_response_wrapper(
             chats.pinned,
+        )
+        self.retrieve_pinned = async_to_streamed_response_wrapper(
+            chats.retrieve_pinned,
+        )
+        self.retrieve_shared = async_to_streamed_response_wrapper(
+            chats.retrieve_shared,
         )
         self.search = async_to_streamed_response_wrapper(
             chats.search,
