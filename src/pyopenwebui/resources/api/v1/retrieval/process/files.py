@@ -20,8 +20,8 @@ from ......_response import (
     async_to_streamed_response_wrapper,
 )
 from ......_base_client import make_request_options
-from ......types.api.v1.file_model_param import FileModelParam
 from ......types.api.v1.retrieval.process import file_batch_params
+from ......types.shared_params.file_model import FileModel
 from ......types.api.v1.retrieval.process.file_batch_response import FileBatchResponse
 
 __all__ = ["FilesResource", "AsyncFilesResource"]
@@ -34,7 +34,7 @@ class FilesResource(SyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#accessing-raw-response-data-eg-headers
         """
         return FilesResourceWithRawResponse(self)
 
@@ -43,7 +43,7 @@ class FilesResource(SyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#with_streaming_response
+        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#with_streaming_response
         """
         return FilesResourceWithStreamingResponse(self)
 
@@ -51,7 +51,7 @@ class FilesResource(SyncAPIResource):
         self,
         *,
         collection_name: str,
-        files: Iterable[FileModelParam],
+        files: Iterable[FileModel],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -94,7 +94,7 @@ class AsyncFilesResource(AsyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#accessing-raw-response-data-eg-headers
         """
         return AsyncFilesResourceWithRawResponse(self)
 
@@ -103,7 +103,7 @@ class AsyncFilesResource(AsyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#with_streaming_response
+        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#with_streaming_response
         """
         return AsyncFilesResourceWithStreamingResponse(self)
 
@@ -111,7 +111,7 @@ class AsyncFilesResource(AsyncAPIResource):
         self,
         *,
         collection_name: str,
-        files: Iterable[FileModelParam],
+        files: Iterable[FileModel],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,

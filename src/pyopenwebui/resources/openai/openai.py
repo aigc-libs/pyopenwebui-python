@@ -36,7 +36,7 @@ from .models import (
     ModelsResourceWithStreamingResponse,
     AsyncModelsResourceWithStreamingResponse,
 )
-from ...types import openai_verify_params
+from ...types import openai_verify_connection_params
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._utils import (
     maybe_transform,
@@ -78,7 +78,7 @@ class OpenAIResource(SyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#accessing-raw-response-data-eg-headers
         """
         return OpenAIResourceWithRawResponse(self)
 
@@ -87,7 +87,7 @@ class OpenAIResource(SyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#with_streaming_response
+        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#with_streaming_response
         """
         return OpenAIResourceWithStreamingResponse(self)
 
@@ -223,7 +223,7 @@ class OpenAIResource(SyncAPIResource):
             cast_to=object,
         )
 
-    def verify(
+    def verify_connection(
         self,
         *,
         key: str,
@@ -254,7 +254,7 @@ class OpenAIResource(SyncAPIResource):
                     "key": key,
                     "url": url,
                 },
-                openai_verify_params.OpenAIVerifyParams,
+                openai_verify_connection_params.OpenAIVerifyConnectionParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -286,7 +286,7 @@ class AsyncOpenAIResource(AsyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#accessing-raw-response-data-eg-headers
         """
         return AsyncOpenAIResourceWithRawResponse(self)
 
@@ -295,7 +295,7 @@ class AsyncOpenAIResource(AsyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#with_streaming_response
+        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#with_streaming_response
         """
         return AsyncOpenAIResourceWithStreamingResponse(self)
 
@@ -431,7 +431,7 @@ class AsyncOpenAIResource(AsyncAPIResource):
             cast_to=object,
         )
 
-    async def verify(
+    async def verify_connection(
         self,
         *,
         key: str,
@@ -462,7 +462,7 @@ class AsyncOpenAIResource(AsyncAPIResource):
                     "key": key,
                     "url": url,
                 },
-                openai_verify_params.OpenAIVerifyParams,
+                openai_verify_connection_params.OpenAIVerifyConnectionParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -487,8 +487,8 @@ class OpenAIResourceWithRawResponse:
         self.proxy_put = to_raw_response_wrapper(
             openai.proxy_put,
         )
-        self.verify = to_raw_response_wrapper(
-            openai.verify,
+        self.verify_connection = to_raw_response_wrapper(
+            openai.verify_connection,
         )
 
     @cached_property
@@ -524,8 +524,8 @@ class AsyncOpenAIResourceWithRawResponse:
         self.proxy_put = async_to_raw_response_wrapper(
             openai.proxy_put,
         )
-        self.verify = async_to_raw_response_wrapper(
-            openai.verify,
+        self.verify_connection = async_to_raw_response_wrapper(
+            openai.verify_connection,
         )
 
     @cached_property
@@ -561,8 +561,8 @@ class OpenAIResourceWithStreamingResponse:
         self.proxy_put = to_streamed_response_wrapper(
             openai.proxy_put,
         )
-        self.verify = to_streamed_response_wrapper(
-            openai.verify,
+        self.verify_connection = to_streamed_response_wrapper(
+            openai.verify_connection,
         )
 
     @cached_property
@@ -598,8 +598,8 @@ class AsyncOpenAIResourceWithStreamingResponse:
         self.proxy_put = async_to_streamed_response_wrapper(
             openai.proxy_put,
         )
-        self.verify = async_to_streamed_response_wrapper(
-            openai.verify,
+        self.verify_connection = async_to_streamed_response_wrapper(
+            openai.verify_connection,
         )
 
     @cached_property

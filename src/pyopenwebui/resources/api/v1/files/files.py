@@ -39,9 +39,9 @@ from ....._response import (
 )
 from ....._base_client import make_request_options
 from .....types.api.v1 import file_upload_params
-from .....types.api.v1.file_model import FileModel
+from .....types.shared.file_model import FileModel
 from .....types.api.v1.file_list_response import FileListResponse
-from .....types.api.v1.file_model_response import FileModelResponse
+from .....types.api.v1.file_upload_response import FileUploadResponse
 
 __all__ = ["FilesResource", "AsyncFilesResource"]
 
@@ -61,7 +61,7 @@ class FilesResource(SyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#accessing-raw-response-data-eg-headers
         """
         return FilesResourceWithRawResponse(self)
 
@@ -70,7 +70,7 @@ class FilesResource(SyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#with_streaming_response
+        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#with_streaming_response
         """
         return FilesResourceWithStreamingResponse(self)
 
@@ -189,7 +189,7 @@ class FilesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> FileModelResponse:
+    ) -> FileUploadResponse:
         """
         Upload File
 
@@ -220,7 +220,7 @@ class FilesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=FileModelResponse,
+            cast_to=FileUploadResponse,
         )
 
 
@@ -239,7 +239,7 @@ class AsyncFilesResource(AsyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#accessing-raw-response-data-eg-headers
         """
         return AsyncFilesResourceWithRawResponse(self)
 
@@ -248,7 +248,7 @@ class AsyncFilesResource(AsyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#with_streaming_response
+        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#with_streaming_response
         """
         return AsyncFilesResourceWithStreamingResponse(self)
 
@@ -367,7 +367,7 @@ class AsyncFilesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> FileModelResponse:
+    ) -> FileUploadResponse:
         """
         Upload File
 
@@ -398,7 +398,7 @@ class AsyncFilesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=FileModelResponse,
+            cast_to=FileUploadResponse,
         )
 
 

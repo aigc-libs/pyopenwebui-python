@@ -3,7 +3,7 @@
 from typing import List
 from typing_extensions import TypeAlias
 
-from .prompt_suggestion import PromptSuggestion
+from ...configs.default.prompt_suggestion import PromptSuggestion
 
 __all__ = ["ConfigSetSuggestionsResponse"]
 

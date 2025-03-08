@@ -17,17 +17,23 @@ class TestUpload:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @parametrize
-    def test_method_create(self, client: Pyopenwebui) -> None:
-        upload = client.ollama.models.upload.create(
-            url_idx=0,
+    def test_method_upload(self, client: Pyopenwebui) -> None:
+        upload = client.ollama.models.upload.upload(
             file=b"raw file contents",
         )
         assert_matches_type(object, upload, path=["response"])
 
     @parametrize
-    def test_raw_response_create(self, client: Pyopenwebui) -> None:
-        response = client.ollama.models.upload.with_raw_response.create(
+    def test_method_upload_with_all_params(self, client: Pyopenwebui) -> None:
+        upload = client.ollama.models.upload.upload(
+            file=b"raw file contents",
             url_idx=0,
+        )
+        assert_matches_type(object, upload, path=["response"])
+
+    @parametrize
+    def test_raw_response_upload(self, client: Pyopenwebui) -> None:
+        response = client.ollama.models.upload.with_raw_response.upload(
             file=b"raw file contents",
         )
 
@@ -37,9 +43,8 @@ class TestUpload:
         assert_matches_type(object, upload, path=["response"])
 
     @parametrize
-    def test_streaming_response_create(self, client: Pyopenwebui) -> None:
-        with client.ollama.models.upload.with_streaming_response.create(
-            url_idx=0,
+    def test_streaming_response_upload(self, client: Pyopenwebui) -> None:
+        with client.ollama.models.upload.with_streaming_response.upload(
             file=b"raw file contents",
         ) as response:
             assert not response.is_closed
@@ -51,23 +56,17 @@ class TestUpload:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
-    def test_method_upload_model(self, client: Pyopenwebui) -> None:
-        upload = client.ollama.models.upload.upload_model(
-            file=b"raw file contents",
-        )
-        assert_matches_type(object, upload, path=["response"])
-
-    @parametrize
-    def test_method_upload_model_with_all_params(self, client: Pyopenwebui) -> None:
-        upload = client.ollama.models.upload.upload_model(
-            file=b"raw file contents",
+    def test_method_upload_by_index(self, client: Pyopenwebui) -> None:
+        upload = client.ollama.models.upload.upload_by_index(
             url_idx=0,
+            file=b"raw file contents",
         )
         assert_matches_type(object, upload, path=["response"])
 
     @parametrize
-    def test_raw_response_upload_model(self, client: Pyopenwebui) -> None:
-        response = client.ollama.models.upload.with_raw_response.upload_model(
+    def test_raw_response_upload_by_index(self, client: Pyopenwebui) -> None:
+        response = client.ollama.models.upload.with_raw_response.upload_by_index(
+            url_idx=0,
             file=b"raw file contents",
         )
 
@@ -77,8 +76,9 @@ class TestUpload:
         assert_matches_type(object, upload, path=["response"])
 
     @parametrize
-    def test_streaming_response_upload_model(self, client: Pyopenwebui) -> None:
-        with client.ollama.models.upload.with_streaming_response.upload_model(
+    def test_streaming_response_upload_by_index(self, client: Pyopenwebui) -> None:
+        with client.ollama.models.upload.with_streaming_response.upload_by_index(
+            url_idx=0,
             file=b"raw file contents",
         ) as response:
             assert not response.is_closed
@@ -94,17 +94,23 @@ class TestAsyncUpload:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @parametrize
-    async def test_method_create(self, async_client: AsyncPyopenwebui) -> None:
-        upload = await async_client.ollama.models.upload.create(
-            url_idx=0,
+    async def test_method_upload(self, async_client: AsyncPyopenwebui) -> None:
+        upload = await async_client.ollama.models.upload.upload(
             file=b"raw file contents",
         )
         assert_matches_type(object, upload, path=["response"])
 
     @parametrize
-    async def test_raw_response_create(self, async_client: AsyncPyopenwebui) -> None:
-        response = await async_client.ollama.models.upload.with_raw_response.create(
+    async def test_method_upload_with_all_params(self, async_client: AsyncPyopenwebui) -> None:
+        upload = await async_client.ollama.models.upload.upload(
+            file=b"raw file contents",
             url_idx=0,
+        )
+        assert_matches_type(object, upload, path=["response"])
+
+    @parametrize
+    async def test_raw_response_upload(self, async_client: AsyncPyopenwebui) -> None:
+        response = await async_client.ollama.models.upload.with_raw_response.upload(
             file=b"raw file contents",
         )
 
@@ -114,9 +120,8 @@ class TestAsyncUpload:
         assert_matches_type(object, upload, path=["response"])
 
     @parametrize
-    async def test_streaming_response_create(self, async_client: AsyncPyopenwebui) -> None:
-        async with async_client.ollama.models.upload.with_streaming_response.create(
-            url_idx=0,
+    async def test_streaming_response_upload(self, async_client: AsyncPyopenwebui) -> None:
+        async with async_client.ollama.models.upload.with_streaming_response.upload(
             file=b"raw file contents",
         ) as response:
             assert not response.is_closed
@@ -128,23 +133,17 @@ class TestAsyncUpload:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
-    async def test_method_upload_model(self, async_client: AsyncPyopenwebui) -> None:
-        upload = await async_client.ollama.models.upload.upload_model(
-            file=b"raw file contents",
-        )
-        assert_matches_type(object, upload, path=["response"])
-
-    @parametrize
-    async def test_method_upload_model_with_all_params(self, async_client: AsyncPyopenwebui) -> None:
-        upload = await async_client.ollama.models.upload.upload_model(
-            file=b"raw file contents",
+    async def test_method_upload_by_index(self, async_client: AsyncPyopenwebui) -> None:
+        upload = await async_client.ollama.models.upload.upload_by_index(
             url_idx=0,
+            file=b"raw file contents",
         )
         assert_matches_type(object, upload, path=["response"])
 
     @parametrize
-    async def test_raw_response_upload_model(self, async_client: AsyncPyopenwebui) -> None:
-        response = await async_client.ollama.models.upload.with_raw_response.upload_model(
+    async def test_raw_response_upload_by_index(self, async_client: AsyncPyopenwebui) -> None:
+        response = await async_client.ollama.models.upload.with_raw_response.upload_by_index(
+            url_idx=0,
             file=b"raw file contents",
         )
 
@@ -154,8 +153,9 @@ class TestAsyncUpload:
         assert_matches_type(object, upload, path=["response"])
 
     @parametrize
-    async def test_streaming_response_upload_model(self, async_client: AsyncPyopenwebui) -> None:
-        async with async_client.ollama.models.upload.with_streaming_response.upload_model(
+    async def test_streaming_response_upload_by_index(self, async_client: AsyncPyopenwebui) -> None:
+        async with async_client.ollama.models.upload.with_streaming_response.upload_by_index(
+            url_idx=0,
             file=b"raw file contents",
         ) as response:
             assert not response.is_closed

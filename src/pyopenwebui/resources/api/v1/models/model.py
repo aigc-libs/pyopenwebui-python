@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Optional
+from typing import Dict, Optional
 
 import httpx
 
@@ -20,12 +20,11 @@ from ....._response import (
     async_to_streamed_response_wrapper,
 )
 from ....._base_client import make_request_options
+from .....types.model_model import ModelModel
 from .....types.api.v1.models import model_get_params, model_delete_params, model_toggle_params, model_update_params
-from .....types.api.v1.model_model import ModelModel
-from .....types.api.v1.model_response import ModelResponse
-from .....types.api.v1.model_meta_param import ModelMetaParam
-from .....types.api.v1.model_params_param import ModelParamsParam
+from .....types.api.v1.models.model_get_response import ModelGetResponse
 from .....types.api.v1.models.model_delete_response import ModelDeleteResponse
+from .....types.api.v1.models.model_toggle_response import ModelToggleResponse
 
 __all__ = ["ModelResource", "AsyncModelResource"]
 
@@ -37,7 +36,7 @@ class ModelResource(SyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#accessing-raw-response-data-eg-headers
         """
         return ModelResourceWithRawResponse(self)
 
@@ -46,7 +45,7 @@ class ModelResource(SyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#with_streaming_response
+        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#with_streaming_response
         """
         return ModelResourceWithStreamingResponse(self)
 
@@ -55,9 +54,9 @@ class ModelResource(SyncAPIResource):
         *,
         id_1: str,
         id_2: str,
-        meta: ModelMetaParam,
+        meta: model_update_params.Meta,
         name: str,
-        params: ModelParamsParam,
+        params: Dict[str, object],
         access_control: Optional[object] | NotGiven = NOT_GIVEN,
         base_model_id: Optional[str] | NotGiven = NOT_GIVEN,
         is_active: bool | NotGiven = NOT_GIVEN,
@@ -149,7 +148,7 @@ class ModelResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ModelResponse]:
+    ) -> Optional[ModelGetResponse]:
         """
         Get Model By Id
 
@@ -171,7 +170,7 @@ class ModelResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform({"id": id}, model_get_params.ModelGetParams),
             ),
-            cast_to=ModelResponse,
+            cast_to=ModelGetResponse,
         )
 
     def toggle(
@@ -184,7 +183,7 @@ class ModelResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ModelResponse]:
+    ) -> Optional[ModelToggleResponse]:
         """
         Toggle Model By Id
 
@@ -206,7 +205,7 @@ class ModelResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform({"id": id}, model_toggle_params.ModelToggleParams),
             ),
-            cast_to=ModelResponse,
+            cast_to=ModelToggleResponse,
         )
 
 
@@ -217,7 +216,7 @@ class AsyncModelResource(AsyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#accessing-raw-response-data-eg-headers
         """
         return AsyncModelResourceWithRawResponse(self)
 
@@ -226,7 +225,7 @@ class AsyncModelResource(AsyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#with_streaming_response
+        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#with_streaming_response
         """
         return AsyncModelResourceWithStreamingResponse(self)
 
@@ -235,9 +234,9 @@ class AsyncModelResource(AsyncAPIResource):
         *,
         id_1: str,
         id_2: str,
-        meta: ModelMetaParam,
+        meta: model_update_params.Meta,
         name: str,
-        params: ModelParamsParam,
+        params: Dict[str, object],
         access_control: Optional[object] | NotGiven = NOT_GIVEN,
         base_model_id: Optional[str] | NotGiven = NOT_GIVEN,
         is_active: bool | NotGiven = NOT_GIVEN,
@@ -329,7 +328,7 @@ class AsyncModelResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ModelResponse]:
+    ) -> Optional[ModelGetResponse]:
         """
         Get Model By Id
 
@@ -351,7 +350,7 @@ class AsyncModelResource(AsyncAPIResource):
                 timeout=timeout,
                 query=await async_maybe_transform({"id": id}, model_get_params.ModelGetParams),
             ),
-            cast_to=ModelResponse,
+            cast_to=ModelGetResponse,
         )
 
     async def toggle(
@@ -364,7 +363,7 @@ class AsyncModelResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ModelResponse]:
+    ) -> Optional[ModelToggleResponse]:
         """
         Toggle Model By Id
 
@@ -386,7 +385,7 @@ class AsyncModelResource(AsyncAPIResource):
                 timeout=timeout,
                 query=await async_maybe_transform({"id": id}, model_toggle_params.ModelToggleParams),
             ),
-            cast_to=ModelResponse,
+            cast_to=ModelToggleResponse,
         )
 
 

@@ -19,15 +19,21 @@ class TestDelete:
     @parametrize
     def test_method_delete(self, client: Pyopenwebui) -> None:
         delete = client.ollama.api.delete.delete(
-            url_idx=0,
             name="name",
+        )
+        assert_matches_type(object, delete, path=["response"])
+
+    @parametrize
+    def test_method_delete_with_all_params(self, client: Pyopenwebui) -> None:
+        delete = client.ollama.api.delete.delete(
+            name="name",
+            url_idx=0,
         )
         assert_matches_type(object, delete, path=["response"])
 
     @parametrize
     def test_raw_response_delete(self, client: Pyopenwebui) -> None:
         response = client.ollama.api.delete.with_raw_response.delete(
-            url_idx=0,
             name="name",
         )
 
@@ -39,7 +45,6 @@ class TestDelete:
     @parametrize
     def test_streaming_response_delete(self, client: Pyopenwebui) -> None:
         with client.ollama.api.delete.with_streaming_response.delete(
-            url_idx=0,
             name="name",
         ) as response:
             assert not response.is_closed
@@ -51,23 +56,17 @@ class TestDelete:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
-    def test_method_delete_model(self, client: Pyopenwebui) -> None:
-        delete = client.ollama.api.delete.delete_model(
-            name="name",
-        )
-        assert_matches_type(object, delete, path=["response"])
-
-    @parametrize
-    def test_method_delete_model_with_all_params(self, client: Pyopenwebui) -> None:
-        delete = client.ollama.api.delete.delete_model(
-            name="name",
+    def test_method_delete_by_index(self, client: Pyopenwebui) -> None:
+        delete = client.ollama.api.delete.delete_by_index(
             url_idx=0,
+            name="name",
         )
         assert_matches_type(object, delete, path=["response"])
 
     @parametrize
-    def test_raw_response_delete_model(self, client: Pyopenwebui) -> None:
-        response = client.ollama.api.delete.with_raw_response.delete_model(
+    def test_raw_response_delete_by_index(self, client: Pyopenwebui) -> None:
+        response = client.ollama.api.delete.with_raw_response.delete_by_index(
+            url_idx=0,
             name="name",
         )
 
@@ -77,8 +76,9 @@ class TestDelete:
         assert_matches_type(object, delete, path=["response"])
 
     @parametrize
-    def test_streaming_response_delete_model(self, client: Pyopenwebui) -> None:
-        with client.ollama.api.delete.with_streaming_response.delete_model(
+    def test_streaming_response_delete_by_index(self, client: Pyopenwebui) -> None:
+        with client.ollama.api.delete.with_streaming_response.delete_by_index(
+            url_idx=0,
             name="name",
         ) as response:
             assert not response.is_closed
@@ -96,15 +96,21 @@ class TestAsyncDelete:
     @parametrize
     async def test_method_delete(self, async_client: AsyncPyopenwebui) -> None:
         delete = await async_client.ollama.api.delete.delete(
-            url_idx=0,
             name="name",
+        )
+        assert_matches_type(object, delete, path=["response"])
+
+    @parametrize
+    async def test_method_delete_with_all_params(self, async_client: AsyncPyopenwebui) -> None:
+        delete = await async_client.ollama.api.delete.delete(
+            name="name",
+            url_idx=0,
         )
         assert_matches_type(object, delete, path=["response"])
 
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncPyopenwebui) -> None:
         response = await async_client.ollama.api.delete.with_raw_response.delete(
-            url_idx=0,
             name="name",
         )
 
@@ -116,7 +122,6 @@ class TestAsyncDelete:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncPyopenwebui) -> None:
         async with async_client.ollama.api.delete.with_streaming_response.delete(
-            url_idx=0,
             name="name",
         ) as response:
             assert not response.is_closed
@@ -128,23 +133,17 @@ class TestAsyncDelete:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
-    async def test_method_delete_model(self, async_client: AsyncPyopenwebui) -> None:
-        delete = await async_client.ollama.api.delete.delete_model(
-            name="name",
-        )
-        assert_matches_type(object, delete, path=["response"])
-
-    @parametrize
-    async def test_method_delete_model_with_all_params(self, async_client: AsyncPyopenwebui) -> None:
-        delete = await async_client.ollama.api.delete.delete_model(
-            name="name",
+    async def test_method_delete_by_index(self, async_client: AsyncPyopenwebui) -> None:
+        delete = await async_client.ollama.api.delete.delete_by_index(
             url_idx=0,
+            name="name",
         )
         assert_matches_type(object, delete, path=["response"])
 
     @parametrize
-    async def test_raw_response_delete_model(self, async_client: AsyncPyopenwebui) -> None:
-        response = await async_client.ollama.api.delete.with_raw_response.delete_model(
+    async def test_raw_response_delete_by_index(self, async_client: AsyncPyopenwebui) -> None:
+        response = await async_client.ollama.api.delete.with_raw_response.delete_by_index(
+            url_idx=0,
             name="name",
         )
 
@@ -154,8 +153,9 @@ class TestAsyncDelete:
         assert_matches_type(object, delete, path=["response"])
 
     @parametrize
-    async def test_streaming_response_delete_model(self, async_client: AsyncPyopenwebui) -> None:
-        async with async_client.ollama.api.delete.with_streaming_response.delete_model(
+    async def test_streaming_response_delete_by_index(self, async_client: AsyncPyopenwebui) -> None:
+        async with async_client.ollama.api.delete.with_streaming_response.delete_by_index(
+            url_idx=0,
             name="name",
         ) as response:
             assert not response.is_closed

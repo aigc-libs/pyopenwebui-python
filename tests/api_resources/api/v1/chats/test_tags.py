@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-from typing import Any, cast
+from typing import Any, Optional, cast
 
 import pytest
 
@@ -12,7 +12,9 @@ from tests.utils import assert_matches_type
 from pyopenwebui.types.api.v1.chats import (
     TagAddResponse,
     TagGetResponse,
+    TagDeleteResponse,
     TagGetByIDResponse,
+    TagDeleteAllResponse,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -20,6 +22,48 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
 class TestTags:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
+
+    @parametrize
+    def test_method_delete(self, client: Pyopenwebui) -> None:
+        tag = client.api.v1.chats.tags.delete(
+            id="id",
+            name="name",
+        )
+        assert_matches_type(TagDeleteResponse, tag, path=["response"])
+
+    @parametrize
+    def test_raw_response_delete(self, client: Pyopenwebui) -> None:
+        response = client.api.v1.chats.tags.with_raw_response.delete(
+            id="id",
+            name="name",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        tag = response.parse()
+        assert_matches_type(TagDeleteResponse, tag, path=["response"])
+
+    @parametrize
+    def test_streaming_response_delete(self, client: Pyopenwebui) -> None:
+        with client.api.v1.chats.tags.with_streaming_response.delete(
+            id="id",
+            name="name",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            tag = response.parse()
+            assert_matches_type(TagDeleteResponse, tag, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_delete(self, client: Pyopenwebui) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            client.api.v1.chats.tags.with_raw_response.delete(
+                id="",
+                name="name",
+            )
 
     @parametrize
     def test_method_add(self, client: Pyopenwebui) -> None:
@@ -61,6 +105,44 @@ class TestTags:
             client.api.v1.chats.tags.with_raw_response.add(
                 id="",
                 name="name",
+            )
+
+    @parametrize
+    def test_method_delete_all(self, client: Pyopenwebui) -> None:
+        tag = client.api.v1.chats.tags.delete_all(
+            "id",
+        )
+        assert_matches_type(Optional[TagDeleteAllResponse], tag, path=["response"])
+
+    @parametrize
+    def test_raw_response_delete_all(self, client: Pyopenwebui) -> None:
+        response = client.api.v1.chats.tags.with_raw_response.delete_all(
+            "id",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        tag = response.parse()
+        assert_matches_type(Optional[TagDeleteAllResponse], tag, path=["response"])
+
+    @parametrize
+    def test_streaming_response_delete_all(self, client: Pyopenwebui) -> None:
+        with client.api.v1.chats.tags.with_streaming_response.delete_all(
+            "id",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            tag = response.parse()
+            assert_matches_type(Optional[TagDeleteAllResponse], tag, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_delete_all(self, client: Pyopenwebui) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            client.api.v1.chats.tags.with_raw_response.delete_all(
+                "",
             )
 
     @parametrize
@@ -146,6 +228,48 @@ class TestAsyncTags:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @parametrize
+    async def test_method_delete(self, async_client: AsyncPyopenwebui) -> None:
+        tag = await async_client.api.v1.chats.tags.delete(
+            id="id",
+            name="name",
+        )
+        assert_matches_type(TagDeleteResponse, tag, path=["response"])
+
+    @parametrize
+    async def test_raw_response_delete(self, async_client: AsyncPyopenwebui) -> None:
+        response = await async_client.api.v1.chats.tags.with_raw_response.delete(
+            id="id",
+            name="name",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        tag = await response.parse()
+        assert_matches_type(TagDeleteResponse, tag, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_delete(self, async_client: AsyncPyopenwebui) -> None:
+        async with async_client.api.v1.chats.tags.with_streaming_response.delete(
+            id="id",
+            name="name",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            tag = await response.parse()
+            assert_matches_type(TagDeleteResponse, tag, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_delete(self, async_client: AsyncPyopenwebui) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            await async_client.api.v1.chats.tags.with_raw_response.delete(
+                id="",
+                name="name",
+            )
+
+    @parametrize
     async def test_method_add(self, async_client: AsyncPyopenwebui) -> None:
         tag = await async_client.api.v1.chats.tags.add(
             id="id",
@@ -185,6 +309,44 @@ class TestAsyncTags:
             await async_client.api.v1.chats.tags.with_raw_response.add(
                 id="",
                 name="name",
+            )
+
+    @parametrize
+    async def test_method_delete_all(self, async_client: AsyncPyopenwebui) -> None:
+        tag = await async_client.api.v1.chats.tags.delete_all(
+            "id",
+        )
+        assert_matches_type(Optional[TagDeleteAllResponse], tag, path=["response"])
+
+    @parametrize
+    async def test_raw_response_delete_all(self, async_client: AsyncPyopenwebui) -> None:
+        response = await async_client.api.v1.chats.tags.with_raw_response.delete_all(
+            "id",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        tag = await response.parse()
+        assert_matches_type(Optional[TagDeleteAllResponse], tag, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_delete_all(self, async_client: AsyncPyopenwebui) -> None:
+        async with async_client.api.v1.chats.tags.with_streaming_response.delete_all(
+            "id",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            tag = await response.parse()
+            assert_matches_type(Optional[TagDeleteAllResponse], tag, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_delete_all(self, async_client: AsyncPyopenwebui) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            await async_client.api.v1.chats.tags.with_raw_response.delete_all(
+                "",
             )
 
     @parametrize

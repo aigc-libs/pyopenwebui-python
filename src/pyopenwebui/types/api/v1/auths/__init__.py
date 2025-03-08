@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-from .api_key import APIKey as APIKey
 from .update_profile_params import UpdateProfileParams as UpdateProfileParams
 from .update_password_params import UpdatePasswordParams as UpdatePasswordParams
 from .api_key_delete_response import APIKeyDeleteResponse as APIKeyDeleteResponse

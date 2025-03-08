@@ -9,7 +9,7 @@ import pytest
 
 from pyopenwebui import Pyopenwebui, AsyncPyopenwebui
 from tests.utils import assert_matches_type
-from pyopenwebui.types.api.v1.configs import ModelsConfigForm
+from pyopenwebui.types.api.v1.configs import ModelGetResponse, ModelSetResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -20,7 +20,7 @@ class TestModels:
     @parametrize
     def test_method_get(self, client: Pyopenwebui) -> None:
         model = client.api.v1.configs.models.get()
-        assert_matches_type(ModelsConfigForm, model, path=["response"])
+        assert_matches_type(ModelGetResponse, model, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Pyopenwebui) -> None:
@@ -29,7 +29,7 @@ class TestModels:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         model = response.parse()
-        assert_matches_type(ModelsConfigForm, model, path=["response"])
+        assert_matches_type(ModelGetResponse, model, path=["response"])
 
     @parametrize
     def test_streaming_response_get(self, client: Pyopenwebui) -> None:
@@ -38,7 +38,7 @@ class TestModels:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             model = response.parse()
-            assert_matches_type(ModelsConfigForm, model, path=["response"])
+            assert_matches_type(ModelGetResponse, model, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -48,7 +48,7 @@ class TestModels:
             default_models="DEFAULT_MODELS",
             model_order_list=["string"],
         )
-        assert_matches_type(ModelsConfigForm, model, path=["response"])
+        assert_matches_type(ModelSetResponse, model, path=["response"])
 
     @parametrize
     def test_raw_response_set(self, client: Pyopenwebui) -> None:
@@ -60,7 +60,7 @@ class TestModels:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         model = response.parse()
-        assert_matches_type(ModelsConfigForm, model, path=["response"])
+        assert_matches_type(ModelSetResponse, model, path=["response"])
 
     @parametrize
     def test_streaming_response_set(self, client: Pyopenwebui) -> None:
@@ -72,7 +72,7 @@ class TestModels:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             model = response.parse()
-            assert_matches_type(ModelsConfigForm, model, path=["response"])
+            assert_matches_type(ModelSetResponse, model, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -83,7 +83,7 @@ class TestAsyncModels:
     @parametrize
     async def test_method_get(self, async_client: AsyncPyopenwebui) -> None:
         model = await async_client.api.v1.configs.models.get()
-        assert_matches_type(ModelsConfigForm, model, path=["response"])
+        assert_matches_type(ModelGetResponse, model, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncPyopenwebui) -> None:
@@ -92,7 +92,7 @@ class TestAsyncModels:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         model = await response.parse()
-        assert_matches_type(ModelsConfigForm, model, path=["response"])
+        assert_matches_type(ModelGetResponse, model, path=["response"])
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncPyopenwebui) -> None:
@@ -101,7 +101,7 @@ class TestAsyncModels:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             model = await response.parse()
-            assert_matches_type(ModelsConfigForm, model, path=["response"])
+            assert_matches_type(ModelGetResponse, model, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -111,7 +111,7 @@ class TestAsyncModels:
             default_models="DEFAULT_MODELS",
             model_order_list=["string"],
         )
-        assert_matches_type(ModelsConfigForm, model, path=["response"])
+        assert_matches_type(ModelSetResponse, model, path=["response"])
 
     @parametrize
     async def test_raw_response_set(self, async_client: AsyncPyopenwebui) -> None:
@@ -123,7 +123,7 @@ class TestAsyncModels:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         model = await response.parse()
-        assert_matches_type(ModelsConfigForm, model, path=["response"])
+        assert_matches_type(ModelSetResponse, model, path=["response"])
 
     @parametrize
     async def test_streaming_response_set(self, async_client: AsyncPyopenwebui) -> None:
@@ -135,6 +135,6 @@ class TestAsyncModels:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             model = await response.parse()
-            assert_matches_type(ModelsConfigForm, model, path=["response"])
+            assert_matches_type(ModelSetResponse, model, path=["response"])
 
         assert cast(Any, response.is_closed) is True

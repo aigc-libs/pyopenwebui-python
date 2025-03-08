@@ -20,7 +20,7 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._base_client import make_request_options
-from ....types.ollama.api import embedding_create_params, embedding_get_embeddings_params
+from ....types.ollama.api import embedding_embeddings_params, embedding_embeddings_by_index_params
 
 __all__ = ["EmbeddingsResource", "AsyncEmbeddingsResource"]
 
@@ -32,7 +32,7 @@ class EmbeddingsResource(SyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#accessing-raw-response-data-eg-headers
         """
         return EmbeddingsResourceWithRawResponse(self)
 
@@ -41,55 +41,11 @@ class EmbeddingsResource(SyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#with_streaming_response
+        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#with_streaming_response
         """
         return EmbeddingsResourceWithStreamingResponse(self)
 
-    def create(
-        self,
-        url_idx: int,
-        *,
-        model: str,
-        prompt: str,
-        keep_alive: Union[int, str, None] | NotGiven = NOT_GIVEN,
-        options: Optional[object] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> object:
-        """
-        Embeddings
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return self._post(
-            f"/ollama/api/embeddings/{url_idx}",
-            body=maybe_transform(
-                {
-                    "model": model,
-                    "prompt": prompt,
-                    "keep_alive": keep_alive,
-                    "options": options,
-                },
-                embedding_create_params.EmbeddingCreateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=object,
-        )
-
-    def get_embeddings(
+    def embeddings(
         self,
         *,
         model: str,
@@ -125,16 +81,58 @@ class EmbeddingsResource(SyncAPIResource):
                     "keep_alive": keep_alive,
                     "options": options,
                 },
-                embedding_get_embeddings_params.EmbeddingGetEmbeddingsParams,
+                embedding_embeddings_params.EmbeddingEmbeddingsParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform(
-                    {"url_idx": url_idx}, embedding_get_embeddings_params.EmbeddingGetEmbeddingsParams
-                ),
+                query=maybe_transform({"url_idx": url_idx}, embedding_embeddings_params.EmbeddingEmbeddingsParams),
+            ),
+            cast_to=object,
+        )
+
+    def embeddings_by_index(
+        self,
+        url_idx: int,
+        *,
+        model: str,
+        prompt: str,
+        keep_alive: Union[int, str, None] | NotGiven = NOT_GIVEN,
+        options: Optional[object] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> object:
+        """
+        Embeddings
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._post(
+            f"/ollama/api/embeddings/{url_idx}",
+            body=maybe_transform(
+                {
+                    "model": model,
+                    "prompt": prompt,
+                    "keep_alive": keep_alive,
+                    "options": options,
+                },
+                embedding_embeddings_by_index_params.EmbeddingEmbeddingsByIndexParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=object,
         )
@@ -147,7 +145,7 @@ class AsyncEmbeddingsResource(AsyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#accessing-raw-response-data-eg-headers
         """
         return AsyncEmbeddingsResourceWithRawResponse(self)
 
@@ -156,55 +154,11 @@ class AsyncEmbeddingsResource(AsyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#with_streaming_response
+        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#with_streaming_response
         """
         return AsyncEmbeddingsResourceWithStreamingResponse(self)
 
-    async def create(
-        self,
-        url_idx: int,
-        *,
-        model: str,
-        prompt: str,
-        keep_alive: Union[int, str, None] | NotGiven = NOT_GIVEN,
-        options: Optional[object] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> object:
-        """
-        Embeddings
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return await self._post(
-            f"/ollama/api/embeddings/{url_idx}",
-            body=await async_maybe_transform(
-                {
-                    "model": model,
-                    "prompt": prompt,
-                    "keep_alive": keep_alive,
-                    "options": options,
-                },
-                embedding_create_params.EmbeddingCreateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=object,
-        )
-
-    async def get_embeddings(
+    async def embeddings(
         self,
         *,
         model: str,
@@ -240,7 +194,7 @@ class AsyncEmbeddingsResource(AsyncAPIResource):
                     "keep_alive": keep_alive,
                     "options": options,
                 },
-                embedding_get_embeddings_params.EmbeddingGetEmbeddingsParams,
+                embedding_embeddings_params.EmbeddingEmbeddingsParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -248,8 +202,52 @@ class AsyncEmbeddingsResource(AsyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=await async_maybe_transform(
-                    {"url_idx": url_idx}, embedding_get_embeddings_params.EmbeddingGetEmbeddingsParams
+                    {"url_idx": url_idx}, embedding_embeddings_params.EmbeddingEmbeddingsParams
                 ),
+            ),
+            cast_to=object,
+        )
+
+    async def embeddings_by_index(
+        self,
+        url_idx: int,
+        *,
+        model: str,
+        prompt: str,
+        keep_alive: Union[int, str, None] | NotGiven = NOT_GIVEN,
+        options: Optional[object] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> object:
+        """
+        Embeddings
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return await self._post(
+            f"/ollama/api/embeddings/{url_idx}",
+            body=await async_maybe_transform(
+                {
+                    "model": model,
+                    "prompt": prompt,
+                    "keep_alive": keep_alive,
+                    "options": options,
+                },
+                embedding_embeddings_by_index_params.EmbeddingEmbeddingsByIndexParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=object,
         )
@@ -259,11 +257,11 @@ class EmbeddingsResourceWithRawResponse:
     def __init__(self, embeddings: EmbeddingsResource) -> None:
         self._embeddings = embeddings
 
-        self.create = to_raw_response_wrapper(
-            embeddings.create,
+        self.embeddings = to_raw_response_wrapper(
+            embeddings.embeddings,
         )
-        self.get_embeddings = to_raw_response_wrapper(
-            embeddings.get_embeddings,
+        self.embeddings_by_index = to_raw_response_wrapper(
+            embeddings.embeddings_by_index,
         )
 
 
@@ -271,11 +269,11 @@ class AsyncEmbeddingsResourceWithRawResponse:
     def __init__(self, embeddings: AsyncEmbeddingsResource) -> None:
         self._embeddings = embeddings
 
-        self.create = async_to_raw_response_wrapper(
-            embeddings.create,
+        self.embeddings = async_to_raw_response_wrapper(
+            embeddings.embeddings,
         )
-        self.get_embeddings = async_to_raw_response_wrapper(
-            embeddings.get_embeddings,
+        self.embeddings_by_index = async_to_raw_response_wrapper(
+            embeddings.embeddings_by_index,
         )
 
 
@@ -283,11 +281,11 @@ class EmbeddingsResourceWithStreamingResponse:
     def __init__(self, embeddings: EmbeddingsResource) -> None:
         self._embeddings = embeddings
 
-        self.create = to_streamed_response_wrapper(
-            embeddings.create,
+        self.embeddings = to_streamed_response_wrapper(
+            embeddings.embeddings,
         )
-        self.get_embeddings = to_streamed_response_wrapper(
-            embeddings.get_embeddings,
+        self.embeddings_by_index = to_streamed_response_wrapper(
+            embeddings.embeddings_by_index,
         )
 
 
@@ -295,9 +293,9 @@ class AsyncEmbeddingsResourceWithStreamingResponse:
     def __init__(self, embeddings: AsyncEmbeddingsResource) -> None:
         self._embeddings = embeddings
 
-        self.create = async_to_streamed_response_wrapper(
-            embeddings.create,
+        self.embeddings = async_to_streamed_response_wrapper(
+            embeddings.embeddings,
         )
-        self.get_embeddings = async_to_streamed_response_wrapper(
-            embeddings.get_embeddings,
+        self.embeddings_by_index = async_to_streamed_response_wrapper(
+            embeddings.embeddings_by_index,
         )

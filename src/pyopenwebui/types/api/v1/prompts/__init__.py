@@ -2,5 +2,5 @@
 
 from __future__ import annotations
 
-from .command_update_params import CommandUpdateParams as CommandUpdateParams
-from .command_delete_response import CommandDeleteResponse as CommandDeleteResponse
+from .command_update_by_command_params import CommandUpdateByCommandParams as CommandUpdateByCommandParams
+from .command_delete_by_command_response import CommandDeleteByCommandResponse as CommandDeleteByCommandResponse

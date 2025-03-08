@@ -2,11 +2,10 @@
 
 from __future__ import annotations
 
+from typing import Optional
 from typing_extensions import Required, TypedDict
 
-from .function_meta_param import FunctionMetaParam
-
-__all__ = ["FunctionCreateParams"]
+__all__ = ["FunctionCreateParams", "Meta"]
 
 
 class FunctionCreateParams(TypedDict, total=False):
@@ -14,6 +13,12 @@ class FunctionCreateParams(TypedDict, total=False):
 
     content: Required[str]
 
-    meta: Required[FunctionMetaParam]
+    meta: Required[Meta]
 
     name: Required[str]
+
+
+class Meta(TypedDict, total=False):
+    description: Optional[str]
+
+    manifest: Optional[object]

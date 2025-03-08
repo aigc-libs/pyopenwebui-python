@@ -5,4 +5,3 @@ from __future__ import annotations
 from .file_batch_params import FileBatchParams as FileBatchParams
 from .web_search_params import WebSearchParams as WebSearchParams
 from .file_batch_response import FileBatchResponse as FileBatchResponse
-from .batch_process_files_result import BatchProcessFilesResult as BatchProcessFilesResult

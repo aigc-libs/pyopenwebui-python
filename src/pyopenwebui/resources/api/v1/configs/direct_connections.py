@@ -19,7 +19,8 @@ from ....._response import (
 )
 from ....._base_client import make_request_options
 from .....types.api.v1.configs import direct_connection_set_params
-from .....types.api.v1.configs.direct_connections_config_form import DirectConnectionsConfigForm
+from .....types.api.v1.configs.direct_connection_get_response import DirectConnectionGetResponse
+from .....types.api.v1.configs.direct_connection_set_response import DirectConnectionSetResponse
 
 __all__ = ["DirectConnectionsResource", "AsyncDirectConnectionsResource"]
 
@@ -31,7 +32,7 @@ class DirectConnectionsResource(SyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#accessing-raw-response-data-eg-headers
         """
         return DirectConnectionsResourceWithRawResponse(self)
 
@@ -40,7 +41,7 @@ class DirectConnectionsResource(SyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#with_streaming_response
+        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#with_streaming_response
         """
         return DirectConnectionsResourceWithStreamingResponse(self)
 
@@ -53,14 +54,14 @@ class DirectConnectionsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DirectConnectionsConfigForm:
+    ) -> DirectConnectionGetResponse:
         """Get Direct Connections Config"""
         return self._get(
             "/api/v1/configs/direct_connections",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=DirectConnectionsConfigForm,
+            cast_to=DirectConnectionGetResponse,
         )
 
     def set(
@@ -73,7 +74,7 @@ class DirectConnectionsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DirectConnectionsConfigForm:
+    ) -> DirectConnectionSetResponse:
         """
         Set Direct Connections Config
 
@@ -95,7 +96,7 @@ class DirectConnectionsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=DirectConnectionsConfigForm,
+            cast_to=DirectConnectionSetResponse,
         )
 
 
@@ -106,7 +107,7 @@ class AsyncDirectConnectionsResource(AsyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#accessing-raw-response-data-eg-headers
         """
         return AsyncDirectConnectionsResourceWithRawResponse(self)
 
@@ -115,7 +116,7 @@ class AsyncDirectConnectionsResource(AsyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#with_streaming_response
+        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#with_streaming_response
         """
         return AsyncDirectConnectionsResourceWithStreamingResponse(self)
 
@@ -128,14 +129,14 @@ class AsyncDirectConnectionsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DirectConnectionsConfigForm:
+    ) -> DirectConnectionGetResponse:
         """Get Direct Connections Config"""
         return await self._get(
             "/api/v1/configs/direct_connections",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=DirectConnectionsConfigForm,
+            cast_to=DirectConnectionGetResponse,
         )
 
     async def set(
@@ -148,7 +149,7 @@ class AsyncDirectConnectionsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DirectConnectionsConfigForm:
+    ) -> DirectConnectionSetResponse:
         """
         Set Direct Connections Config
 
@@ -170,7 +171,7 @@ class AsyncDirectConnectionsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=DirectConnectionsConfigForm,
+            cast_to=DirectConnectionSetResponse,
         )
 
 

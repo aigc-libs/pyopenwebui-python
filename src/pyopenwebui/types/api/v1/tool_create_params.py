@@ -5,9 +5,7 @@ from __future__ import annotations
 from typing import Optional
 from typing_extensions import Required, TypedDict
 
-from .tool_meta_param import ToolMetaParam
-
-__all__ = ["ToolCreateParams"]
+__all__ = ["ToolCreateParams", "Meta"]
 
 
 class ToolCreateParams(TypedDict, total=False):
@@ -15,8 +13,14 @@ class ToolCreateParams(TypedDict, total=False):
 
     content: Required[str]
 
-    meta: Required[ToolMetaParam]
+    meta: Required[Meta]
 
     name: Required[str]
 
     access_control: Optional[object]
+
+
+class Meta(TypedDict, total=False):
+    description: Optional[str]
+
+    manifest: Optional[object]

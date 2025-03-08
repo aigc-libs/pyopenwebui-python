@@ -17,29 +17,27 @@ class TestEmbeddings:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @parametrize
-    def test_method_create(self, client: Pyopenwebui) -> None:
-        embedding = client.ollama.api.embeddings.create(
-            url_idx=0,
+    def test_method_embeddings(self, client: Pyopenwebui) -> None:
+        embedding = client.ollama.api.embeddings.embeddings(
             model="model",
             prompt="prompt",
         )
         assert_matches_type(object, embedding, path=["response"])
 
     @parametrize
-    def test_method_create_with_all_params(self, client: Pyopenwebui) -> None:
-        embedding = client.ollama.api.embeddings.create(
-            url_idx=0,
+    def test_method_embeddings_with_all_params(self, client: Pyopenwebui) -> None:
+        embedding = client.ollama.api.embeddings.embeddings(
             model="model",
             prompt="prompt",
+            url_idx=0,
             keep_alive=0,
             options={},
         )
         assert_matches_type(object, embedding, path=["response"])
 
     @parametrize
-    def test_raw_response_create(self, client: Pyopenwebui) -> None:
-        response = client.ollama.api.embeddings.with_raw_response.create(
-            url_idx=0,
+    def test_raw_response_embeddings(self, client: Pyopenwebui) -> None:
+        response = client.ollama.api.embeddings.with_raw_response.embeddings(
             model="model",
             prompt="prompt",
         )
@@ -50,9 +48,8 @@ class TestEmbeddings:
         assert_matches_type(object, embedding, path=["response"])
 
     @parametrize
-    def test_streaming_response_create(self, client: Pyopenwebui) -> None:
-        with client.ollama.api.embeddings.with_streaming_response.create(
-            url_idx=0,
+    def test_streaming_response_embeddings(self, client: Pyopenwebui) -> None:
+        with client.ollama.api.embeddings.with_streaming_response.embeddings(
             model="model",
             prompt="prompt",
         ) as response:
@@ -65,27 +62,29 @@ class TestEmbeddings:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
-    def test_method_get_embeddings(self, client: Pyopenwebui) -> None:
-        embedding = client.ollama.api.embeddings.get_embeddings(
+    def test_method_embeddings_by_index(self, client: Pyopenwebui) -> None:
+        embedding = client.ollama.api.embeddings.embeddings_by_index(
+            url_idx=0,
             model="model",
             prompt="prompt",
         )
         assert_matches_type(object, embedding, path=["response"])
 
     @parametrize
-    def test_method_get_embeddings_with_all_params(self, client: Pyopenwebui) -> None:
-        embedding = client.ollama.api.embeddings.get_embeddings(
+    def test_method_embeddings_by_index_with_all_params(self, client: Pyopenwebui) -> None:
+        embedding = client.ollama.api.embeddings.embeddings_by_index(
+            url_idx=0,
             model="model",
             prompt="prompt",
-            url_idx=0,
             keep_alive=0,
             options={},
         )
         assert_matches_type(object, embedding, path=["response"])
 
     @parametrize
-    def test_raw_response_get_embeddings(self, client: Pyopenwebui) -> None:
-        response = client.ollama.api.embeddings.with_raw_response.get_embeddings(
+    def test_raw_response_embeddings_by_index(self, client: Pyopenwebui) -> None:
+        response = client.ollama.api.embeddings.with_raw_response.embeddings_by_index(
+            url_idx=0,
             model="model",
             prompt="prompt",
         )
@@ -96,8 +95,9 @@ class TestEmbeddings:
         assert_matches_type(object, embedding, path=["response"])
 
     @parametrize
-    def test_streaming_response_get_embeddings(self, client: Pyopenwebui) -> None:
-        with client.ollama.api.embeddings.with_streaming_response.get_embeddings(
+    def test_streaming_response_embeddings_by_index(self, client: Pyopenwebui) -> None:
+        with client.ollama.api.embeddings.with_streaming_response.embeddings_by_index(
+            url_idx=0,
             model="model",
             prompt="prompt",
         ) as response:
@@ -114,29 +114,27 @@ class TestAsyncEmbeddings:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @parametrize
-    async def test_method_create(self, async_client: AsyncPyopenwebui) -> None:
-        embedding = await async_client.ollama.api.embeddings.create(
-            url_idx=0,
+    async def test_method_embeddings(self, async_client: AsyncPyopenwebui) -> None:
+        embedding = await async_client.ollama.api.embeddings.embeddings(
             model="model",
             prompt="prompt",
         )
         assert_matches_type(object, embedding, path=["response"])
 
     @parametrize
-    async def test_method_create_with_all_params(self, async_client: AsyncPyopenwebui) -> None:
-        embedding = await async_client.ollama.api.embeddings.create(
-            url_idx=0,
+    async def test_method_embeddings_with_all_params(self, async_client: AsyncPyopenwebui) -> None:
+        embedding = await async_client.ollama.api.embeddings.embeddings(
             model="model",
             prompt="prompt",
+            url_idx=0,
             keep_alive=0,
             options={},
         )
         assert_matches_type(object, embedding, path=["response"])
 
     @parametrize
-    async def test_raw_response_create(self, async_client: AsyncPyopenwebui) -> None:
-        response = await async_client.ollama.api.embeddings.with_raw_response.create(
-            url_idx=0,
+    async def test_raw_response_embeddings(self, async_client: AsyncPyopenwebui) -> None:
+        response = await async_client.ollama.api.embeddings.with_raw_response.embeddings(
             model="model",
             prompt="prompt",
         )
@@ -147,9 +145,8 @@ class TestAsyncEmbeddings:
         assert_matches_type(object, embedding, path=["response"])
 
     @parametrize
-    async def test_streaming_response_create(self, async_client: AsyncPyopenwebui) -> None:
-        async with async_client.ollama.api.embeddings.with_streaming_response.create(
-            url_idx=0,
+    async def test_streaming_response_embeddings(self, async_client: AsyncPyopenwebui) -> None:
+        async with async_client.ollama.api.embeddings.with_streaming_response.embeddings(
             model="model",
             prompt="prompt",
         ) as response:
@@ -162,27 +159,29 @@ class TestAsyncEmbeddings:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
-    async def test_method_get_embeddings(self, async_client: AsyncPyopenwebui) -> None:
-        embedding = await async_client.ollama.api.embeddings.get_embeddings(
+    async def test_method_embeddings_by_index(self, async_client: AsyncPyopenwebui) -> None:
+        embedding = await async_client.ollama.api.embeddings.embeddings_by_index(
+            url_idx=0,
             model="model",
             prompt="prompt",
         )
         assert_matches_type(object, embedding, path=["response"])
 
     @parametrize
-    async def test_method_get_embeddings_with_all_params(self, async_client: AsyncPyopenwebui) -> None:
-        embedding = await async_client.ollama.api.embeddings.get_embeddings(
+    async def test_method_embeddings_by_index_with_all_params(self, async_client: AsyncPyopenwebui) -> None:
+        embedding = await async_client.ollama.api.embeddings.embeddings_by_index(
+            url_idx=0,
             model="model",
             prompt="prompt",
-            url_idx=0,
             keep_alive=0,
             options={},
         )
         assert_matches_type(object, embedding, path=["response"])
 
     @parametrize
-    async def test_raw_response_get_embeddings(self, async_client: AsyncPyopenwebui) -> None:
-        response = await async_client.ollama.api.embeddings.with_raw_response.get_embeddings(
+    async def test_raw_response_embeddings_by_index(self, async_client: AsyncPyopenwebui) -> None:
+        response = await async_client.ollama.api.embeddings.with_raw_response.embeddings_by_index(
+            url_idx=0,
             model="model",
             prompt="prompt",
         )
@@ -193,8 +192,9 @@ class TestAsyncEmbeddings:
         assert_matches_type(object, embedding, path=["response"])
 
     @parametrize
-    async def test_streaming_response_get_embeddings(self, async_client: AsyncPyopenwebui) -> None:
-        async with async_client.ollama.api.embeddings.with_streaming_response.get_embeddings(
+    async def test_streaming_response_embeddings_by_index(self, async_client: AsyncPyopenwebui) -> None:
+        async with async_client.ollama.api.embeddings.with_streaming_response.embeddings_by_index(
+            url_idx=0,
             model="model",
             prompt="prompt",
         ) as response:

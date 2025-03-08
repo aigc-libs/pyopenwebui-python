@@ -1,10 +1,33 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List
+from typing import List, Optional
 from typing_extensions import TypeAlias
 
-from .group_response import GroupResponse
+from ...._models import BaseModel
 
-__all__ = ["GroupGetResponse"]
+__all__ = ["GroupGetResponse", "GroupGetResponseItem"]
 
-GroupGetResponse: TypeAlias = List[GroupResponse]
+
+class GroupGetResponseItem(BaseModel):
+    id: str
+
+    created_at: int
+
+    description: str
+
+    name: str
+
+    updated_at: int
+
+    user_id: str
+
+    data: Optional[object] = None
+
+    meta: Optional[object] = None
+
+    permissions: Optional[object] = None
+
+    user_ids: Optional[List[str]] = None
+
+
+GroupGetResponse: TypeAlias = List[GroupGetResponseItem]
