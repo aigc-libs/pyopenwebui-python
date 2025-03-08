@@ -14,4 +14,4 @@ class TagModel(BaseModel):
 
     user_id: str
 
-    data: Optional[str] = None
+    meta: Optional[object] = None
