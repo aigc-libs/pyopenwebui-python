@@ -17,6 +17,7 @@ from ....._response import (
 )
 from ....._base_client import make_request_options
 from .....types.api.v1.chats.pinned_get_response import PinnedGetResponse
+from .....types.api.v1.chats.pinned_list_response import PinnedListResponse
 
 __all__ = ["PinnedResource", "AsyncPinnedResource"]
 
@@ -40,6 +41,25 @@ class PinnedResource(SyncAPIResource):
         For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#with_streaming_response
         """
         return PinnedResourceWithStreamingResponse(self)
+
+    def list(
+        self,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> PinnedListResponse:
+        """Get User Pinned Chats"""
+        return self._get(
+            "/api/v1/chats/pinned",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=PinnedListResponse,
+        )
 
     def get(
         self,
@@ -95,6 +115,25 @@ class AsyncPinnedResource(AsyncAPIResource):
         """
         return AsyncPinnedResourceWithStreamingResponse(self)
 
+    async def list(
+        self,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> PinnedListResponse:
+        """Get User Pinned Chats"""
+        return await self._get(
+            "/api/v1/chats/pinned",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=PinnedListResponse,
+        )
+
     async def get(
         self,
         id: str,
@@ -133,6 +172,9 @@ class PinnedResourceWithRawResponse:
     def __init__(self, pinned: PinnedResource) -> None:
         self._pinned = pinned
 
+        self.list = to_raw_response_wrapper(
+            pinned.list,
+        )
         self.get = to_raw_response_wrapper(
             pinned.get,
         )
@@ -142,6 +184,9 @@ class AsyncPinnedResourceWithRawResponse:
     def __init__(self, pinned: AsyncPinnedResource) -> None:
         self._pinned = pinned
 
+        self.list = async_to_raw_response_wrapper(
+            pinned.list,
+        )
         self.get = async_to_raw_response_wrapper(
             pinned.get,
         )
@@ -151,6 +196,9 @@ class PinnedResourceWithStreamingResponse:
     def __init__(self, pinned: PinnedResource) -> None:
         self._pinned = pinned
 
+        self.list = to_streamed_response_wrapper(
+            pinned.list,
+        )
         self.get = to_streamed_response_wrapper(
             pinned.get,
         )
@@ -160,6 +208,9 @@ class AsyncPinnedResourceWithStreamingResponse:
     def __init__(self, pinned: AsyncPinnedResource) -> None:
         self._pinned = pinned
 
+        self.list = async_to_streamed_response_wrapper(
+            pinned.list,
+        )
         self.get = async_to_streamed_response_wrapper(
             pinned.get,
         )
