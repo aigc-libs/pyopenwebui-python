@@ -20,7 +20,7 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._base_client import make_request_options
-from ....types.ollama.api import copy_duplicate_params, copy_duplicate_by_index_params
+from ....types.ollama.api import copy_create_params, copy_copy_model_params
 
 __all__ = ["CopyResource", "AsyncCopyResource"]
 
@@ -45,51 +45,7 @@ class CopyResource(SyncAPIResource):
         """
         return CopyResourceWithStreamingResponse(self)
 
-    def duplicate(
-        self,
-        *,
-        destination: str,
-        source: str,
-        url_idx: Optional[int] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> object:
-        """
-        Copy Model
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return self._post(
-            "/ollama/api/copy",
-            body=maybe_transform(
-                {
-                    "destination": destination,
-                    "source": source,
-                },
-                copy_duplicate_params.CopyDuplicateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform({"url_idx": url_idx}, copy_duplicate_params.CopyDuplicateParams),
-            ),
-            cast_to=object,
-        )
-
-    def duplicate_by_index(
+    def create(
         self,
         url_idx: int,
         *,
@@ -121,10 +77,54 @@ class CopyResource(SyncAPIResource):
                     "destination": destination,
                     "source": source,
                 },
-                copy_duplicate_by_index_params.CopyDuplicateByIndexParams,
+                copy_create_params.CopyCreateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=object,
+        )
+
+    def copy_model(
+        self,
+        *,
+        destination: str,
+        source: str,
+        url_idx: Optional[int] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> object:
+        """
+        Copy Model
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._post(
+            "/ollama/api/copy",
+            body=maybe_transform(
+                {
+                    "destination": destination,
+                    "source": source,
+                },
+                copy_copy_model_params.CopyCopyModelParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform({"url_idx": url_idx}, copy_copy_model_params.CopyCopyModelParams),
             ),
             cast_to=object,
         )
@@ -150,51 +150,7 @@ class AsyncCopyResource(AsyncAPIResource):
         """
         return AsyncCopyResourceWithStreamingResponse(self)
 
-    async def duplicate(
-        self,
-        *,
-        destination: str,
-        source: str,
-        url_idx: Optional[int] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> object:
-        """
-        Copy Model
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return await self._post(
-            "/ollama/api/copy",
-            body=await async_maybe_transform(
-                {
-                    "destination": destination,
-                    "source": source,
-                },
-                copy_duplicate_params.CopyDuplicateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=await async_maybe_transform({"url_idx": url_idx}, copy_duplicate_params.CopyDuplicateParams),
-            ),
-            cast_to=object,
-        )
-
-    async def duplicate_by_index(
+    async def create(
         self,
         url_idx: int,
         *,
@@ -226,10 +182,54 @@ class AsyncCopyResource(AsyncAPIResource):
                     "destination": destination,
                     "source": source,
                 },
-                copy_duplicate_by_index_params.CopyDuplicateByIndexParams,
+                copy_create_params.CopyCreateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=object,
+        )
+
+    async def copy_model(
+        self,
+        *,
+        destination: str,
+        source: str,
+        url_idx: Optional[int] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> object:
+        """
+        Copy Model
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return await self._post(
+            "/ollama/api/copy",
+            body=await async_maybe_transform(
+                {
+                    "destination": destination,
+                    "source": source,
+                },
+                copy_copy_model_params.CopyCopyModelParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform({"url_idx": url_idx}, copy_copy_model_params.CopyCopyModelParams),
             ),
             cast_to=object,
         )
@@ -239,11 +239,11 @@ class CopyResourceWithRawResponse:
     def __init__(self, copy: CopyResource) -> None:
         self._copy = copy
 
-        self.duplicate = to_raw_response_wrapper(
-            copy.duplicate,
+        self.create = to_raw_response_wrapper(
+            copy.create,
         )
-        self.duplicate_by_index = to_raw_response_wrapper(
-            copy.duplicate_by_index,
+        self.copy_model = to_raw_response_wrapper(
+            copy.copy_model,
         )
 
 
@@ -251,11 +251,11 @@ class AsyncCopyResourceWithRawResponse:
     def __init__(self, copy: AsyncCopyResource) -> None:
         self._copy = copy
 
-        self.duplicate = async_to_raw_response_wrapper(
-            copy.duplicate,
+        self.create = async_to_raw_response_wrapper(
+            copy.create,
         )
-        self.duplicate_by_index = async_to_raw_response_wrapper(
-            copy.duplicate_by_index,
+        self.copy_model = async_to_raw_response_wrapper(
+            copy.copy_model,
         )
 
 
@@ -263,11 +263,11 @@ class CopyResourceWithStreamingResponse:
     def __init__(self, copy: CopyResource) -> None:
         self._copy = copy
 
-        self.duplicate = to_streamed_response_wrapper(
-            copy.duplicate,
+        self.create = to_streamed_response_wrapper(
+            copy.create,
         )
-        self.duplicate_by_index = to_streamed_response_wrapper(
-            copy.duplicate_by_index,
+        self.copy_model = to_streamed_response_wrapper(
+            copy.copy_model,
         )
 
 
@@ -275,9 +275,9 @@ class AsyncCopyResourceWithStreamingResponse:
     def __init__(self, copy: AsyncCopyResource) -> None:
         self._copy = copy
 
-        self.duplicate = async_to_streamed_response_wrapper(
-            copy.duplicate,
+        self.create = async_to_streamed_response_wrapper(
+            copy.create,
         )
-        self.duplicate_by_index = async_to_streamed_response_wrapper(
-            copy.duplicate_by_index,
+        self.copy_model = async_to_streamed_response_wrapper(
+            copy.copy_model,
         )

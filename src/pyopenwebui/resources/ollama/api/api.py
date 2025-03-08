@@ -106,7 +106,7 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._base_client import make_request_options
-from ....types.ollama import api_show_info_params
+from ....types.ollama import api_show_model_info_params
 
 __all__ = ["APIResource", "AsyncAPIResource"]
 
@@ -197,7 +197,7 @@ class APIResource(SyncAPIResource):
             cast_to=object,
         )
 
-    def show_info(
+    def show_model_info(
         self,
         *,
         name: str,
@@ -222,7 +222,7 @@ class APIResource(SyncAPIResource):
         """
         return self._post(
             "/ollama/api/show",
-            body=maybe_transform({"name": name}, api_show_info_params.APIShowInfoParams),
+            body=maybe_transform({"name": name}, api_show_model_info_params.APIShowModelInfoParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -316,7 +316,7 @@ class AsyncAPIResource(AsyncAPIResource):
             cast_to=object,
         )
 
-    async def show_info(
+    async def show_model_info(
         self,
         *,
         name: str,
@@ -341,7 +341,7 @@ class AsyncAPIResource(AsyncAPIResource):
         """
         return await self._post(
             "/ollama/api/show",
-            body=await async_maybe_transform({"name": name}, api_show_info_params.APIShowInfoParams),
+            body=await async_maybe_transform({"name": name}, api_show_model_info_params.APIShowModelInfoParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -356,8 +356,8 @@ class APIResourceWithRawResponse:
         self.get_loaded_models = to_raw_response_wrapper(
             api.get_loaded_models,
         )
-        self.show_info = to_raw_response_wrapper(
-            api.show_info,
+        self.show_model_info = to_raw_response_wrapper(
+            api.show_model_info,
         )
 
     @cached_property
@@ -412,8 +412,8 @@ class AsyncAPIResourceWithRawResponse:
         self.get_loaded_models = async_to_raw_response_wrapper(
             api.get_loaded_models,
         )
-        self.show_info = async_to_raw_response_wrapper(
-            api.show_info,
+        self.show_model_info = async_to_raw_response_wrapper(
+            api.show_model_info,
         )
 
     @cached_property
@@ -468,8 +468,8 @@ class APIResourceWithStreamingResponse:
         self.get_loaded_models = to_streamed_response_wrapper(
             api.get_loaded_models,
         )
-        self.show_info = to_streamed_response_wrapper(
-            api.show_info,
+        self.show_model_info = to_streamed_response_wrapper(
+            api.show_model_info,
         )
 
     @cached_property
@@ -524,8 +524,8 @@ class AsyncAPIResourceWithStreamingResponse:
         self.get_loaded_models = async_to_streamed_response_wrapper(
             api.get_loaded_models,
         )
-        self.show_info = async_to_streamed_response_wrapper(
-            api.show_info,
+        self.show_model_info = async_to_streamed_response_wrapper(
+            api.show_model_info,
         )
 
     @cached_property

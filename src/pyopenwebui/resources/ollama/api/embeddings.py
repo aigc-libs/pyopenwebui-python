@@ -20,7 +20,7 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._base_client import make_request_options
-from ....types.ollama.api import embedding_create_params, embedding_create_by_index_params
+from ....types.ollama.api import embedding_create_params, embedding_get_embeddings_params
 
 __all__ = ["EmbeddingsResource", "AsyncEmbeddingsResource"]
 
@@ -46,54 +46,6 @@ class EmbeddingsResource(SyncAPIResource):
         return EmbeddingsResourceWithStreamingResponse(self)
 
     def create(
-        self,
-        *,
-        model: str,
-        prompt: str,
-        url_idx: Optional[int] | NotGiven = NOT_GIVEN,
-        keep_alive: Union[int, str, None] | NotGiven = NOT_GIVEN,
-        options: Optional[object] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> object:
-        """
-        Embeddings
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return self._post(
-            "/ollama/api/embeddings",
-            body=maybe_transform(
-                {
-                    "model": model,
-                    "prompt": prompt,
-                    "keep_alive": keep_alive,
-                    "options": options,
-                },
-                embedding_create_params.EmbeddingCreateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform({"url_idx": url_idx}, embedding_create_params.EmbeddingCreateParams),
-            ),
-            cast_to=object,
-        )
-
-    def create_by_index(
         self,
         url_idx: int,
         *,
@@ -129,10 +81,60 @@ class EmbeddingsResource(SyncAPIResource):
                     "keep_alive": keep_alive,
                     "options": options,
                 },
-                embedding_create_by_index_params.EmbeddingCreateByIndexParams,
+                embedding_create_params.EmbeddingCreateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=object,
+        )
+
+    def get_embeddings(
+        self,
+        *,
+        model: str,
+        prompt: str,
+        url_idx: Optional[int] | NotGiven = NOT_GIVEN,
+        keep_alive: Union[int, str, None] | NotGiven = NOT_GIVEN,
+        options: Optional[object] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> object:
+        """
+        Embeddings
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._post(
+            "/ollama/api/embeddings",
+            body=maybe_transform(
+                {
+                    "model": model,
+                    "prompt": prompt,
+                    "keep_alive": keep_alive,
+                    "options": options,
+                },
+                embedding_get_embeddings_params.EmbeddingGetEmbeddingsParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {"url_idx": url_idx}, embedding_get_embeddings_params.EmbeddingGetEmbeddingsParams
+                ),
             ),
             cast_to=object,
         )
@@ -160,54 +162,6 @@ class AsyncEmbeddingsResource(AsyncAPIResource):
 
     async def create(
         self,
-        *,
-        model: str,
-        prompt: str,
-        url_idx: Optional[int] | NotGiven = NOT_GIVEN,
-        keep_alive: Union[int, str, None] | NotGiven = NOT_GIVEN,
-        options: Optional[object] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> object:
-        """
-        Embeddings
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return await self._post(
-            "/ollama/api/embeddings",
-            body=await async_maybe_transform(
-                {
-                    "model": model,
-                    "prompt": prompt,
-                    "keep_alive": keep_alive,
-                    "options": options,
-                },
-                embedding_create_params.EmbeddingCreateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=await async_maybe_transform({"url_idx": url_idx}, embedding_create_params.EmbeddingCreateParams),
-            ),
-            cast_to=object,
-        )
-
-    async def create_by_index(
-        self,
         url_idx: int,
         *,
         model: str,
@@ -242,10 +196,60 @@ class AsyncEmbeddingsResource(AsyncAPIResource):
                     "keep_alive": keep_alive,
                     "options": options,
                 },
-                embedding_create_by_index_params.EmbeddingCreateByIndexParams,
+                embedding_create_params.EmbeddingCreateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=object,
+        )
+
+    async def get_embeddings(
+        self,
+        *,
+        model: str,
+        prompt: str,
+        url_idx: Optional[int] | NotGiven = NOT_GIVEN,
+        keep_alive: Union[int, str, None] | NotGiven = NOT_GIVEN,
+        options: Optional[object] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> object:
+        """
+        Embeddings
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return await self._post(
+            "/ollama/api/embeddings",
+            body=await async_maybe_transform(
+                {
+                    "model": model,
+                    "prompt": prompt,
+                    "keep_alive": keep_alive,
+                    "options": options,
+                },
+                embedding_get_embeddings_params.EmbeddingGetEmbeddingsParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {"url_idx": url_idx}, embedding_get_embeddings_params.EmbeddingGetEmbeddingsParams
+                ),
             ),
             cast_to=object,
         )
@@ -258,8 +262,8 @@ class EmbeddingsResourceWithRawResponse:
         self.create = to_raw_response_wrapper(
             embeddings.create,
         )
-        self.create_by_index = to_raw_response_wrapper(
-            embeddings.create_by_index,
+        self.get_embeddings = to_raw_response_wrapper(
+            embeddings.get_embeddings,
         )
 
 
@@ -270,8 +274,8 @@ class AsyncEmbeddingsResourceWithRawResponse:
         self.create = async_to_raw_response_wrapper(
             embeddings.create,
         )
-        self.create_by_index = async_to_raw_response_wrapper(
-            embeddings.create_by_index,
+        self.get_embeddings = async_to_raw_response_wrapper(
+            embeddings.get_embeddings,
         )
 
 
@@ -282,8 +286,8 @@ class EmbeddingsResourceWithStreamingResponse:
         self.create = to_streamed_response_wrapper(
             embeddings.create,
         )
-        self.create_by_index = to_streamed_response_wrapper(
-            embeddings.create_by_index,
+        self.get_embeddings = to_streamed_response_wrapper(
+            embeddings.get_embeddings,
         )
 
 
@@ -294,6 +298,6 @@ class AsyncEmbeddingsResourceWithStreamingResponse:
         self.create = async_to_streamed_response_wrapper(
             embeddings.create,
         )
-        self.create_by_index = async_to_streamed_response_wrapper(
-            embeddings.create_by_index,
+        self.get_embeddings = async_to_streamed_response_wrapper(
+            embeddings.get_embeddings,
         )

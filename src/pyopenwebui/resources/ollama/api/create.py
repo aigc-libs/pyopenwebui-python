@@ -20,7 +20,7 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._base_client import make_request_options
-from ....types.ollama.api import create_new_params, create_new_by_index_params
+from ....types.ollama.api import create_create_params, create_create_model_params
 
 __all__ = ["CreateResource", "AsyncCreateResource"]
 
@@ -45,53 +45,7 @@ class CreateResource(SyncAPIResource):
         """
         return CreateResourceWithStreamingResponse(self)
 
-    def new(
-        self,
-        *,
-        url_idx: int | NotGiven = NOT_GIVEN,
-        model: Optional[str] | NotGiven = NOT_GIVEN,
-        path: Optional[str] | NotGiven = NOT_GIVEN,
-        stream: Optional[bool] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> object:
-        """
-        Create Model
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return self._post(
-            "/ollama/api/create",
-            body=maybe_transform(
-                {
-                    "model": model,
-                    "path": path,
-                    "stream": stream,
-                },
-                create_new_params.CreateNewParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform({"url_idx": url_idx}, create_new_params.CreateNewParams),
-            ),
-            cast_to=object,
-        )
-
-    def new_by_index(
+    def create(
         self,
         url_idx: int,
         *,
@@ -125,10 +79,56 @@ class CreateResource(SyncAPIResource):
                     "path": path,
                     "stream": stream,
                 },
-                create_new_by_index_params.CreateNewByIndexParams,
+                create_create_params.CreateCreateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=object,
+        )
+
+    def create_model(
+        self,
+        *,
+        url_idx: int | NotGiven = NOT_GIVEN,
+        model: Optional[str] | NotGiven = NOT_GIVEN,
+        path: Optional[str] | NotGiven = NOT_GIVEN,
+        stream: Optional[bool] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> object:
+        """
+        Create Model
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._post(
+            "/ollama/api/create",
+            body=maybe_transform(
+                {
+                    "model": model,
+                    "path": path,
+                    "stream": stream,
+                },
+                create_create_model_params.CreateCreateModelParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform({"url_idx": url_idx}, create_create_model_params.CreateCreateModelParams),
             ),
             cast_to=object,
         )
@@ -154,53 +154,7 @@ class AsyncCreateResource(AsyncAPIResource):
         """
         return AsyncCreateResourceWithStreamingResponse(self)
 
-    async def new(
-        self,
-        *,
-        url_idx: int | NotGiven = NOT_GIVEN,
-        model: Optional[str] | NotGiven = NOT_GIVEN,
-        path: Optional[str] | NotGiven = NOT_GIVEN,
-        stream: Optional[bool] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> object:
-        """
-        Create Model
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return await self._post(
-            "/ollama/api/create",
-            body=await async_maybe_transform(
-                {
-                    "model": model,
-                    "path": path,
-                    "stream": stream,
-                },
-                create_new_params.CreateNewParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=await async_maybe_transform({"url_idx": url_idx}, create_new_params.CreateNewParams),
-            ),
-            cast_to=object,
-        )
-
-    async def new_by_index(
+    async def create(
         self,
         url_idx: int,
         *,
@@ -234,10 +188,58 @@ class AsyncCreateResource(AsyncAPIResource):
                     "path": path,
                     "stream": stream,
                 },
-                create_new_by_index_params.CreateNewByIndexParams,
+                create_create_params.CreateCreateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=object,
+        )
+
+    async def create_model(
+        self,
+        *,
+        url_idx: int | NotGiven = NOT_GIVEN,
+        model: Optional[str] | NotGiven = NOT_GIVEN,
+        path: Optional[str] | NotGiven = NOT_GIVEN,
+        stream: Optional[bool] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> object:
+        """
+        Create Model
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return await self._post(
+            "/ollama/api/create",
+            body=await async_maybe_transform(
+                {
+                    "model": model,
+                    "path": path,
+                    "stream": stream,
+                },
+                create_create_model_params.CreateCreateModelParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {"url_idx": url_idx}, create_create_model_params.CreateCreateModelParams
+                ),
             ),
             cast_to=object,
         )
@@ -247,11 +249,11 @@ class CreateResourceWithRawResponse:
     def __init__(self, create: CreateResource) -> None:
         self._create = create
 
-        self.new = to_raw_response_wrapper(
-            create.new,
+        self.create = to_raw_response_wrapper(
+            create.create,
         )
-        self.new_by_index = to_raw_response_wrapper(
-            create.new_by_index,
+        self.create_model = to_raw_response_wrapper(
+            create.create_model,
         )
 
 
@@ -259,11 +261,11 @@ class AsyncCreateResourceWithRawResponse:
     def __init__(self, create: AsyncCreateResource) -> None:
         self._create = create
 
-        self.new = async_to_raw_response_wrapper(
-            create.new,
+        self.create = async_to_raw_response_wrapper(
+            create.create,
         )
-        self.new_by_index = async_to_raw_response_wrapper(
-            create.new_by_index,
+        self.create_model = async_to_raw_response_wrapper(
+            create.create_model,
         )
 
 
@@ -271,11 +273,11 @@ class CreateResourceWithStreamingResponse:
     def __init__(self, create: CreateResource) -> None:
         self._create = create
 
-        self.new = to_streamed_response_wrapper(
-            create.new,
+        self.create = to_streamed_response_wrapper(
+            create.create,
         )
-        self.new_by_index = to_streamed_response_wrapper(
-            create.new_by_index,
+        self.create_model = to_streamed_response_wrapper(
+            create.create_model,
         )
 
 
@@ -283,9 +285,9 @@ class AsyncCreateResourceWithStreamingResponse:
     def __init__(self, create: AsyncCreateResource) -> None:
         self._create = create
 
-        self.new = async_to_streamed_response_wrapper(
-            create.new,
+        self.create = async_to_streamed_response_wrapper(
+            create.create,
         )
-        self.new_by_index = async_to_streamed_response_wrapper(
-            create.new_by_index,
+        self.create_model = async_to_streamed_response_wrapper(
+            create.create_model,
         )

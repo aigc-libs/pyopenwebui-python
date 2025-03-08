@@ -36,7 +36,7 @@ from .models import (
     ModelsResourceWithStreamingResponse,
     AsyncModelsResourceWithStreamingResponse,
 )
-from ...types import openai_verify_connection_params
+from ...types import openai_verify_params
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._utils import (
     maybe_transform,
@@ -223,7 +223,7 @@ class OpenAIResource(SyncAPIResource):
             cast_to=object,
         )
 
-    def verify_connection(
+    def verify(
         self,
         *,
         key: str,
@@ -254,7 +254,7 @@ class OpenAIResource(SyncAPIResource):
                     "key": key,
                     "url": url,
                 },
-                openai_verify_connection_params.OpenAIVerifyConnectionParams,
+                openai_verify_params.OpenAIVerifyParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -431,7 +431,7 @@ class AsyncOpenAIResource(AsyncAPIResource):
             cast_to=object,
         )
 
-    async def verify_connection(
+    async def verify(
         self,
         *,
         key: str,
@@ -462,7 +462,7 @@ class AsyncOpenAIResource(AsyncAPIResource):
                     "key": key,
                     "url": url,
                 },
-                openai_verify_connection_params.OpenAIVerifyConnectionParams,
+                openai_verify_params.OpenAIVerifyParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -487,8 +487,8 @@ class OpenAIResourceWithRawResponse:
         self.proxy_put = to_raw_response_wrapper(
             openai.proxy_put,
         )
-        self.verify_connection = to_raw_response_wrapper(
-            openai.verify_connection,
+        self.verify = to_raw_response_wrapper(
+            openai.verify,
         )
 
     @cached_property
@@ -524,8 +524,8 @@ class AsyncOpenAIResourceWithRawResponse:
         self.proxy_put = async_to_raw_response_wrapper(
             openai.proxy_put,
         )
-        self.verify_connection = async_to_raw_response_wrapper(
-            openai.verify_connection,
+        self.verify = async_to_raw_response_wrapper(
+            openai.verify,
         )
 
     @cached_property
@@ -561,8 +561,8 @@ class OpenAIResourceWithStreamingResponse:
         self.proxy_put = to_streamed_response_wrapper(
             openai.proxy_put,
         )
-        self.verify_connection = to_streamed_response_wrapper(
-            openai.verify_connection,
+        self.verify = to_streamed_response_wrapper(
+            openai.verify,
         )
 
     @cached_property
@@ -598,8 +598,8 @@ class AsyncOpenAIResourceWithStreamingResponse:
         self.proxy_put = async_to_streamed_response_wrapper(
             openai.proxy_put,
         )
-        self.verify_connection = async_to_streamed_response_wrapper(
-            openai.verify_connection,
+        self.verify = async_to_streamed_response_wrapper(
+            openai.verify,
         )
 
     @cached_property

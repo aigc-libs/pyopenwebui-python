@@ -75,7 +75,7 @@ class ShareResource(SyncAPIResource):
             cast_to=ShareDeleteResponse,
         )
 
-    def get_by_id(
+    def get(
         self,
         share_id: str,
         *,
@@ -162,7 +162,7 @@ class AsyncShareResource(AsyncAPIResource):
             cast_to=ShareDeleteResponse,
         )
 
-    async def get_by_id(
+    async def get(
         self,
         share_id: str,
         *,
@@ -203,8 +203,8 @@ class ShareResourceWithRawResponse:
         self.delete = to_raw_response_wrapper(
             share.delete,
         )
-        self.get_by_id = to_raw_response_wrapper(
-            share.get_by_id,
+        self.get = to_raw_response_wrapper(
+            share.get,
         )
 
 
@@ -215,8 +215,8 @@ class AsyncShareResourceWithRawResponse:
         self.delete = async_to_raw_response_wrapper(
             share.delete,
         )
-        self.get_by_id = async_to_raw_response_wrapper(
-            share.get_by_id,
+        self.get = async_to_raw_response_wrapper(
+            share.get,
         )
 
 
@@ -227,8 +227,8 @@ class ShareResourceWithStreamingResponse:
         self.delete = to_streamed_response_wrapper(
             share.delete,
         )
-        self.get_by_id = to_streamed_response_wrapper(
-            share.get_by_id,
+        self.get = to_streamed_response_wrapper(
+            share.get,
         )
 
 
@@ -239,6 +239,6 @@ class AsyncShareResourceWithStreamingResponse:
         self.delete = async_to_streamed_response_wrapper(
             share.delete,
         )
-        self.get_by_id = async_to_streamed_response_wrapper(
-            share.get_by_id,
+        self.get = async_to_streamed_response_wrapper(
+            share.get,
         )

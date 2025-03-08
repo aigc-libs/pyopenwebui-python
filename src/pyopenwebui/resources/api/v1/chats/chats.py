@@ -14,14 +14,6 @@ from .all import (
     AllResourceWithStreamingResponse,
     AsyncAllResourceWithStreamingResponse,
 )
-from .tags import (
-    TagsResource,
-    AsyncTagsResource,
-    TagsResourceWithRawResponse,
-    AsyncTagsResourceWithRawResponse,
-    TagsResourceWithStreamingResponse,
-    AsyncTagsResourceWithStreamingResponse,
-)
 from .clone import (
     CloneResource,
     AsyncCloneResource,
@@ -54,13 +46,13 @@ from .pinned import (
     PinnedResourceWithStreamingResponse,
     AsyncPinnedResourceWithStreamingResponse,
 )
-from .archive import (
-    ArchiveResource,
-    AsyncArchiveResource,
-    ArchiveResourceWithRawResponse,
-    AsyncArchiveResourceWithRawResponse,
-    ArchiveResourceWithStreamingResponse,
-    AsyncArchiveResourceWithStreamingResponse,
+from .tags.tags import (
+    TagsResource,
+    AsyncTagsResource,
+    TagsResourceWithRawResponse,
+    AsyncTagsResourceWithRawResponse,
+    TagsResourceWithStreamingResponse,
+    AsyncTagsResourceWithStreamingResponse,
 )
 from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ....._utils import (
@@ -89,6 +81,7 @@ from .....types.api.v1.chat_response import ChatResponse
 from .....types.api.v1.chat_get_response import ChatGetResponse
 from .....types.api.v1.chat_search_response import ChatSearchResponse
 from .....types.api.v1.chat_delete_all_response import ChatDeleteAllResponse
+from .....types.api.v1.chat_archive_all_response import ChatArchiveAllResponse
 from .....types.api.v1.chat_delete_by_id_response import ChatDeleteByIDResponse
 from .....types.api.v1.chat_list_by_user_response import ChatListByUserResponse
 from .....types.api.v1.chat_get_archived_list_response import ChatGetArchivedListResponse
@@ -108,10 +101,6 @@ class ChatsResource(SyncAPIResource):
     @cached_property
     def all(self) -> AllResource:
         return AllResource(self._client)
-
-    @cached_property
-    def archive(self) -> ArchiveResource:
-        return ArchiveResource(self._client)
 
     @cached_property
     def share(self) -> ShareResource:
@@ -174,6 +163,58 @@ class ChatsResource(SyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=ChatResponse,
+        )
+
+    def archive(
+        self,
+        id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[ChatResponse]:
+        """
+        Archive Chat By Id
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return self._post(
+            f"/api/v1/chats/{id}/archive",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=ChatResponse,
+        )
+
+    def archive_all(
+        self,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> ChatArchiveAllResponse:
+        """Archive All Chats"""
+        return self._post(
+            "/api/v1/chats/archive/all",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=ChatArchiveAllResponse,
         )
 
     def delete_all(
@@ -551,10 +592,6 @@ class AsyncChatsResource(AsyncAPIResource):
         return AsyncAllResource(self._client)
 
     @cached_property
-    def archive(self) -> AsyncArchiveResource:
-        return AsyncArchiveResource(self._client)
-
-    @cached_property
     def share(self) -> AsyncShareResource:
         return AsyncShareResource(self._client)
 
@@ -615,6 +652,58 @@ class AsyncChatsResource(AsyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=ChatResponse,
+        )
+
+    async def archive(
+        self,
+        id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[ChatResponse]:
+        """
+        Archive Chat By Id
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return await self._post(
+            f"/api/v1/chats/{id}/archive",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=ChatResponse,
+        )
+
+    async def archive_all(
+        self,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> ChatArchiveAllResponse:
+        """Archive All Chats"""
+        return await self._post(
+            "/api/v1/chats/archive/all",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=ChatArchiveAllResponse,
         )
 
     async def delete_all(
@@ -985,6 +1074,12 @@ class ChatsResourceWithRawResponse:
         self.create = to_raw_response_wrapper(
             chats.create,
         )
+        self.archive = to_raw_response_wrapper(
+            chats.archive,
+        )
+        self.archive_all = to_raw_response_wrapper(
+            chats.archive_all,
+        )
         self.delete_all = to_raw_response_wrapper(
             chats.delete_all,
         )
@@ -1029,10 +1124,6 @@ class ChatsResourceWithRawResponse:
         return AllResourceWithRawResponse(self._chats.all)
 
     @cached_property
-    def archive(self) -> ArchiveResourceWithRawResponse:
-        return ArchiveResourceWithRawResponse(self._chats.archive)
-
-    @cached_property
     def share(self) -> ShareResourceWithRawResponse:
         return ShareResourceWithRawResponse(self._chats.share)
 
@@ -1051,6 +1142,12 @@ class AsyncChatsResourceWithRawResponse:
 
         self.create = async_to_raw_response_wrapper(
             chats.create,
+        )
+        self.archive = async_to_raw_response_wrapper(
+            chats.archive,
+        )
+        self.archive_all = async_to_raw_response_wrapper(
+            chats.archive_all,
         )
         self.delete_all = async_to_raw_response_wrapper(
             chats.delete_all,
@@ -1096,10 +1193,6 @@ class AsyncChatsResourceWithRawResponse:
         return AsyncAllResourceWithRawResponse(self._chats.all)
 
     @cached_property
-    def archive(self) -> AsyncArchiveResourceWithRawResponse:
-        return AsyncArchiveResourceWithRawResponse(self._chats.archive)
-
-    @cached_property
     def share(self) -> AsyncShareResourceWithRawResponse:
         return AsyncShareResourceWithRawResponse(self._chats.share)
 
@@ -1118,6 +1211,12 @@ class ChatsResourceWithStreamingResponse:
 
         self.create = to_streamed_response_wrapper(
             chats.create,
+        )
+        self.archive = to_streamed_response_wrapper(
+            chats.archive,
+        )
+        self.archive_all = to_streamed_response_wrapper(
+            chats.archive_all,
         )
         self.delete_all = to_streamed_response_wrapper(
             chats.delete_all,
@@ -1163,10 +1262,6 @@ class ChatsResourceWithStreamingResponse:
         return AllResourceWithStreamingResponse(self._chats.all)
 
     @cached_property
-    def archive(self) -> ArchiveResourceWithStreamingResponse:
-        return ArchiveResourceWithStreamingResponse(self._chats.archive)
-
-    @cached_property
     def share(self) -> ShareResourceWithStreamingResponse:
         return ShareResourceWithStreamingResponse(self._chats.share)
 
@@ -1185,6 +1280,12 @@ class AsyncChatsResourceWithStreamingResponse:
 
         self.create = async_to_streamed_response_wrapper(
             chats.create,
+        )
+        self.archive = async_to_streamed_response_wrapper(
+            chats.archive,
+        )
+        self.archive_all = async_to_streamed_response_wrapper(
+            chats.archive_all,
         )
         self.delete_all = async_to_streamed_response_wrapper(
             chats.delete_all,
@@ -1228,10 +1329,6 @@ class AsyncChatsResourceWithStreamingResponse:
     @cached_property
     def all(self) -> AsyncAllResourceWithStreamingResponse:
         return AsyncAllResourceWithStreamingResponse(self._chats.all)
-
-    @cached_property
-    def archive(self) -> AsyncArchiveResourceWithStreamingResponse:
-        return AsyncArchiveResourceWithStreamingResponse(self._chats.archive)
 
     @cached_property
     def share(self) -> AsyncShareResourceWithStreamingResponse:

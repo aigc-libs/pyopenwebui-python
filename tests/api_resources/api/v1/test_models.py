@@ -12,6 +12,7 @@ from tests.utils import assert_matches_type
 from pyopenwebui.types.api.v1 import (
     ModelModel,
     ModelGetResponse,
+    ModelDeleteResponse,
     ModelGetBaseResponse,
 )
 
@@ -75,6 +76,31 @@ class TestModels:
 
             model = response.parse()
             assert_matches_type(Optional[ModelModel], model, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_method_delete(self, client: Pyopenwebui) -> None:
+        model = client.api.v1.models.delete()
+        assert_matches_type(ModelDeleteResponse, model, path=["response"])
+
+    @parametrize
+    def test_raw_response_delete(self, client: Pyopenwebui) -> None:
+        response = client.api.v1.models.with_raw_response.delete()
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        model = response.parse()
+        assert_matches_type(ModelDeleteResponse, model, path=["response"])
+
+    @parametrize
+    def test_streaming_response_delete(self, client: Pyopenwebui) -> None:
+        with client.api.v1.models.with_streaming_response.delete() as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            model = response.parse()
+            assert_matches_type(ModelDeleteResponse, model, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -193,6 +219,31 @@ class TestAsyncModels:
 
             model = await response.parse()
             assert_matches_type(Optional[ModelModel], model, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_method_delete(self, async_client: AsyncPyopenwebui) -> None:
+        model = await async_client.api.v1.models.delete()
+        assert_matches_type(ModelDeleteResponse, model, path=["response"])
+
+    @parametrize
+    async def test_raw_response_delete(self, async_client: AsyncPyopenwebui) -> None:
+        response = await async_client.api.v1.models.with_raw_response.delete()
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        model = await response.parse()
+        assert_matches_type(ModelDeleteResponse, model, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_delete(self, async_client: AsyncPyopenwebui) -> None:
+        async with async_client.api.v1.models.with_streaming_response.delete() as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            model = await response.parse()
+            assert_matches_type(ModelDeleteResponse, model, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

@@ -38,7 +38,7 @@ class VersionResource(SyncAPIResource):
         """
         return VersionResourceWithStreamingResponse(self)
 
-    def retrieve(
+    def get(
         self,
         *,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -97,7 +97,7 @@ class AsyncVersionResource(AsyncAPIResource):
         """
         return AsyncVersionResourceWithStreamingResponse(self)
 
-    async def retrieve(
+    async def get(
         self,
         *,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -140,8 +140,8 @@ class VersionResourceWithRawResponse:
     def __init__(self, version: VersionResource) -> None:
         self._version = version
 
-        self.retrieve = to_raw_response_wrapper(
-            version.retrieve,
+        self.get = to_raw_response_wrapper(
+            version.get,
         )
         self.get_latest_release = to_raw_response_wrapper(
             version.get_latest_release,
@@ -152,8 +152,8 @@ class AsyncVersionResourceWithRawResponse:
     def __init__(self, version: AsyncVersionResource) -> None:
         self._version = version
 
-        self.retrieve = async_to_raw_response_wrapper(
-            version.retrieve,
+        self.get = async_to_raw_response_wrapper(
+            version.get,
         )
         self.get_latest_release = async_to_raw_response_wrapper(
             version.get_latest_release,
@@ -164,8 +164,8 @@ class VersionResourceWithStreamingResponse:
     def __init__(self, version: VersionResource) -> None:
         self._version = version
 
-        self.retrieve = to_streamed_response_wrapper(
-            version.retrieve,
+        self.get = to_streamed_response_wrapper(
+            version.get,
         )
         self.get_latest_release = to_streamed_response_wrapper(
             version.get_latest_release,
@@ -176,8 +176,8 @@ class AsyncVersionResourceWithStreamingResponse:
     def __init__(self, version: AsyncVersionResource) -> None:
         self._version = version
 
-        self.retrieve = async_to_streamed_response_wrapper(
-            version.retrieve,
+        self.get = async_to_streamed_response_wrapper(
+            version.get,
         )
         self.get_latest_release = async_to_streamed_response_wrapper(
             version.get_latest_release,

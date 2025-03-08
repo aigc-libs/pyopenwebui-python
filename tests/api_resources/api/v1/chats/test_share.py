@@ -57,15 +57,15 @@ class TestShare:
             )
 
     @parametrize
-    def test_method_get_by_id(self, client: Pyopenwebui) -> None:
-        share = client.api.v1.chats.share.get_by_id(
+    def test_method_get(self, client: Pyopenwebui) -> None:
+        share = client.api.v1.chats.share.get(
             "share_id",
         )
         assert_matches_type(Optional[ChatResponse], share, path=["response"])
 
     @parametrize
-    def test_raw_response_get_by_id(self, client: Pyopenwebui) -> None:
-        response = client.api.v1.chats.share.with_raw_response.get_by_id(
+    def test_raw_response_get(self, client: Pyopenwebui) -> None:
+        response = client.api.v1.chats.share.with_raw_response.get(
             "share_id",
         )
 
@@ -75,8 +75,8 @@ class TestShare:
         assert_matches_type(Optional[ChatResponse], share, path=["response"])
 
     @parametrize
-    def test_streaming_response_get_by_id(self, client: Pyopenwebui) -> None:
-        with client.api.v1.chats.share.with_streaming_response.get_by_id(
+    def test_streaming_response_get(self, client: Pyopenwebui) -> None:
+        with client.api.v1.chats.share.with_streaming_response.get(
             "share_id",
         ) as response:
             assert not response.is_closed
@@ -88,9 +88,9 @@ class TestShare:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
-    def test_path_params_get_by_id(self, client: Pyopenwebui) -> None:
+    def test_path_params_get(self, client: Pyopenwebui) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `share_id` but received ''"):
-            client.api.v1.chats.share.with_raw_response.get_by_id(
+            client.api.v1.chats.share.with_raw_response.get(
                 "",
             )
 
@@ -137,15 +137,15 @@ class TestAsyncShare:
             )
 
     @parametrize
-    async def test_method_get_by_id(self, async_client: AsyncPyopenwebui) -> None:
-        share = await async_client.api.v1.chats.share.get_by_id(
+    async def test_method_get(self, async_client: AsyncPyopenwebui) -> None:
+        share = await async_client.api.v1.chats.share.get(
             "share_id",
         )
         assert_matches_type(Optional[ChatResponse], share, path=["response"])
 
     @parametrize
-    async def test_raw_response_get_by_id(self, async_client: AsyncPyopenwebui) -> None:
-        response = await async_client.api.v1.chats.share.with_raw_response.get_by_id(
+    async def test_raw_response_get(self, async_client: AsyncPyopenwebui) -> None:
+        response = await async_client.api.v1.chats.share.with_raw_response.get(
             "share_id",
         )
 
@@ -155,8 +155,8 @@ class TestAsyncShare:
         assert_matches_type(Optional[ChatResponse], share, path=["response"])
 
     @parametrize
-    async def test_streaming_response_get_by_id(self, async_client: AsyncPyopenwebui) -> None:
-        async with async_client.api.v1.chats.share.with_streaming_response.get_by_id(
+    async def test_streaming_response_get(self, async_client: AsyncPyopenwebui) -> None:
+        async with async_client.api.v1.chats.share.with_streaming_response.get(
             "share_id",
         ) as response:
             assert not response.is_closed
@@ -168,8 +168,8 @@ class TestAsyncShare:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
-    async def test_path_params_get_by_id(self, async_client: AsyncPyopenwebui) -> None:
+    async def test_path_params_get(self, async_client: AsyncPyopenwebui) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `share_id` but received ''"):
-            await async_client.api.v1.chats.share.with_raw_response.get_by_id(
+            await async_client.api.v1.chats.share.with_raw_response.get(
                 "",
             )

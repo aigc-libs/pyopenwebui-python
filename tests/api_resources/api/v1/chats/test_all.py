@@ -12,7 +12,7 @@ from tests.utils import assert_matches_type
 from pyopenwebui.types.api.v1.chats import (
     AllGetResponse,
     AllGetInDBResponse,
-    AllGetTagsResponse,
+    AllGetAllTagsResponse,
     AllGetArchivedResponse,
 )
 
@@ -44,6 +44,31 @@ class TestAll:
 
             all = response.parse()
             assert_matches_type(AllGetResponse, all, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_method_get_all_tags(self, client: Pyopenwebui) -> None:
+        all = client.api.v1.chats.all.get_all_tags()
+        assert_matches_type(AllGetAllTagsResponse, all, path=["response"])
+
+    @parametrize
+    def test_raw_response_get_all_tags(self, client: Pyopenwebui) -> None:
+        response = client.api.v1.chats.all.with_raw_response.get_all_tags()
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        all = response.parse()
+        assert_matches_type(AllGetAllTagsResponse, all, path=["response"])
+
+    @parametrize
+    def test_streaming_response_get_all_tags(self, client: Pyopenwebui) -> None:
+        with client.api.v1.chats.all.with_streaming_response.get_all_tags() as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            all = response.parse()
+            assert_matches_type(AllGetAllTagsResponse, all, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -97,31 +122,6 @@ class TestAll:
 
         assert cast(Any, response.is_closed) is True
 
-    @parametrize
-    def test_method_get_tags(self, client: Pyopenwebui) -> None:
-        all = client.api.v1.chats.all.get_tags()
-        assert_matches_type(AllGetTagsResponse, all, path=["response"])
-
-    @parametrize
-    def test_raw_response_get_tags(self, client: Pyopenwebui) -> None:
-        response = client.api.v1.chats.all.with_raw_response.get_tags()
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        all = response.parse()
-        assert_matches_type(AllGetTagsResponse, all, path=["response"])
-
-    @parametrize
-    def test_streaming_response_get_tags(self, client: Pyopenwebui) -> None:
-        with client.api.v1.chats.all.with_streaming_response.get_tags() as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            all = response.parse()
-            assert_matches_type(AllGetTagsResponse, all, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
 
 class TestAsyncAll:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
@@ -148,6 +148,31 @@ class TestAsyncAll:
 
             all = await response.parse()
             assert_matches_type(AllGetResponse, all, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_method_get_all_tags(self, async_client: AsyncPyopenwebui) -> None:
+        all = await async_client.api.v1.chats.all.get_all_tags()
+        assert_matches_type(AllGetAllTagsResponse, all, path=["response"])
+
+    @parametrize
+    async def test_raw_response_get_all_tags(self, async_client: AsyncPyopenwebui) -> None:
+        response = await async_client.api.v1.chats.all.with_raw_response.get_all_tags()
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        all = await response.parse()
+        assert_matches_type(AllGetAllTagsResponse, all, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_get_all_tags(self, async_client: AsyncPyopenwebui) -> None:
+        async with async_client.api.v1.chats.all.with_streaming_response.get_all_tags() as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            all = await response.parse()
+            assert_matches_type(AllGetAllTagsResponse, all, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -198,30 +223,5 @@ class TestAsyncAll:
 
             all = await response.parse()
             assert_matches_type(AllGetInDBResponse, all, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @parametrize
-    async def test_method_get_tags(self, async_client: AsyncPyopenwebui) -> None:
-        all = await async_client.api.v1.chats.all.get_tags()
-        assert_matches_type(AllGetTagsResponse, all, path=["response"])
-
-    @parametrize
-    async def test_raw_response_get_tags(self, async_client: AsyncPyopenwebui) -> None:
-        response = await async_client.api.v1.chats.all.with_raw_response.get_tags()
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        all = await response.parse()
-        assert_matches_type(AllGetTagsResponse, all, path=["response"])
-
-    @parametrize
-    async def test_streaming_response_get_tags(self, async_client: AsyncPyopenwebui) -> None:
-        async with async_client.api.v1.chats.all.with_streaming_response.get_tags() as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            all = await response.parse()
-            assert_matches_type(AllGetTagsResponse, all, path=["response"])
 
         assert cast(Any, response.is_closed) is True

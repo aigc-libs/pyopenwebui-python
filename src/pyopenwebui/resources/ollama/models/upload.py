@@ -22,7 +22,7 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._base_client import make_request_options
-from ....types.ollama.models import upload_add_params, upload_add_by_index_params
+from ....types.ollama.models import upload_create_params, upload_upload_model_params
 
 __all__ = ["UploadResource", "AsyncUploadResource"]
 
@@ -47,51 +47,7 @@ class UploadResource(SyncAPIResource):
         """
         return UploadResourceWithStreamingResponse(self)
 
-    def add(
-        self,
-        *,
-        file: FileTypes,
-        url_idx: Optional[int] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> object:
-        """
-        Upload Model
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        body = deepcopy_minimal({"file": file})
-        files = extract_files(cast(Mapping[str, object], body), paths=[["file"]])
-        # It should be noted that the actual Content-Type header that will be
-        # sent to the server will contain a `boundary` parameter, e.g.
-        # multipart/form-data; boundary=---abc--
-        extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
-        return self._post(
-            "/ollama/models/upload",
-            body=maybe_transform(body, upload_add_params.UploadAddParams),
-            files=files,
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform({"url_idx": url_idx}, upload_add_params.UploadAddParams),
-            ),
-            cast_to=object,
-        )
-
-    def add_by_index(
+    def create(
         self,
         url_idx: int,
         *,
@@ -123,10 +79,54 @@ class UploadResource(SyncAPIResource):
         extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
         return self._post(
             f"/ollama/models/upload/{url_idx}",
-            body=maybe_transform(body, upload_add_by_index_params.UploadAddByIndexParams),
+            body=maybe_transform(body, upload_create_params.UploadCreateParams),
             files=files,
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=object,
+        )
+
+    def upload_model(
+        self,
+        *,
+        file: FileTypes,
+        url_idx: Optional[int] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> object:
+        """
+        Upload Model
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        body = deepcopy_minimal({"file": file})
+        files = extract_files(cast(Mapping[str, object], body), paths=[["file"]])
+        # It should be noted that the actual Content-Type header that will be
+        # sent to the server will contain a `boundary` parameter, e.g.
+        # multipart/form-data; boundary=---abc--
+        extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
+        return self._post(
+            "/ollama/models/upload",
+            body=maybe_transform(body, upload_upload_model_params.UploadUploadModelParams),
+            files=files,
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform({"url_idx": url_idx}, upload_upload_model_params.UploadUploadModelParams),
             ),
             cast_to=object,
         )
@@ -152,51 +152,7 @@ class AsyncUploadResource(AsyncAPIResource):
         """
         return AsyncUploadResourceWithStreamingResponse(self)
 
-    async def add(
-        self,
-        *,
-        file: FileTypes,
-        url_idx: Optional[int] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> object:
-        """
-        Upload Model
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        body = deepcopy_minimal({"file": file})
-        files = extract_files(cast(Mapping[str, object], body), paths=[["file"]])
-        # It should be noted that the actual Content-Type header that will be
-        # sent to the server will contain a `boundary` parameter, e.g.
-        # multipart/form-data; boundary=---abc--
-        extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
-        return await self._post(
-            "/ollama/models/upload",
-            body=await async_maybe_transform(body, upload_add_params.UploadAddParams),
-            files=files,
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=await async_maybe_transform({"url_idx": url_idx}, upload_add_params.UploadAddParams),
-            ),
-            cast_to=object,
-        )
-
-    async def add_by_index(
+    async def create(
         self,
         url_idx: int,
         *,
@@ -228,10 +184,56 @@ class AsyncUploadResource(AsyncAPIResource):
         extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
         return await self._post(
             f"/ollama/models/upload/{url_idx}",
-            body=await async_maybe_transform(body, upload_add_by_index_params.UploadAddByIndexParams),
+            body=await async_maybe_transform(body, upload_create_params.UploadCreateParams),
             files=files,
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=object,
+        )
+
+    async def upload_model(
+        self,
+        *,
+        file: FileTypes,
+        url_idx: Optional[int] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> object:
+        """
+        Upload Model
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        body = deepcopy_minimal({"file": file})
+        files = extract_files(cast(Mapping[str, object], body), paths=[["file"]])
+        # It should be noted that the actual Content-Type header that will be
+        # sent to the server will contain a `boundary` parameter, e.g.
+        # multipart/form-data; boundary=---abc--
+        extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
+        return await self._post(
+            "/ollama/models/upload",
+            body=await async_maybe_transform(body, upload_upload_model_params.UploadUploadModelParams),
+            files=files,
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {"url_idx": url_idx}, upload_upload_model_params.UploadUploadModelParams
+                ),
             ),
             cast_to=object,
         )
@@ -241,11 +243,11 @@ class UploadResourceWithRawResponse:
     def __init__(self, upload: UploadResource) -> None:
         self._upload = upload
 
-        self.add = to_raw_response_wrapper(
-            upload.add,
+        self.create = to_raw_response_wrapper(
+            upload.create,
         )
-        self.add_by_index = to_raw_response_wrapper(
-            upload.add_by_index,
+        self.upload_model = to_raw_response_wrapper(
+            upload.upload_model,
         )
 
 
@@ -253,11 +255,11 @@ class AsyncUploadResourceWithRawResponse:
     def __init__(self, upload: AsyncUploadResource) -> None:
         self._upload = upload
 
-        self.add = async_to_raw_response_wrapper(
-            upload.add,
+        self.create = async_to_raw_response_wrapper(
+            upload.create,
         )
-        self.add_by_index = async_to_raw_response_wrapper(
-            upload.add_by_index,
+        self.upload_model = async_to_raw_response_wrapper(
+            upload.upload_model,
         )
 
 
@@ -265,11 +267,11 @@ class UploadResourceWithStreamingResponse:
     def __init__(self, upload: UploadResource) -> None:
         self._upload = upload
 
-        self.add = to_streamed_response_wrapper(
-            upload.add,
+        self.create = to_streamed_response_wrapper(
+            upload.create,
         )
-        self.add_by_index = to_streamed_response_wrapper(
-            upload.add_by_index,
+        self.upload_model = to_streamed_response_wrapper(
+            upload.upload_model,
         )
 
 
@@ -277,9 +279,9 @@ class AsyncUploadResourceWithStreamingResponse:
     def __init__(self, upload: AsyncUploadResource) -> None:
         self._upload = upload
 
-        self.add = async_to_streamed_response_wrapper(
-            upload.add,
+        self.create = async_to_streamed_response_wrapper(
+            upload.create,
         )
-        self.add_by_index = async_to_streamed_response_wrapper(
-            upload.add_by_index,
+        self.upload_model = async_to_streamed_response_wrapper(
+            upload.upload_model,
         )

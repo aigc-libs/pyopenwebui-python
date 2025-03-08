@@ -169,16 +169,16 @@ class TestOpenAI:
             )
 
     @parametrize
-    def test_method_verify_connection(self, client: Pyopenwebui) -> None:
-        openai = client.openai.verify_connection(
+    def test_method_verify(self, client: Pyopenwebui) -> None:
+        openai = client.openai.verify(
             key="key",
             url="url",
         )
         assert_matches_type(object, openai, path=["response"])
 
     @parametrize
-    def test_raw_response_verify_connection(self, client: Pyopenwebui) -> None:
-        response = client.openai.with_raw_response.verify_connection(
+    def test_raw_response_verify(self, client: Pyopenwebui) -> None:
+        response = client.openai.with_raw_response.verify(
             key="key",
             url="url",
         )
@@ -189,8 +189,8 @@ class TestOpenAI:
         assert_matches_type(object, openai, path=["response"])
 
     @parametrize
-    def test_streaming_response_verify_connection(self, client: Pyopenwebui) -> None:
-        with client.openai.with_streaming_response.verify_connection(
+    def test_streaming_response_verify(self, client: Pyopenwebui) -> None:
+        with client.openai.with_streaming_response.verify(
             key="key",
             url="url",
         ) as response:
@@ -359,16 +359,16 @@ class TestAsyncOpenAI:
             )
 
     @parametrize
-    async def test_method_verify_connection(self, async_client: AsyncPyopenwebui) -> None:
-        openai = await async_client.openai.verify_connection(
+    async def test_method_verify(self, async_client: AsyncPyopenwebui) -> None:
+        openai = await async_client.openai.verify(
             key="key",
             url="url",
         )
         assert_matches_type(object, openai, path=["response"])
 
     @parametrize
-    async def test_raw_response_verify_connection(self, async_client: AsyncPyopenwebui) -> None:
-        response = await async_client.openai.with_raw_response.verify_connection(
+    async def test_raw_response_verify(self, async_client: AsyncPyopenwebui) -> None:
+        response = await async_client.openai.with_raw_response.verify(
             key="key",
             url="url",
         )
@@ -379,8 +379,8 @@ class TestAsyncOpenAI:
         assert_matches_type(object, openai, path=["response"])
 
     @parametrize
-    async def test_streaming_response_verify_connection(self, async_client: AsyncPyopenwebui) -> None:
-        async with async_client.openai.with_streaming_response.verify_connection(
+    async def test_streaming_response_verify(self, async_client: AsyncPyopenwebui) -> None:
+        async with async_client.openai.with_streaming_response.verify(
             key="key",
             url="url",
         ) as response:

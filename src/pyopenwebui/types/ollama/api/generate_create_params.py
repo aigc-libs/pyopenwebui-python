@@ -13,8 +13,6 @@ class GenerateCreateParams(TypedDict, total=False):
 
     prompt: Required[str]
 
-    url_idx: Optional[int]
-
     context: Optional[Iterable[int]]
 
     format: Optional[str]

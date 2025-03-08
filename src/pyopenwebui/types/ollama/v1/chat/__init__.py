@@ -2,5 +2,7 @@
 
 from __future__ import annotations
 
-from .completion_generate_params import CompletionGenerateParams as CompletionGenerateParams
-from .completion_get_by_index_params import CompletionGetByIndexParams as CompletionGetByIndexParams
+from .completion_create_params import CompletionCreateParams as CompletionCreateParams
+from .completion_generate_openai_chat_completion_params import (
+    CompletionGenerateOpenAIChatCompletionParams as CompletionGenerateOpenAIChatCompletionParams,
+)

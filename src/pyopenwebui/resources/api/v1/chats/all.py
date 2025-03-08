@@ -15,8 +15,8 @@ from ....._response import (
 )
 from ....._base_client import make_request_options
 from .....types.api.v1.chats.all_get_response import AllGetResponse
-from .....types.api.v1.chats.all_get_tags_response import AllGetTagsResponse
 from .....types.api.v1.chats.all_get_in_db_response import AllGetInDBResponse
+from .....types.api.v1.chats.all_get_all_tags_response import AllGetAllTagsResponse
 from .....types.api.v1.chats.all_get_archived_response import AllGetArchivedResponse
 
 __all__ = ["AllResource", "AsyncAllResource"]
@@ -61,6 +61,25 @@ class AllResource(SyncAPIResource):
             cast_to=AllGetResponse,
         )
 
+    def get_all_tags(
+        self,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AllGetAllTagsResponse:
+        """Get All User Tags"""
+        return self._get(
+            "/api/v1/chats/all/tags",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=AllGetAllTagsResponse,
+        )
+
     def get_archived(
         self,
         *,
@@ -97,25 +116,6 @@ class AllResource(SyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=AllGetInDBResponse,
-        )
-
-    def get_tags(
-        self,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AllGetTagsResponse:
-        """Get All User Tags"""
-        return self._get(
-            "/api/v1/chats/all/tags",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=AllGetTagsResponse,
         )
 
 
@@ -158,6 +158,25 @@ class AsyncAllResource(AsyncAPIResource):
             cast_to=AllGetResponse,
         )
 
+    async def get_all_tags(
+        self,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AllGetAllTagsResponse:
+        """Get All User Tags"""
+        return await self._get(
+            "/api/v1/chats/all/tags",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=AllGetAllTagsResponse,
+        )
+
     async def get_archived(
         self,
         *,
@@ -196,25 +215,6 @@ class AsyncAllResource(AsyncAPIResource):
             cast_to=AllGetInDBResponse,
         )
 
-    async def get_tags(
-        self,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AllGetTagsResponse:
-        """Get All User Tags"""
-        return await self._get(
-            "/api/v1/chats/all/tags",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=AllGetTagsResponse,
-        )
-
 
 class AllResourceWithRawResponse:
     def __init__(self, all: AllResource) -> None:
@@ -223,14 +223,14 @@ class AllResourceWithRawResponse:
         self.get = to_raw_response_wrapper(
             all.get,
         )
+        self.get_all_tags = to_raw_response_wrapper(
+            all.get_all_tags,
+        )
         self.get_archived = to_raw_response_wrapper(
             all.get_archived,
         )
         self.get_in_db = to_raw_response_wrapper(
             all.get_in_db,
-        )
-        self.get_tags = to_raw_response_wrapper(
-            all.get_tags,
         )
 
 
@@ -241,14 +241,14 @@ class AsyncAllResourceWithRawResponse:
         self.get = async_to_raw_response_wrapper(
             all.get,
         )
+        self.get_all_tags = async_to_raw_response_wrapper(
+            all.get_all_tags,
+        )
         self.get_archived = async_to_raw_response_wrapper(
             all.get_archived,
         )
         self.get_in_db = async_to_raw_response_wrapper(
             all.get_in_db,
-        )
-        self.get_tags = async_to_raw_response_wrapper(
-            all.get_tags,
         )
 
 
@@ -259,14 +259,14 @@ class AllResourceWithStreamingResponse:
         self.get = to_streamed_response_wrapper(
             all.get,
         )
+        self.get_all_tags = to_streamed_response_wrapper(
+            all.get_all_tags,
+        )
         self.get_archived = to_streamed_response_wrapper(
             all.get_archived,
         )
         self.get_in_db = to_streamed_response_wrapper(
             all.get_in_db,
-        )
-        self.get_tags = to_streamed_response_wrapper(
-            all.get_tags,
         )
 
 
@@ -277,12 +277,12 @@ class AsyncAllResourceWithStreamingResponse:
         self.get = async_to_streamed_response_wrapper(
             all.get,
         )
+        self.get_all_tags = async_to_streamed_response_wrapper(
+            all.get_all_tags,
+        )
         self.get_archived = async_to_streamed_response_wrapper(
             all.get_archived,
         )
         self.get_in_db = async_to_streamed_response_wrapper(
             all.get_in_db,
-        )
-        self.get_tags = async_to_streamed_response_wrapper(
-            all.get_tags,
         )

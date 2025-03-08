@@ -20,7 +20,7 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._base_client import make_request_options
-from ....types.ollama.api import chat_create_params, chat_create_by_index_params
+from ....types.ollama.api import chat_create_params, chat_generate_chat_completion_params
 
 __all__ = ["ChatResource", "AsyncChatResource"]
 
@@ -47,50 +47,6 @@ class ChatResource(SyncAPIResource):
 
     def create(
         self,
-        *,
-        body: object,
-        bypass_filter: Optional[bool] | NotGiven = NOT_GIVEN,
-        url_idx: Optional[int] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> object:
-        """
-        Generate Chat Completion
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return self._post(
-            "/ollama/api/chat",
-            body=maybe_transform(body, chat_create_params.ChatCreateParams),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "bypass_filter": bypass_filter,
-                        "url_idx": url_idx,
-                    },
-                    chat_create_params.ChatCreateParams,
-                ),
-            ),
-            cast_to=object,
-        )
-
-    def create_by_index(
-        self,
         url_idx: int,
         *,
         body: object,
@@ -116,14 +72,56 @@ class ChatResource(SyncAPIResource):
         """
         return self._post(
             f"/ollama/api/chat/{url_idx}",
-            body=maybe_transform(body, chat_create_by_index_params.ChatCreateByIndexParams),
+            body=maybe_transform(body, chat_create_params.ChatCreateParams),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform({"bypass_filter": bypass_filter}, chat_create_params.ChatCreateParams),
+            ),
+            cast_to=object,
+        )
+
+    def generate_chat_completion(
+        self,
+        *,
+        body: object,
+        bypass_filter: Optional[bool] | NotGiven = NOT_GIVEN,
+        url_idx: Optional[int] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> object:
+        """
+        Generate Chat Completion
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._post(
+            "/ollama/api/chat",
+            body=maybe_transform(body, chat_generate_chat_completion_params.ChatGenerateChatCompletionParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
                 query=maybe_transform(
-                    {"bypass_filter": bypass_filter}, chat_create_by_index_params.ChatCreateByIndexParams
+                    {
+                        "bypass_filter": bypass_filter,
+                        "url_idx": url_idx,
+                    },
+                    chat_generate_chat_completion_params.ChatGenerateChatCompletionParams,
                 ),
             ),
             cast_to=object,
@@ -152,50 +150,6 @@ class AsyncChatResource(AsyncAPIResource):
 
     async def create(
         self,
-        *,
-        body: object,
-        bypass_filter: Optional[bool] | NotGiven = NOT_GIVEN,
-        url_idx: Optional[int] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> object:
-        """
-        Generate Chat Completion
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return await self._post(
-            "/ollama/api/chat",
-            body=await async_maybe_transform(body, chat_create_params.ChatCreateParams),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=await async_maybe_transform(
-                    {
-                        "bypass_filter": bypass_filter,
-                        "url_idx": url_idx,
-                    },
-                    chat_create_params.ChatCreateParams,
-                ),
-            ),
-            cast_to=object,
-        )
-
-    async def create_by_index(
-        self,
         url_idx: int,
         *,
         body: object,
@@ -221,14 +175,60 @@ class AsyncChatResource(AsyncAPIResource):
         """
         return await self._post(
             f"/ollama/api/chat/{url_idx}",
-            body=await async_maybe_transform(body, chat_create_by_index_params.ChatCreateByIndexParams),
+            body=await async_maybe_transform(body, chat_create_params.ChatCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
                 query=await async_maybe_transform(
-                    {"bypass_filter": bypass_filter}, chat_create_by_index_params.ChatCreateByIndexParams
+                    {"bypass_filter": bypass_filter}, chat_create_params.ChatCreateParams
+                ),
+            ),
+            cast_to=object,
+        )
+
+    async def generate_chat_completion(
+        self,
+        *,
+        body: object,
+        bypass_filter: Optional[bool] | NotGiven = NOT_GIVEN,
+        url_idx: Optional[int] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> object:
+        """
+        Generate Chat Completion
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return await self._post(
+            "/ollama/api/chat",
+            body=await async_maybe_transform(
+                body, chat_generate_chat_completion_params.ChatGenerateChatCompletionParams
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "bypass_filter": bypass_filter,
+                        "url_idx": url_idx,
+                    },
+                    chat_generate_chat_completion_params.ChatGenerateChatCompletionParams,
                 ),
             ),
             cast_to=object,
@@ -242,8 +242,8 @@ class ChatResourceWithRawResponse:
         self.create = to_raw_response_wrapper(
             chat.create,
         )
-        self.create_by_index = to_raw_response_wrapper(
-            chat.create_by_index,
+        self.generate_chat_completion = to_raw_response_wrapper(
+            chat.generate_chat_completion,
         )
 
 
@@ -254,8 +254,8 @@ class AsyncChatResourceWithRawResponse:
         self.create = async_to_raw_response_wrapper(
             chat.create,
         )
-        self.create_by_index = async_to_raw_response_wrapper(
-            chat.create_by_index,
+        self.generate_chat_completion = async_to_raw_response_wrapper(
+            chat.generate_chat_completion,
         )
 
 
@@ -266,8 +266,8 @@ class ChatResourceWithStreamingResponse:
         self.create = to_streamed_response_wrapper(
             chat.create,
         )
-        self.create_by_index = to_streamed_response_wrapper(
-            chat.create_by_index,
+        self.generate_chat_completion = to_streamed_response_wrapper(
+            chat.generate_chat_completion,
         )
 
 
@@ -278,6 +278,6 @@ class AsyncChatResourceWithStreamingResponse:
         self.create = async_to_streamed_response_wrapper(
             chat.create,
         )
-        self.create_by_index = async_to_streamed_response_wrapper(
-            chat.create_by_index,
+        self.generate_chat_completion = async_to_streamed_response_wrapper(
+            chat.generate_chat_completion,
         )

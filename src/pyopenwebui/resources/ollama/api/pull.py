@@ -18,7 +18,7 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._base_client import make_request_options
-from ....types.ollama.api import pull_fetch_params, pull_fetch_by_index_params
+from ....types.ollama.api import pull_create_params, pull_pull_model_params
 
 __all__ = ["PullResource", "AsyncPullResource"]
 
@@ -43,44 +43,7 @@ class PullResource(SyncAPIResource):
         """
         return PullResourceWithStreamingResponse(self)
 
-    def fetch(
-        self,
-        *,
-        name: str,
-        url_idx: int | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> object:
-        """
-        Pull Model
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return self._post(
-            "/ollama/api/pull",
-            body=maybe_transform({"name": name}, pull_fetch_params.PullFetchParams),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform({"url_idx": url_idx}, pull_fetch_params.PullFetchParams),
-            ),
-            cast_to=object,
-        )
-
-    def fetch_by_index(
+    def create(
         self,
         url_idx: int,
         *,
@@ -106,9 +69,46 @@ class PullResource(SyncAPIResource):
         """
         return self._post(
             f"/ollama/api/pull/{url_idx}",
-            body=maybe_transform({"name": name}, pull_fetch_by_index_params.PullFetchByIndexParams),
+            body=maybe_transform({"name": name}, pull_create_params.PullCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=object,
+        )
+
+    def pull_model(
+        self,
+        *,
+        name: str,
+        url_idx: int | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> object:
+        """
+        Pull Model
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._post(
+            "/ollama/api/pull",
+            body=maybe_transform({"name": name}, pull_pull_model_params.PullPullModelParams),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform({"url_idx": url_idx}, pull_pull_model_params.PullPullModelParams),
             ),
             cast_to=object,
         )
@@ -134,44 +134,7 @@ class AsyncPullResource(AsyncAPIResource):
         """
         return AsyncPullResourceWithStreamingResponse(self)
 
-    async def fetch(
-        self,
-        *,
-        name: str,
-        url_idx: int | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> object:
-        """
-        Pull Model
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return await self._post(
-            "/ollama/api/pull",
-            body=await async_maybe_transform({"name": name}, pull_fetch_params.PullFetchParams),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=await async_maybe_transform({"url_idx": url_idx}, pull_fetch_params.PullFetchParams),
-            ),
-            cast_to=object,
-        )
-
-    async def fetch_by_index(
+    async def create(
         self,
         url_idx: int,
         *,
@@ -197,9 +160,46 @@ class AsyncPullResource(AsyncAPIResource):
         """
         return await self._post(
             f"/ollama/api/pull/{url_idx}",
-            body=await async_maybe_transform({"name": name}, pull_fetch_by_index_params.PullFetchByIndexParams),
+            body=await async_maybe_transform({"name": name}, pull_create_params.PullCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=object,
+        )
+
+    async def pull_model(
+        self,
+        *,
+        name: str,
+        url_idx: int | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> object:
+        """
+        Pull Model
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return await self._post(
+            "/ollama/api/pull",
+            body=await async_maybe_transform({"name": name}, pull_pull_model_params.PullPullModelParams),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform({"url_idx": url_idx}, pull_pull_model_params.PullPullModelParams),
             ),
             cast_to=object,
         )
@@ -209,11 +209,11 @@ class PullResourceWithRawResponse:
     def __init__(self, pull: PullResource) -> None:
         self._pull = pull
 
-        self.fetch = to_raw_response_wrapper(
-            pull.fetch,
+        self.create = to_raw_response_wrapper(
+            pull.create,
         )
-        self.fetch_by_index = to_raw_response_wrapper(
-            pull.fetch_by_index,
+        self.pull_model = to_raw_response_wrapper(
+            pull.pull_model,
         )
 
 
@@ -221,11 +221,11 @@ class AsyncPullResourceWithRawResponse:
     def __init__(self, pull: AsyncPullResource) -> None:
         self._pull = pull
 
-        self.fetch = async_to_raw_response_wrapper(
-            pull.fetch,
+        self.create = async_to_raw_response_wrapper(
+            pull.create,
         )
-        self.fetch_by_index = async_to_raw_response_wrapper(
-            pull.fetch_by_index,
+        self.pull_model = async_to_raw_response_wrapper(
+            pull.pull_model,
         )
 
 
@@ -233,11 +233,11 @@ class PullResourceWithStreamingResponse:
     def __init__(self, pull: PullResource) -> None:
         self._pull = pull
 
-        self.fetch = to_streamed_response_wrapper(
-            pull.fetch,
+        self.create = to_streamed_response_wrapper(
+            pull.create,
         )
-        self.fetch_by_index = to_streamed_response_wrapper(
-            pull.fetch_by_index,
+        self.pull_model = to_streamed_response_wrapper(
+            pull.pull_model,
         )
 
 
@@ -245,9 +245,9 @@ class AsyncPullResourceWithStreamingResponse:
     def __init__(self, pull: AsyncPullResource) -> None:
         self._pull = pull
 
-        self.fetch = async_to_streamed_response_wrapper(
-            pull.fetch,
+        self.create = async_to_streamed_response_wrapper(
+            pull.create,
         )
-        self.fetch_by_index = async_to_streamed_response_wrapper(
-            pull.fetch_by_index,
+        self.pull_model = async_to_streamed_response_wrapper(
+            pull.pull_model,
         )
