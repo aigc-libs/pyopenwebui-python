@@ -16,6 +16,7 @@ from ....._response import (
     async_to_streamed_response_wrapper,
 )
 from ....._base_client import make_request_options
+from .....types.api.v1.chat_response import ChatResponse
 from .....types.api.v1.chats.share_delete_response import ShareDeleteResponse
 
 __all__ = ["ShareResource", "AsyncShareResource"]
@@ -28,7 +29,7 @@ class ShareResource(SyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#accessing-raw-response-data-eg-headers
         """
         return ShareResourceWithRawResponse(self)
 
@@ -37,7 +38,7 @@ class ShareResource(SyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#with_streaming_response
+        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#with_streaming_response
         """
         return ShareResourceWithStreamingResponse(self)
 
@@ -74,6 +75,39 @@ class ShareResource(SyncAPIResource):
             cast_to=ShareDeleteResponse,
         )
 
+    def get_by_id(
+        self,
+        share_id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[ChatResponse]:
+        """
+        Get Shared Chat By Id
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not share_id:
+            raise ValueError(f"Expected a non-empty value for `share_id` but received {share_id!r}")
+        return self._get(
+            f"/api/v1/chats/share/{share_id}",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=ChatResponse,
+        )
+
 
 class AsyncShareResource(AsyncAPIResource):
     @cached_property
@@ -82,7 +116,7 @@ class AsyncShareResource(AsyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#accessing-raw-response-data-eg-headers
         """
         return AsyncShareResourceWithRawResponse(self)
 
@@ -91,7 +125,7 @@ class AsyncShareResource(AsyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#with_streaming_response
+        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#with_streaming_response
         """
         return AsyncShareResourceWithStreamingResponse(self)
 
@@ -128,6 +162,39 @@ class AsyncShareResource(AsyncAPIResource):
             cast_to=ShareDeleteResponse,
         )
 
+    async def get_by_id(
+        self,
+        share_id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[ChatResponse]:
+        """
+        Get Shared Chat By Id
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not share_id:
+            raise ValueError(f"Expected a non-empty value for `share_id` but received {share_id!r}")
+        return await self._get(
+            f"/api/v1/chats/share/{share_id}",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=ChatResponse,
+        )
+
 
 class ShareResourceWithRawResponse:
     def __init__(self, share: ShareResource) -> None:
@@ -135,6 +202,9 @@ class ShareResourceWithRawResponse:
 
         self.delete = to_raw_response_wrapper(
             share.delete,
+        )
+        self.get_by_id = to_raw_response_wrapper(
+            share.get_by_id,
         )
 
 
@@ -145,6 +215,9 @@ class AsyncShareResourceWithRawResponse:
         self.delete = async_to_raw_response_wrapper(
             share.delete,
         )
+        self.get_by_id = async_to_raw_response_wrapper(
+            share.get_by_id,
+        )
 
 
 class ShareResourceWithStreamingResponse:
@@ -154,6 +227,9 @@ class ShareResourceWithStreamingResponse:
         self.delete = to_streamed_response_wrapper(
             share.delete,
         )
+        self.get_by_id = to_streamed_response_wrapper(
+            share.get_by_id,
+        )
 
 
 class AsyncShareResourceWithStreamingResponse:
@@ -162,4 +238,7 @@ class AsyncShareResourceWithStreamingResponse:
 
         self.delete = async_to_streamed_response_wrapper(
             share.delete,
+        )
+        self.get_by_id = async_to_streamed_response_wrapper(
+            share.get_by_id,
         )

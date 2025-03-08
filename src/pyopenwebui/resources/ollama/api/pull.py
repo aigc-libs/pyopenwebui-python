@@ -18,7 +18,7 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._base_client import make_request_options
-from ....types.ollama.api import pull_create_params, pull_retrieve_by_index_params
+from ....types.ollama.api import pull_fetch_params, pull_fetch_by_index_params
 
 __all__ = ["PullResource", "AsyncPullResource"]
 
@@ -30,7 +30,7 @@ class PullResource(SyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#accessing-raw-response-data-eg-headers
         """
         return PullResourceWithRawResponse(self)
 
@@ -39,11 +39,11 @@ class PullResource(SyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#with_streaming_response
+        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#with_streaming_response
         """
         return PullResourceWithStreamingResponse(self)
 
-    def create(
+    def fetch(
         self,
         *,
         name: str,
@@ -69,18 +69,18 @@ class PullResource(SyncAPIResource):
         """
         return self._post(
             "/ollama/api/pull",
-            body=maybe_transform({"name": name}, pull_create_params.PullCreateParams),
+            body=maybe_transform({"name": name}, pull_fetch_params.PullFetchParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform({"url_idx": url_idx}, pull_create_params.PullCreateParams),
+                query=maybe_transform({"url_idx": url_idx}, pull_fetch_params.PullFetchParams),
             ),
             cast_to=object,
         )
 
-    def retrieve_by_index(
+    def fetch_by_index(
         self,
         url_idx: int,
         *,
@@ -106,7 +106,7 @@ class PullResource(SyncAPIResource):
         """
         return self._post(
             f"/ollama/api/pull/{url_idx}",
-            body=maybe_transform({"name": name}, pull_retrieve_by_index_params.PullRetrieveByIndexParams),
+            body=maybe_transform({"name": name}, pull_fetch_by_index_params.PullFetchByIndexParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -121,7 +121,7 @@ class AsyncPullResource(AsyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#accessing-raw-response-data-eg-headers
         """
         return AsyncPullResourceWithRawResponse(self)
 
@@ -130,11 +130,11 @@ class AsyncPullResource(AsyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#with_streaming_response
+        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#with_streaming_response
         """
         return AsyncPullResourceWithStreamingResponse(self)
 
-    async def create(
+    async def fetch(
         self,
         *,
         name: str,
@@ -160,18 +160,18 @@ class AsyncPullResource(AsyncAPIResource):
         """
         return await self._post(
             "/ollama/api/pull",
-            body=await async_maybe_transform({"name": name}, pull_create_params.PullCreateParams),
+            body=await async_maybe_transform({"name": name}, pull_fetch_params.PullFetchParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform({"url_idx": url_idx}, pull_create_params.PullCreateParams),
+                query=await async_maybe_transform({"url_idx": url_idx}, pull_fetch_params.PullFetchParams),
             ),
             cast_to=object,
         )
 
-    async def retrieve_by_index(
+    async def fetch_by_index(
         self,
         url_idx: int,
         *,
@@ -197,7 +197,7 @@ class AsyncPullResource(AsyncAPIResource):
         """
         return await self._post(
             f"/ollama/api/pull/{url_idx}",
-            body=await async_maybe_transform({"name": name}, pull_retrieve_by_index_params.PullRetrieveByIndexParams),
+            body=await async_maybe_transform({"name": name}, pull_fetch_by_index_params.PullFetchByIndexParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -209,11 +209,11 @@ class PullResourceWithRawResponse:
     def __init__(self, pull: PullResource) -> None:
         self._pull = pull
 
-        self.create = to_raw_response_wrapper(
-            pull.create,
+        self.fetch = to_raw_response_wrapper(
+            pull.fetch,
         )
-        self.retrieve_by_index = to_raw_response_wrapper(
-            pull.retrieve_by_index,
+        self.fetch_by_index = to_raw_response_wrapper(
+            pull.fetch_by_index,
         )
 
 
@@ -221,11 +221,11 @@ class AsyncPullResourceWithRawResponse:
     def __init__(self, pull: AsyncPullResource) -> None:
         self._pull = pull
 
-        self.create = async_to_raw_response_wrapper(
-            pull.create,
+        self.fetch = async_to_raw_response_wrapper(
+            pull.fetch,
         )
-        self.retrieve_by_index = async_to_raw_response_wrapper(
-            pull.retrieve_by_index,
+        self.fetch_by_index = async_to_raw_response_wrapper(
+            pull.fetch_by_index,
         )
 
 
@@ -233,11 +233,11 @@ class PullResourceWithStreamingResponse:
     def __init__(self, pull: PullResource) -> None:
         self._pull = pull
 
-        self.create = to_streamed_response_wrapper(
-            pull.create,
+        self.fetch = to_streamed_response_wrapper(
+            pull.fetch,
         )
-        self.retrieve_by_index = to_streamed_response_wrapper(
-            pull.retrieve_by_index,
+        self.fetch_by_index = to_streamed_response_wrapper(
+            pull.fetch_by_index,
         )
 
 
@@ -245,9 +245,9 @@ class AsyncPullResourceWithStreamingResponse:
     def __init__(self, pull: AsyncPullResource) -> None:
         self._pull = pull
 
-        self.create = async_to_streamed_response_wrapper(
-            pull.create,
+        self.fetch = async_to_streamed_response_wrapper(
+            pull.fetch,
         )
-        self.retrieve_by_index = async_to_streamed_response_wrapper(
-            pull.retrieve_by_index,
+        self.fetch_by_index = async_to_streamed_response_wrapper(
+            pull.fetch_by_index,
         )

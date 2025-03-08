@@ -53,8 +53,8 @@ from .direct_connections import (
     DirectConnectionsResourceWithStreamingResponse,
     AsyncDirectConnectionsResourceWithStreamingResponse,
 )
+from .....types.api.v1.prompt_suggestion_param import PromptSuggestionParam
 from .....types.api.v1.config_set_suggestions_response import ConfigSetSuggestionsResponse
-from .....types.configs.default.prompt_suggestion_param import PromptSuggestionParam
 
 __all__ = ["ConfigsResource", "AsyncConfigsResource"]
 
@@ -82,7 +82,7 @@ class ConfigsResource(SyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#accessing-raw-response-data-eg-headers
         """
         return ConfigsResourceWithRawResponse(self)
 
@@ -91,7 +91,7 @@ class ConfigsResource(SyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#with_streaming_response
+        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#with_streaming_response
         """
         return ConfigsResourceWithStreamingResponse(self)
 
@@ -204,7 +204,7 @@ class AsyncConfigsResource(AsyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#accessing-raw-response-data-eg-headers
         """
         return AsyncConfigsResourceWithRawResponse(self)
 
@@ -213,7 +213,7 @@ class AsyncConfigsResource(AsyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#with_streaming_response
+        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#with_streaming_response
         """
         return AsyncConfigsResourceWithStreamingResponse(self)
 

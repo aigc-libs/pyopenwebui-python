@@ -22,7 +22,7 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._base_client import make_request_options
-from ....types.ollama.models import upload_create_params, upload_create_by_index_params
+from ....types.ollama.models import upload_add_params, upload_add_by_index_params
 
 __all__ = ["UploadResource", "AsyncUploadResource"]
 
@@ -34,7 +34,7 @@ class UploadResource(SyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#accessing-raw-response-data-eg-headers
         """
         return UploadResourceWithRawResponse(self)
 
@@ -43,11 +43,11 @@ class UploadResource(SyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#with_streaming_response
+        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#with_streaming_response
         """
         return UploadResourceWithStreamingResponse(self)
 
-    def create(
+    def add(
         self,
         *,
         file: FileTypes,
@@ -79,19 +79,19 @@ class UploadResource(SyncAPIResource):
         extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
         return self._post(
             "/ollama/models/upload",
-            body=maybe_transform(body, upload_create_params.UploadCreateParams),
+            body=maybe_transform(body, upload_add_params.UploadAddParams),
             files=files,
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform({"url_idx": url_idx}, upload_create_params.UploadCreateParams),
+                query=maybe_transform({"url_idx": url_idx}, upload_add_params.UploadAddParams),
             ),
             cast_to=object,
         )
 
-    def create_by_index(
+    def add_by_index(
         self,
         url_idx: int,
         *,
@@ -123,7 +123,7 @@ class UploadResource(SyncAPIResource):
         extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
         return self._post(
             f"/ollama/models/upload/{url_idx}",
-            body=maybe_transform(body, upload_create_by_index_params.UploadCreateByIndexParams),
+            body=maybe_transform(body, upload_add_by_index_params.UploadAddByIndexParams),
             files=files,
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -139,7 +139,7 @@ class AsyncUploadResource(AsyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#accessing-raw-response-data-eg-headers
         """
         return AsyncUploadResourceWithRawResponse(self)
 
@@ -148,11 +148,11 @@ class AsyncUploadResource(AsyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#with_streaming_response
+        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#with_streaming_response
         """
         return AsyncUploadResourceWithStreamingResponse(self)
 
-    async def create(
+    async def add(
         self,
         *,
         file: FileTypes,
@@ -184,19 +184,19 @@ class AsyncUploadResource(AsyncAPIResource):
         extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
         return await self._post(
             "/ollama/models/upload",
-            body=await async_maybe_transform(body, upload_create_params.UploadCreateParams),
+            body=await async_maybe_transform(body, upload_add_params.UploadAddParams),
             files=files,
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform({"url_idx": url_idx}, upload_create_params.UploadCreateParams),
+                query=await async_maybe_transform({"url_idx": url_idx}, upload_add_params.UploadAddParams),
             ),
             cast_to=object,
         )
 
-    async def create_by_index(
+    async def add_by_index(
         self,
         url_idx: int,
         *,
@@ -228,7 +228,7 @@ class AsyncUploadResource(AsyncAPIResource):
         extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
         return await self._post(
             f"/ollama/models/upload/{url_idx}",
-            body=await async_maybe_transform(body, upload_create_by_index_params.UploadCreateByIndexParams),
+            body=await async_maybe_transform(body, upload_add_by_index_params.UploadAddByIndexParams),
             files=files,
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -241,11 +241,11 @@ class UploadResourceWithRawResponse:
     def __init__(self, upload: UploadResource) -> None:
         self._upload = upload
 
-        self.create = to_raw_response_wrapper(
-            upload.create,
+        self.add = to_raw_response_wrapper(
+            upload.add,
         )
-        self.create_by_index = to_raw_response_wrapper(
-            upload.create_by_index,
+        self.add_by_index = to_raw_response_wrapper(
+            upload.add_by_index,
         )
 
 
@@ -253,11 +253,11 @@ class AsyncUploadResourceWithRawResponse:
     def __init__(self, upload: AsyncUploadResource) -> None:
         self._upload = upload
 
-        self.create = async_to_raw_response_wrapper(
-            upload.create,
+        self.add = async_to_raw_response_wrapper(
+            upload.add,
         )
-        self.create_by_index = async_to_raw_response_wrapper(
-            upload.create_by_index,
+        self.add_by_index = async_to_raw_response_wrapper(
+            upload.add_by_index,
         )
 
 
@@ -265,11 +265,11 @@ class UploadResourceWithStreamingResponse:
     def __init__(self, upload: UploadResource) -> None:
         self._upload = upload
 
-        self.create = to_streamed_response_wrapper(
-            upload.create,
+        self.add = to_streamed_response_wrapper(
+            upload.add,
         )
-        self.create_by_index = to_streamed_response_wrapper(
-            upload.create_by_index,
+        self.add_by_index = to_streamed_response_wrapper(
+            upload.add_by_index,
         )
 
 
@@ -277,9 +277,9 @@ class AsyncUploadResourceWithStreamingResponse:
     def __init__(self, upload: AsyncUploadResource) -> None:
         self._upload = upload
 
-        self.create = async_to_streamed_response_wrapper(
-            upload.create,
+        self.add = async_to_streamed_response_wrapper(
+            upload.add,
         )
-        self.create_by_index = async_to_streamed_response_wrapper(
-            upload.create_by_index,
+        self.add_by_index = async_to_streamed_response_wrapper(
+            upload.add_by_index,
         )

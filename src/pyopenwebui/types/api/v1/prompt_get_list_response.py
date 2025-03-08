@@ -4,20 +4,9 @@ from typing import List, Optional
 from typing_extensions import TypeAlias
 
 from ...._models import BaseModel
+from .user_response import UserResponse
 
-__all__ = ["PromptGetListResponse", "PromptGetListResponseItem", "PromptGetListResponseItemUser"]
-
-
-class PromptGetListResponseItemUser(BaseModel):
-    id: str
-
-    email: str
-
-    name: str
-
-    profile_image_url: str
-
-    role: str
+__all__ = ["PromptGetListResponse", "PromptGetListResponseItem"]
 
 
 class PromptGetListResponseItem(BaseModel):
@@ -33,7 +22,7 @@ class PromptGetListResponseItem(BaseModel):
 
     access_control: Optional[object] = None
 
-    user: Optional[PromptGetListResponseItemUser] = None
+    user: Optional[UserResponse] = None
 
 
 PromptGetListResponse: TypeAlias = List[PromptGetListResponseItem]

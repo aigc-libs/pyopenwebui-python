@@ -3,7 +3,7 @@
 from typing import List
 from typing_extensions import TypeAlias
 
-from ...chat_title_id_response import ChatTitleIDResponse
+from .chats.chat_title_id_response import ChatTitleIDResponse
 
 __all__ = ["ChatGetResponse"]
 

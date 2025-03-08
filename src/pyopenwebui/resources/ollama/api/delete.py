@@ -20,7 +20,7 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._base_client import make_request_options
-from ....types.ollama.api import delete_delete_params, delete_delete_by_index_params
+from ....types.ollama.api import delete_remove_params, delete_remove_by_index_params
 
 __all__ = ["DeleteResource", "AsyncDeleteResource"]
 
@@ -32,7 +32,7 @@ class DeleteResource(SyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#accessing-raw-response-data-eg-headers
         """
         return DeleteResourceWithRawResponse(self)
 
@@ -41,11 +41,11 @@ class DeleteResource(SyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#with_streaming_response
+        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#with_streaming_response
         """
         return DeleteResourceWithStreamingResponse(self)
 
-    def delete(
+    def remove(
         self,
         *,
         name: str,
@@ -71,18 +71,18 @@ class DeleteResource(SyncAPIResource):
         """
         return self._delete(
             "/ollama/api/delete",
-            body=maybe_transform({"name": name}, delete_delete_params.DeleteDeleteParams),
+            body=maybe_transform({"name": name}, delete_remove_params.DeleteRemoveParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform({"url_idx": url_idx}, delete_delete_params.DeleteDeleteParams),
+                query=maybe_transform({"url_idx": url_idx}, delete_remove_params.DeleteRemoveParams),
             ),
             cast_to=object,
         )
 
-    def delete_by_index(
+    def remove_by_index(
         self,
         url_idx: int,
         *,
@@ -108,7 +108,7 @@ class DeleteResource(SyncAPIResource):
         """
         return self._delete(
             f"/ollama/api/delete/{url_idx}",
-            body=maybe_transform({"name": name}, delete_delete_by_index_params.DeleteDeleteByIndexParams),
+            body=maybe_transform({"name": name}, delete_remove_by_index_params.DeleteRemoveByIndexParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -123,7 +123,7 @@ class AsyncDeleteResource(AsyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#accessing-raw-response-data-eg-headers
         """
         return AsyncDeleteResourceWithRawResponse(self)
 
@@ -132,11 +132,11 @@ class AsyncDeleteResource(AsyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#with_streaming_response
+        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#with_streaming_response
         """
         return AsyncDeleteResourceWithStreamingResponse(self)
 
-    async def delete(
+    async def remove(
         self,
         *,
         name: str,
@@ -162,18 +162,18 @@ class AsyncDeleteResource(AsyncAPIResource):
         """
         return await self._delete(
             "/ollama/api/delete",
-            body=await async_maybe_transform({"name": name}, delete_delete_params.DeleteDeleteParams),
+            body=await async_maybe_transform({"name": name}, delete_remove_params.DeleteRemoveParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform({"url_idx": url_idx}, delete_delete_params.DeleteDeleteParams),
+                query=await async_maybe_transform({"url_idx": url_idx}, delete_remove_params.DeleteRemoveParams),
             ),
             cast_to=object,
         )
 
-    async def delete_by_index(
+    async def remove_by_index(
         self,
         url_idx: int,
         *,
@@ -199,7 +199,7 @@ class AsyncDeleteResource(AsyncAPIResource):
         """
         return await self._delete(
             f"/ollama/api/delete/{url_idx}",
-            body=await async_maybe_transform({"name": name}, delete_delete_by_index_params.DeleteDeleteByIndexParams),
+            body=await async_maybe_transform({"name": name}, delete_remove_by_index_params.DeleteRemoveByIndexParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -211,11 +211,11 @@ class DeleteResourceWithRawResponse:
     def __init__(self, delete: DeleteResource) -> None:
         self._delete = delete
 
-        self.delete = to_raw_response_wrapper(
-            delete.delete,
+        self.remove = to_raw_response_wrapper(
+            delete.remove,
         )
-        self.delete_by_index = to_raw_response_wrapper(
-            delete.delete_by_index,
+        self.remove_by_index = to_raw_response_wrapper(
+            delete.remove_by_index,
         )
 
 
@@ -223,11 +223,11 @@ class AsyncDeleteResourceWithRawResponse:
     def __init__(self, delete: AsyncDeleteResource) -> None:
         self._delete = delete
 
-        self.delete = async_to_raw_response_wrapper(
-            delete.delete,
+        self.remove = async_to_raw_response_wrapper(
+            delete.remove,
         )
-        self.delete_by_index = async_to_raw_response_wrapper(
-            delete.delete_by_index,
+        self.remove_by_index = async_to_raw_response_wrapper(
+            delete.remove_by_index,
         )
 
 
@@ -235,11 +235,11 @@ class DeleteResourceWithStreamingResponse:
     def __init__(self, delete: DeleteResource) -> None:
         self._delete = delete
 
-        self.delete = to_streamed_response_wrapper(
-            delete.delete,
+        self.remove = to_streamed_response_wrapper(
+            delete.remove,
         )
-        self.delete_by_index = to_streamed_response_wrapper(
-            delete.delete_by_index,
+        self.remove_by_index = to_streamed_response_wrapper(
+            delete.remove_by_index,
         )
 
 
@@ -247,9 +247,9 @@ class AsyncDeleteResourceWithStreamingResponse:
     def __init__(self, delete: AsyncDeleteResource) -> None:
         self._delete = delete
 
-        self.delete = async_to_streamed_response_wrapper(
-            delete.delete,
+        self.remove = async_to_streamed_response_wrapper(
+            delete.remove,
         )
-        self.delete_by_index = async_to_streamed_response_wrapper(
-            delete.delete_by_index,
+        self.remove_by_index = async_to_streamed_response_wrapper(
+            delete.remove_by_index,
         )

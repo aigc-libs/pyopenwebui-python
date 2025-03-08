@@ -2,12 +2,12 @@
 
 from __future__ import annotations
 
-from typing import Optional
 from typing_extensions import Required, Annotated, TypedDict
 
 from ....._utils import PropertyInfo
+from ..function_meta_param import FunctionMetaParam
 
-__all__ = ["IDUpdateParams", "Meta"]
+__all__ = ["IDUpdateParams"]
 
 
 class IDUpdateParams(TypedDict, total=False):
@@ -15,12 +15,6 @@ class IDUpdateParams(TypedDict, total=False):
 
     content: Required[str]
 
-    meta: Required[Meta]
+    meta: Required[FunctionMetaParam]
 
     name: Required[str]
-
-
-class Meta(TypedDict, total=False):
-    description: Optional[str]
-
-    manifest: Optional[object]

@@ -3,7 +3,7 @@
 from typing import List
 from typing_extensions import TypeAlias
 
-from ...function_model import FunctionModel
+from .function_model import FunctionModel
 
 __all__ = ["FunctionGetExportResponse"]
 

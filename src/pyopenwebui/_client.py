@@ -100,7 +100,7 @@ class Pyopenwebui(SyncAPIClient):
         if base_url is None:
             base_url = os.environ.get("PYOPENWEBUI_BASE_URL")
         if base_url is None:
-            base_url = f"/api/v1"
+            base_url = f"/"
 
         super().__init__(
             version=__version__,
@@ -280,7 +280,7 @@ class AsyncPyopenwebui(AsyncAPIClient):
         if base_url is None:
             base_url = os.environ.get("PYOPENWEBUI_BASE_URL")
         if base_url is None:
-            base_url = f"/api/v1"
+            base_url = f"/"
 
         super().__init__(
             version=__version__,

@@ -17,23 +17,23 @@ class TestDownload:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @parametrize
-    def test_method_create(self, client: Pyopenwebui) -> None:
-        download = client.ollama.models.download.create(
+    def test_method_fetch(self, client: Pyopenwebui) -> None:
+        download = client.ollama.models.download.fetch(
             url="url",
         )
         assert_matches_type(object, download, path=["response"])
 
     @parametrize
-    def test_method_create_with_all_params(self, client: Pyopenwebui) -> None:
-        download = client.ollama.models.download.create(
+    def test_method_fetch_with_all_params(self, client: Pyopenwebui) -> None:
+        download = client.ollama.models.download.fetch(
             url="url",
             url_idx=0,
         )
         assert_matches_type(object, download, path=["response"])
 
     @parametrize
-    def test_raw_response_create(self, client: Pyopenwebui) -> None:
-        response = client.ollama.models.download.with_raw_response.create(
+    def test_raw_response_fetch(self, client: Pyopenwebui) -> None:
+        response = client.ollama.models.download.with_raw_response.fetch(
             url="url",
         )
 
@@ -43,8 +43,8 @@ class TestDownload:
         assert_matches_type(object, download, path=["response"])
 
     @parametrize
-    def test_streaming_response_create(self, client: Pyopenwebui) -> None:
-        with client.ollama.models.download.with_streaming_response.create(
+    def test_streaming_response_fetch(self, client: Pyopenwebui) -> None:
+        with client.ollama.models.download.with_streaming_response.fetch(
             url="url",
         ) as response:
             assert not response.is_closed
@@ -56,16 +56,16 @@ class TestDownload:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
-    def test_method_retrieve_by_index(self, client: Pyopenwebui) -> None:
-        download = client.ollama.models.download.retrieve_by_index(
+    def test_method_fetch_by_index(self, client: Pyopenwebui) -> None:
+        download = client.ollama.models.download.fetch_by_index(
             url_idx=0,
             url="url",
         )
         assert_matches_type(object, download, path=["response"])
 
     @parametrize
-    def test_raw_response_retrieve_by_index(self, client: Pyopenwebui) -> None:
-        response = client.ollama.models.download.with_raw_response.retrieve_by_index(
+    def test_raw_response_fetch_by_index(self, client: Pyopenwebui) -> None:
+        response = client.ollama.models.download.with_raw_response.fetch_by_index(
             url_idx=0,
             url="url",
         )
@@ -76,8 +76,8 @@ class TestDownload:
         assert_matches_type(object, download, path=["response"])
 
     @parametrize
-    def test_streaming_response_retrieve_by_index(self, client: Pyopenwebui) -> None:
-        with client.ollama.models.download.with_streaming_response.retrieve_by_index(
+    def test_streaming_response_fetch_by_index(self, client: Pyopenwebui) -> None:
+        with client.ollama.models.download.with_streaming_response.fetch_by_index(
             url_idx=0,
             url="url",
         ) as response:
@@ -94,23 +94,23 @@ class TestAsyncDownload:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @parametrize
-    async def test_method_create(self, async_client: AsyncPyopenwebui) -> None:
-        download = await async_client.ollama.models.download.create(
+    async def test_method_fetch(self, async_client: AsyncPyopenwebui) -> None:
+        download = await async_client.ollama.models.download.fetch(
             url="url",
         )
         assert_matches_type(object, download, path=["response"])
 
     @parametrize
-    async def test_method_create_with_all_params(self, async_client: AsyncPyopenwebui) -> None:
-        download = await async_client.ollama.models.download.create(
+    async def test_method_fetch_with_all_params(self, async_client: AsyncPyopenwebui) -> None:
+        download = await async_client.ollama.models.download.fetch(
             url="url",
             url_idx=0,
         )
         assert_matches_type(object, download, path=["response"])
 
     @parametrize
-    async def test_raw_response_create(self, async_client: AsyncPyopenwebui) -> None:
-        response = await async_client.ollama.models.download.with_raw_response.create(
+    async def test_raw_response_fetch(self, async_client: AsyncPyopenwebui) -> None:
+        response = await async_client.ollama.models.download.with_raw_response.fetch(
             url="url",
         )
 
@@ -120,8 +120,8 @@ class TestAsyncDownload:
         assert_matches_type(object, download, path=["response"])
 
     @parametrize
-    async def test_streaming_response_create(self, async_client: AsyncPyopenwebui) -> None:
-        async with async_client.ollama.models.download.with_streaming_response.create(
+    async def test_streaming_response_fetch(self, async_client: AsyncPyopenwebui) -> None:
+        async with async_client.ollama.models.download.with_streaming_response.fetch(
             url="url",
         ) as response:
             assert not response.is_closed
@@ -133,16 +133,16 @@ class TestAsyncDownload:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
-    async def test_method_retrieve_by_index(self, async_client: AsyncPyopenwebui) -> None:
-        download = await async_client.ollama.models.download.retrieve_by_index(
+    async def test_method_fetch_by_index(self, async_client: AsyncPyopenwebui) -> None:
+        download = await async_client.ollama.models.download.fetch_by_index(
             url_idx=0,
             url="url",
         )
         assert_matches_type(object, download, path=["response"])
 
     @parametrize
-    async def test_raw_response_retrieve_by_index(self, async_client: AsyncPyopenwebui) -> None:
-        response = await async_client.ollama.models.download.with_raw_response.retrieve_by_index(
+    async def test_raw_response_fetch_by_index(self, async_client: AsyncPyopenwebui) -> None:
+        response = await async_client.ollama.models.download.with_raw_response.fetch_by_index(
             url_idx=0,
             url="url",
         )
@@ -153,8 +153,8 @@ class TestAsyncDownload:
         assert_matches_type(object, download, path=["response"])
 
     @parametrize
-    async def test_streaming_response_retrieve_by_index(self, async_client: AsyncPyopenwebui) -> None:
-        async with async_client.ollama.models.download.with_streaming_response.retrieve_by_index(
+    async def test_streaming_response_fetch_by_index(self, async_client: AsyncPyopenwebui) -> None:
+        async with async_client.ollama.models.download.with_streaming_response.fetch_by_index(
             url_idx=0,
             url="url",
         ) as response:

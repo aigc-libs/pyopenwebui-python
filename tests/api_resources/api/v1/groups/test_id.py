@@ -9,7 +9,8 @@ import pytest
 
 from pyopenwebui import Pyopenwebui, AsyncPyopenwebui
 from tests.utils import assert_matches_type
-from pyopenwebui.types.api.v1.groups import IDGetResponse, IDDeleteResponse, IDUpdateResponse
+from pyopenwebui.types.api.v1 import GroupResponse
+from pyopenwebui.types.api.v1.groups import IDDeleteResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -24,7 +25,7 @@ class TestID:
             description="description",
             name="name",
         )
-        assert_matches_type(Optional[IDUpdateResponse], id, path=["response"])
+        assert_matches_type(Optional[GroupResponse], id, path=["response"])
 
     @parametrize
     def test_method_update_with_all_params(self, client: Pyopenwebui) -> None:
@@ -35,7 +36,7 @@ class TestID:
             permissions={},
             user_ids=["string"],
         )
-        assert_matches_type(Optional[IDUpdateResponse], id, path=["response"])
+        assert_matches_type(Optional[GroupResponse], id, path=["response"])
 
     @parametrize
     def test_raw_response_update(self, client: Pyopenwebui) -> None:
@@ -48,7 +49,7 @@ class TestID:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         id = response.parse()
-        assert_matches_type(Optional[IDUpdateResponse], id, path=["response"])
+        assert_matches_type(Optional[GroupResponse], id, path=["response"])
 
     @parametrize
     def test_streaming_response_update(self, client: Pyopenwebui) -> None:
@@ -61,7 +62,7 @@ class TestID:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             id = response.parse()
-            assert_matches_type(Optional[IDUpdateResponse], id, path=["response"])
+            assert_matches_type(Optional[GroupResponse], id, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -117,7 +118,7 @@ class TestID:
         id = client.api.v1.groups.id.get(
             "id",
         )
-        assert_matches_type(Optional[IDGetResponse], id, path=["response"])
+        assert_matches_type(Optional[GroupResponse], id, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Pyopenwebui) -> None:
@@ -128,7 +129,7 @@ class TestID:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         id = response.parse()
-        assert_matches_type(Optional[IDGetResponse], id, path=["response"])
+        assert_matches_type(Optional[GroupResponse], id, path=["response"])
 
     @parametrize
     def test_streaming_response_get(self, client: Pyopenwebui) -> None:
@@ -139,7 +140,7 @@ class TestID:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             id = response.parse()
-            assert_matches_type(Optional[IDGetResponse], id, path=["response"])
+            assert_matches_type(Optional[GroupResponse], id, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -161,7 +162,7 @@ class TestAsyncID:
             description="description",
             name="name",
         )
-        assert_matches_type(Optional[IDUpdateResponse], id, path=["response"])
+        assert_matches_type(Optional[GroupResponse], id, path=["response"])
 
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncPyopenwebui) -> None:
@@ -172,7 +173,7 @@ class TestAsyncID:
             permissions={},
             user_ids=["string"],
         )
-        assert_matches_type(Optional[IDUpdateResponse], id, path=["response"])
+        assert_matches_type(Optional[GroupResponse], id, path=["response"])
 
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncPyopenwebui) -> None:
@@ -185,7 +186,7 @@ class TestAsyncID:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         id = await response.parse()
-        assert_matches_type(Optional[IDUpdateResponse], id, path=["response"])
+        assert_matches_type(Optional[GroupResponse], id, path=["response"])
 
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncPyopenwebui) -> None:
@@ -198,7 +199,7 @@ class TestAsyncID:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             id = await response.parse()
-            assert_matches_type(Optional[IDUpdateResponse], id, path=["response"])
+            assert_matches_type(Optional[GroupResponse], id, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -254,7 +255,7 @@ class TestAsyncID:
         id = await async_client.api.v1.groups.id.get(
             "id",
         )
-        assert_matches_type(Optional[IDGetResponse], id, path=["response"])
+        assert_matches_type(Optional[GroupResponse], id, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncPyopenwebui) -> None:
@@ -265,7 +266,7 @@ class TestAsyncID:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         id = await response.parse()
-        assert_matches_type(Optional[IDGetResponse], id, path=["response"])
+        assert_matches_type(Optional[GroupResponse], id, path=["response"])
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncPyopenwebui) -> None:
@@ -276,7 +277,7 @@ class TestAsyncID:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             id = await response.parse()
-            assert_matches_type(Optional[IDGetResponse], id, path=["response"])
+            assert_matches_type(Optional[GroupResponse], id, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

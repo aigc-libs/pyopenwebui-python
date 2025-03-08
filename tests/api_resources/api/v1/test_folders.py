@@ -9,10 +9,7 @@ import pytest
 
 from pyopenwebui import Pyopenwebui, AsyncPyopenwebui
 from tests.utils import assert_matches_type
-from pyopenwebui.types.api.v1 import (
-    FolderGetResponse,
-    FolderGetByIDResponse,
-)
+from pyopenwebui.types.api.v1 import FolderModel, FolderGetResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -161,7 +158,7 @@ class TestFolders:
         folder = client.api.v1.folders.get_by_id(
             "id",
         )
-        assert_matches_type(Optional[FolderGetByIDResponse], folder, path=["response"])
+        assert_matches_type(Optional[FolderModel], folder, path=["response"])
 
     @parametrize
     def test_raw_response_get_by_id(self, client: Pyopenwebui) -> None:
@@ -172,7 +169,7 @@ class TestFolders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         folder = response.parse()
-        assert_matches_type(Optional[FolderGetByIDResponse], folder, path=["response"])
+        assert_matches_type(Optional[FolderModel], folder, path=["response"])
 
     @parametrize
     def test_streaming_response_get_by_id(self, client: Pyopenwebui) -> None:
@@ -183,7 +180,7 @@ class TestFolders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             folder = response.parse()
-            assert_matches_type(Optional[FolderGetByIDResponse], folder, path=["response"])
+            assert_matches_type(Optional[FolderModel], folder, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -192,94 +189,6 @@ class TestFolders:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             client.api.v1.folders.with_raw_response.get_by_id(
                 "",
-            )
-
-    @parametrize
-    def test_method_update_name(self, client: Pyopenwebui) -> None:
-        folder = client.api.v1.folders.update_name(
-            id="id",
-            name="name",
-        )
-        assert_matches_type(object, folder, path=["response"])
-
-    @parametrize
-    def test_raw_response_update_name(self, client: Pyopenwebui) -> None:
-        response = client.api.v1.folders.with_raw_response.update_name(
-            id="id",
-            name="name",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        folder = response.parse()
-        assert_matches_type(object, folder, path=["response"])
-
-    @parametrize
-    def test_streaming_response_update_name(self, client: Pyopenwebui) -> None:
-        with client.api.v1.folders.with_streaming_response.update_name(
-            id="id",
-            name="name",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            folder = response.parse()
-            assert_matches_type(object, folder, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @parametrize
-    def test_path_params_update_name(self, client: Pyopenwebui) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
-            client.api.v1.folders.with_raw_response.update_name(
-                id="",
-                name="name",
-            )
-
-    @parametrize
-    def test_method_update_parent(self, client: Pyopenwebui) -> None:
-        folder = client.api.v1.folders.update_parent(
-            id="id",
-        )
-        assert_matches_type(object, folder, path=["response"])
-
-    @parametrize
-    def test_method_update_parent_with_all_params(self, client: Pyopenwebui) -> None:
-        folder = client.api.v1.folders.update_parent(
-            id="id",
-            parent_id="parent_id",
-        )
-        assert_matches_type(object, folder, path=["response"])
-
-    @parametrize
-    def test_raw_response_update_parent(self, client: Pyopenwebui) -> None:
-        response = client.api.v1.folders.with_raw_response.update_parent(
-            id="id",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        folder = response.parse()
-        assert_matches_type(object, folder, path=["response"])
-
-    @parametrize
-    def test_streaming_response_update_parent(self, client: Pyopenwebui) -> None:
-        with client.api.v1.folders.with_streaming_response.update_parent(
-            id="id",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            folder = response.parse()
-            assert_matches_type(object, folder, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @parametrize
-    def test_path_params_update_parent(self, client: Pyopenwebui) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
-            client.api.v1.folders.with_raw_response.update_parent(
-                id="",
             )
 
 
@@ -427,7 +336,7 @@ class TestAsyncFolders:
         folder = await async_client.api.v1.folders.get_by_id(
             "id",
         )
-        assert_matches_type(Optional[FolderGetByIDResponse], folder, path=["response"])
+        assert_matches_type(Optional[FolderModel], folder, path=["response"])
 
     @parametrize
     async def test_raw_response_get_by_id(self, async_client: AsyncPyopenwebui) -> None:
@@ -438,7 +347,7 @@ class TestAsyncFolders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         folder = await response.parse()
-        assert_matches_type(Optional[FolderGetByIDResponse], folder, path=["response"])
+        assert_matches_type(Optional[FolderModel], folder, path=["response"])
 
     @parametrize
     async def test_streaming_response_get_by_id(self, async_client: AsyncPyopenwebui) -> None:
@@ -449,7 +358,7 @@ class TestAsyncFolders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             folder = await response.parse()
-            assert_matches_type(Optional[FolderGetByIDResponse], folder, path=["response"])
+            assert_matches_type(Optional[FolderModel], folder, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -458,92 +367,4 @@ class TestAsyncFolders:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.api.v1.folders.with_raw_response.get_by_id(
                 "",
-            )
-
-    @parametrize
-    async def test_method_update_name(self, async_client: AsyncPyopenwebui) -> None:
-        folder = await async_client.api.v1.folders.update_name(
-            id="id",
-            name="name",
-        )
-        assert_matches_type(object, folder, path=["response"])
-
-    @parametrize
-    async def test_raw_response_update_name(self, async_client: AsyncPyopenwebui) -> None:
-        response = await async_client.api.v1.folders.with_raw_response.update_name(
-            id="id",
-            name="name",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        folder = await response.parse()
-        assert_matches_type(object, folder, path=["response"])
-
-    @parametrize
-    async def test_streaming_response_update_name(self, async_client: AsyncPyopenwebui) -> None:
-        async with async_client.api.v1.folders.with_streaming_response.update_name(
-            id="id",
-            name="name",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            folder = await response.parse()
-            assert_matches_type(object, folder, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @parametrize
-    async def test_path_params_update_name(self, async_client: AsyncPyopenwebui) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
-            await async_client.api.v1.folders.with_raw_response.update_name(
-                id="",
-                name="name",
-            )
-
-    @parametrize
-    async def test_method_update_parent(self, async_client: AsyncPyopenwebui) -> None:
-        folder = await async_client.api.v1.folders.update_parent(
-            id="id",
-        )
-        assert_matches_type(object, folder, path=["response"])
-
-    @parametrize
-    async def test_method_update_parent_with_all_params(self, async_client: AsyncPyopenwebui) -> None:
-        folder = await async_client.api.v1.folders.update_parent(
-            id="id",
-            parent_id="parent_id",
-        )
-        assert_matches_type(object, folder, path=["response"])
-
-    @parametrize
-    async def test_raw_response_update_parent(self, async_client: AsyncPyopenwebui) -> None:
-        response = await async_client.api.v1.folders.with_raw_response.update_parent(
-            id="id",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        folder = await response.parse()
-        assert_matches_type(object, folder, path=["response"])
-
-    @parametrize
-    async def test_streaming_response_update_parent(self, async_client: AsyncPyopenwebui) -> None:
-        async with async_client.api.v1.folders.with_streaming_response.update_parent(
-            id="id",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            folder = await response.parse()
-            assert_matches_type(object, folder, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @parametrize
-    async def test_path_params_update_parent(self, async_client: AsyncPyopenwebui) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
-            await async_client.api.v1.folders.with_raw_response.update_parent(
-                id="",
             )

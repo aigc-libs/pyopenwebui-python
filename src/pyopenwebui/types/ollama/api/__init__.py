@@ -3,22 +3,22 @@
 from __future__ import annotations
 
 from .tag_list_params import TagListParams as TagListParams
+from .embed_add_params import EmbedAddParams as EmbedAddParams
+from .create_new_params import CreateNewParams as CreateNewParams
+from .pull_fetch_params import PullFetchParams as PullFetchParams
 from .chat_create_params import ChatCreateParams as ChatCreateParams
-from .copy_create_params import CopyCreateParams as CopyCreateParams
-from .pull_create_params import PullCreateParams as PullCreateParams
-from .push_delete_params import PushDeleteParams as PushDeleteParams
-from .embed_create_params import EmbedCreateParams as EmbedCreateParams
+from .push_remove_params import PushRemoveParams as PushRemoveParams
 from .version_list_params import VersionListParams as VersionListParams
-from .create_create_params import CreateCreateParams as CreateCreateParams
-from .delete_delete_params import DeleteDeleteParams as DeleteDeleteParams
+from .delete_remove_params import DeleteRemoveParams as DeleteRemoveParams
+from .copy_duplicate_params import CopyDuplicateParams as CopyDuplicateParams
 from .generate_create_params import GenerateCreateParams as GenerateCreateParams
 from .embedding_create_params import EmbeddingCreateParams as EmbeddingCreateParams
+from .embed_add_by_index_params import EmbedAddByIndexParams as EmbedAddByIndexParams
+from .create_new_by_index_params import CreateNewByIndexParams as CreateNewByIndexParams
+from .pull_fetch_by_index_params import PullFetchByIndexParams as PullFetchByIndexParams
 from .chat_create_by_index_params import ChatCreateByIndexParams as ChatCreateByIndexParams
-from .copy_create_by_index_params import CopyCreateByIndexParams as CopyCreateByIndexParams
-from .push_delete_by_index_params import PushDeleteByIndexParams as PushDeleteByIndexParams
-from .embed_create_by_index_params import EmbedCreateByIndexParams as EmbedCreateByIndexParams
-from .create_create_by_index_params import CreateCreateByIndexParams as CreateCreateByIndexParams
-from .delete_delete_by_index_params import DeleteDeleteByIndexParams as DeleteDeleteByIndexParams
-from .pull_retrieve_by_index_params import PullRetrieveByIndexParams as PullRetrieveByIndexParams
+from .push_remove_by_index_params import PushRemoveByIndexParams as PushRemoveByIndexParams
+from .delete_remove_by_index_params import DeleteRemoveByIndexParams as DeleteRemoveByIndexParams
+from .copy_duplicate_by_index_params import CopyDuplicateByIndexParams as CopyDuplicateByIndexParams
 from .generate_create_by_index_params import GenerateCreateByIndexParams as GenerateCreateByIndexParams
 from .embedding_create_by_index_params import EmbeddingCreateByIndexParams as EmbeddingCreateByIndexParams

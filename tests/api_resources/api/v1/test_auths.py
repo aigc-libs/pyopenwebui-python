@@ -9,12 +9,9 @@ import pytest
 
 from pyopenwebui import Pyopenwebui, AsyncPyopenwebui
 from tests.utils import assert_matches_type
-from pyopenwebui.types import SigninResponse
 from pyopenwebui.types.api.v1 import (
-    AuthSigninResponse,
-    AuthSignupResponse,
-    AuthLdapAuthResponse,
-    AuthGetSessionUserResponse,
+    AuthAddUserResponse,
+    SessionUserResponse,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -30,7 +27,7 @@ class TestAuths:
             name="name",
             password="password",
         )
-        assert_matches_type(SigninResponse, auth, path=["response"])
+        assert_matches_type(AuthAddUserResponse, auth, path=["response"])
 
     @parametrize
     def test_method_add_user_with_all_params(self, client: Pyopenwebui) -> None:
@@ -41,7 +38,7 @@ class TestAuths:
             profile_image_url="profile_image_url",
             role="role",
         )
-        assert_matches_type(SigninResponse, auth, path=["response"])
+        assert_matches_type(AuthAddUserResponse, auth, path=["response"])
 
     @parametrize
     def test_raw_response_add_user(self, client: Pyopenwebui) -> None:
@@ -54,7 +51,7 @@ class TestAuths:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         auth = response.parse()
-        assert_matches_type(SigninResponse, auth, path=["response"])
+        assert_matches_type(AuthAddUserResponse, auth, path=["response"])
 
     @parametrize
     def test_streaming_response_add_user(self, client: Pyopenwebui) -> None:
@@ -67,14 +64,14 @@ class TestAuths:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             auth = response.parse()
-            assert_matches_type(SigninResponse, auth, path=["response"])
+            assert_matches_type(AuthAddUserResponse, auth, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_method_get_session_user(self, client: Pyopenwebui) -> None:
         auth = client.api.v1.auths.get_session_user()
-        assert_matches_type(AuthGetSessionUserResponse, auth, path=["response"])
+        assert_matches_type(SessionUserResponse, auth, path=["response"])
 
     @parametrize
     def test_raw_response_get_session_user(self, client: Pyopenwebui) -> None:
@@ -83,7 +80,7 @@ class TestAuths:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         auth = response.parse()
-        assert_matches_type(AuthGetSessionUserResponse, auth, path=["response"])
+        assert_matches_type(SessionUserResponse, auth, path=["response"])
 
     @parametrize
     def test_streaming_response_get_session_user(self, client: Pyopenwebui) -> None:
@@ -92,7 +89,7 @@ class TestAuths:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             auth = response.parse()
-            assert_matches_type(AuthGetSessionUserResponse, auth, path=["response"])
+            assert_matches_type(SessionUserResponse, auth, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -102,7 +99,7 @@ class TestAuths:
             password="password",
             user="user",
         )
-        assert_matches_type(AuthLdapAuthResponse, auth, path=["response"])
+        assert_matches_type(SessionUserResponse, auth, path=["response"])
 
     @parametrize
     def test_raw_response_ldap_auth(self, client: Pyopenwebui) -> None:
@@ -114,7 +111,7 @@ class TestAuths:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         auth = response.parse()
-        assert_matches_type(AuthLdapAuthResponse, auth, path=["response"])
+        assert_matches_type(SessionUserResponse, auth, path=["response"])
 
     @parametrize
     def test_streaming_response_ldap_auth(self, client: Pyopenwebui) -> None:
@@ -126,7 +123,7 @@ class TestAuths:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             auth = response.parse()
-            assert_matches_type(AuthLdapAuthResponse, auth, path=["response"])
+            assert_matches_type(SessionUserResponse, auth, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -136,7 +133,7 @@ class TestAuths:
             email="email",
             password="password",
         )
-        assert_matches_type(AuthSigninResponse, auth, path=["response"])
+        assert_matches_type(SessionUserResponse, auth, path=["response"])
 
     @parametrize
     def test_raw_response_signin(self, client: Pyopenwebui) -> None:
@@ -148,7 +145,7 @@ class TestAuths:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         auth = response.parse()
-        assert_matches_type(AuthSigninResponse, auth, path=["response"])
+        assert_matches_type(SessionUserResponse, auth, path=["response"])
 
     @parametrize
     def test_streaming_response_signin(self, client: Pyopenwebui) -> None:
@@ -160,7 +157,7 @@ class TestAuths:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             auth = response.parse()
-            assert_matches_type(AuthSigninResponse, auth, path=["response"])
+            assert_matches_type(SessionUserResponse, auth, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -196,7 +193,7 @@ class TestAuths:
             name="name",
             password="password",
         )
-        assert_matches_type(AuthSignupResponse, auth, path=["response"])
+        assert_matches_type(SessionUserResponse, auth, path=["response"])
 
     @parametrize
     def test_method_signup_with_all_params(self, client: Pyopenwebui) -> None:
@@ -206,7 +203,7 @@ class TestAuths:
             password="password",
             profile_image_url="profile_image_url",
         )
-        assert_matches_type(AuthSignupResponse, auth, path=["response"])
+        assert_matches_type(SessionUserResponse, auth, path=["response"])
 
     @parametrize
     def test_raw_response_signup(self, client: Pyopenwebui) -> None:
@@ -219,7 +216,7 @@ class TestAuths:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         auth = response.parse()
-        assert_matches_type(AuthSignupResponse, auth, path=["response"])
+        assert_matches_type(SessionUserResponse, auth, path=["response"])
 
     @parametrize
     def test_streaming_response_signup(self, client: Pyopenwebui) -> None:
@@ -232,7 +229,7 @@ class TestAuths:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             auth = response.parse()
-            assert_matches_type(AuthSignupResponse, auth, path=["response"])
+            assert_matches_type(SessionUserResponse, auth, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -247,7 +244,7 @@ class TestAsyncAuths:
             name="name",
             password="password",
         )
-        assert_matches_type(SigninResponse, auth, path=["response"])
+        assert_matches_type(AuthAddUserResponse, auth, path=["response"])
 
     @parametrize
     async def test_method_add_user_with_all_params(self, async_client: AsyncPyopenwebui) -> None:
@@ -258,7 +255,7 @@ class TestAsyncAuths:
             profile_image_url="profile_image_url",
             role="role",
         )
-        assert_matches_type(SigninResponse, auth, path=["response"])
+        assert_matches_type(AuthAddUserResponse, auth, path=["response"])
 
     @parametrize
     async def test_raw_response_add_user(self, async_client: AsyncPyopenwebui) -> None:
@@ -271,7 +268,7 @@ class TestAsyncAuths:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         auth = await response.parse()
-        assert_matches_type(SigninResponse, auth, path=["response"])
+        assert_matches_type(AuthAddUserResponse, auth, path=["response"])
 
     @parametrize
     async def test_streaming_response_add_user(self, async_client: AsyncPyopenwebui) -> None:
@@ -284,14 +281,14 @@ class TestAsyncAuths:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             auth = await response.parse()
-            assert_matches_type(SigninResponse, auth, path=["response"])
+            assert_matches_type(AuthAddUserResponse, auth, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_method_get_session_user(self, async_client: AsyncPyopenwebui) -> None:
         auth = await async_client.api.v1.auths.get_session_user()
-        assert_matches_type(AuthGetSessionUserResponse, auth, path=["response"])
+        assert_matches_type(SessionUserResponse, auth, path=["response"])
 
     @parametrize
     async def test_raw_response_get_session_user(self, async_client: AsyncPyopenwebui) -> None:
@@ -300,7 +297,7 @@ class TestAsyncAuths:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         auth = await response.parse()
-        assert_matches_type(AuthGetSessionUserResponse, auth, path=["response"])
+        assert_matches_type(SessionUserResponse, auth, path=["response"])
 
     @parametrize
     async def test_streaming_response_get_session_user(self, async_client: AsyncPyopenwebui) -> None:
@@ -309,7 +306,7 @@ class TestAsyncAuths:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             auth = await response.parse()
-            assert_matches_type(AuthGetSessionUserResponse, auth, path=["response"])
+            assert_matches_type(SessionUserResponse, auth, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -319,7 +316,7 @@ class TestAsyncAuths:
             password="password",
             user="user",
         )
-        assert_matches_type(AuthLdapAuthResponse, auth, path=["response"])
+        assert_matches_type(SessionUserResponse, auth, path=["response"])
 
     @parametrize
     async def test_raw_response_ldap_auth(self, async_client: AsyncPyopenwebui) -> None:
@@ -331,7 +328,7 @@ class TestAsyncAuths:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         auth = await response.parse()
-        assert_matches_type(AuthLdapAuthResponse, auth, path=["response"])
+        assert_matches_type(SessionUserResponse, auth, path=["response"])
 
     @parametrize
     async def test_streaming_response_ldap_auth(self, async_client: AsyncPyopenwebui) -> None:
@@ -343,7 +340,7 @@ class TestAsyncAuths:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             auth = await response.parse()
-            assert_matches_type(AuthLdapAuthResponse, auth, path=["response"])
+            assert_matches_type(SessionUserResponse, auth, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -353,7 +350,7 @@ class TestAsyncAuths:
             email="email",
             password="password",
         )
-        assert_matches_type(AuthSigninResponse, auth, path=["response"])
+        assert_matches_type(SessionUserResponse, auth, path=["response"])
 
     @parametrize
     async def test_raw_response_signin(self, async_client: AsyncPyopenwebui) -> None:
@@ -365,7 +362,7 @@ class TestAsyncAuths:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         auth = await response.parse()
-        assert_matches_type(AuthSigninResponse, auth, path=["response"])
+        assert_matches_type(SessionUserResponse, auth, path=["response"])
 
     @parametrize
     async def test_streaming_response_signin(self, async_client: AsyncPyopenwebui) -> None:
@@ -377,7 +374,7 @@ class TestAsyncAuths:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             auth = await response.parse()
-            assert_matches_type(AuthSigninResponse, auth, path=["response"])
+            assert_matches_type(SessionUserResponse, auth, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -413,7 +410,7 @@ class TestAsyncAuths:
             name="name",
             password="password",
         )
-        assert_matches_type(AuthSignupResponse, auth, path=["response"])
+        assert_matches_type(SessionUserResponse, auth, path=["response"])
 
     @parametrize
     async def test_method_signup_with_all_params(self, async_client: AsyncPyopenwebui) -> None:
@@ -423,7 +420,7 @@ class TestAsyncAuths:
             password="password",
             profile_image_url="profile_image_url",
         )
-        assert_matches_type(AuthSignupResponse, auth, path=["response"])
+        assert_matches_type(SessionUserResponse, auth, path=["response"])
 
     @parametrize
     async def test_raw_response_signup(self, async_client: AsyncPyopenwebui) -> None:
@@ -436,7 +433,7 @@ class TestAsyncAuths:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         auth = await response.parse()
-        assert_matches_type(AuthSignupResponse, auth, path=["response"])
+        assert_matches_type(SessionUserResponse, auth, path=["response"])
 
     @parametrize
     async def test_streaming_response_signup(self, async_client: AsyncPyopenwebui) -> None:
@@ -449,6 +446,6 @@ class TestAsyncAuths:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             auth = await response.parse()
-            assert_matches_type(AuthSignupResponse, auth, path=["response"])
+            assert_matches_type(SessionUserResponse, auth, path=["response"])
 
         assert cast(Any, response.is_closed) is True

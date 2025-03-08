@@ -3,7 +3,7 @@
 from typing import List
 from typing_extensions import TypeAlias
 
-from ....chats.tag_model import TagModel
+from .tag_model import TagModel
 
 __all__ = ["TagGetResponse"]
 

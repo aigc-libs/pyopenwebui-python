@@ -9,7 +9,7 @@ import pytest
 
 from pyopenwebui import Pyopenwebui, AsyncPyopenwebui
 from tests.utils import assert_matches_type
-from pyopenwebui.types.api.v1 import GroupGetResponse, GroupCreateResponse
+from pyopenwebui.types.api.v1 import GroupResponse, GroupGetResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -23,7 +23,7 @@ class TestGroups:
             description="description",
             name="name",
         )
-        assert_matches_type(Optional[GroupCreateResponse], group, path=["response"])
+        assert_matches_type(Optional[GroupResponse], group, path=["response"])
 
     @parametrize
     def test_method_create_with_all_params(self, client: Pyopenwebui) -> None:
@@ -32,7 +32,7 @@ class TestGroups:
             name="name",
             permissions={},
         )
-        assert_matches_type(Optional[GroupCreateResponse], group, path=["response"])
+        assert_matches_type(Optional[GroupResponse], group, path=["response"])
 
     @parametrize
     def test_raw_response_create(self, client: Pyopenwebui) -> None:
@@ -44,7 +44,7 @@ class TestGroups:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         group = response.parse()
-        assert_matches_type(Optional[GroupCreateResponse], group, path=["response"])
+        assert_matches_type(Optional[GroupResponse], group, path=["response"])
 
     @parametrize
     def test_streaming_response_create(self, client: Pyopenwebui) -> None:
@@ -56,7 +56,7 @@ class TestGroups:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             group = response.parse()
-            assert_matches_type(Optional[GroupCreateResponse], group, path=["response"])
+            assert_matches_type(Optional[GroupResponse], group, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -95,7 +95,7 @@ class TestAsyncGroups:
             description="description",
             name="name",
         )
-        assert_matches_type(Optional[GroupCreateResponse], group, path=["response"])
+        assert_matches_type(Optional[GroupResponse], group, path=["response"])
 
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncPyopenwebui) -> None:
@@ -104,7 +104,7 @@ class TestAsyncGroups:
             name="name",
             permissions={},
         )
-        assert_matches_type(Optional[GroupCreateResponse], group, path=["response"])
+        assert_matches_type(Optional[GroupResponse], group, path=["response"])
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncPyopenwebui) -> None:
@@ -116,7 +116,7 @@ class TestAsyncGroups:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         group = await response.parse()
-        assert_matches_type(Optional[GroupCreateResponse], group, path=["response"])
+        assert_matches_type(Optional[GroupResponse], group, path=["response"])
 
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncPyopenwebui) -> None:
@@ -128,7 +128,7 @@ class TestAsyncGroups:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             group = await response.parse()
-            assert_matches_type(Optional[GroupCreateResponse], group, path=["response"])
+            assert_matches_type(Optional[GroupResponse], group, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

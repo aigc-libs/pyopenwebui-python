@@ -42,13 +42,13 @@ class TestVersion:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
-    def test_method_get_latest_updates(self, client: Pyopenwebui) -> None:
-        version = client.api.version.get_latest_updates()
+    def test_method_get_latest_release(self, client: Pyopenwebui) -> None:
+        version = client.api.version.get_latest_release()
         assert_matches_type(object, version, path=["response"])
 
     @parametrize
-    def test_raw_response_get_latest_updates(self, client: Pyopenwebui) -> None:
-        response = client.api.version.with_raw_response.get_latest_updates()
+    def test_raw_response_get_latest_release(self, client: Pyopenwebui) -> None:
+        response = client.api.version.with_raw_response.get_latest_release()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -56,8 +56,8 @@ class TestVersion:
         assert_matches_type(object, version, path=["response"])
 
     @parametrize
-    def test_streaming_response_get_latest_updates(self, client: Pyopenwebui) -> None:
-        with client.api.version.with_streaming_response.get_latest_updates() as response:
+    def test_streaming_response_get_latest_release(self, client: Pyopenwebui) -> None:
+        with client.api.version.with_streaming_response.get_latest_release() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
@@ -96,13 +96,13 @@ class TestAsyncVersion:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
-    async def test_method_get_latest_updates(self, async_client: AsyncPyopenwebui) -> None:
-        version = await async_client.api.version.get_latest_updates()
+    async def test_method_get_latest_release(self, async_client: AsyncPyopenwebui) -> None:
+        version = await async_client.api.version.get_latest_release()
         assert_matches_type(object, version, path=["response"])
 
     @parametrize
-    async def test_raw_response_get_latest_updates(self, async_client: AsyncPyopenwebui) -> None:
-        response = await async_client.api.version.with_raw_response.get_latest_updates()
+    async def test_raw_response_get_latest_release(self, async_client: AsyncPyopenwebui) -> None:
+        response = await async_client.api.version.with_raw_response.get_latest_release()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -110,8 +110,8 @@ class TestAsyncVersion:
         assert_matches_type(object, version, path=["response"])
 
     @parametrize
-    async def test_streaming_response_get_latest_updates(self, async_client: AsyncPyopenwebui) -> None:
-        async with async_client.api.version.with_streaming_response.get_latest_updates() as response:
+    async def test_streaming_response_get_latest_release(self, async_client: AsyncPyopenwebui) -> None:
+        async with async_client.api.version.with_streaming_response.get_latest_release() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 

@@ -20,7 +20,7 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._base_client import make_request_options
-from ....types.ollama.api import create_create_params, create_create_by_index_params
+from ....types.ollama.api import create_new_params, create_new_by_index_params
 
 __all__ = ["CreateResource", "AsyncCreateResource"]
 
@@ -32,7 +32,7 @@ class CreateResource(SyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#accessing-raw-response-data-eg-headers
         """
         return CreateResourceWithRawResponse(self)
 
@@ -41,11 +41,11 @@ class CreateResource(SyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#with_streaming_response
+        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#with_streaming_response
         """
         return CreateResourceWithStreamingResponse(self)
 
-    def create(
+    def new(
         self,
         *,
         url_idx: int | NotGiven = NOT_GIVEN,
@@ -79,19 +79,19 @@ class CreateResource(SyncAPIResource):
                     "path": path,
                     "stream": stream,
                 },
-                create_create_params.CreateCreateParams,
+                create_new_params.CreateNewParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform({"url_idx": url_idx}, create_create_params.CreateCreateParams),
+                query=maybe_transform({"url_idx": url_idx}, create_new_params.CreateNewParams),
             ),
             cast_to=object,
         )
 
-    def create_by_index(
+    def new_by_index(
         self,
         url_idx: int,
         *,
@@ -125,7 +125,7 @@ class CreateResource(SyncAPIResource):
                     "path": path,
                     "stream": stream,
                 },
-                create_create_by_index_params.CreateCreateByIndexParams,
+                create_new_by_index_params.CreateNewByIndexParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -141,7 +141,7 @@ class AsyncCreateResource(AsyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#accessing-raw-response-data-eg-headers
         """
         return AsyncCreateResourceWithRawResponse(self)
 
@@ -150,11 +150,11 @@ class AsyncCreateResource(AsyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#with_streaming_response
+        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#with_streaming_response
         """
         return AsyncCreateResourceWithStreamingResponse(self)
 
-    async def create(
+    async def new(
         self,
         *,
         url_idx: int | NotGiven = NOT_GIVEN,
@@ -188,19 +188,19 @@ class AsyncCreateResource(AsyncAPIResource):
                     "path": path,
                     "stream": stream,
                 },
-                create_create_params.CreateCreateParams,
+                create_new_params.CreateNewParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform({"url_idx": url_idx}, create_create_params.CreateCreateParams),
+                query=await async_maybe_transform({"url_idx": url_idx}, create_new_params.CreateNewParams),
             ),
             cast_to=object,
         )
 
-    async def create_by_index(
+    async def new_by_index(
         self,
         url_idx: int,
         *,
@@ -234,7 +234,7 @@ class AsyncCreateResource(AsyncAPIResource):
                     "path": path,
                     "stream": stream,
                 },
-                create_create_by_index_params.CreateCreateByIndexParams,
+                create_new_by_index_params.CreateNewByIndexParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -247,11 +247,11 @@ class CreateResourceWithRawResponse:
     def __init__(self, create: CreateResource) -> None:
         self._create = create
 
-        self.create = to_raw_response_wrapper(
-            create.create,
+        self.new = to_raw_response_wrapper(
+            create.new,
         )
-        self.create_by_index = to_raw_response_wrapper(
-            create.create_by_index,
+        self.new_by_index = to_raw_response_wrapper(
+            create.new_by_index,
         )
 
 
@@ -259,11 +259,11 @@ class AsyncCreateResourceWithRawResponse:
     def __init__(self, create: AsyncCreateResource) -> None:
         self._create = create
 
-        self.create = async_to_raw_response_wrapper(
-            create.create,
+        self.new = async_to_raw_response_wrapper(
+            create.new,
         )
-        self.create_by_index = async_to_raw_response_wrapper(
-            create.create_by_index,
+        self.new_by_index = async_to_raw_response_wrapper(
+            create.new_by_index,
         )
 
 
@@ -271,11 +271,11 @@ class CreateResourceWithStreamingResponse:
     def __init__(self, create: CreateResource) -> None:
         self._create = create
 
-        self.create = to_streamed_response_wrapper(
-            create.create,
+        self.new = to_streamed_response_wrapper(
+            create.new,
         )
-        self.create_by_index = to_streamed_response_wrapper(
-            create.create_by_index,
+        self.new_by_index = to_streamed_response_wrapper(
+            create.new_by_index,
         )
 
 
@@ -283,9 +283,9 @@ class AsyncCreateResourceWithStreamingResponse:
     def __init__(self, create: AsyncCreateResource) -> None:
         self._create = create
 
-        self.create = async_to_streamed_response_wrapper(
-            create.create,
+        self.new = async_to_streamed_response_wrapper(
+            create.new,
         )
-        self.create_by_index = async_to_streamed_response_wrapper(
-            create.create_by_index,
+        self.new_by_index = async_to_streamed_response_wrapper(
+            create.new_by_index,
         )

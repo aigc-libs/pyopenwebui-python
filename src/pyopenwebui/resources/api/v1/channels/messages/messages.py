@@ -34,12 +34,11 @@ from ......types.api.v1.channels import (
     message_get_thread_params,
     message_update_by_id_params,
 )
+from ......types.api.v1.channels.message_model import MessageModel
 from ......types.api.v1.channels.message_get_response import MessageGetResponse
-from ......types.api.v1.channels.message_post_response import MessagePostResponse
-from ......types.api.v1.channels.message_get_by_id_response import MessageGetByIDResponse
+from ......types.api.v1.channels.message_user_response import MessageUserResponse
 from ......types.api.v1.channels.message_get_thread_response import MessageGetThreadResponse
 from ......types.api.v1.channels.message_delete_by_id_response import MessageDeleteByIDResponse
-from ......types.api.v1.channels.message_update_by_id_response import MessageUpdateByIDResponse
 
 __all__ = ["MessagesResource", "AsyncMessagesResource"]
 
@@ -55,7 +54,7 @@ class MessagesResource(SyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#accessing-raw-response-data-eg-headers
         """
         return MessagesResourceWithRawResponse(self)
 
@@ -64,7 +63,7 @@ class MessagesResource(SyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#with_streaming_response
+        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#with_streaming_response
         """
         return MessagesResourceWithStreamingResponse(self)
 
@@ -160,7 +159,7 @@ class MessagesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[MessageGetByIDResponse]:
+    ) -> Optional[MessageUserResponse]:
         """
         Get Channel Message
 
@@ -182,7 +181,7 @@ class MessagesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=MessageGetByIDResponse,
+            cast_to=MessageUserResponse,
         )
 
     def get_thread(
@@ -247,7 +246,7 @@ class MessagesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[MessagePostResponse]:
+    ) -> Optional[MessageModel]:
         """
         Post New Message
 
@@ -276,7 +275,7 @@ class MessagesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=MessagePostResponse,
+            cast_to=MessageModel,
         )
 
     def update_by_id(
@@ -294,7 +293,7 @@ class MessagesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[MessageUpdateByIDResponse]:
+    ) -> Optional[MessageModel]:
         """
         Update Message By Id
 
@@ -325,7 +324,7 @@ class MessagesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=MessageUpdateByIDResponse,
+            cast_to=MessageModel,
         )
 
 
@@ -340,7 +339,7 @@ class AsyncMessagesResource(AsyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#accessing-raw-response-data-eg-headers
         """
         return AsyncMessagesResourceWithRawResponse(self)
 
@@ -349,7 +348,7 @@ class AsyncMessagesResource(AsyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#with_streaming_response
+        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#with_streaming_response
         """
         return AsyncMessagesResourceWithStreamingResponse(self)
 
@@ -445,7 +444,7 @@ class AsyncMessagesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[MessageGetByIDResponse]:
+    ) -> Optional[MessageUserResponse]:
         """
         Get Channel Message
 
@@ -467,7 +466,7 @@ class AsyncMessagesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=MessageGetByIDResponse,
+            cast_to=MessageUserResponse,
         )
 
     async def get_thread(
@@ -532,7 +531,7 @@ class AsyncMessagesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[MessagePostResponse]:
+    ) -> Optional[MessageModel]:
         """
         Post New Message
 
@@ -561,7 +560,7 @@ class AsyncMessagesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=MessagePostResponse,
+            cast_to=MessageModel,
         )
 
     async def update_by_id(
@@ -579,7 +578,7 @@ class AsyncMessagesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[MessageUpdateByIDResponse]:
+    ) -> Optional[MessageModel]:
         """
         Update Message By Id
 
@@ -610,7 +609,7 @@ class AsyncMessagesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=MessageUpdateByIDResponse,
+            cast_to=MessageModel,
         )
 
 

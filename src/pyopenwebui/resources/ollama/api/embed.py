@@ -20,7 +20,7 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._base_client import make_request_options
-from ....types.ollama.api import embed_create_params, embed_create_by_index_params
+from ....types.ollama.api import embed_add_params, embed_add_by_index_params
 
 __all__ = ["EmbedResource", "AsyncEmbedResource"]
 
@@ -32,7 +32,7 @@ class EmbedResource(SyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#accessing-raw-response-data-eg-headers
         """
         return EmbedResourceWithRawResponse(self)
 
@@ -41,11 +41,11 @@ class EmbedResource(SyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#with_streaming_response
+        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#with_streaming_response
         """
         return EmbedResourceWithStreamingResponse(self)
 
-    def create(
+    def add(
         self,
         *,
         input: Union[List[str], str],
@@ -83,19 +83,19 @@ class EmbedResource(SyncAPIResource):
                     "options": options,
                     "truncate": truncate,
                 },
-                embed_create_params.EmbedCreateParams,
+                embed_add_params.EmbedAddParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform({"url_idx": url_idx}, embed_create_params.EmbedCreateParams),
+                query=maybe_transform({"url_idx": url_idx}, embed_add_params.EmbedAddParams),
             ),
             cast_to=object,
         )
 
-    def create_by_index(
+    def add_by_index(
         self,
         url_idx: int,
         *,
@@ -133,7 +133,7 @@ class EmbedResource(SyncAPIResource):
                     "options": options,
                     "truncate": truncate,
                 },
-                embed_create_by_index_params.EmbedCreateByIndexParams,
+                embed_add_by_index_params.EmbedAddByIndexParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -149,7 +149,7 @@ class AsyncEmbedResource(AsyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#accessing-raw-response-data-eg-headers
         """
         return AsyncEmbedResourceWithRawResponse(self)
 
@@ -158,11 +158,11 @@ class AsyncEmbedResource(AsyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#with_streaming_response
+        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#with_streaming_response
         """
         return AsyncEmbedResourceWithStreamingResponse(self)
 
-    async def create(
+    async def add(
         self,
         *,
         input: Union[List[str], str],
@@ -200,19 +200,19 @@ class AsyncEmbedResource(AsyncAPIResource):
                     "options": options,
                     "truncate": truncate,
                 },
-                embed_create_params.EmbedCreateParams,
+                embed_add_params.EmbedAddParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform({"url_idx": url_idx}, embed_create_params.EmbedCreateParams),
+                query=await async_maybe_transform({"url_idx": url_idx}, embed_add_params.EmbedAddParams),
             ),
             cast_to=object,
         )
 
-    async def create_by_index(
+    async def add_by_index(
         self,
         url_idx: int,
         *,
@@ -250,7 +250,7 @@ class AsyncEmbedResource(AsyncAPIResource):
                     "options": options,
                     "truncate": truncate,
                 },
-                embed_create_by_index_params.EmbedCreateByIndexParams,
+                embed_add_by_index_params.EmbedAddByIndexParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -263,11 +263,11 @@ class EmbedResourceWithRawResponse:
     def __init__(self, embed: EmbedResource) -> None:
         self._embed = embed
 
-        self.create = to_raw_response_wrapper(
-            embed.create,
+        self.add = to_raw_response_wrapper(
+            embed.add,
         )
-        self.create_by_index = to_raw_response_wrapper(
-            embed.create_by_index,
+        self.add_by_index = to_raw_response_wrapper(
+            embed.add_by_index,
         )
 
 
@@ -275,11 +275,11 @@ class AsyncEmbedResourceWithRawResponse:
     def __init__(self, embed: AsyncEmbedResource) -> None:
         self._embed = embed
 
-        self.create = async_to_raw_response_wrapper(
-            embed.create,
+        self.add = async_to_raw_response_wrapper(
+            embed.add,
         )
-        self.create_by_index = async_to_raw_response_wrapper(
-            embed.create_by_index,
+        self.add_by_index = async_to_raw_response_wrapper(
+            embed.add_by_index,
         )
 
 
@@ -287,11 +287,11 @@ class EmbedResourceWithStreamingResponse:
     def __init__(self, embed: EmbedResource) -> None:
         self._embed = embed
 
-        self.create = to_streamed_response_wrapper(
-            embed.create,
+        self.add = to_streamed_response_wrapper(
+            embed.add,
         )
-        self.create_by_index = to_streamed_response_wrapper(
-            embed.create_by_index,
+        self.add_by_index = to_streamed_response_wrapper(
+            embed.add_by_index,
         )
 
 
@@ -299,9 +299,9 @@ class AsyncEmbedResourceWithStreamingResponse:
     def __init__(self, embed: AsyncEmbedResource) -> None:
         self._embed = embed
 
-        self.create = async_to_streamed_response_wrapper(
-            embed.create,
+        self.add = async_to_streamed_response_wrapper(
+            embed.add,
         )
-        self.create_by_index = async_to_streamed_response_wrapper(
-            embed.create_by_index,
+        self.add_by_index = async_to_streamed_response_wrapper(
+            embed.add_by_index,
         )

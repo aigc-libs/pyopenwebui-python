@@ -2,5 +2,5 @@
 
 from __future__ import annotations
 
-from .permission_get_response import PermissionGetResponse as PermissionGetResponse
+from .user_permissions import UserPermissions as UserPermissions
 from .permission_update_params import PermissionUpdateParams as PermissionUpdateParams

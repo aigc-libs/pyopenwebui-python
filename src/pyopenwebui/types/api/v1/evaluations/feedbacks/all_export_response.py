@@ -1,31 +1,10 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
+from typing import List
 from typing_extensions import TypeAlias
 
-from ......_models import BaseModel
+from ..feedback_model import FeedbackModel
 
-__all__ = ["AllExportResponse", "AllExportResponseItem"]
+__all__ = ["AllExportResponse"]
 
-
-class AllExportResponseItem(BaseModel):
-    id: str
-
-    created_at: int
-
-    type: str
-
-    updated_at: int
-
-    user_id: str
-
-    version: int
-
-    data: Optional[object] = None
-
-    meta: Optional[object] = None
-
-    snapshot: Optional[object] = None
-
-
-AllExportResponse: TypeAlias = List[AllExportResponseItem]
+AllExportResponse: TypeAlias = List[FeedbackModel]

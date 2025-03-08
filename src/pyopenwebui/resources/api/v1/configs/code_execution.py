@@ -21,8 +21,7 @@ from ....._response import (
 )
 from ....._base_client import make_request_options
 from .....types.api.v1.configs import code_execution_set_params
-from .....types.api.v1.configs.code_execution_get_response import CodeExecutionGetResponse
-from .....types.api.v1.configs.code_execution_set_response import CodeExecutionSetResponse
+from .....types.api.v1.configs.code_interpreter_config_form import CodeInterpreterConfigForm
 
 __all__ = ["CodeExecutionResource", "AsyncCodeExecutionResource"]
 
@@ -34,7 +33,7 @@ class CodeExecutionResource(SyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#accessing-raw-response-data-eg-headers
         """
         return CodeExecutionResourceWithRawResponse(self)
 
@@ -43,7 +42,7 @@ class CodeExecutionResource(SyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#with_streaming_response
+        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#with_streaming_response
         """
         return CodeExecutionResourceWithStreamingResponse(self)
 
@@ -56,14 +55,14 @@ class CodeExecutionResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CodeExecutionGetResponse:
+    ) -> CodeInterpreterConfigForm:
         """Get Code Execution Config"""
         return self._get(
             "/api/v1/configs/code_execution",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CodeExecutionGetResponse,
+            cast_to=CodeInterpreterConfigForm,
         )
 
     def set(
@@ -90,7 +89,7 @@ class CodeExecutionResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CodeExecutionSetResponse:
+    ) -> CodeInterpreterConfigForm:
         """
         Set Code Execution Config
 
@@ -128,7 +127,7 @@ class CodeExecutionResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CodeExecutionSetResponse,
+            cast_to=CodeInterpreterConfigForm,
         )
 
 
@@ -139,7 +138,7 @@ class AsyncCodeExecutionResource(AsyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#accessing-raw-response-data-eg-headers
         """
         return AsyncCodeExecutionResourceWithRawResponse(self)
 
@@ -148,7 +147,7 @@ class AsyncCodeExecutionResource(AsyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#with_streaming_response
+        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#with_streaming_response
         """
         return AsyncCodeExecutionResourceWithStreamingResponse(self)
 
@@ -161,14 +160,14 @@ class AsyncCodeExecutionResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CodeExecutionGetResponse:
+    ) -> CodeInterpreterConfigForm:
         """Get Code Execution Config"""
         return await self._get(
             "/api/v1/configs/code_execution",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CodeExecutionGetResponse,
+            cast_to=CodeInterpreterConfigForm,
         )
 
     async def set(
@@ -195,7 +194,7 @@ class AsyncCodeExecutionResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CodeExecutionSetResponse:
+    ) -> CodeInterpreterConfigForm:
         """
         Set Code Execution Config
 
@@ -233,7 +232,7 @@ class AsyncCodeExecutionResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CodeExecutionSetResponse,
+            cast_to=CodeInterpreterConfigForm,
         )
 
 

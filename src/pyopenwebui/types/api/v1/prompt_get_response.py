@@ -3,7 +3,7 @@
 from typing import List
 from typing_extensions import TypeAlias
 
-from ...shared.prompt_model import PromptModel
+from .prompt_model import PromptModel
 
 __all__ = ["PromptGetResponse"]
 

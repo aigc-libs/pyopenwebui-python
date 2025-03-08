@@ -17,16 +17,16 @@ class TestEmbed:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @parametrize
-    def test_method_create(self, client: Pyopenwebui) -> None:
-        embed = client.ollama.api.embed.create(
+    def test_method_add(self, client: Pyopenwebui) -> None:
+        embed = client.ollama.api.embed.add(
             input=["string"],
             model="model",
         )
         assert_matches_type(object, embed, path=["response"])
 
     @parametrize
-    def test_method_create_with_all_params(self, client: Pyopenwebui) -> None:
-        embed = client.ollama.api.embed.create(
+    def test_method_add_with_all_params(self, client: Pyopenwebui) -> None:
+        embed = client.ollama.api.embed.add(
             input=["string"],
             model="model",
             url_idx=0,
@@ -37,8 +37,8 @@ class TestEmbed:
         assert_matches_type(object, embed, path=["response"])
 
     @parametrize
-    def test_raw_response_create(self, client: Pyopenwebui) -> None:
-        response = client.ollama.api.embed.with_raw_response.create(
+    def test_raw_response_add(self, client: Pyopenwebui) -> None:
+        response = client.ollama.api.embed.with_raw_response.add(
             input=["string"],
             model="model",
         )
@@ -49,8 +49,8 @@ class TestEmbed:
         assert_matches_type(object, embed, path=["response"])
 
     @parametrize
-    def test_streaming_response_create(self, client: Pyopenwebui) -> None:
-        with client.ollama.api.embed.with_streaming_response.create(
+    def test_streaming_response_add(self, client: Pyopenwebui) -> None:
+        with client.ollama.api.embed.with_streaming_response.add(
             input=["string"],
             model="model",
         ) as response:
@@ -63,8 +63,8 @@ class TestEmbed:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
-    def test_method_create_by_index(self, client: Pyopenwebui) -> None:
-        embed = client.ollama.api.embed.create_by_index(
+    def test_method_add_by_index(self, client: Pyopenwebui) -> None:
+        embed = client.ollama.api.embed.add_by_index(
             url_idx=0,
             input=["string"],
             model="model",
@@ -72,8 +72,8 @@ class TestEmbed:
         assert_matches_type(object, embed, path=["response"])
 
     @parametrize
-    def test_method_create_by_index_with_all_params(self, client: Pyopenwebui) -> None:
-        embed = client.ollama.api.embed.create_by_index(
+    def test_method_add_by_index_with_all_params(self, client: Pyopenwebui) -> None:
+        embed = client.ollama.api.embed.add_by_index(
             url_idx=0,
             input=["string"],
             model="model",
@@ -84,8 +84,8 @@ class TestEmbed:
         assert_matches_type(object, embed, path=["response"])
 
     @parametrize
-    def test_raw_response_create_by_index(self, client: Pyopenwebui) -> None:
-        response = client.ollama.api.embed.with_raw_response.create_by_index(
+    def test_raw_response_add_by_index(self, client: Pyopenwebui) -> None:
+        response = client.ollama.api.embed.with_raw_response.add_by_index(
             url_idx=0,
             input=["string"],
             model="model",
@@ -97,8 +97,8 @@ class TestEmbed:
         assert_matches_type(object, embed, path=["response"])
 
     @parametrize
-    def test_streaming_response_create_by_index(self, client: Pyopenwebui) -> None:
-        with client.ollama.api.embed.with_streaming_response.create_by_index(
+    def test_streaming_response_add_by_index(self, client: Pyopenwebui) -> None:
+        with client.ollama.api.embed.with_streaming_response.add_by_index(
             url_idx=0,
             input=["string"],
             model="model",
@@ -116,16 +116,16 @@ class TestAsyncEmbed:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @parametrize
-    async def test_method_create(self, async_client: AsyncPyopenwebui) -> None:
-        embed = await async_client.ollama.api.embed.create(
+    async def test_method_add(self, async_client: AsyncPyopenwebui) -> None:
+        embed = await async_client.ollama.api.embed.add(
             input=["string"],
             model="model",
         )
         assert_matches_type(object, embed, path=["response"])
 
     @parametrize
-    async def test_method_create_with_all_params(self, async_client: AsyncPyopenwebui) -> None:
-        embed = await async_client.ollama.api.embed.create(
+    async def test_method_add_with_all_params(self, async_client: AsyncPyopenwebui) -> None:
+        embed = await async_client.ollama.api.embed.add(
             input=["string"],
             model="model",
             url_idx=0,
@@ -136,8 +136,8 @@ class TestAsyncEmbed:
         assert_matches_type(object, embed, path=["response"])
 
     @parametrize
-    async def test_raw_response_create(self, async_client: AsyncPyopenwebui) -> None:
-        response = await async_client.ollama.api.embed.with_raw_response.create(
+    async def test_raw_response_add(self, async_client: AsyncPyopenwebui) -> None:
+        response = await async_client.ollama.api.embed.with_raw_response.add(
             input=["string"],
             model="model",
         )
@@ -148,8 +148,8 @@ class TestAsyncEmbed:
         assert_matches_type(object, embed, path=["response"])
 
     @parametrize
-    async def test_streaming_response_create(self, async_client: AsyncPyopenwebui) -> None:
-        async with async_client.ollama.api.embed.with_streaming_response.create(
+    async def test_streaming_response_add(self, async_client: AsyncPyopenwebui) -> None:
+        async with async_client.ollama.api.embed.with_streaming_response.add(
             input=["string"],
             model="model",
         ) as response:
@@ -162,8 +162,8 @@ class TestAsyncEmbed:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
-    async def test_method_create_by_index(self, async_client: AsyncPyopenwebui) -> None:
-        embed = await async_client.ollama.api.embed.create_by_index(
+    async def test_method_add_by_index(self, async_client: AsyncPyopenwebui) -> None:
+        embed = await async_client.ollama.api.embed.add_by_index(
             url_idx=0,
             input=["string"],
             model="model",
@@ -171,8 +171,8 @@ class TestAsyncEmbed:
         assert_matches_type(object, embed, path=["response"])
 
     @parametrize
-    async def test_method_create_by_index_with_all_params(self, async_client: AsyncPyopenwebui) -> None:
-        embed = await async_client.ollama.api.embed.create_by_index(
+    async def test_method_add_by_index_with_all_params(self, async_client: AsyncPyopenwebui) -> None:
+        embed = await async_client.ollama.api.embed.add_by_index(
             url_idx=0,
             input=["string"],
             model="model",
@@ -183,8 +183,8 @@ class TestAsyncEmbed:
         assert_matches_type(object, embed, path=["response"])
 
     @parametrize
-    async def test_raw_response_create_by_index(self, async_client: AsyncPyopenwebui) -> None:
-        response = await async_client.ollama.api.embed.with_raw_response.create_by_index(
+    async def test_raw_response_add_by_index(self, async_client: AsyncPyopenwebui) -> None:
+        response = await async_client.ollama.api.embed.with_raw_response.add_by_index(
             url_idx=0,
             input=["string"],
             model="model",
@@ -196,8 +196,8 @@ class TestAsyncEmbed:
         assert_matches_type(object, embed, path=["response"])
 
     @parametrize
-    async def test_streaming_response_create_by_index(self, async_client: AsyncPyopenwebui) -> None:
-        async with async_client.ollama.api.embed.with_streaming_response.create_by_index(
+    async def test_streaming_response_add_by_index(self, async_client: AsyncPyopenwebui) -> None:
+        async with async_client.ollama.api.embed.with_streaming_response.add_by_index(
             url_idx=0,
             input=["string"],
             model="model",
