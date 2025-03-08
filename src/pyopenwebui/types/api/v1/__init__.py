@@ -85,6 +85,7 @@ from .model_get_base_response import ModelGetBaseResponse as ModelGetBaseRespons
 from .prompt_suggestion_param import PromptSuggestionParam as PromptSuggestionParam
 from .user_get_by_id_response import UserGetByIDResponse as UserGetByIDResponse
 from .chat_delete_all_response import ChatDeleteAllResponse as ChatDeleteAllResponse
+from .chat_list_by_user_params import ChatListByUserParams as ChatListByUserParams
 from .chat_update_by_id_params import ChatUpdateByIDParams as ChatUpdateByIDParams
 from .knowledge_files_response import KnowledgeFilesResponse as KnowledgeFilesResponse
 from .prompt_get_list_response import PromptGetListResponse as PromptGetListResponse
@@ -92,6 +93,7 @@ from .util_download_pdf_params import UtilDownloadPdfParams as UtilDownloadPdfPa
 from .util_get_gravatar_params import UtilGetGravatarParams as UtilGetGravatarParams
 from .folder_update_name_params import FolderUpdateNameParams as FolderUpdateNameParams
 from .chat_delete_by_id_response import ChatDeleteByIDResponse as ChatDeleteByIDResponse
+from .chat_list_by_user_response import ChatListByUserResponse as ChatListByUserResponse
 from .memory_update_by_id_params import MemoryUpdateByIDParams as MemoryUpdateByIDParams
 from .user_delete_by_id_response import UserDeleteByIDResponse as UserDeleteByIDResponse
 from .channel_update_by_id_params import ChannelUpdateByIDParams as ChannelUpdateByIDParams
