@@ -20,7 +20,7 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._base_client import make_request_options
-from ....types.ollama.api import create_create_params, create_create_model_params
+from ....types.ollama.api import create_create_params, create_create_by_index_params
 
 __all__ = ["CreateResource", "AsyncCreateResource"]
 
@@ -32,7 +32,7 @@ class CreateResource(SyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#accessing-raw-response-data-eg-headers
         """
         return CreateResourceWithRawResponse(self)
 
@@ -41,53 +41,11 @@ class CreateResource(SyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#with_streaming_response
+        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#with_streaming_response
         """
         return CreateResourceWithStreamingResponse(self)
 
     def create(
-        self,
-        url_idx: int,
-        *,
-        model: Optional[str] | NotGiven = NOT_GIVEN,
-        path: Optional[str] | NotGiven = NOT_GIVEN,
-        stream: Optional[bool] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> object:
-        """
-        Create Model
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return self._post(
-            f"/ollama/api/create/{url_idx}",
-            body=maybe_transform(
-                {
-                    "model": model,
-                    "path": path,
-                    "stream": stream,
-                },
-                create_create_params.CreateCreateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=object,
-        )
-
-    def create_model(
         self,
         *,
         url_idx: int | NotGiven = NOT_GIVEN,
@@ -121,14 +79,56 @@ class CreateResource(SyncAPIResource):
                     "path": path,
                     "stream": stream,
                 },
-                create_create_model_params.CreateCreateModelParams,
+                create_create_params.CreateCreateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform({"url_idx": url_idx}, create_create_model_params.CreateCreateModelParams),
+                query=maybe_transform({"url_idx": url_idx}, create_create_params.CreateCreateParams),
+            ),
+            cast_to=object,
+        )
+
+    def create_by_index(
+        self,
+        url_idx: int,
+        *,
+        model: Optional[str] | NotGiven = NOT_GIVEN,
+        path: Optional[str] | NotGiven = NOT_GIVEN,
+        stream: Optional[bool] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> object:
+        """
+        Create Model
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._post(
+            f"/ollama/api/create/{url_idx}",
+            body=maybe_transform(
+                {
+                    "model": model,
+                    "path": path,
+                    "stream": stream,
+                },
+                create_create_by_index_params.CreateCreateByIndexParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=object,
         )
@@ -141,7 +141,7 @@ class AsyncCreateResource(AsyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#accessing-raw-response-data-eg-headers
         """
         return AsyncCreateResourceWithRawResponse(self)
 
@@ -150,53 +150,11 @@ class AsyncCreateResource(AsyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#with_streaming_response
+        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#with_streaming_response
         """
         return AsyncCreateResourceWithStreamingResponse(self)
 
     async def create(
-        self,
-        url_idx: int,
-        *,
-        model: Optional[str] | NotGiven = NOT_GIVEN,
-        path: Optional[str] | NotGiven = NOT_GIVEN,
-        stream: Optional[bool] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> object:
-        """
-        Create Model
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return await self._post(
-            f"/ollama/api/create/{url_idx}",
-            body=await async_maybe_transform(
-                {
-                    "model": model,
-                    "path": path,
-                    "stream": stream,
-                },
-                create_create_params.CreateCreateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=object,
-        )
-
-    async def create_model(
         self,
         *,
         url_idx: int | NotGiven = NOT_GIVEN,
@@ -230,16 +188,56 @@ class AsyncCreateResource(AsyncAPIResource):
                     "path": path,
                     "stream": stream,
                 },
-                create_create_model_params.CreateCreateModelParams,
+                create_create_params.CreateCreateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
-                    {"url_idx": url_idx}, create_create_model_params.CreateCreateModelParams
-                ),
+                query=await async_maybe_transform({"url_idx": url_idx}, create_create_params.CreateCreateParams),
+            ),
+            cast_to=object,
+        )
+
+    async def create_by_index(
+        self,
+        url_idx: int,
+        *,
+        model: Optional[str] | NotGiven = NOT_GIVEN,
+        path: Optional[str] | NotGiven = NOT_GIVEN,
+        stream: Optional[bool] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> object:
+        """
+        Create Model
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return await self._post(
+            f"/ollama/api/create/{url_idx}",
+            body=await async_maybe_transform(
+                {
+                    "model": model,
+                    "path": path,
+                    "stream": stream,
+                },
+                create_create_by_index_params.CreateCreateByIndexParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=object,
         )
@@ -252,8 +250,8 @@ class CreateResourceWithRawResponse:
         self.create = to_raw_response_wrapper(
             create.create,
         )
-        self.create_model = to_raw_response_wrapper(
-            create.create_model,
+        self.create_by_index = to_raw_response_wrapper(
+            create.create_by_index,
         )
 
 
@@ -264,8 +262,8 @@ class AsyncCreateResourceWithRawResponse:
         self.create = async_to_raw_response_wrapper(
             create.create,
         )
-        self.create_model = async_to_raw_response_wrapper(
-            create.create_model,
+        self.create_by_index = async_to_raw_response_wrapper(
+            create.create_by_index,
         )
 
 
@@ -276,8 +274,8 @@ class CreateResourceWithStreamingResponse:
         self.create = to_streamed_response_wrapper(
             create.create,
         )
-        self.create_model = to_streamed_response_wrapper(
-            create.create_model,
+        self.create_by_index = to_streamed_response_wrapper(
+            create.create_by_index,
         )
 
 
@@ -288,6 +286,6 @@ class AsyncCreateResourceWithStreamingResponse:
         self.create = async_to_streamed_response_wrapper(
             create.create,
         )
-        self.create_model = async_to_streamed_response_wrapper(
-            create.create_model,
+        self.create_by_index = async_to_streamed_response_wrapper(
+            create.create_by_index,
         )

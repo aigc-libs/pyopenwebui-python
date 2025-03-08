@@ -9,6 +9,8 @@ __all__ = ["CreateCreateParams"]
 
 
 class CreateCreateParams(TypedDict, total=False):
+    url_idx: int
+
     model: Optional[str]
 
     path: Optional[str]

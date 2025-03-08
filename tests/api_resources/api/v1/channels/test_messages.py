@@ -10,11 +10,12 @@ import pytest
 from pyopenwebui import Pyopenwebui, AsyncPyopenwebui
 from tests.utils import assert_matches_type
 from pyopenwebui.types.api.v1.channels import (
-    MessageModel,
     MessageGetResponse,
-    MessageUserResponse,
+    MessagePostResponse,
+    MessageGetByIDResponse,
     MessageGetThreadResponse,
     MessageDeleteByIDResponse,
+    MessageUpdateByIDResponse,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -124,7 +125,7 @@ class TestMessages:
             message_id="message_id",
             id="id",
         )
-        assert_matches_type(Optional[MessageUserResponse], message, path=["response"])
+        assert_matches_type(Optional[MessageGetByIDResponse], message, path=["response"])
 
     @parametrize
     def test_raw_response_get_by_id(self, client: Pyopenwebui) -> None:
@@ -136,7 +137,7 @@ class TestMessages:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         message = response.parse()
-        assert_matches_type(Optional[MessageUserResponse], message, path=["response"])
+        assert_matches_type(Optional[MessageGetByIDResponse], message, path=["response"])
 
     @parametrize
     def test_streaming_response_get_by_id(self, client: Pyopenwebui) -> None:
@@ -148,7 +149,7 @@ class TestMessages:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             message = response.parse()
-            assert_matches_type(Optional[MessageUserResponse], message, path=["response"])
+            assert_matches_type(Optional[MessageGetByIDResponse], message, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -230,7 +231,7 @@ class TestMessages:
             id="id",
             content="content",
         )
-        assert_matches_type(Optional[MessageModel], message, path=["response"])
+        assert_matches_type(Optional[MessagePostResponse], message, path=["response"])
 
     @parametrize
     def test_method_post_with_all_params(self, client: Pyopenwebui) -> None:
@@ -241,7 +242,7 @@ class TestMessages:
             meta={},
             parent_id="parent_id",
         )
-        assert_matches_type(Optional[MessageModel], message, path=["response"])
+        assert_matches_type(Optional[MessagePostResponse], message, path=["response"])
 
     @parametrize
     def test_raw_response_post(self, client: Pyopenwebui) -> None:
@@ -253,7 +254,7 @@ class TestMessages:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         message = response.parse()
-        assert_matches_type(Optional[MessageModel], message, path=["response"])
+        assert_matches_type(Optional[MessagePostResponse], message, path=["response"])
 
     @parametrize
     def test_streaming_response_post(self, client: Pyopenwebui) -> None:
@@ -265,7 +266,7 @@ class TestMessages:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             message = response.parse()
-            assert_matches_type(Optional[MessageModel], message, path=["response"])
+            assert_matches_type(Optional[MessagePostResponse], message, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -284,7 +285,7 @@ class TestMessages:
             id="id",
             content="content",
         )
-        assert_matches_type(Optional[MessageModel], message, path=["response"])
+        assert_matches_type(Optional[MessageUpdateByIDResponse], message, path=["response"])
 
     @parametrize
     def test_method_update_by_id_with_all_params(self, client: Pyopenwebui) -> None:
@@ -296,7 +297,7 @@ class TestMessages:
             meta={},
             parent_id="parent_id",
         )
-        assert_matches_type(Optional[MessageModel], message, path=["response"])
+        assert_matches_type(Optional[MessageUpdateByIDResponse], message, path=["response"])
 
     @parametrize
     def test_raw_response_update_by_id(self, client: Pyopenwebui) -> None:
@@ -309,7 +310,7 @@ class TestMessages:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         message = response.parse()
-        assert_matches_type(Optional[MessageModel], message, path=["response"])
+        assert_matches_type(Optional[MessageUpdateByIDResponse], message, path=["response"])
 
     @parametrize
     def test_streaming_response_update_by_id(self, client: Pyopenwebui) -> None:
@@ -322,7 +323,7 @@ class TestMessages:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             message = response.parse()
-            assert_matches_type(Optional[MessageModel], message, path=["response"])
+            assert_matches_type(Optional[MessageUpdateByIDResponse], message, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -447,7 +448,7 @@ class TestAsyncMessages:
             message_id="message_id",
             id="id",
         )
-        assert_matches_type(Optional[MessageUserResponse], message, path=["response"])
+        assert_matches_type(Optional[MessageGetByIDResponse], message, path=["response"])
 
     @parametrize
     async def test_raw_response_get_by_id(self, async_client: AsyncPyopenwebui) -> None:
@@ -459,7 +460,7 @@ class TestAsyncMessages:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         message = await response.parse()
-        assert_matches_type(Optional[MessageUserResponse], message, path=["response"])
+        assert_matches_type(Optional[MessageGetByIDResponse], message, path=["response"])
 
     @parametrize
     async def test_streaming_response_get_by_id(self, async_client: AsyncPyopenwebui) -> None:
@@ -471,7 +472,7 @@ class TestAsyncMessages:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             message = await response.parse()
-            assert_matches_type(Optional[MessageUserResponse], message, path=["response"])
+            assert_matches_type(Optional[MessageGetByIDResponse], message, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -553,7 +554,7 @@ class TestAsyncMessages:
             id="id",
             content="content",
         )
-        assert_matches_type(Optional[MessageModel], message, path=["response"])
+        assert_matches_type(Optional[MessagePostResponse], message, path=["response"])
 
     @parametrize
     async def test_method_post_with_all_params(self, async_client: AsyncPyopenwebui) -> None:
@@ -564,7 +565,7 @@ class TestAsyncMessages:
             meta={},
             parent_id="parent_id",
         )
-        assert_matches_type(Optional[MessageModel], message, path=["response"])
+        assert_matches_type(Optional[MessagePostResponse], message, path=["response"])
 
     @parametrize
     async def test_raw_response_post(self, async_client: AsyncPyopenwebui) -> None:
@@ -576,7 +577,7 @@ class TestAsyncMessages:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         message = await response.parse()
-        assert_matches_type(Optional[MessageModel], message, path=["response"])
+        assert_matches_type(Optional[MessagePostResponse], message, path=["response"])
 
     @parametrize
     async def test_streaming_response_post(self, async_client: AsyncPyopenwebui) -> None:
@@ -588,7 +589,7 @@ class TestAsyncMessages:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             message = await response.parse()
-            assert_matches_type(Optional[MessageModel], message, path=["response"])
+            assert_matches_type(Optional[MessagePostResponse], message, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -607,7 +608,7 @@ class TestAsyncMessages:
             id="id",
             content="content",
         )
-        assert_matches_type(Optional[MessageModel], message, path=["response"])
+        assert_matches_type(Optional[MessageUpdateByIDResponse], message, path=["response"])
 
     @parametrize
     async def test_method_update_by_id_with_all_params(self, async_client: AsyncPyopenwebui) -> None:
@@ -619,7 +620,7 @@ class TestAsyncMessages:
             meta={},
             parent_id="parent_id",
         )
-        assert_matches_type(Optional[MessageModel], message, path=["response"])
+        assert_matches_type(Optional[MessageUpdateByIDResponse], message, path=["response"])
 
     @parametrize
     async def test_raw_response_update_by_id(self, async_client: AsyncPyopenwebui) -> None:
@@ -632,7 +633,7 @@ class TestAsyncMessages:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         message = await response.parse()
-        assert_matches_type(Optional[MessageModel], message, path=["response"])
+        assert_matches_type(Optional[MessageUpdateByIDResponse], message, path=["response"])
 
     @parametrize
     async def test_streaming_response_update_by_id(self, async_client: AsyncPyopenwebui) -> None:
@@ -645,7 +646,7 @@ class TestAsyncMessages:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             message = await response.parse()
-            assert_matches_type(Optional[MessageModel], message, path=["response"])
+            assert_matches_type(Optional[MessageUpdateByIDResponse], message, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

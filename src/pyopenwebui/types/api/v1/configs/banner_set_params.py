@@ -5,7 +5,7 @@ from __future__ import annotations
 from typing import Iterable
 from typing_extensions import Required, TypedDict
 
-from .banner_model_param import BannerModelParam
+from ....configs.banner_model_param import BannerModelParam
 
 __all__ = ["BannerSetParams"]
 

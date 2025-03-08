@@ -17,18 +17,25 @@ class TestCopy:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @parametrize
-    def test_method_create(self, client: Pyopenwebui) -> None:
-        copy = client.ollama.api.copy.create(
-            url_idx=0,
+    def test_method_copy(self, client: Pyopenwebui) -> None:
+        copy = client.ollama.api.copy.copy(
             destination="destination",
             source="source",
         )
         assert_matches_type(object, copy, path=["response"])
 
     @parametrize
-    def test_raw_response_create(self, client: Pyopenwebui) -> None:
-        response = client.ollama.api.copy.with_raw_response.create(
+    def test_method_copy_with_all_params(self, client: Pyopenwebui) -> None:
+        copy = client.ollama.api.copy.copy(
+            destination="destination",
+            source="source",
             url_idx=0,
+        )
+        assert_matches_type(object, copy, path=["response"])
+
+    @parametrize
+    def test_raw_response_copy(self, client: Pyopenwebui) -> None:
+        response = client.ollama.api.copy.with_raw_response.copy(
             destination="destination",
             source="source",
         )
@@ -39,9 +46,8 @@ class TestCopy:
         assert_matches_type(object, copy, path=["response"])
 
     @parametrize
-    def test_streaming_response_create(self, client: Pyopenwebui) -> None:
-        with client.ollama.api.copy.with_streaming_response.create(
-            url_idx=0,
+    def test_streaming_response_copy(self, client: Pyopenwebui) -> None:
+        with client.ollama.api.copy.with_streaming_response.copy(
             destination="destination",
             source="source",
         ) as response:
@@ -54,25 +60,18 @@ class TestCopy:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
-    def test_method_copy_model(self, client: Pyopenwebui) -> None:
-        copy = client.ollama.api.copy.copy_model(
-            destination="destination",
-            source="source",
-        )
-        assert_matches_type(object, copy, path=["response"])
-
-    @parametrize
-    def test_method_copy_model_with_all_params(self, client: Pyopenwebui) -> None:
-        copy = client.ollama.api.copy.copy_model(
-            destination="destination",
-            source="source",
+    def test_method_copy_by_index(self, client: Pyopenwebui) -> None:
+        copy = client.ollama.api.copy.copy_by_index(
             url_idx=0,
+            destination="destination",
+            source="source",
         )
         assert_matches_type(object, copy, path=["response"])
 
     @parametrize
-    def test_raw_response_copy_model(self, client: Pyopenwebui) -> None:
-        response = client.ollama.api.copy.with_raw_response.copy_model(
+    def test_raw_response_copy_by_index(self, client: Pyopenwebui) -> None:
+        response = client.ollama.api.copy.with_raw_response.copy_by_index(
+            url_idx=0,
             destination="destination",
             source="source",
         )
@@ -83,8 +82,9 @@ class TestCopy:
         assert_matches_type(object, copy, path=["response"])
 
     @parametrize
-    def test_streaming_response_copy_model(self, client: Pyopenwebui) -> None:
-        with client.ollama.api.copy.with_streaming_response.copy_model(
+    def test_streaming_response_copy_by_index(self, client: Pyopenwebui) -> None:
+        with client.ollama.api.copy.with_streaming_response.copy_by_index(
+            url_idx=0,
             destination="destination",
             source="source",
         ) as response:
@@ -101,18 +101,25 @@ class TestAsyncCopy:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @parametrize
-    async def test_method_create(self, async_client: AsyncPyopenwebui) -> None:
-        copy = await async_client.ollama.api.copy.create(
-            url_idx=0,
+    async def test_method_copy(self, async_client: AsyncPyopenwebui) -> None:
+        copy = await async_client.ollama.api.copy.copy(
             destination="destination",
             source="source",
         )
         assert_matches_type(object, copy, path=["response"])
 
     @parametrize
-    async def test_raw_response_create(self, async_client: AsyncPyopenwebui) -> None:
-        response = await async_client.ollama.api.copy.with_raw_response.create(
+    async def test_method_copy_with_all_params(self, async_client: AsyncPyopenwebui) -> None:
+        copy = await async_client.ollama.api.copy.copy(
+            destination="destination",
+            source="source",
             url_idx=0,
+        )
+        assert_matches_type(object, copy, path=["response"])
+
+    @parametrize
+    async def test_raw_response_copy(self, async_client: AsyncPyopenwebui) -> None:
+        response = await async_client.ollama.api.copy.with_raw_response.copy(
             destination="destination",
             source="source",
         )
@@ -123,9 +130,8 @@ class TestAsyncCopy:
         assert_matches_type(object, copy, path=["response"])
 
     @parametrize
-    async def test_streaming_response_create(self, async_client: AsyncPyopenwebui) -> None:
-        async with async_client.ollama.api.copy.with_streaming_response.create(
-            url_idx=0,
+    async def test_streaming_response_copy(self, async_client: AsyncPyopenwebui) -> None:
+        async with async_client.ollama.api.copy.with_streaming_response.copy(
             destination="destination",
             source="source",
         ) as response:
@@ -138,25 +144,18 @@ class TestAsyncCopy:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
-    async def test_method_copy_model(self, async_client: AsyncPyopenwebui) -> None:
-        copy = await async_client.ollama.api.copy.copy_model(
-            destination="destination",
-            source="source",
-        )
-        assert_matches_type(object, copy, path=["response"])
-
-    @parametrize
-    async def test_method_copy_model_with_all_params(self, async_client: AsyncPyopenwebui) -> None:
-        copy = await async_client.ollama.api.copy.copy_model(
-            destination="destination",
-            source="source",
+    async def test_method_copy_by_index(self, async_client: AsyncPyopenwebui) -> None:
+        copy = await async_client.ollama.api.copy.copy_by_index(
             url_idx=0,
+            destination="destination",
+            source="source",
         )
         assert_matches_type(object, copy, path=["response"])
 
     @parametrize
-    async def test_raw_response_copy_model(self, async_client: AsyncPyopenwebui) -> None:
-        response = await async_client.ollama.api.copy.with_raw_response.copy_model(
+    async def test_raw_response_copy_by_index(self, async_client: AsyncPyopenwebui) -> None:
+        response = await async_client.ollama.api.copy.with_raw_response.copy_by_index(
+            url_idx=0,
             destination="destination",
             source="source",
         )
@@ -167,8 +166,9 @@ class TestAsyncCopy:
         assert_matches_type(object, copy, path=["response"])
 
     @parametrize
-    async def test_streaming_response_copy_model(self, async_client: AsyncPyopenwebui) -> None:
-        async with async_client.ollama.api.copy.with_streaming_response.copy_model(
+    async def test_streaming_response_copy_by_index(self, async_client: AsyncPyopenwebui) -> None:
+        async with async_client.ollama.api.copy.with_streaming_response.copy_by_index(
+            url_idx=0,
             destination="destination",
             source="source",
         ) as response:

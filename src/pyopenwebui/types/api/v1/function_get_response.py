@@ -3,7 +3,7 @@
 from typing import List
 from typing_extensions import TypeAlias
 
-from .function_response import FunctionResponse
+from ...function_response import FunctionResponse
 
 __all__ = ["FunctionGetResponse"]
 

@@ -20,7 +20,7 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._base_client import make_request_options
-from ....types.ollama.api import tag_list_tags_params
+from ....types.ollama.api import tag_list_params
 
 __all__ = ["TagsResource", "AsyncTagsResource"]
 
@@ -32,7 +32,7 @@ class TagsResource(SyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#accessing-raw-response-data-eg-headers
         """
         return TagsResourceWithRawResponse(self)
 
@@ -41,42 +41,11 @@ class TagsResource(SyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#with_streaming_response
+        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#with_streaming_response
         """
         return TagsResourceWithStreamingResponse(self)
 
-    def get_tag(
-        self,
-        url_idx: int,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> object:
-        """
-        Get Ollama Tags
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return self._get(
-            f"/ollama/api/tags/{url_idx}",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=object,
-        )
-
-    def list_tags(
+    def list(
         self,
         *,
         url_idx: Optional[int] | NotGiven = NOT_GIVEN,
@@ -106,7 +75,38 @@ class TagsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform({"url_idx": url_idx}, tag_list_tags_params.TagListTagsParams),
+                query=maybe_transform({"url_idx": url_idx}, tag_list_params.TagListParams),
+            ),
+            cast_to=object,
+        )
+
+    def get_by_index(
+        self,
+        url_idx: int,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> object:
+        """
+        Get Ollama Tags
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._get(
+            f"/ollama/api/tags/{url_idx}",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=object,
         )
@@ -119,7 +119,7 @@ class AsyncTagsResource(AsyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#accessing-raw-response-data-eg-headers
         """
         return AsyncTagsResourceWithRawResponse(self)
 
@@ -128,11 +128,46 @@ class AsyncTagsResource(AsyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#with_streaming_response
+        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#with_streaming_response
         """
         return AsyncTagsResourceWithStreamingResponse(self)
 
-    async def get_tag(
+    async def list(
+        self,
+        *,
+        url_idx: Optional[int] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> object:
+        """
+        Get Ollama Tags
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return await self._get(
+            "/ollama/api/tags",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform({"url_idx": url_idx}, tag_list_params.TagListParams),
+            ),
+            cast_to=object,
+        )
+
+    async def get_by_index(
         self,
         url_idx: int,
         *,
@@ -163,51 +198,16 @@ class AsyncTagsResource(AsyncAPIResource):
             cast_to=object,
         )
 
-    async def list_tags(
-        self,
-        *,
-        url_idx: Optional[int] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> object:
-        """
-        Get Ollama Tags
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return await self._get(
-            "/ollama/api/tags",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=await async_maybe_transform({"url_idx": url_idx}, tag_list_tags_params.TagListTagsParams),
-            ),
-            cast_to=object,
-        )
-
 
 class TagsResourceWithRawResponse:
     def __init__(self, tags: TagsResource) -> None:
         self._tags = tags
 
-        self.get_tag = to_raw_response_wrapper(
-            tags.get_tag,
+        self.list = to_raw_response_wrapper(
+            tags.list,
         )
-        self.list_tags = to_raw_response_wrapper(
-            tags.list_tags,
+        self.get_by_index = to_raw_response_wrapper(
+            tags.get_by_index,
         )
 
 
@@ -215,11 +215,11 @@ class AsyncTagsResourceWithRawResponse:
     def __init__(self, tags: AsyncTagsResource) -> None:
         self._tags = tags
 
-        self.get_tag = async_to_raw_response_wrapper(
-            tags.get_tag,
+        self.list = async_to_raw_response_wrapper(
+            tags.list,
         )
-        self.list_tags = async_to_raw_response_wrapper(
-            tags.list_tags,
+        self.get_by_index = async_to_raw_response_wrapper(
+            tags.get_by_index,
         )
 
 
@@ -227,11 +227,11 @@ class TagsResourceWithStreamingResponse:
     def __init__(self, tags: TagsResource) -> None:
         self._tags = tags
 
-        self.get_tag = to_streamed_response_wrapper(
-            tags.get_tag,
+        self.list = to_streamed_response_wrapper(
+            tags.list,
         )
-        self.list_tags = to_streamed_response_wrapper(
-            tags.list_tags,
+        self.get_by_index = to_streamed_response_wrapper(
+            tags.get_by_index,
         )
 
 
@@ -239,9 +239,9 @@ class AsyncTagsResourceWithStreamingResponse:
     def __init__(self, tags: AsyncTagsResource) -> None:
         self._tags = tags
 
-        self.get_tag = async_to_streamed_response_wrapper(
-            tags.get_tag,
+        self.list = async_to_streamed_response_wrapper(
+            tags.list,
         )
-        self.list_tags = async_to_streamed_response_wrapper(
-            tags.list_tags,
+        self.get_by_index = async_to_streamed_response_wrapper(
+            tags.get_by_index,
         )

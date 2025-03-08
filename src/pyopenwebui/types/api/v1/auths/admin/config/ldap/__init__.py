@@ -2,5 +2,5 @@
 
 from __future__ import annotations
 
-from .ldap_server_config import LdapServerConfig as LdapServerConfig
+from .server_get_response import ServerGetResponse as ServerGetResponse
 from .server_update_params import ServerUpdateParams as ServerUpdateParams

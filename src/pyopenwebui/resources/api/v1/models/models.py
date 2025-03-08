@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Optional
+from typing import Dict, Optional
 
 import httpx
 
@@ -29,10 +29,8 @@ from ....._response import (
 )
 from ....._base_client import make_request_options
 from .....types.api.v1 import model_get_params, model_create_params
-from .....types.api.v1.model_model import ModelModel
-from .....types.api.v1.model_meta_param import ModelMetaParam
+from .....types.model_model import ModelModel
 from .....types.api.v1.model_get_response import ModelGetResponse
-from .....types.api.v1.model_params_param import ModelParamsParam
 from .....types.api.v1.model_delete_response import ModelDeleteResponse
 from .....types.api.v1.model_get_base_response import ModelGetBaseResponse
 
@@ -50,7 +48,7 @@ class ModelsResource(SyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#accessing-raw-response-data-eg-headers
         """
         return ModelsResourceWithRawResponse(self)
 
@@ -59,7 +57,7 @@ class ModelsResource(SyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#with_streaming_response
+        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#with_streaming_response
         """
         return ModelsResourceWithStreamingResponse(self)
 
@@ -67,9 +65,9 @@ class ModelsResource(SyncAPIResource):
         self,
         *,
         id: str,
-        meta: ModelMetaParam,
+        meta: model_create_params.Meta,
         name: str,
-        params: ModelParamsParam,
+        params: Dict[str, object],
         access_control: Optional[object] | NotGiven = NOT_GIVEN,
         base_model_id: Optional[str] | NotGiven = NOT_GIVEN,
         is_active: bool | NotGiven = NOT_GIVEN,
@@ -197,7 +195,7 @@ class AsyncModelsResource(AsyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#accessing-raw-response-data-eg-headers
         """
         return AsyncModelsResourceWithRawResponse(self)
 
@@ -206,7 +204,7 @@ class AsyncModelsResource(AsyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#with_streaming_response
+        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#with_streaming_response
         """
         return AsyncModelsResourceWithStreamingResponse(self)
 
@@ -214,9 +212,9 @@ class AsyncModelsResource(AsyncAPIResource):
         self,
         *,
         id: str,
-        meta: ModelMetaParam,
+        meta: model_create_params.Meta,
         name: str,
-        params: ModelParamsParam,
+        params: Dict[str, object],
         access_control: Optional[object] | NotGiven = NOT_GIVEN,
         base_model_id: Optional[str] | NotGiven = NOT_GIVEN,
         is_active: bool | NotGiven = NOT_GIVEN,

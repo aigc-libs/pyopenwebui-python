@@ -9,12 +9,8 @@ import pytest
 
 from pyopenwebui import Pyopenwebui, AsyncPyopenwebui
 from tests.utils import assert_matches_type
-from pyopenwebui.types.api.v1 import (
-    ToolGetResponse,
-    ToolCreateResponse,
-    ToolExportResponse,
-    ToolGetListResponse,
-)
+from pyopenwebui.types import ToolResponse
+from pyopenwebui.types.api.v1 import ToolGetResponse, ToolExportResponse, ToolGetListResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -30,7 +26,7 @@ class TestTools:
             meta={},
             name="name",
         )
-        assert_matches_type(Optional[ToolCreateResponse], tool, path=["response"])
+        assert_matches_type(Optional[ToolResponse], tool, path=["response"])
 
     @parametrize
     def test_method_create_with_all_params(self, client: Pyopenwebui) -> None:
@@ -44,7 +40,7 @@ class TestTools:
             name="name",
             access_control={},
         )
-        assert_matches_type(Optional[ToolCreateResponse], tool, path=["response"])
+        assert_matches_type(Optional[ToolResponse], tool, path=["response"])
 
     @parametrize
     def test_raw_response_create(self, client: Pyopenwebui) -> None:
@@ -58,7 +54,7 @@ class TestTools:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         tool = response.parse()
-        assert_matches_type(Optional[ToolCreateResponse], tool, path=["response"])
+        assert_matches_type(Optional[ToolResponse], tool, path=["response"])
 
     @parametrize
     def test_streaming_response_create(self, client: Pyopenwebui) -> None:
@@ -72,7 +68,7 @@ class TestTools:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             tool = response.parse()
-            assert_matches_type(Optional[ToolCreateResponse], tool, path=["response"])
+            assert_matches_type(Optional[ToolResponse], tool, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -163,7 +159,7 @@ class TestAsyncTools:
             meta={},
             name="name",
         )
-        assert_matches_type(Optional[ToolCreateResponse], tool, path=["response"])
+        assert_matches_type(Optional[ToolResponse], tool, path=["response"])
 
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncPyopenwebui) -> None:
@@ -177,7 +173,7 @@ class TestAsyncTools:
             name="name",
             access_control={},
         )
-        assert_matches_type(Optional[ToolCreateResponse], tool, path=["response"])
+        assert_matches_type(Optional[ToolResponse], tool, path=["response"])
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncPyopenwebui) -> None:
@@ -191,7 +187,7 @@ class TestAsyncTools:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         tool = await response.parse()
-        assert_matches_type(Optional[ToolCreateResponse], tool, path=["response"])
+        assert_matches_type(Optional[ToolResponse], tool, path=["response"])
 
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncPyopenwebui) -> None:
@@ -205,7 +201,7 @@ class TestAsyncTools:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             tool = await response.parse()
-            assert_matches_type(Optional[ToolCreateResponse], tool, path=["response"])
+            assert_matches_type(Optional[ToolResponse], tool, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

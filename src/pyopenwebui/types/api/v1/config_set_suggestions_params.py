@@ -5,7 +5,7 @@ from __future__ import annotations
 from typing import Iterable
 from typing_extensions import Required, TypedDict
 
-from .prompt_suggestion_param import PromptSuggestionParam
+from ...configs.default.prompt_suggestion_param import PromptSuggestionParam
 
 __all__ = ["ConfigSetSuggestionsParams"]
 

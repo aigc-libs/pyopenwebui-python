@@ -20,7 +20,7 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._base_client import make_request_options
-from ....types.ollama.api import generate_create_params, generate_generate_completion_params
+from ....types.ollama.api import generate_generate_params, generate_generate_by_index_params
 
 __all__ = ["GenerateResource", "AsyncGenerateResource"]
 
@@ -32,7 +32,7 @@ class GenerateResource(SyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#accessing-raw-response-data-eg-headers
         """
         return GenerateResourceWithRawResponse(self)
 
@@ -41,71 +41,11 @@ class GenerateResource(SyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#with_streaming_response
+        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#with_streaming_response
         """
         return GenerateResourceWithStreamingResponse(self)
 
-    def create(
-        self,
-        url_idx: int,
-        *,
-        model: str,
-        prompt: str,
-        context: Optional[Iterable[int]] | NotGiven = NOT_GIVEN,
-        format: Optional[str] | NotGiven = NOT_GIVEN,
-        images: Optional[List[str]] | NotGiven = NOT_GIVEN,
-        keep_alive: Union[int, str, None] | NotGiven = NOT_GIVEN,
-        options: Optional[object] | NotGiven = NOT_GIVEN,
-        raw: Optional[bool] | NotGiven = NOT_GIVEN,
-        stream: Optional[bool] | NotGiven = NOT_GIVEN,
-        suffix: Optional[str] | NotGiven = NOT_GIVEN,
-        system: Optional[str] | NotGiven = NOT_GIVEN,
-        template: Optional[str] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> object:
-        """
-        Generate Completion
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return self._post(
-            f"/ollama/api/generate/{url_idx}",
-            body=maybe_transform(
-                {
-                    "model": model,
-                    "prompt": prompt,
-                    "context": context,
-                    "format": format,
-                    "images": images,
-                    "keep_alive": keep_alive,
-                    "options": options,
-                    "raw": raw,
-                    "stream": stream,
-                    "suffix": suffix,
-                    "system": system,
-                    "template": template,
-                },
-                generate_create_params.GenerateCreateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=object,
-        )
-
-    def generate_completion(
+    def generate(
         self,
         *,
         model: str,
@@ -157,16 +97,74 @@ class GenerateResource(SyncAPIResource):
                     "system": system,
                     "template": template,
                 },
-                generate_generate_completion_params.GenerateGenerateCompletionParams,
+                generate_generate_params.GenerateGenerateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform(
-                    {"url_idx": url_idx}, generate_generate_completion_params.GenerateGenerateCompletionParams
-                ),
+                query=maybe_transform({"url_idx": url_idx}, generate_generate_params.GenerateGenerateParams),
+            ),
+            cast_to=object,
+        )
+
+    def generate_by_index(
+        self,
+        url_idx: int,
+        *,
+        model: str,
+        prompt: str,
+        context: Optional[Iterable[int]] | NotGiven = NOT_GIVEN,
+        format: Optional[str] | NotGiven = NOT_GIVEN,
+        images: Optional[List[str]] | NotGiven = NOT_GIVEN,
+        keep_alive: Union[int, str, None] | NotGiven = NOT_GIVEN,
+        options: Optional[object] | NotGiven = NOT_GIVEN,
+        raw: Optional[bool] | NotGiven = NOT_GIVEN,
+        stream: Optional[bool] | NotGiven = NOT_GIVEN,
+        suffix: Optional[str] | NotGiven = NOT_GIVEN,
+        system: Optional[str] | NotGiven = NOT_GIVEN,
+        template: Optional[str] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> object:
+        """
+        Generate Completion
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._post(
+            f"/ollama/api/generate/{url_idx}",
+            body=maybe_transform(
+                {
+                    "model": model,
+                    "prompt": prompt,
+                    "context": context,
+                    "format": format,
+                    "images": images,
+                    "keep_alive": keep_alive,
+                    "options": options,
+                    "raw": raw,
+                    "stream": stream,
+                    "suffix": suffix,
+                    "system": system,
+                    "template": template,
+                },
+                generate_generate_by_index_params.GenerateGenerateByIndexParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=object,
         )
@@ -179,7 +177,7 @@ class AsyncGenerateResource(AsyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#accessing-raw-response-data-eg-headers
         """
         return AsyncGenerateResourceWithRawResponse(self)
 
@@ -188,71 +186,11 @@ class AsyncGenerateResource(AsyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#with_streaming_response
+        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#with_streaming_response
         """
         return AsyncGenerateResourceWithStreamingResponse(self)
 
-    async def create(
-        self,
-        url_idx: int,
-        *,
-        model: str,
-        prompt: str,
-        context: Optional[Iterable[int]] | NotGiven = NOT_GIVEN,
-        format: Optional[str] | NotGiven = NOT_GIVEN,
-        images: Optional[List[str]] | NotGiven = NOT_GIVEN,
-        keep_alive: Union[int, str, None] | NotGiven = NOT_GIVEN,
-        options: Optional[object] | NotGiven = NOT_GIVEN,
-        raw: Optional[bool] | NotGiven = NOT_GIVEN,
-        stream: Optional[bool] | NotGiven = NOT_GIVEN,
-        suffix: Optional[str] | NotGiven = NOT_GIVEN,
-        system: Optional[str] | NotGiven = NOT_GIVEN,
-        template: Optional[str] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> object:
-        """
-        Generate Completion
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return await self._post(
-            f"/ollama/api/generate/{url_idx}",
-            body=await async_maybe_transform(
-                {
-                    "model": model,
-                    "prompt": prompt,
-                    "context": context,
-                    "format": format,
-                    "images": images,
-                    "keep_alive": keep_alive,
-                    "options": options,
-                    "raw": raw,
-                    "stream": stream,
-                    "suffix": suffix,
-                    "system": system,
-                    "template": template,
-                },
-                generate_create_params.GenerateCreateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=object,
-        )
-
-    async def generate_completion(
+    async def generate(
         self,
         *,
         model: str,
@@ -304,7 +242,7 @@ class AsyncGenerateResource(AsyncAPIResource):
                     "system": system,
                     "template": template,
                 },
-                generate_generate_completion_params.GenerateGenerateCompletionParams,
+                generate_generate_params.GenerateGenerateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -312,8 +250,68 @@ class AsyncGenerateResource(AsyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=await async_maybe_transform(
-                    {"url_idx": url_idx}, generate_generate_completion_params.GenerateGenerateCompletionParams
+                    {"url_idx": url_idx}, generate_generate_params.GenerateGenerateParams
                 ),
+            ),
+            cast_to=object,
+        )
+
+    async def generate_by_index(
+        self,
+        url_idx: int,
+        *,
+        model: str,
+        prompt: str,
+        context: Optional[Iterable[int]] | NotGiven = NOT_GIVEN,
+        format: Optional[str] | NotGiven = NOT_GIVEN,
+        images: Optional[List[str]] | NotGiven = NOT_GIVEN,
+        keep_alive: Union[int, str, None] | NotGiven = NOT_GIVEN,
+        options: Optional[object] | NotGiven = NOT_GIVEN,
+        raw: Optional[bool] | NotGiven = NOT_GIVEN,
+        stream: Optional[bool] | NotGiven = NOT_GIVEN,
+        suffix: Optional[str] | NotGiven = NOT_GIVEN,
+        system: Optional[str] | NotGiven = NOT_GIVEN,
+        template: Optional[str] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> object:
+        """
+        Generate Completion
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return await self._post(
+            f"/ollama/api/generate/{url_idx}",
+            body=await async_maybe_transform(
+                {
+                    "model": model,
+                    "prompt": prompt,
+                    "context": context,
+                    "format": format,
+                    "images": images,
+                    "keep_alive": keep_alive,
+                    "options": options,
+                    "raw": raw,
+                    "stream": stream,
+                    "suffix": suffix,
+                    "system": system,
+                    "template": template,
+                },
+                generate_generate_by_index_params.GenerateGenerateByIndexParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=object,
         )
@@ -323,11 +321,11 @@ class GenerateResourceWithRawResponse:
     def __init__(self, generate: GenerateResource) -> None:
         self._generate = generate
 
-        self.create = to_raw_response_wrapper(
-            generate.create,
+        self.generate = to_raw_response_wrapper(
+            generate.generate,
         )
-        self.generate_completion = to_raw_response_wrapper(
-            generate.generate_completion,
+        self.generate_by_index = to_raw_response_wrapper(
+            generate.generate_by_index,
         )
 
 
@@ -335,11 +333,11 @@ class AsyncGenerateResourceWithRawResponse:
     def __init__(self, generate: AsyncGenerateResource) -> None:
         self._generate = generate
 
-        self.create = async_to_raw_response_wrapper(
-            generate.create,
+        self.generate = async_to_raw_response_wrapper(
+            generate.generate,
         )
-        self.generate_completion = async_to_raw_response_wrapper(
-            generate.generate_completion,
+        self.generate_by_index = async_to_raw_response_wrapper(
+            generate.generate_by_index,
         )
 
 
@@ -347,11 +345,11 @@ class GenerateResourceWithStreamingResponse:
     def __init__(self, generate: GenerateResource) -> None:
         self._generate = generate
 
-        self.create = to_streamed_response_wrapper(
-            generate.create,
+        self.generate = to_streamed_response_wrapper(
+            generate.generate,
         )
-        self.generate_completion = to_streamed_response_wrapper(
-            generate.generate_completion,
+        self.generate_by_index = to_streamed_response_wrapper(
+            generate.generate_by_index,
         )
 
 
@@ -359,9 +357,9 @@ class AsyncGenerateResourceWithStreamingResponse:
     def __init__(self, generate: AsyncGenerateResource) -> None:
         self._generate = generate
 
-        self.create = async_to_streamed_response_wrapper(
-            generate.create,
+        self.generate = async_to_streamed_response_wrapper(
+            generate.generate,
         )
-        self.generate_completion = async_to_streamed_response_wrapper(
-            generate.generate_completion,
+        self.generate_by_index = async_to_streamed_response_wrapper(
+            generate.generate_by_index,
         )

@@ -3,7 +3,7 @@
 from typing import List
 from typing_extensions import TypeAlias
 
-from .banner_model import BannerModel
+from ....configs.banner_model import BannerModel
 
 __all__ = ["BannerGetResponse"]
 

@@ -45,8 +45,11 @@ from ....._response import (
 )
 from ....._base_client import make_request_options
 from .....types.api.v1 import auth_signin_params, auth_signup_params, auth_add_user_params, auth_ldap_auth_params
-from .....types.api.v1.session_user_response import SessionUserResponse
-from .....types.api.v1.auth_add_user_response import AuthAddUserResponse
+from .....types.signin_response import SigninResponse
+from .....types.api.v1.auth_signin_response import AuthSigninResponse
+from .....types.api.v1.auth_signup_response import AuthSignupResponse
+from .....types.api.v1.auth_ldap_auth_response import AuthLdapAuthResponse
+from .....types.api.v1.auth_get_session_user_response import AuthGetSessionUserResponse
 
 __all__ = ["AuthsResource", "AsyncAuthsResource"]
 
@@ -70,7 +73,7 @@ class AuthsResource(SyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#accessing-raw-response-data-eg-headers
         """
         return AuthsResourceWithRawResponse(self)
 
@@ -79,7 +82,7 @@ class AuthsResource(SyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#with_streaming_response
+        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#with_streaming_response
         """
         return AuthsResourceWithStreamingResponse(self)
 
@@ -97,7 +100,7 @@ class AuthsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AuthAddUserResponse:
+    ) -> SigninResponse:
         """
         Add User
 
@@ -125,7 +128,7 @@ class AuthsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=AuthAddUserResponse,
+            cast_to=SigninResponse,
         )
 
     def get_session_user(
@@ -137,14 +140,14 @@ class AuthsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SessionUserResponse:
+    ) -> AuthGetSessionUserResponse:
         """Get Session User"""
         return self._get(
             "/api/v1/auths/",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=SessionUserResponse,
+            cast_to=AuthGetSessionUserResponse,
         )
 
     def ldap_auth(
@@ -158,7 +161,7 @@ class AuthsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SessionUserResponse:
+    ) -> AuthLdapAuthResponse:
         """
         Ldap Auth
 
@@ -183,7 +186,7 @@ class AuthsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=SessionUserResponse,
+            cast_to=AuthLdapAuthResponse,
         )
 
     def signin(
@@ -197,7 +200,7 @@ class AuthsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SessionUserResponse:
+    ) -> AuthSigninResponse:
         """
         Signin
 
@@ -222,7 +225,7 @@ class AuthsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=SessionUserResponse,
+            cast_to=AuthSigninResponse,
         )
 
     def signout(
@@ -257,7 +260,7 @@ class AuthsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SessionUserResponse:
+    ) -> AuthSignupResponse:
         """
         Signup
 
@@ -284,7 +287,7 @@ class AuthsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=SessionUserResponse,
+            cast_to=AuthSignupResponse,
         )
 
 
@@ -307,7 +310,7 @@ class AsyncAuthsResource(AsyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#accessing-raw-response-data-eg-headers
         """
         return AsyncAuthsResourceWithRawResponse(self)
 
@@ -316,7 +319,7 @@ class AsyncAuthsResource(AsyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#with_streaming_response
+        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#with_streaming_response
         """
         return AsyncAuthsResourceWithStreamingResponse(self)
 
@@ -334,7 +337,7 @@ class AsyncAuthsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AuthAddUserResponse:
+    ) -> SigninResponse:
         """
         Add User
 
@@ -362,7 +365,7 @@ class AsyncAuthsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=AuthAddUserResponse,
+            cast_to=SigninResponse,
         )
 
     async def get_session_user(
@@ -374,14 +377,14 @@ class AsyncAuthsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SessionUserResponse:
+    ) -> AuthGetSessionUserResponse:
         """Get Session User"""
         return await self._get(
             "/api/v1/auths/",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=SessionUserResponse,
+            cast_to=AuthGetSessionUserResponse,
         )
 
     async def ldap_auth(
@@ -395,7 +398,7 @@ class AsyncAuthsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SessionUserResponse:
+    ) -> AuthLdapAuthResponse:
         """
         Ldap Auth
 
@@ -420,7 +423,7 @@ class AsyncAuthsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=SessionUserResponse,
+            cast_to=AuthLdapAuthResponse,
         )
 
     async def signin(
@@ -434,7 +437,7 @@ class AsyncAuthsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SessionUserResponse:
+    ) -> AuthSigninResponse:
         """
         Signin
 
@@ -459,7 +462,7 @@ class AsyncAuthsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=SessionUserResponse,
+            cast_to=AuthSigninResponse,
         )
 
     async def signout(
@@ -494,7 +497,7 @@ class AsyncAuthsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SessionUserResponse:
+    ) -> AuthSignupResponse:
         """
         Signup
 
@@ -521,7 +524,7 @@ class AsyncAuthsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=SessionUserResponse,
+            cast_to=AuthSignupResponse,
         )
 
 

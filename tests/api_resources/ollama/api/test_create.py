@@ -18,9 +18,7 @@ class TestCreate:
 
     @parametrize
     def test_method_create(self, client: Pyopenwebui) -> None:
-        create = client.ollama.api.create.create(
-            url_idx=0,
-        )
+        create = client.ollama.api.create.create()
         assert_matches_type(object, create, path=["response"])
 
     @parametrize
@@ -35,9 +33,7 @@ class TestCreate:
 
     @parametrize
     def test_raw_response_create(self, client: Pyopenwebui) -> None:
-        response = client.ollama.api.create.with_raw_response.create(
-            url_idx=0,
-        )
+        response = client.ollama.api.create.with_raw_response.create()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -46,9 +42,7 @@ class TestCreate:
 
     @parametrize
     def test_streaming_response_create(self, client: Pyopenwebui) -> None:
-        with client.ollama.api.create.with_streaming_response.create(
-            url_idx=0,
-        ) as response:
+        with client.ollama.api.create.with_streaming_response.create() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
@@ -58,13 +52,15 @@ class TestCreate:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
-    def test_method_create_model(self, client: Pyopenwebui) -> None:
-        create = client.ollama.api.create.create_model()
+    def test_method_create_by_index(self, client: Pyopenwebui) -> None:
+        create = client.ollama.api.create.create_by_index(
+            url_idx=0,
+        )
         assert_matches_type(object, create, path=["response"])
 
     @parametrize
-    def test_method_create_model_with_all_params(self, client: Pyopenwebui) -> None:
-        create = client.ollama.api.create.create_model(
+    def test_method_create_by_index_with_all_params(self, client: Pyopenwebui) -> None:
+        create = client.ollama.api.create.create_by_index(
             url_idx=0,
             model="model",
             path="path",
@@ -73,8 +69,10 @@ class TestCreate:
         assert_matches_type(object, create, path=["response"])
 
     @parametrize
-    def test_raw_response_create_model(self, client: Pyopenwebui) -> None:
-        response = client.ollama.api.create.with_raw_response.create_model()
+    def test_raw_response_create_by_index(self, client: Pyopenwebui) -> None:
+        response = client.ollama.api.create.with_raw_response.create_by_index(
+            url_idx=0,
+        )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -82,8 +80,10 @@ class TestCreate:
         assert_matches_type(object, create, path=["response"])
 
     @parametrize
-    def test_streaming_response_create_model(self, client: Pyopenwebui) -> None:
-        with client.ollama.api.create.with_streaming_response.create_model() as response:
+    def test_streaming_response_create_by_index(self, client: Pyopenwebui) -> None:
+        with client.ollama.api.create.with_streaming_response.create_by_index(
+            url_idx=0,
+        ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
@@ -98,9 +98,7 @@ class TestAsyncCreate:
 
     @parametrize
     async def test_method_create(self, async_client: AsyncPyopenwebui) -> None:
-        create = await async_client.ollama.api.create.create(
-            url_idx=0,
-        )
+        create = await async_client.ollama.api.create.create()
         assert_matches_type(object, create, path=["response"])
 
     @parametrize
@@ -115,9 +113,7 @@ class TestAsyncCreate:
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncPyopenwebui) -> None:
-        response = await async_client.ollama.api.create.with_raw_response.create(
-            url_idx=0,
-        )
+        response = await async_client.ollama.api.create.with_raw_response.create()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -126,9 +122,7 @@ class TestAsyncCreate:
 
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncPyopenwebui) -> None:
-        async with async_client.ollama.api.create.with_streaming_response.create(
-            url_idx=0,
-        ) as response:
+        async with async_client.ollama.api.create.with_streaming_response.create() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
@@ -138,13 +132,15 @@ class TestAsyncCreate:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
-    async def test_method_create_model(self, async_client: AsyncPyopenwebui) -> None:
-        create = await async_client.ollama.api.create.create_model()
+    async def test_method_create_by_index(self, async_client: AsyncPyopenwebui) -> None:
+        create = await async_client.ollama.api.create.create_by_index(
+            url_idx=0,
+        )
         assert_matches_type(object, create, path=["response"])
 
     @parametrize
-    async def test_method_create_model_with_all_params(self, async_client: AsyncPyopenwebui) -> None:
-        create = await async_client.ollama.api.create.create_model(
+    async def test_method_create_by_index_with_all_params(self, async_client: AsyncPyopenwebui) -> None:
+        create = await async_client.ollama.api.create.create_by_index(
             url_idx=0,
             model="model",
             path="path",
@@ -153,8 +149,10 @@ class TestAsyncCreate:
         assert_matches_type(object, create, path=["response"])
 
     @parametrize
-    async def test_raw_response_create_model(self, async_client: AsyncPyopenwebui) -> None:
-        response = await async_client.ollama.api.create.with_raw_response.create_model()
+    async def test_raw_response_create_by_index(self, async_client: AsyncPyopenwebui) -> None:
+        response = await async_client.ollama.api.create.with_raw_response.create_by_index(
+            url_idx=0,
+        )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -162,8 +160,10 @@ class TestAsyncCreate:
         assert_matches_type(object, create, path=["response"])
 
     @parametrize
-    async def test_streaming_response_create_model(self, async_client: AsyncPyopenwebui) -> None:
-        async with async_client.ollama.api.create.with_streaming_response.create_model() as response:
+    async def test_streaming_response_create_by_index(self, async_client: AsyncPyopenwebui) -> None:
+        async with async_client.ollama.api.create.with_streaming_response.create_by_index(
+            url_idx=0,
+        ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 

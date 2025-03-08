@@ -17,17 +17,23 @@ class TestCompletions:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @parametrize
-    def test_method_create(self, client: Pyopenwebui) -> None:
-        completion = client.ollama.v1.chat.completions.create(
-            url_idx=0,
+    def test_method_generate(self, client: Pyopenwebui) -> None:
+        completion = client.ollama.v1.chat.completions.generate(
             body={},
         )
         assert_matches_type(object, completion, path=["response"])
 
     @parametrize
-    def test_raw_response_create(self, client: Pyopenwebui) -> None:
-        response = client.ollama.v1.chat.completions.with_raw_response.create(
+    def test_method_generate_with_all_params(self, client: Pyopenwebui) -> None:
+        completion = client.ollama.v1.chat.completions.generate(
+            body={},
             url_idx=0,
+        )
+        assert_matches_type(object, completion, path=["response"])
+
+    @parametrize
+    def test_raw_response_generate(self, client: Pyopenwebui) -> None:
+        response = client.ollama.v1.chat.completions.with_raw_response.generate(
             body={},
         )
 
@@ -37,9 +43,8 @@ class TestCompletions:
         assert_matches_type(object, completion, path=["response"])
 
     @parametrize
-    def test_streaming_response_create(self, client: Pyopenwebui) -> None:
-        with client.ollama.v1.chat.completions.with_streaming_response.create(
-            url_idx=0,
+    def test_streaming_response_generate(self, client: Pyopenwebui) -> None:
+        with client.ollama.v1.chat.completions.with_streaming_response.generate(
             body={},
         ) as response:
             assert not response.is_closed
@@ -51,23 +56,17 @@ class TestCompletions:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
-    def test_method_generate_openai_chat_completion(self, client: Pyopenwebui) -> None:
-        completion = client.ollama.v1.chat.completions.generate_openai_chat_completion(
-            body={},
-        )
-        assert_matches_type(object, completion, path=["response"])
-
-    @parametrize
-    def test_method_generate_openai_chat_completion_with_all_params(self, client: Pyopenwebui) -> None:
-        completion = client.ollama.v1.chat.completions.generate_openai_chat_completion(
-            body={},
+    def test_method_generate_by_index(self, client: Pyopenwebui) -> None:
+        completion = client.ollama.v1.chat.completions.generate_by_index(
             url_idx=0,
+            body={},
         )
         assert_matches_type(object, completion, path=["response"])
 
     @parametrize
-    def test_raw_response_generate_openai_chat_completion(self, client: Pyopenwebui) -> None:
-        response = client.ollama.v1.chat.completions.with_raw_response.generate_openai_chat_completion(
+    def test_raw_response_generate_by_index(self, client: Pyopenwebui) -> None:
+        response = client.ollama.v1.chat.completions.with_raw_response.generate_by_index(
+            url_idx=0,
             body={},
         )
 
@@ -77,8 +76,9 @@ class TestCompletions:
         assert_matches_type(object, completion, path=["response"])
 
     @parametrize
-    def test_streaming_response_generate_openai_chat_completion(self, client: Pyopenwebui) -> None:
-        with client.ollama.v1.chat.completions.with_streaming_response.generate_openai_chat_completion(
+    def test_streaming_response_generate_by_index(self, client: Pyopenwebui) -> None:
+        with client.ollama.v1.chat.completions.with_streaming_response.generate_by_index(
+            url_idx=0,
             body={},
         ) as response:
             assert not response.is_closed
@@ -94,17 +94,23 @@ class TestAsyncCompletions:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @parametrize
-    async def test_method_create(self, async_client: AsyncPyopenwebui) -> None:
-        completion = await async_client.ollama.v1.chat.completions.create(
-            url_idx=0,
+    async def test_method_generate(self, async_client: AsyncPyopenwebui) -> None:
+        completion = await async_client.ollama.v1.chat.completions.generate(
             body={},
         )
         assert_matches_type(object, completion, path=["response"])
 
     @parametrize
-    async def test_raw_response_create(self, async_client: AsyncPyopenwebui) -> None:
-        response = await async_client.ollama.v1.chat.completions.with_raw_response.create(
+    async def test_method_generate_with_all_params(self, async_client: AsyncPyopenwebui) -> None:
+        completion = await async_client.ollama.v1.chat.completions.generate(
+            body={},
             url_idx=0,
+        )
+        assert_matches_type(object, completion, path=["response"])
+
+    @parametrize
+    async def test_raw_response_generate(self, async_client: AsyncPyopenwebui) -> None:
+        response = await async_client.ollama.v1.chat.completions.with_raw_response.generate(
             body={},
         )
 
@@ -114,9 +120,8 @@ class TestAsyncCompletions:
         assert_matches_type(object, completion, path=["response"])
 
     @parametrize
-    async def test_streaming_response_create(self, async_client: AsyncPyopenwebui) -> None:
-        async with async_client.ollama.v1.chat.completions.with_streaming_response.create(
-            url_idx=0,
+    async def test_streaming_response_generate(self, async_client: AsyncPyopenwebui) -> None:
+        async with async_client.ollama.v1.chat.completions.with_streaming_response.generate(
             body={},
         ) as response:
             assert not response.is_closed
@@ -128,23 +133,17 @@ class TestAsyncCompletions:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
-    async def test_method_generate_openai_chat_completion(self, async_client: AsyncPyopenwebui) -> None:
-        completion = await async_client.ollama.v1.chat.completions.generate_openai_chat_completion(
-            body={},
-        )
-        assert_matches_type(object, completion, path=["response"])
-
-    @parametrize
-    async def test_method_generate_openai_chat_completion_with_all_params(self, async_client: AsyncPyopenwebui) -> None:
-        completion = await async_client.ollama.v1.chat.completions.generate_openai_chat_completion(
-            body={},
+    async def test_method_generate_by_index(self, async_client: AsyncPyopenwebui) -> None:
+        completion = await async_client.ollama.v1.chat.completions.generate_by_index(
             url_idx=0,
+            body={},
         )
         assert_matches_type(object, completion, path=["response"])
 
     @parametrize
-    async def test_raw_response_generate_openai_chat_completion(self, async_client: AsyncPyopenwebui) -> None:
-        response = await async_client.ollama.v1.chat.completions.with_raw_response.generate_openai_chat_completion(
+    async def test_raw_response_generate_by_index(self, async_client: AsyncPyopenwebui) -> None:
+        response = await async_client.ollama.v1.chat.completions.with_raw_response.generate_by_index(
+            url_idx=0,
             body={},
         )
 
@@ -154,8 +153,9 @@ class TestAsyncCompletions:
         assert_matches_type(object, completion, path=["response"])
 
     @parametrize
-    async def test_streaming_response_generate_openai_chat_completion(self, async_client: AsyncPyopenwebui) -> None:
-        async with async_client.ollama.v1.chat.completions.with_streaming_response.generate_openai_chat_completion(
+    async def test_streaming_response_generate_by_index(self, async_client: AsyncPyopenwebui) -> None:
+        async with async_client.ollama.v1.chat.completions.with_streaming_response.generate_by_index(
+            url_idx=0,
             body={},
         ) as response:
             assert not response.is_closed

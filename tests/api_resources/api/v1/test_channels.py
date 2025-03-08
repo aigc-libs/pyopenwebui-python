@@ -10,9 +10,11 @@ import pytest
 from pyopenwebui import Pyopenwebui, AsyncPyopenwebui
 from tests.utils import assert_matches_type
 from pyopenwebui.types.api.v1 import (
-    ChannelModel,
     ChannelGetResponse,
+    ChannelCreateResponse,
+    ChannelGetByIDResponse,
     ChannelDeleteByIDResponse,
+    ChannelUpdateByIDResponse,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -26,7 +28,7 @@ class TestChannels:
         channel = client.api.v1.channels.create(
             name="name",
         )
-        assert_matches_type(Optional[ChannelModel], channel, path=["response"])
+        assert_matches_type(Optional[ChannelCreateResponse], channel, path=["response"])
 
     @parametrize
     def test_method_create_with_all_params(self, client: Pyopenwebui) -> None:
@@ -37,7 +39,7 @@ class TestChannels:
             description="description",
             meta={},
         )
-        assert_matches_type(Optional[ChannelModel], channel, path=["response"])
+        assert_matches_type(Optional[ChannelCreateResponse], channel, path=["response"])
 
     @parametrize
     def test_raw_response_create(self, client: Pyopenwebui) -> None:
@@ -48,7 +50,7 @@ class TestChannels:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         channel = response.parse()
-        assert_matches_type(Optional[ChannelModel], channel, path=["response"])
+        assert_matches_type(Optional[ChannelCreateResponse], channel, path=["response"])
 
     @parametrize
     def test_streaming_response_create(self, client: Pyopenwebui) -> None:
@@ -59,7 +61,7 @@ class TestChannels:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             channel = response.parse()
-            assert_matches_type(Optional[ChannelModel], channel, path=["response"])
+            assert_matches_type(Optional[ChannelCreateResponse], channel, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -131,7 +133,7 @@ class TestChannels:
         channel = client.api.v1.channels.get_by_id(
             "id",
         )
-        assert_matches_type(Optional[ChannelModel], channel, path=["response"])
+        assert_matches_type(Optional[ChannelGetByIDResponse], channel, path=["response"])
 
     @parametrize
     def test_raw_response_get_by_id(self, client: Pyopenwebui) -> None:
@@ -142,7 +144,7 @@ class TestChannels:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         channel = response.parse()
-        assert_matches_type(Optional[ChannelModel], channel, path=["response"])
+        assert_matches_type(Optional[ChannelGetByIDResponse], channel, path=["response"])
 
     @parametrize
     def test_streaming_response_get_by_id(self, client: Pyopenwebui) -> None:
@@ -153,7 +155,7 @@ class TestChannels:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             channel = response.parse()
-            assert_matches_type(Optional[ChannelModel], channel, path=["response"])
+            assert_matches_type(Optional[ChannelGetByIDResponse], channel, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -170,7 +172,7 @@ class TestChannels:
             id="id",
             name="name",
         )
-        assert_matches_type(Optional[ChannelModel], channel, path=["response"])
+        assert_matches_type(Optional[ChannelUpdateByIDResponse], channel, path=["response"])
 
     @parametrize
     def test_method_update_by_id_with_all_params(self, client: Pyopenwebui) -> None:
@@ -182,7 +184,7 @@ class TestChannels:
             description="description",
             meta={},
         )
-        assert_matches_type(Optional[ChannelModel], channel, path=["response"])
+        assert_matches_type(Optional[ChannelUpdateByIDResponse], channel, path=["response"])
 
     @parametrize
     def test_raw_response_update_by_id(self, client: Pyopenwebui) -> None:
@@ -194,7 +196,7 @@ class TestChannels:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         channel = response.parse()
-        assert_matches_type(Optional[ChannelModel], channel, path=["response"])
+        assert_matches_type(Optional[ChannelUpdateByIDResponse], channel, path=["response"])
 
     @parametrize
     def test_streaming_response_update_by_id(self, client: Pyopenwebui) -> None:
@@ -206,7 +208,7 @@ class TestChannels:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             channel = response.parse()
-            assert_matches_type(Optional[ChannelModel], channel, path=["response"])
+            assert_matches_type(Optional[ChannelUpdateByIDResponse], channel, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -227,7 +229,7 @@ class TestAsyncChannels:
         channel = await async_client.api.v1.channels.create(
             name="name",
         )
-        assert_matches_type(Optional[ChannelModel], channel, path=["response"])
+        assert_matches_type(Optional[ChannelCreateResponse], channel, path=["response"])
 
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncPyopenwebui) -> None:
@@ -238,7 +240,7 @@ class TestAsyncChannels:
             description="description",
             meta={},
         )
-        assert_matches_type(Optional[ChannelModel], channel, path=["response"])
+        assert_matches_type(Optional[ChannelCreateResponse], channel, path=["response"])
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncPyopenwebui) -> None:
@@ -249,7 +251,7 @@ class TestAsyncChannels:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         channel = await response.parse()
-        assert_matches_type(Optional[ChannelModel], channel, path=["response"])
+        assert_matches_type(Optional[ChannelCreateResponse], channel, path=["response"])
 
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncPyopenwebui) -> None:
@@ -260,7 +262,7 @@ class TestAsyncChannels:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             channel = await response.parse()
-            assert_matches_type(Optional[ChannelModel], channel, path=["response"])
+            assert_matches_type(Optional[ChannelCreateResponse], channel, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -332,7 +334,7 @@ class TestAsyncChannels:
         channel = await async_client.api.v1.channels.get_by_id(
             "id",
         )
-        assert_matches_type(Optional[ChannelModel], channel, path=["response"])
+        assert_matches_type(Optional[ChannelGetByIDResponse], channel, path=["response"])
 
     @parametrize
     async def test_raw_response_get_by_id(self, async_client: AsyncPyopenwebui) -> None:
@@ -343,7 +345,7 @@ class TestAsyncChannels:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         channel = await response.parse()
-        assert_matches_type(Optional[ChannelModel], channel, path=["response"])
+        assert_matches_type(Optional[ChannelGetByIDResponse], channel, path=["response"])
 
     @parametrize
     async def test_streaming_response_get_by_id(self, async_client: AsyncPyopenwebui) -> None:
@@ -354,7 +356,7 @@ class TestAsyncChannels:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             channel = await response.parse()
-            assert_matches_type(Optional[ChannelModel], channel, path=["response"])
+            assert_matches_type(Optional[ChannelGetByIDResponse], channel, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -371,7 +373,7 @@ class TestAsyncChannels:
             id="id",
             name="name",
         )
-        assert_matches_type(Optional[ChannelModel], channel, path=["response"])
+        assert_matches_type(Optional[ChannelUpdateByIDResponse], channel, path=["response"])
 
     @parametrize
     async def test_method_update_by_id_with_all_params(self, async_client: AsyncPyopenwebui) -> None:
@@ -383,7 +385,7 @@ class TestAsyncChannels:
             description="description",
             meta={},
         )
-        assert_matches_type(Optional[ChannelModel], channel, path=["response"])
+        assert_matches_type(Optional[ChannelUpdateByIDResponse], channel, path=["response"])
 
     @parametrize
     async def test_raw_response_update_by_id(self, async_client: AsyncPyopenwebui) -> None:
@@ -395,7 +397,7 @@ class TestAsyncChannels:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         channel = await response.parse()
-        assert_matches_type(Optional[ChannelModel], channel, path=["response"])
+        assert_matches_type(Optional[ChannelUpdateByIDResponse], channel, path=["response"])
 
     @parametrize
     async def test_streaming_response_update_by_id(self, async_client: AsyncPyopenwebui) -> None:
@@ -407,7 +409,7 @@ class TestAsyncChannels:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             channel = await response.parse()
-            assert_matches_type(Optional[ChannelModel], channel, path=["response"])
+            assert_matches_type(Optional[ChannelUpdateByIDResponse], channel, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

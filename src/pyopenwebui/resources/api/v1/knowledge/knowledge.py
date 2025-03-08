@@ -37,11 +37,13 @@ from ....._response import (
 )
 from ....._base_client import make_request_options
 from .....types.api.v1 import knowledge_create_params, knowledge_update_by_id_params
-from .....types.api.v1.knowledge_response import KnowledgeResponse
 from .....types.api.v1.knowledge_get_response import KnowledgeGetResponse
-from .....types.api.v1.knowledge_files_response import KnowledgeFilesResponse
+from .....types.api.v1.knowledge_create_response import KnowledgeCreateResponse
 from .....types.api.v1.knowledge_get_list_response import KnowledgeGetListResponse
+from .....types.api.v1.knowledge_get_by_id_response import KnowledgeGetByIDResponse
+from .....types.api.v1.knowledge_reset_by_id_response import KnowledgeResetByIDResponse
 from .....types.api.v1.knowledge_delete_by_id_response import KnowledgeDeleteByIDResponse
+from .....types.api.v1.knowledge_update_by_id_response import KnowledgeUpdateByIDResponse
 
 __all__ = ["KnowledgeResource", "AsyncKnowledgeResource"]
 
@@ -61,7 +63,7 @@ class KnowledgeResource(SyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#accessing-raw-response-data-eg-headers
         """
         return KnowledgeResourceWithRawResponse(self)
 
@@ -70,7 +72,7 @@ class KnowledgeResource(SyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#with_streaming_response
+        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#with_streaming_response
         """
         return KnowledgeResourceWithStreamingResponse(self)
 
@@ -87,7 +89,7 @@ class KnowledgeResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[KnowledgeResponse]:
+    ) -> Optional[KnowledgeCreateResponse]:
         """
         Create New Knowledge
 
@@ -114,7 +116,7 @@ class KnowledgeResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=KnowledgeResponse,
+            cast_to=KnowledgeCreateResponse,
         )
 
     def delete_by_id(
@@ -179,7 +181,7 @@ class KnowledgeResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[KnowledgeFilesResponse]:
+    ) -> Optional[KnowledgeGetByIDResponse]:
         """
         Get Knowledge By Id
 
@@ -199,7 +201,7 @@ class KnowledgeResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=KnowledgeFilesResponse,
+            cast_to=KnowledgeGetByIDResponse,
         )
 
     def get_list(
@@ -231,7 +233,7 @@ class KnowledgeResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[KnowledgeResponse]:
+    ) -> Optional[KnowledgeResetByIDResponse]:
         """
         Reset Knowledge By Id
 
@@ -251,7 +253,7 @@ class KnowledgeResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=KnowledgeResponse,
+            cast_to=KnowledgeResetByIDResponse,
         )
 
     def update_by_id(
@@ -268,7 +270,7 @@ class KnowledgeResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[KnowledgeFilesResponse]:
+    ) -> Optional[KnowledgeUpdateByIDResponse]:
         """
         Update Knowledge By Id
 
@@ -297,7 +299,7 @@ class KnowledgeResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=KnowledgeFilesResponse,
+            cast_to=KnowledgeUpdateByIDResponse,
         )
 
 
@@ -316,7 +318,7 @@ class AsyncKnowledgeResource(AsyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#accessing-raw-response-data-eg-headers
         """
         return AsyncKnowledgeResourceWithRawResponse(self)
 
@@ -325,7 +327,7 @@ class AsyncKnowledgeResource(AsyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/pyopenwebui-python#with_streaming_response
+        For more information, see https://www.github.com/aigc-libs/pyopenwebui-python#with_streaming_response
         """
         return AsyncKnowledgeResourceWithStreamingResponse(self)
 
@@ -342,7 +344,7 @@ class AsyncKnowledgeResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[KnowledgeResponse]:
+    ) -> Optional[KnowledgeCreateResponse]:
         """
         Create New Knowledge
 
@@ -369,7 +371,7 @@ class AsyncKnowledgeResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=KnowledgeResponse,
+            cast_to=KnowledgeCreateResponse,
         )
 
     async def delete_by_id(
@@ -434,7 +436,7 @@ class AsyncKnowledgeResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[KnowledgeFilesResponse]:
+    ) -> Optional[KnowledgeGetByIDResponse]:
         """
         Get Knowledge By Id
 
@@ -454,7 +456,7 @@ class AsyncKnowledgeResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=KnowledgeFilesResponse,
+            cast_to=KnowledgeGetByIDResponse,
         )
 
     async def get_list(
@@ -486,7 +488,7 @@ class AsyncKnowledgeResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[KnowledgeResponse]:
+    ) -> Optional[KnowledgeResetByIDResponse]:
         """
         Reset Knowledge By Id
 
@@ -506,7 +508,7 @@ class AsyncKnowledgeResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=KnowledgeResponse,
+            cast_to=KnowledgeResetByIDResponse,
         )
 
     async def update_by_id(
@@ -523,7 +525,7 @@ class AsyncKnowledgeResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[KnowledgeFilesResponse]:
+    ) -> Optional[KnowledgeUpdateByIDResponse]:
         """
         Update Knowledge By Id
 
@@ -552,7 +554,7 @@ class AsyncKnowledgeResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=KnowledgeFilesResponse,
+            cast_to=KnowledgeUpdateByIDResponse,
         )
 
 
