@@ -26,6 +26,8 @@ class ModelModel(BaseModel):
 
     created_at: int
 
+    is_active: bool
+
     meta: Meta
 
     name: str
@@ -35,5 +37,7 @@ class ModelModel(BaseModel):
     updated_at: int
 
     user_id: str
+
+    access_control: Optional[object] = None
 
     base_model_id: Optional[str] = None

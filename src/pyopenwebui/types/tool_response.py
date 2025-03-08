@@ -25,3 +25,5 @@ class ToolResponse(BaseModel):
     updated_at: int
 
     user_id: str
+
+    access_control: Optional[object] = None

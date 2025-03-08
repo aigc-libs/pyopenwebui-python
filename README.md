@@ -24,26 +24,41 @@ pip install pyopenwebui
 The full API of this library can be found in [api.md](api.md).
 
 ```python
+import os
 from pyopenwebui import Pyopenwebui
 
-client = Pyopenwebui()
+client = Pyopenwebui(
+    bearer_token=os.environ.get(
+        "PYOPENWEBUI_BEARER_TOKEN"
+    ),  # This is the default and can be omitted
+)
 
-root = client.root.retrieve()
+response = client.ollama.get_status()
 ```
+
+While you can provide a `bearer_token` keyword argument,
+we recommend using [python-dotenv](https://pypi.org/project/python-dotenv/)
+to add `PYOPENWEBUI_BEARER_TOKEN="My Bearer Token"` to your `.env` file
+so that your Bearer Token is not stored in source control.
 
 ## Async usage
 
 Simply import `AsyncPyopenwebui` instead of `Pyopenwebui` and use `await` with each API call:
 
 ```python
+import os
 import asyncio
 from pyopenwebui import AsyncPyopenwebui
 
-client = AsyncPyopenwebui()
+client = AsyncPyopenwebui(
+    bearer_token=os.environ.get(
+        "PYOPENWEBUI_BEARER_TOKEN"
+    ),  # This is the default and can be omitted
+)
 
 
 async def main() -> None:
-    root = await client.root.retrieve()
+    response = await client.ollama.get_status()
 
 
 asyncio.run(main())
@@ -76,7 +91,7 @@ from pyopenwebui import Pyopenwebui
 client = Pyopenwebui()
 
 try:
-    client.root.retrieve()
+    client.ollama.get_status()
 except pyopenwebui.APIConnectionError as e:
     print("The server could not be reached")
     print(e.__cause__)  # an underlying Exception, likely raised within httpx.
@@ -119,7 +134,7 @@ client = Pyopenwebui(
 )
 
 # Or, configure per-request:
-client.with_options(max_retries=5).root.retrieve()
+client.with_options(max_retries=5).ollama.get_status()
 ```
 
 ### Timeouts
@@ -142,7 +157,7 @@ client = Pyopenwebui(
 )
 
 # Override per-request:
-client.with_options(timeout=5.0).root.retrieve()
+client.with_options(timeout=5.0).ollama.get_status()
 ```
 
 On timeout, an `APITimeoutError` is thrown.
@@ -183,11 +198,11 @@ The "raw" Response object can be accessed by prefixing `.with_raw_response.` to 
 from pyopenwebui import Pyopenwebui
 
 client = Pyopenwebui()
-response = client.root.with_raw_response.retrieve()
+response = client.ollama.with_raw_response.get_status()
 print(response.headers.get('X-My-Header'))
 
-root = response.parse()  # get the object that `root.retrieve()` would have returned
-print(root)
+ollama = response.parse()  # get the object that `ollama.get_status()` would have returned
+print(ollama)
 ```
 
 These methods return an [`APIResponse`](https://github.com/aigc-libs/pyopenwebui-python/tree/main/src/pyopenwebui/_response.py) object.
@@ -201,7 +216,7 @@ The above interface eagerly reads the full response body when you make the reque
 To stream the response body, use `.with_streaming_response` instead, which requires a context manager and only reads the response body once you call `.read()`, `.text()`, `.json()`, `.iter_bytes()`, `.iter_text()`, `.iter_lines()` or `.parse()`. In the async client, these are async methods.
 
 ```python
-with client.root.with_streaming_response.retrieve() as response:
+with client.ollama.with_streaming_response.get_status() as response:
     print(response.headers.get("X-My-Header"))
 
     for line in response.iter_lines():

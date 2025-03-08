@@ -22,4 +22,10 @@ class ChatResponse(BaseModel):
 
     user_id: str
 
+    folder_id: Optional[str] = None
+
+    meta: Optional[object] = None
+
+    pinned: Optional[bool] = None
+
     share_id: Optional[str] = None
