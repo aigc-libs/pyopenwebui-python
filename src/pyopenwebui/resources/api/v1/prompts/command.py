@@ -115,9 +115,9 @@ class CommandResource(SyncAPIResource):
 
     def update_by_command(
         self,
-        command_1: str,
+        path_command: str,
         *,
-        command_2: str,
+        body_command: str,
         content: str,
         title: str,
         access_control: Optional[object] | NotGiven = NOT_GIVEN,
@@ -140,13 +140,13 @@ class CommandResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not command_1:
-            raise ValueError(f"Expected a non-empty value for `command_1` but received {command_1!r}")
+        if not path_command:
+            raise ValueError(f"Expected a non-empty value for `path_command` but received {path_command!r}")
         return self._post(
-            f"/api/v1/prompts/command/{command_1}/update",
+            f"/api/v1/prompts/command/{path_command}/update",
             body=maybe_transform(
                 {
-                    "command_2": command_2,
+                    "body_command": body_command,
                     "content": content,
                     "title": title,
                     "access_control": access_control,
@@ -248,9 +248,9 @@ class AsyncCommandResource(AsyncAPIResource):
 
     async def update_by_command(
         self,
-        command_1: str,
+        path_command: str,
         *,
-        command_2: str,
+        body_command: str,
         content: str,
         title: str,
         access_control: Optional[object] | NotGiven = NOT_GIVEN,
@@ -273,13 +273,13 @@ class AsyncCommandResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not command_1:
-            raise ValueError(f"Expected a non-empty value for `command_1` but received {command_1!r}")
+        if not path_command:
+            raise ValueError(f"Expected a non-empty value for `path_command` but received {path_command!r}")
         return await self._post(
-            f"/api/v1/prompts/command/{command_1}/update",
+            f"/api/v1/prompts/command/{path_command}/update",
             body=await async_maybe_transform(
                 {
-                    "command_2": command_2,
+                    "body_command": body_command,
                     "content": content,
                     "title": title,
                     "access_control": access_control,
