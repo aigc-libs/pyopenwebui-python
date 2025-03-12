@@ -21,8 +21,8 @@ class TestID:
     @parametrize
     def test_method_update(self, client: Pyopenwebui) -> None:
         id = client.api.v1.functions.id.update(
-            id_1="id",
-            id_2="id",
+            path_id="id",
+            body_id="id",
             content="content",
             meta={},
             name="name",
@@ -32,8 +32,8 @@ class TestID:
     @parametrize
     def test_method_update_with_all_params(self, client: Pyopenwebui) -> None:
         id = client.api.v1.functions.id.update(
-            id_1="id",
-            id_2="id",
+            path_id="id",
+            body_id="id",
             content="content",
             meta={
                 "description": "description",
@@ -46,8 +46,8 @@ class TestID:
     @parametrize
     def test_raw_response_update(self, client: Pyopenwebui) -> None:
         response = client.api.v1.functions.id.with_raw_response.update(
-            id_1="id",
-            id_2="id",
+            path_id="id",
+            body_id="id",
             content="content",
             meta={},
             name="name",
@@ -61,8 +61,8 @@ class TestID:
     @parametrize
     def test_streaming_response_update(self, client: Pyopenwebui) -> None:
         with client.api.v1.functions.id.with_streaming_response.update(
-            id_1="id",
-            id_2="id",
+            path_id="id",
+            body_id="id",
             content="content",
             meta={},
             name="name",
@@ -77,10 +77,10 @@ class TestID:
 
     @parametrize
     def test_path_params_update(self, client: Pyopenwebui) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id_1` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_id` but received ''"):
             client.api.v1.functions.id.with_raw_response.update(
-                id_1="",
-                id_2="",
+                path_id="",
+                body_id="",
                 content="content",
                 meta={},
                 name="name",
@@ -169,8 +169,8 @@ class TestAsyncID:
     @parametrize
     async def test_method_update(self, async_client: AsyncPyopenwebui) -> None:
         id = await async_client.api.v1.functions.id.update(
-            id_1="id",
-            id_2="id",
+            path_id="id",
+            body_id="id",
             content="content",
             meta={},
             name="name",
@@ -180,8 +180,8 @@ class TestAsyncID:
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncPyopenwebui) -> None:
         id = await async_client.api.v1.functions.id.update(
-            id_1="id",
-            id_2="id",
+            path_id="id",
+            body_id="id",
             content="content",
             meta={
                 "description": "description",
@@ -194,8 +194,8 @@ class TestAsyncID:
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncPyopenwebui) -> None:
         response = await async_client.api.v1.functions.id.with_raw_response.update(
-            id_1="id",
-            id_2="id",
+            path_id="id",
+            body_id="id",
             content="content",
             meta={},
             name="name",
@@ -209,8 +209,8 @@ class TestAsyncID:
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncPyopenwebui) -> None:
         async with async_client.api.v1.functions.id.with_streaming_response.update(
-            id_1="id",
-            id_2="id",
+            path_id="id",
+            body_id="id",
             content="content",
             meta={},
             name="name",
@@ -225,10 +225,10 @@ class TestAsyncID:
 
     @parametrize
     async def test_path_params_update(self, async_client: AsyncPyopenwebui) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id_1` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_id` but received ''"):
             await async_client.api.v1.functions.id.with_raw_response.update(
-                id_1="",
-                id_2="",
+                path_id="",
+                body_id="",
                 content="content",
                 meta={},
                 name="name",
