@@ -11,7 +11,7 @@ __all__ = ["IDUpdateParams", "Meta"]
 
 
 class IDUpdateParams(TypedDict, total=False):
-    id_2: Required[Annotated[str, PropertyInfo(alias="id")]]
+    body_id: Required[Annotated[str, PropertyInfo(alias="id")]]
 
     content: Required[str]
 

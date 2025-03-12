@@ -6,7 +6,7 @@ The Pyopenwebui Python library provides convenient access to the Pyopenwebui RES
 application. The library includes type definitions for all request params and response fields,
 and offers both synchronous and asynchronous clients powered by [httpx](https://github.com/encode/httpx).
 
-It is generated with [Stainless](https://www.stainlessapi.com/).
+It is generated with [Stainless](https://www.stainless.com/).
 
 ## Documentation
 
@@ -74,6 +74,61 @@ Nested request parameters are [TypedDicts](https://docs.python.org/3/library/typ
 - Converting to a dictionary, `model.to_dict()`
 
 Typed requests and responses provide autocomplete and documentation within your editor. If you would like to see type errors in VS Code to help catch bugs earlier, set `python.analysis.typeCheckingMode` to `basic`.
+
+## Nested params
+
+Nested parameters are dictionaries, typed using `TypedDict`, for example:
+
+```python
+from pyopenwebui import Pyopenwebui
+
+client = Pyopenwebui()
+
+config = client.api.v1.images.config.update(
+    automatic1111={
+        "automatic1111_api_auth": "AUTOMATIC1111_API_AUTH",
+        "automatic1111_base_url": "AUTOMATIC1111_BASE_URL",
+        "automatic1111_cfg_scale": "string",
+        "automatic1111_sampler": "AUTOMATIC1111_SAMPLER",
+        "automatic1111_scheduler": "AUTOMATIC1111_SCHEDULER",
+    },
+    comfyui={
+        "comfyui_api_key": "COMFYUI_API_KEY",
+        "comfyui_base_url": "COMFYUI_BASE_URL",
+        "comfyui_workflow": "COMFYUI_WORKFLOW",
+        "comfyui_workflow_nodes": [{}],
+    },
+    enabled=True,
+    engine="engine",
+    gemini={
+        "gemini_api_base_url": "GEMINI_API_BASE_URL",
+        "gemini_api_key": "GEMINI_API_KEY",
+    },
+    openai={
+        "openai_api_base_url": "OPENAI_API_BASE_URL",
+        "openai_api_key": "OPENAI_API_KEY",
+    },
+    prompt_generation=True,
+)
+print(config.automatic1111)
+```
+
+## File uploads
+
+Request parameters that correspond to file uploads can be passed as `bytes`, a [`PathLike`](https://docs.python.org/3/library/os.html#os.PathLike) instance or a tuple of `(filename, contents, media type)`.
+
+```python
+from pathlib import Path
+from pyopenwebui import Pyopenwebui
+
+client = Pyopenwebui()
+
+client.ollama.models.upload.upload(
+    file=Path("/path/to/file"),
+)
+```
+
+The async client uses the exact same interface. If you pass a [`PathLike`](https://docs.python.org/3/library/os.html#os.PathLike) instance, the file contents will be read asynchronously automatically.
 
 ## Handling errors
 

@@ -1350,7 +1350,7 @@ Methods:
 
 - <code title="delete /api/v1/prompts/command/{command}/delete">client.api.v1.prompts.command.<a href="./src/pyopenwebui/resources/api/v1/prompts/command.py">delete_by_command</a>(command) -> <a href="./src/pyopenwebui/types/api/v1/prompts/command_delete_by_command_response.py">CommandDeleteByCommandResponse</a></code>
 - <code title="get /api/v1/prompts/command/{command}">client.api.v1.prompts.command.<a href="./src/pyopenwebui/resources/api/v1/prompts/command.py">get_by_command</a>(command) -> <a href="./src/pyopenwebui/types/shared/prompt_model.py">Optional[PromptModel]</a></code>
-- <code title="post /api/v1/prompts/command/{command}/update">client.api.v1.prompts.command.<a href="./src/pyopenwebui/resources/api/v1/prompts/command.py">update_by_command</a>(command_1, \*\*<a href="src/pyopenwebui/types/api/v1/prompts/command_update_by_command_params.py">params</a>) -> <a href="./src/pyopenwebui/types/shared/prompt_model.py">Optional[PromptModel]</a></code>
+- <code title="post /api/v1/prompts/command/{command}/update">client.api.v1.prompts.command.<a href="./src/pyopenwebui/resources/api/v1/prompts/command.py">update_by_command</a>(path_command, \*\*<a href="src/pyopenwebui/types/api/v1/prompts/command_update_by_command_params.py">params</a>) -> <a href="./src/pyopenwebui/types/shared/prompt_model.py">Optional[PromptModel]</a></code>
 
 ### Tools
 
@@ -1377,7 +1377,7 @@ from pyopenwebui.types.api.v1.tools import IDDeleteResponse
 
 Methods:
 
-- <code title="post /api/v1/tools/id/{id}/update">client.api.v1.tools.id.<a href="./src/pyopenwebui/resources/api/v1/tools/id/id.py">update</a>(id_1, \*\*<a href="src/pyopenwebui/types/api/v1/tools/id_update_params.py">params</a>) -> <a href="./src/pyopenwebui/types/tool_model.py">Optional[ToolModel]</a></code>
+- <code title="post /api/v1/tools/id/{id}/update">client.api.v1.tools.id.<a href="./src/pyopenwebui/resources/api/v1/tools/id/id.py">update</a>(path_id, \*\*<a href="src/pyopenwebui/types/api/v1/tools/id_update_params.py">params</a>) -> <a href="./src/pyopenwebui/types/tool_model.py">Optional[ToolModel]</a></code>
 - <code title="delete /api/v1/tools/id/{id}/delete">client.api.v1.tools.id.<a href="./src/pyopenwebui/resources/api/v1/tools/id/id.py">delete</a>(id) -> <a href="./src/pyopenwebui/types/api/v1/tools/id_delete_response.py">IDDeleteResponse</a></code>
 - <code title="get /api/v1/tools/id/{id}">client.api.v1.tools.id.<a href="./src/pyopenwebui/resources/api/v1/tools/id/id.py">get</a>(id) -> <a href="./src/pyopenwebui/types/tool_model.py">Optional[ToolModel]</a></code>
 
@@ -1570,7 +1570,7 @@ from pyopenwebui.types.api.v1.functions import IDDeleteResponse
 
 Methods:
 
-- <code title="post /api/v1/functions/id/{id}/update">client.api.v1.functions.id.<a href="./src/pyopenwebui/resources/api/v1/functions/id/id.py">update</a>(id_1, \*\*<a href="src/pyopenwebui/types/api/v1/functions/id_update_params.py">params</a>) -> <a href="./src/pyopenwebui/types/function_model.py">Optional[FunctionModel]</a></code>
+- <code title="post /api/v1/functions/id/{id}/update">client.api.v1.functions.id.<a href="./src/pyopenwebui/resources/api/v1/functions/id/id.py">update</a>(path_id, \*\*<a href="src/pyopenwebui/types/api/v1/functions/id_update_params.py">params</a>) -> <a href="./src/pyopenwebui/types/function_model.py">Optional[FunctionModel]</a></code>
 - <code title="delete /api/v1/functions/id/{id}/delete">client.api.v1.functions.id.<a href="./src/pyopenwebui/resources/api/v1/functions/id/id.py">delete</a>(id) -> <a href="./src/pyopenwebui/types/api/v1/functions/id_delete_response.py">IDDeleteResponse</a></code>
 - <code title="get /api/v1/functions/id/{id}">client.api.v1.functions.id.<a href="./src/pyopenwebui/resources/api/v1/functions/id/id.py">get</a>(id) -> <a href="./src/pyopenwebui/types/function_model.py">Optional[FunctionModel]</a></code>
 
