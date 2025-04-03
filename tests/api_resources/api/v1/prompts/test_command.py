@@ -150,7 +150,7 @@ class TestCommand:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_command` but received ''"):
             client.api.v1.prompts.command.with_raw_response.update_by_command(
                 path_command="",
-                body_command="",
+                body_command="command",
                 content="content",
                 title="title",
             )
@@ -291,7 +291,7 @@ class TestAsyncCommand:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_command` but received ''"):
             await async_client.api.v1.prompts.command.with_raw_response.update_by_command(
                 path_command="",
-                body_command="",
+                body_command="command",
                 content="content",
                 title="title",
             )
