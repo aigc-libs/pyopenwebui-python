@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import httpx
 
+from .... import _resource
 from .chat import (
     ChatResource,
     AsyncChatResource,
@@ -85,10 +86,7 @@ from .generate import (
     AsyncGenerateResourceWithStreamingResponse,
 )
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from .embeddings import (
     EmbeddingsResource,
@@ -98,7 +96,6 @@ from .embeddings import (
     EmbeddingsResourceWithStreamingResponse,
     AsyncEmbeddingsResourceWithStreamingResponse,
 )
-from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
     to_raw_response_wrapper,
     to_streamed_response_wrapper,
@@ -111,7 +108,7 @@ from ....types.ollama import api_show_info_params
 __all__ = ["APIResource", "AsyncAPIResource"]
 
 
-class APIResource(SyncAPIResource):
+class APIResource(_resource.SyncAPIResource):
     @cached_property
     def tags(self) -> TagsResource:
         return TagsResource(self._client)
@@ -230,7 +227,7 @@ class APIResource(SyncAPIResource):
         )
 
 
-class AsyncAPIResource(AsyncAPIResource):
+class AsyncAPIResource(_resource.AsyncAPIResource):
     @cached_property
     def tags(self) -> AsyncTagsResource:
         return AsyncTagsResource(self._client)
