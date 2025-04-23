@@ -25,19 +25,16 @@ from .config import (
 from ...types import ollama_verify_connection_params
 from .api.api import (
     APIResource,
-    AsyncAPIResource,
+    AsyncAPIResource as APIAsyncAPIResource,
     APIResourceWithRawResponse,
     AsyncAPIResourceWithRawResponse,
     APIResourceWithStreamingResponse,
     AsyncAPIResourceWithStreamingResponse,
 )
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
-from ..._resource import SyncAPIResource, AsyncAPIResource
+from ..._resource import SyncAPIResource, AsyncAPIResource as _ResourceAsyncAPIResource
 from ..._response import (
     to_raw_response_wrapper,
     to_streamed_response_wrapper,
@@ -152,14 +149,14 @@ class OllamaResource(SyncAPIResource):
         )
 
 
-class AsyncOllamaResource(AsyncAPIResource):
+class AsyncOllamaResource(_ResourceAsyncAPIResource):
     @cached_property
     def config(self) -> AsyncConfigResource:
         return AsyncConfigResource(self._client)
 
     @cached_property
-    def api(self) -> AsyncAPIResource:
-        return AsyncAPIResource(self._client)
+    def api(self) -> APIAsyncAPIResource:
+        return APIAsyncAPIResource(self._client)
 
     @cached_property
     def v1(self) -> AsyncV1Resource:

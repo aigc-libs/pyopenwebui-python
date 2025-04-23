@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import httpx
 
+from ... import _resource
 from .chat import (
     ChatResource,
     AsyncChatResource,
@@ -54,7 +55,6 @@ from .webhook import (
 )
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._compat import cached_property
-from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
     to_raw_response_wrapper,
     to_streamed_response_wrapper,
@@ -66,7 +66,7 @@ from ..._base_client import make_request_options
 __all__ = ["APIResource", "AsyncAPIResource"]
 
 
-class APIResource(SyncAPIResource):
+class APIResource(_resource.SyncAPIResource):
     @cached_property
     def v1(self) -> V1Resource:
         return V1Resource(self._client)
@@ -149,7 +149,7 @@ class APIResource(SyncAPIResource):
         )
 
 
-class AsyncAPIResource(AsyncAPIResource):
+class AsyncAPIResource(_resource.AsyncAPIResource):
     @cached_property
     def v1(self) -> AsyncV1Resource:
         return AsyncV1Resource(self._client)
