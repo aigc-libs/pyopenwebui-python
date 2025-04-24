@@ -1,5 +1,46 @@
 # Changelog
 
+## 0.5.1 (2025-04-24)
+
+Full Changelog: [v0.5.0...v0.5.1](https://github.com/aigc-libs/pyopenwebui-python/compare/v0.5.0...v0.5.1)
+
+### Bug Fixes
+
+* **ci:** ensure pip is always available ([#59](https://github.com/aigc-libs/pyopenwebui-python/issues/59)) ([9bcb1ad](https://github.com/aigc-libs/pyopenwebui-python/commit/9bcb1ad0a0c567c057aa12b4460b22f9fee66b05))
+* **ci:** remove publishing patch ([#60](https://github.com/aigc-libs/pyopenwebui-python/issues/60)) ([97291e0](https://github.com/aigc-libs/pyopenwebui-python/commit/97291e0ccd55792429efa7c96c2705d4108371c6))
+* **perf:** optimize some hot paths ([c83bce5](https://github.com/aigc-libs/pyopenwebui-python/commit/c83bce5c45b9ffcb1dfd07f27ed39129d7d2cf0b))
+* **perf:** skip traversing types for NotGiven values ([3a54ba6](https://github.com/aigc-libs/pyopenwebui-python/commit/3a54ba62acb6214c59e2ebae54b8b0209a423059))
+* **pydantic v1:** more robust ModelField.annotation check ([3af7dd3](https://github.com/aigc-libs/pyopenwebui-python/commit/3af7dd375f2ef25cd0e0cc217cd7be4ef3cd4ccc))
+* **types:** handle more discriminated union shapes ([#58](https://github.com/aigc-libs/pyopenwebui-python/issues/58)) ([7d7ae2c](https://github.com/aigc-libs/pyopenwebui-python/commit/7d7ae2c55bba4d04f6e1fc6857ea4c3060e8c824))
+
+
+### Chores
+
+* broadly detect json family of content-type headers ([8006737](https://github.com/aigc-libs/pyopenwebui-python/commit/800673733f13c68b88cc48b0c74ad76fa2149cc8))
+* **ci:** add timeout thresholds for CI jobs ([cb9760c](https://github.com/aigc-libs/pyopenwebui-python/commit/cb9760cac334d31c1c3cac67b4c1da446d35c991))
+* **ci:** only use depot for staging repos ([b9e1d07](https://github.com/aigc-libs/pyopenwebui-python/commit/b9e1d072e068a12dd21aafeae686547427517e06))
+* **client:** minor internal fixes ([c0ee9f8](https://github.com/aigc-libs/pyopenwebui-python/commit/c0ee9f890da000df20934096b445251250cc3790))
+* fix typos ([#61](https://github.com/aigc-libs/pyopenwebui-python/issues/61)) ([351b5a2](https://github.com/aigc-libs/pyopenwebui-python/commit/351b5a2a2da8772b728317a4559429a6d497d1dc))
+* **internal:** base client updates ([d63299f](https://github.com/aigc-libs/pyopenwebui-python/commit/d63299f41a37cf5e5d75a288b016967de4d256d8))
+* **internal:** bump pyright version ([0db1edb](https://github.com/aigc-libs/pyopenwebui-python/commit/0db1edb0ae712fae3bdf558df35ef3e8c57413e9))
+* **internal:** bump rye to 0.44.0 ([#57](https://github.com/aigc-libs/pyopenwebui-python/issues/57)) ([380c7e7](https://github.com/aigc-libs/pyopenwebui-python/commit/380c7e78e3de2c29b0995b3a27b98441f3411e6c))
+* **internal:** codegen related update ([1fac880](https://github.com/aigc-libs/pyopenwebui-python/commit/1fac8802f622d32c8a69c470e126e70c0d14b559))
+* **internal:** codegen related update ([#53](https://github.com/aigc-libs/pyopenwebui-python/issues/53)) ([d8d7279](https://github.com/aigc-libs/pyopenwebui-python/commit/d8d7279c8c59f94b2346cc4e514ea7061d0d9d80))
+* **internal:** codegen related update ([#56](https://github.com/aigc-libs/pyopenwebui-python/issues/56)) ([f7f887c](https://github.com/aigc-libs/pyopenwebui-python/commit/f7f887cd3385016388105e08c9f2d100f8750070))
+* **internal:** expand CI branch coverage ([c0b031e](https://github.com/aigc-libs/pyopenwebui-python/commit/c0b031e884e0108c7e8e40958afb5a30fca406cf))
+* **internal:** fix list file params ([14895e8](https://github.com/aigc-libs/pyopenwebui-python/commit/14895e890ddd161b259be489300c768e28fe75d6))
+* **internal:** import reformatting ([a26fe4f](https://github.com/aigc-libs/pyopenwebui-python/commit/a26fe4f75545b612b1cb774ef3fda5ec22deb699))
+* **internal:** minor formatting changes ([8129a0c](https://github.com/aigc-libs/pyopenwebui-python/commit/8129a0c494c94012895bf59a31cbc992d3e2b77e))
+* **internal:** minor test fixes ([#62](https://github.com/aigc-libs/pyopenwebui-python/issues/62)) ([7410e5d](https://github.com/aigc-libs/pyopenwebui-python/commit/7410e5da577b1cd69c5945112aac591b8d4f8c73))
+* **internal:** reduce CI branch coverage ([3a419c5](https://github.com/aigc-libs/pyopenwebui-python/commit/3a419c561b14d9111662388b348e286daf6eab53))
+* **internal:** refactor retries to not use recursion ([25358f7](https://github.com/aigc-libs/pyopenwebui-python/commit/25358f78d5b1550668ff58a0ea2e0086c75e4b0e))
+* **internal:** remove extra empty newlines ([#55](https://github.com/aigc-libs/pyopenwebui-python/issues/55)) ([667f89a](https://github.com/aigc-libs/pyopenwebui-python/commit/667f89a7d783dd71c8bcc82dee2526e8002a94e9))
+* **internal:** remove trailing character ([#63](https://github.com/aigc-libs/pyopenwebui-python/issues/63)) ([8d44fd8](https://github.com/aigc-libs/pyopenwebui-python/commit/8d44fd8ab529168ca1c7e87a2d2a3d82d7aeae5a))
+* **internal:** slight transform perf improvement ([#64](https://github.com/aigc-libs/pyopenwebui-python/issues/64)) ([3e590b3](https://github.com/aigc-libs/pyopenwebui-python/commit/3e590b3a0b21fa86166146a005e37545cf4c97aa))
+* **internal:** update models test ([b04f9dc](https://github.com/aigc-libs/pyopenwebui-python/commit/b04f9dc2187ec189e85e6bf8c3808d366a141f86))
+* **internal:** update pyright settings ([0978550](https://github.com/aigc-libs/pyopenwebui-python/commit/0978550626d35b9fd236033ab83ac0471fd9a37c))
+* slight wording improvement in README ([#65](https://github.com/aigc-libs/pyopenwebui-python/issues/65)) ([632ebcb](https://github.com/aigc-libs/pyopenwebui-python/commit/632ebcbf28ec93a10134a6d0d7930b143a77dff8))
+
 ## 0.5.0 (2025-03-08)
 
 Full Changelog: [v0.4.0...v0.5.0](https://github.com/aigc-libs/pyopenwebui-python/compare/v0.4.0...v0.5.0)
