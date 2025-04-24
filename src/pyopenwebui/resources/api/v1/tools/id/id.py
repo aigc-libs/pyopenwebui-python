@@ -7,10 +7,7 @@ from typing import Optional
 import httpx
 
 from ......_types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ......_utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ......_utils import maybe_transform, async_maybe_transform
 from ......_compat import cached_property
 from .valves.valves import (
     ValvesResource,
@@ -61,9 +58,9 @@ class IDResource(SyncAPIResource):
 
     def update(
         self,
-        id_1: str,
+        path_id: str,
         *,
-        id_2: str,
+        body_id: str,
         content: str,
         meta: id_update_params.Meta,
         name: str,
@@ -87,13 +84,13 @@ class IDResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not id_1:
-            raise ValueError(f"Expected a non-empty value for `id_1` but received {id_1!r}")
+        if not path_id:
+            raise ValueError(f"Expected a non-empty value for `path_id` but received {path_id!r}")
         return self._post(
-            f"/api/v1/tools/id/{id_1}/update",
+            f"/api/v1/tools/id/{path_id}/update",
             body=maybe_transform(
                 {
-                    "id_2": id_2,
+                    "body_id": body_id,
                     "content": content,
                     "meta": meta,
                     "name": name,
@@ -200,9 +197,9 @@ class AsyncIDResource(AsyncAPIResource):
 
     async def update(
         self,
-        id_1: str,
+        path_id: str,
         *,
-        id_2: str,
+        body_id: str,
         content: str,
         meta: id_update_params.Meta,
         name: str,
@@ -226,13 +223,13 @@ class AsyncIDResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not id_1:
-            raise ValueError(f"Expected a non-empty value for `id_1` but received {id_1!r}")
+        if not path_id:
+            raise ValueError(f"Expected a non-empty value for `path_id` but received {path_id!r}")
         return await self._post(
-            f"/api/v1/tools/id/{id_1}/update",
+            f"/api/v1/tools/id/{path_id}/update",
             body=await async_maybe_transform(
                 {
-                    "id_2": id_2,
+                    "body_id": body_id,
                     "content": content,
                     "meta": meta,
                     "name": name,

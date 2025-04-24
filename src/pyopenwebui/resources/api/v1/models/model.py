@@ -7,10 +7,7 @@ from typing import Dict, Optional
 import httpx
 
 from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ....._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ....._utils import maybe_transform, async_maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
@@ -52,8 +49,8 @@ class ModelResource(SyncAPIResource):
     def update(
         self,
         *,
-        id_1: str,
-        id_2: str,
+        query_id: str,
+        body_id: str,
         meta: model_update_params.Meta,
         name: str,
         params: Dict[str, object],
@@ -83,7 +80,7 @@ class ModelResource(SyncAPIResource):
             "/api/v1/models/model/update",
             body=maybe_transform(
                 {
-                    "id_2": id_2,
+                    "body_id": body_id,
                     "meta": meta,
                     "name": name,
                     "params": params,
@@ -98,7 +95,7 @@ class ModelResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform({"id_1": id_1}, model_update_params.ModelUpdateParams),
+                query=maybe_transform({"query_id": query_id}, model_update_params.ModelUpdateParams),
             ),
             cast_to=ModelModel,
         )
@@ -232,8 +229,8 @@ class AsyncModelResource(AsyncAPIResource):
     async def update(
         self,
         *,
-        id_1: str,
-        id_2: str,
+        query_id: str,
+        body_id: str,
         meta: model_update_params.Meta,
         name: str,
         params: Dict[str, object],
@@ -263,7 +260,7 @@ class AsyncModelResource(AsyncAPIResource):
             "/api/v1/models/model/update",
             body=await async_maybe_transform(
                 {
-                    "id_2": id_2,
+                    "body_id": body_id,
                     "meta": meta,
                     "name": name,
                     "params": params,
@@ -278,7 +275,7 @@ class AsyncModelResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform({"id_1": id_1}, model_update_params.ModelUpdateParams),
+                query=await async_maybe_transform({"query_id": query_id}, model_update_params.ModelUpdateParams),
             ),
             cast_to=ModelModel,
         )

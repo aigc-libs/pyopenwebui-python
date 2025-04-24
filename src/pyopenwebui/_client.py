@@ -19,10 +19,7 @@ from ._types import (
     ProxiesTypes,
     RequestOptions,
 )
-from ._utils import (
-    is_given,
-    get_async_library,
-)
+from ._utils import is_given, get_async_library
 from ._version import __version__
 from .resources import oauth, health, manifest_json, opensearch_xml
 from ._streaming import Stream as Stream, AsyncStream as AsyncStream
@@ -85,7 +82,7 @@ class Pyopenwebui(SyncAPIClient):
         # part of our public interface in the future.
         _strict_response_validation: bool = False,
     ) -> None:
-        """Construct a new synchronous pyopenwebui client instance.
+        """Construct a new synchronous Pyopenwebui client instance.
 
         This automatically infers the `bearer_token` argument from the `PYOPENWEBUI_BEARER_TOKEN` environment variable if it is not provided.
         """
@@ -265,7 +262,7 @@ class AsyncPyopenwebui(AsyncAPIClient):
         # part of our public interface in the future.
         _strict_response_validation: bool = False,
     ) -> None:
-        """Construct a new async pyopenwebui client instance.
+        """Construct a new async AsyncPyopenwebui client instance.
 
         This automatically infers the `bearer_token` argument from the `PYOPENWEBUI_BEARER_TOKEN` environment variable if it is not provided.
         """
